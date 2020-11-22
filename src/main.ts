@@ -9,8 +9,8 @@ const SWAGGER_DESCRIPTION = 'API'
 const SWAGGER_PREFIX = '/docs'
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule)
-  await app.listen(3000)
+    const app = await NestFactory.create(AppModule)
+    await app.listen(3000)
 }
 
 bootstrap().then((_) => _)
