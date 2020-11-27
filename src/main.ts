@@ -3,6 +3,9 @@ import { ValidationPipe } from '@nestjs/common'
 import type { INestApplication } from '@nestjs/common'
 import { NestFactory } from '@nestjs/core'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
+
+import { Logger } from 'nestjs-pino'
+
 import * as rateLimit from 'express-rate-limit'
 import * as helmet from 'helmet'
 
@@ -30,7 +33,9 @@ function createSwagger(app: INestApplication) {
 async function bootstrap() {
     const API_DEFAULT_PORT = 3000
 
-    const app = await NestFactory.create(AppModule)
+    const app = await NestFactory.create(AppModule, { logger: false })
+    app.useLogger(app.get(Logger))
+
     createSwagger(app)
 
     app.use(helmet())
@@ -62,3 +67,4 @@ bootstrap()
     .then((url) => {
         console.log(`Application is running on ${url}`)
     })
+    .catch(console.error)

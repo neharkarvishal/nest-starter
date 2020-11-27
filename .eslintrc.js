@@ -51,6 +51,7 @@ module.exports = {
                 },
                 groups: [
                     'absolute', // any absolute path modules are first (ex: `/path/to/code.ts`)
+                    '/^@nest/', // any import paths starting with 'nest'
                     '/^nest/', // any import paths starting with 'nest'
                     'module',
                     ['parent', 'sibling', 'index'],
