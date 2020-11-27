@@ -1,13 +1,22 @@
+/* eslint-disable no-console */
 import { Module, OnModuleInit, OnApplicationShutdown } from '@nestjs/common'
 import { TerminusModule } from '@nestjs/terminus'
+import { TypeOrmModule } from '@nestjs/typeorm'
 
+import { HealthController } from '../health/health.controller'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
-import { HealthController } from './health/health.controller'
 
 @Module({
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    imports: [TerminusModule],
+    imports: [
+        TerminusModule, // Health module
+        TypeOrmModule.forRoot({
+            type: 'sqlite',
+            database: 'database.sqlite',
+            synchronize: true,
+            logging: true,
+        }),
+    ],
     controllers: [AppController, HealthController],
     providers: [AppService],
 })
@@ -17,6 +26,8 @@ export class AppModule implements OnModuleInit, OnApplicationShutdown {
     }
 
     onApplicationShutdown(signal?: string): void {
-        console.log(`ApplicationShutdown - AppModule has been shutdown with ${signal} signal`)
+        console.log(
+            `ApplicationShutdown - AppModule has been shutdown with ${signal} signal`,
+        )
     }
 }

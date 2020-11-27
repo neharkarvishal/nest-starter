@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call,@typescript-eslint/ban-ts-comment,@typescript-eslint/no-floating-promises,no-console */
 import { ValidationPipe } from '@nestjs/common'
 import type { INestApplication } from '@nestjs/common'
 import { NestFactory } from '@nestjs/core'
@@ -5,14 +6,14 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 import * as rateLimit from 'express-rate-limit'
 import * as helmet from 'helmet'
 
-import { AppModule } from './app.module'
+import { AppModule } from './app/app.module'
 
 function createSwagger(app: INestApplication) {
     const SWAGGER_TITLE = 'API'
     const SWAGGER_DESCRIPTION = 'API'
     const SWAGGER_PREFIX = '/docs'
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-var-requires,global-require
+    // eslint-disable-next-line @typescript-eslint/no-var-requires,global-require,@typescript-eslint/no-unsafe-member-access
     const version = (require('../package.json').version as string) || ''
 
     const options = new DocumentBuilder()
@@ -32,23 +33,21 @@ async function bootstrap() {
     const app = await NestFactory.create(AppModule)
     createSwagger(app)
 
-    app.use(helmet()) // eslint-disable-line @typescript-eslint/no-unsafe-call
+    app.use(helmet())
     app.enableCors()
     app.use(
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
         rateLimit({
             windowMs: 15 * 60 * 1000, // 15 minutes
             max: 100, // limit each IP to 100 requests per windowMs
+            message: 'Too many requests from this IP, please try again later',
         }),
     )
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    app.disable('ETag') // eslint-disable-line @typescript-eslint/no-unsafe-call
+    app.disable('ETag')
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    app.disable('X-Powered-By') // eslint-disable-line @typescript-eslint/no-unsafe-call
+    app.disable('X-Powered-By')
 
     app.useGlobalPipes(new ValidationPipe())
     app.enableShutdownHooks()
@@ -58,10 +57,8 @@ async function bootstrap() {
     return app
 }
 
-// eslint-disable-next-line @typescript-eslint/no-floating-promises
 bootstrap()
     .then(({ getUrl }) => getUrl())
     .then((url) => {
-        // eslint-disable-next-line no-console
         console.log(`Application is running on ${url}`)
     })
