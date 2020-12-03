@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import { Module, OnModuleInit, OnApplicationShutdown } from '@nestjs/common'
+import { ConfigModule } from '@nestjs/config'
 import { TerminusModule } from '@nestjs/terminus'
 import { TypeOrmModule } from '@nestjs/typeorm'
 
@@ -11,6 +12,9 @@ import { AppService } from './app.service'
 
 @Module({
     imports: [
+        ConfigModule.forRoot({
+            isGlobal: true,
+        }),
         LoggerModule.forRoot({
             pinoHttp: {
                 prettyPrint: {

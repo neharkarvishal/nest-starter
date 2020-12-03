@@ -1,4 +1,5 @@
 import { Controller, Get, OnApplicationShutdown, OnModuleInit } from '@nestjs/common'
+import { ConfigService } from '@nestjs/config'
 import { DNSHealthIndicator, HealthCheck, HealthCheckService } from '@nestjs/terminus'
 
 @Controller('health')
@@ -6,6 +7,7 @@ export class HealthController implements OnModuleInit, OnApplicationShutdown {
     constructor(
         private health: HealthCheckService,
         private dns: DNSHealthIndicator,
+        private config: ConfigService<EnvironmentVariables>,
     ) {}
 
     @Get()
@@ -25,7 +27,9 @@ export class HealthController implements OnModuleInit, OnApplicationShutdown {
      */
 
     onModuleInit(): void {
-        console.log(`ModuleInit - HealthController has been initialized.`)
+        console.log(`ModuleInit - HealthController has been initialized.`, {
+            config: this.config.get<string>('NODE_ENV'),
+        })
     }
 
     onApplicationShutdown(signal?: string): void {

@@ -33,8 +33,8 @@ function createSwagger(app: INestApplication) {
 async function bootstrap() {
     const API_DEFAULT_PORT = 3000
 
-    const app = await NestFactory.create(AppModule, { logger: false })
-    app.useLogger(app.get(Logger))
+    const app = await NestFactory.create(AppModule /* , { logger: false } */)
+    // app.useLogger(app.get(Logger))
 
     createSwagger(app)
 
@@ -54,6 +54,7 @@ async function bootstrap() {
     // @ts-ignore
     app.disable('X-Powered-By')
 
+    // ValidationPipe at the application level, thus ensuring all endpoints are protected from receiving incorrect data
     app.useGlobalPipes(new ValidationPipe())
     app.enableShutdownHooks()
 
