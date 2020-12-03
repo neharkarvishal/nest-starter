@@ -7,7 +7,7 @@ export class HealthController implements OnModuleInit, OnApplicationShutdown {
     constructor(
         private health: HealthCheckService,
         private dns: DNSHealthIndicator,
-        private config: ConfigService<EnvironmentVariables>,
+        private config: ConfigService,
     ) {}
 
     @Get()
