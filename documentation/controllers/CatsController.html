@@ -36,7 +36,7 @@
 
 <ol class="breadcrumb">
   <li>Controllers</li>
-  <li>HealthController</li>
+  <li>CatsController</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -54,14 +54,14 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/health/health.controller.ts</code>
+            <code>src/cats/cats.controller.ts</code>
         </p>
 
             <p class="comment">
                 <h3>Prefix</h3>
             </p>
             <p class="comment">
-                <code>health</code>
+                <code>cats</code>
             </p>
 
 
@@ -82,13 +82,15 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#check">check</a>
+                                    <span class="modifier">Async</span>
+                                <a href="#create">create</a>
                             </li>
                             <li>
-                                <a href="#onApplicationShutdown">onApplicationShutdown</a>
+                                    <span class="modifier">Async</span>
+                                <a href="#findAll">findAll</a>
                             </li>
                             <li>
-                                <a href="#onModuleInit">onModuleInit</a>
+                                <a href="#findOne">findOne</a>
                             </li>
                         </ul>
                     </td>
@@ -111,18 +113,20 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="check"></a>
+                    <a name="create"></a>
                     <span class="name">
                         <b>
-                            check
+                            <span class="modifier">Async</span>
+                            create
                         </b>
-                        <a href="#check"><span class="icon ion-ios-link"></span></a>
+                        <a href="#create"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>check()</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>create(createCatDto: <a href="../interfaces/Cat.html">CreateCatDto</a>)</code>
                 </td>
             </tr>
 
@@ -130,53 +134,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get()<br />@HealthCheck()<br /></code>
+                    <code>@Post()<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="15"
-                            class="link-to-prism">src/health/health.controller.ts:15</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="onApplicationShutdown"></a>
-                    <span class="name">
-                        <b>
-                            onApplicationShutdown
-                        </b>
-                        <a href="#onApplicationShutdown"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>onApplicationShutdown(signal?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="35"
-                            class="link-to-prism">src/health/health.controller.ts:35</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="12"
+                            class="link-to-prism">src/cats/cats.controller.ts:12</a></div>
                 </td>
             </tr>
 
@@ -196,13 +161,13 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>signal</td>
+                                    <td>createCatDto</td>
                                     <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                <code><a href="../interfaces/Cat.html" target="_self" >CreateCatDto</a></code>
                                     </td>
 
                                     <td>
-                                        Yes
+                                        No
                                     </td>
 
 
@@ -213,7 +178,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                     </div>
                     <div class="io-description">
@@ -227,26 +192,35 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="onModuleInit"></a>
+                    <a name="findAll"></a>
                     <span class="name">
                         <b>
-                            onModuleInit
+                            <span class="modifier">Async</span>
+                            findAll
                         </b>
-                        <a href="#onModuleInit"><span class="icon ion-ios-link"></span></a>
+                        <a href="#findAll"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>onModuleInit()</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findAll()</code>
                 </td>
             </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get()<br /></code>
+                </td>
+            </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="29"
-                            class="link-to-prism">src/health/health.controller.ts:29</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="17"
+                            class="link-to-prism">src/cats/cats.controller.ts:17</a></div>
                 </td>
             </tr>
 
@@ -255,8 +229,85 @@
                 <td class="col-md-4">
 
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <b>Returns : </b>        <code><a href="../interfaces/Cat.html" target="_self" >Promise&lt;Cat[]&gt;</a></code>
 
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findOne"></a>
+                    <span class="name">
+                        <b>
+                            findOne
+                        </b>
+                        <a href="#findOne"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>findOne(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;:id&#x27;)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="22"
+                            class="link-to-prism">src/cats/cats.controller.ts:22</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
                     </div>
                 </td>
             </tr>
@@ -266,44 +317,32 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, OnApplicationShutdown, OnModuleInit } from &#x27;@nestjs/common&#x27;
-import { ConfigService } from &#x27;@nestjs/config&#x27;
-import { DNSHealthIndicator, HealthCheck, HealthCheckService } from &#x27;@nestjs/terminus&#x27;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Get, Param, Post, UseGuards } from &#x27;@nestjs/common&#x27;
 
-@Controller(&#x27;health&#x27;)
-export class HealthController implements OnModuleInit, OnApplicationShutdown {
-    constructor(
-        private health: HealthCheckService,
-        private dns: DNSHealthIndicator,
-        private config: ConfigService,
-    ) {}
+import { CatsService } from &#x27;./cats.service&#x27;
+import { CreateCatDto } from &#x27;./dto/create-cat.dto&#x27;
+import { Cat } from &#x27;./interfaces/cat.interface&#x27;
+
+@Controller(&#x27;cats&#x27;)
+export class CatsController {
+    constructor(private readonly catsService: CatsService) {}
+
+    @Post()
+    async create(@Body() createCatDto: CreateCatDto) {
+        this.catsService.create(createCatDto)
+    }
 
     @Get()
-    @HealthCheck()
-    check() {
-        return this.health.check([
-            () &#x3D;&gt; this.dns.pingCheck(&#x27;nestjs-docs&#x27;, &#x27;https://docs.nestjs.com&#x27;),
-        ])
+    async findAll(): Promise&lt;Cat[]&gt; {
+        return this.catsService.findAll()
     }
 
-    /*
-     * When the application receives a termination signal it will call any registered
-     * onModuleDestroy(), beforeApplicationShutdown(), then onApplicationShutdown() methods
-     * (in the sequence described above) with the corresponding signal as the first parameter.
-     * If a registered function awaits an asynchronous call (returns a promise), Nest will not
-     * continue in the sequence until the promise is resolved or rejected.
-     */
-
-    onModuleInit(): void {
-        console.log(&#x60;ModuleInit - HealthController has been initialized.&#x60;, {
-            config: this.config.get&lt;string&gt;(&#x27;NODE_ENV&#x27;),
-        })
-    }
-
-    onApplicationShutdown(signal?: string): void {
-        console.log(
-            &#x60;ApplicationShutdown - HealthController has been shutdown with ${signal} signal&#x60;,
-        )
+    @Get(&#x27;:id&#x27;)
+    findOne(
+        @Param(&#x27;id&#x27;)
+        id: number,
+    ) {
+        return this.catsService.findOne(id)
     }
 }
 </code></pre>
@@ -340,7 +379,7 @@ export class HealthController implements OnModuleInit, OnApplicationShutdown {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'controller';
-            var COMPODOC_CURRENT_PAGE_URL = 'HealthController.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'CatsController.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

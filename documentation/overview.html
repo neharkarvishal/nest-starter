@@ -61,29 +61,55 @@
 <text text-anchor="start" x="429.73" y="-15.4" font-family="sans-serif" font-size="14.00"> &#160;Exports</text>
 <g id="clust1" class="cluster">
 <title>cluster_AppModule</title>
-<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="175,-70 175,-195 321,-195 321,-70 175,-70"/>
+<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="98,-70 98,-195 244,-195 244,-70 98,-70"/>
 </g>
 <g id="clust6" class="cluster">
 <title>cluster_AppModule_providers</title>
-<polygon fill="none" stroke="black" points="183,-78 183,-130 313,-130 313,-78 183,-78"/>
+<polygon fill="none" stroke="black" points="106,-78 106,-130 236,-130 236,-78 106,-78"/>
+</g>
+<g id="clust7" class="cluster">
+<title>cluster_CatsModule</title>
+<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="252,-70 252,-195 398,-195 398,-70 252,-70"/>
+</g>
+<g id="clust12" class="cluster">
+<title>cluster_CatsModule_providers</title>
+<polygon fill="none" stroke="black" points="260,-78 260,-130 390,-130 390,-78 260,-78"/>
 </g>
 <!-- AppService -->
 <g id="node1" class="node">
 <title>AppService</title>
-<ellipse fill="#fdb462" stroke="black" cx="248" cy="-104" rx="56.74" ry="18"/>
-<text text-anchor="middle" x="248" y="-99.8" font-family="Times,serif" font-size="14.00">AppService</text>
+<ellipse fill="#fdb462" stroke="black" cx="171" cy="-104" rx="56.74" ry="18"/>
+<text text-anchor="middle" x="171" y="-99.8" font-family="Times,serif" font-size="14.00">AppService</text>
 </g>
 <!-- AppModule -->
 <g id="node2" class="node">
 <title>AppModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="289.66,-187 286.66,-191 265.66,-191 262.66,-187 206.34,-187 206.34,-151 289.66,-151 289.66,-187"/>
-<text text-anchor="middle" x="248" y="-164.8" font-family="Times,serif" font-size="14.00">AppModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="212.66,-187 209.66,-191 188.66,-191 185.66,-187 129.34,-187 129.34,-151 212.66,-151 212.66,-187"/>
+<text text-anchor="middle" x="171" y="-164.8" font-family="Times,serif" font-size="14.00">AppModule</text>
 </g>
 <!-- AppService&#45;&gt;AppModule -->
 <g id="edge1" class="edge">
 <title>AppService&#45;&gt;AppModule</title>
-<path fill="none" stroke="black" d="M248,-122.11C248,-122.11 248,-140.99 248,-140.99"/>
-<polygon fill="black" stroke="black" points="244.5,-140.99 248,-150.99 251.5,-140.99 244.5,-140.99"/>
+<path fill="none" stroke="black" d="M171,-122.11C171,-122.11 171,-140.99 171,-140.99"/>
+<polygon fill="black" stroke="black" points="167.5,-140.99 171,-150.99 174.5,-140.99 167.5,-140.99"/>
+</g>
+<!-- CatsService -->
+<g id="node3" class="node">
+<title>CatsService</title>
+<ellipse fill="#fdb462" stroke="black" cx="325" cy="-104" rx="57.32" ry="18"/>
+<text text-anchor="middle" x="325" y="-99.8" font-family="Times,serif" font-size="14.00">CatsService</text>
+</g>
+<!-- CatsModule -->
+<g id="node4" class="node">
+<title>CatsModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="367.44,-187 364.44,-191 343.44,-191 340.44,-187 282.56,-187 282.56,-151 367.44,-151 367.44,-187"/>
+<text text-anchor="middle" x="325" y="-164.8" font-family="Times,serif" font-size="14.00">CatsModule</text>
+</g>
+<!-- CatsService&#45;&gt;CatsModule -->
+<g id="edge2" class="edge">
+<title>CatsService&#45;&gt;CatsModule</title>
+<path fill="none" stroke="black" d="M325,-122.11C325,-122.11 325,-140.99 325,-140.99"/>
+<polygon fill="black" stroke="black" points="321.5,-140.99 325,-150.99 328.5,-140.99 321.5,-140.99"/>
 </g>
 </g>
 </svg>
@@ -104,7 +130,7 @@
                 <div class="card-block">
                     <h4 class="card-title"><span class="icon ion-ios-archive"></span></h4>
                     <p class="card-text">
-                        <a href="./modules.html">1 Module</a>
+                        <a href="./modules.html">2 Modules</a>
                     </p>
                 </div>
             </div>
@@ -113,7 +139,7 @@
             <div class="card text-center">
                 <div class="card-block">
                     <h4 class="card-title"><span class="icon ion-md-swap"></span></h4>
-                    <p class="card-text">2 Controllers</p>
+                    <p class="card-text">3 Controllers</p>
                 </div>
             </div>
         </div>
@@ -121,7 +147,23 @@
             <div class="card text-center">
                 <div class="card-block">
                     <h4 class="card-title"><span class="icon ion-md-arrow-round-down"></span></h4>
-                    <p class="card-text">1 Injectable</p>
+                    <p class="card-text">2 Injectables</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card text-center">
+                <div class="card-block">
+                    <h4 class="card-title"><span class="icon ion-ios-paper"></span></h4>
+                    <p class="card-text">1 Class</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card text-center">
+                <div class="card-block">
+                    <h4 class="card-title"><span class="icon ion-md-information-circle-outline"></span></h4>
+                    <p class="card-text">1 Interface</p>
                 </div>
             </div>
         </div>
