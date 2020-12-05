@@ -126,7 +126,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>create(createCatDto: <a href="../interfaces/Cat.html">CreateCatDto</a>)</code>
+                    <code>create(createCatDto: <a href="../classes/CreateCatDto.html">CreateCatDto</a>)</code>
                 </td>
             </tr>
 
@@ -134,14 +134,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post()<br /></code>
+                    <code>@Post()<br />@ApiOperation({summary: &#x27;Create cat&#x27;})<br />@ApiResponse({status: undefined, description: &#x27;Created Cat Successfully&#x27;})<br />@ApiResponse({description: &#x27;Forbidden&#x27;, status: undefined})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="12"
-                            class="link-to-prism">src/cats/cats.controller.ts:12</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="24"
+                            class="link-to-prism">src/cats/cats.controller.ts:24</a></div>
                 </td>
             </tr>
 
@@ -163,7 +163,7 @@
                                 <tr>
                                     <td>createCatDto</td>
                                     <td>
-                                                <code><a href="../interfaces/Cat.html" target="_self" >CreateCatDto</a></code>
+                                                <code><a href="../classes/CreateCatDto.html" target="_self" >CreateCatDto</a></code>
                                     </td>
 
                                     <td>
@@ -213,14 +213,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get()<br /></code>
+                    <code>@Get()<br />@ApiOperation({summary: &#x27;Get all Cats&#x27;})<br />@ApiResponse({description: &#x27;Array of all Cats Entities&#x27;, isArray: true, status: undefined, type: Cat})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="17"
-                            class="link-to-prism">src/cats/cats.controller.ts:17</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="36"
+                            class="link-to-prism">src/cats/cats.controller.ts:36</a></div>
                 </td>
             </tr>
 
@@ -229,7 +229,7 @@
                 <td class="col-md-4">
 
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../interfaces/Cat.html" target="_self" >Promise&lt;Cat[]&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../classes/Cat.html" target="_self" >Promise&lt;Cat[]&gt;</a></code>
 
                     </div>
                 </td>
@@ -259,14 +259,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;:id&#x27;)<br /></code>
+                    <code>@Get(&#x27;:id&#x27;)<br />@ApiOperation({summary: &#x27;Get a Cats by id&#x27;})<br />@ApiResponse({description: &#x27;Entity of a Cats&#x27;, isArray: false, status: undefined, type: Cat})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="22"
-                            class="link-to-prism">src/cats/cats.controller.ts:22</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="48"
+                            class="link-to-prism">src/cats/cats.controller.ts:48</a></div>
                 </td>
             </tr>
 
@@ -303,7 +303,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                        <b>Returns : </b>        <code><a href="../classes/Cat.html" target="_self" >Promise&lt;Cat&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -317,31 +317,54 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Get, Param, Post, UseGuards } from &#x27;@nestjs/common&#x27;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">/* eslint-disable */
+import { Body, Controller, Get, Param, Post, HttpStatus } from &#x27;@nestjs/common&#x27;
+import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from &#x27;@nestjs/swagger&#x27;
 
-import { CatsService } from &#x27;./cats.service&#x27;
-import { CreateCatDto } from &#x27;./dto/create-cat.dto&#x27;
-import { Cat } from &#x27;./interfaces/cat.interface&#x27;
+import { CatsService } from &#x27;src/cats/cats.service&#x27;
+import { CreateCatDto } from &#x27;src/cats/dto/create-cat.dto&#x27;
+import { Cat } from &#x27;src/cats/entities/cat.entity&#x27;
 
+@ApiTags(CatsController.name)
 @Controller(&#x27;cats&#x27;)
 export class CatsController {
     constructor(private readonly catsService: CatsService) {}
 
     @Post()
+    @ApiOperation({ summary: &#x27;Create cat&#x27; })
+    @ApiResponse({
+        status: HttpStatus.CREATED,
+        description: &#x27;Created Cat Successfully&#x27;,
+    })
+    @ApiResponse({
+        description: &#x27;Forbidden&#x27;,
+        status: HttpStatus.FORBIDDEN,
+    })
     async create(@Body() createCatDto: CreateCatDto) {
         this.catsService.create(createCatDto)
     }
 
     @Get()
+    @ApiOperation({ summary: &#x27;Get all Cats&#x27; })
+    @ApiResponse({
+        description: &#x27;Array of all Cats Entities&#x27;,
+        isArray: true,
+        status: HttpStatus.OK,
+        type: Cat,
+    })
     async findAll(): Promise&lt;Cat[]&gt; {
         return this.catsService.findAll()
     }
 
     @Get(&#x27;:id&#x27;)
-    findOne(
-        @Param(&#x27;id&#x27;)
-        id: number,
-    ) {
+    @ApiOperation({ summary: &#x27;Get a Cats by id&#x27; })
+    @ApiResponse({
+        description: &#x27;Entity of a Cats&#x27;,
+        isArray: false,
+        status: HttpStatus.OK,
+        type: Cat,
+    })
+    findOne(@Param(&#x27;id&#x27;) id: number): Promise&lt;Cat&gt; {
         return this.catsService.findOne(id)
     }
 }

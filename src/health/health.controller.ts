@@ -1,7 +1,10 @@
+/* eslint-disable no-use-before-define,@typescript-eslint/no-use-before-define */
 import { Controller, Get, OnApplicationShutdown, OnModuleInit } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
+import { ApiTags } from '@nestjs/swagger'
 import { DNSHealthIndicator, HealthCheck, HealthCheckService } from '@nestjs/terminus'
 
+@ApiTags(HealthController.name)
 @Controller('health')
 export class HealthController implements OnModuleInit, OnApplicationShutdown {
     constructor(

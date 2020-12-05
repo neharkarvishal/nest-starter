@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 
-import { Cat } from './interfaces/cat.interface'
+import { Cat } from 'src/cats/entities/cat.entity'
 
 @Injectable()
 export class CatsService {
@@ -14,7 +14,9 @@ export class CatsService {
         return this.cats
     }
 
-    async findOne(id: number) {
-        return this.cats[id]
+    async findOne(id: number): Promise<Cat> {
+        if (this?.cats[id]) return this.cats[id]
+
+        return Promise.reject(new Error('No Cats'))
     }
 }

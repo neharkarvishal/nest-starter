@@ -145,14 +145,14 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">/* eslint-disable @typescript-eslint/no-unsafe-assignment,no-use-before-define,@typescript-eslint/no-use-before-define */
 import { Controller, Get, HttpStatus, OnModuleInit } from &#x27;@nestjs/common&#x27;
 import { ApiResponse, ApiTags } from &#x27;@nestjs/swagger&#x27;
 
 import { AppService } from &#x27;./app.service&#x27;
 
+@ApiTags(AppController.name)
 @Controller()
-@ApiTags(&#x27;AppController&#x27;)
 export class AppController {
     constructor(private readonly appService: AppService) {}
 

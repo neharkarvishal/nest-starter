@@ -7,6 +7,7 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 import { PinoLogger, LoggerModule } from 'nestjs-pino'
 
 import * as Joi from '@hapi/joi'
+import { CatsModule } from 'src/cats/cats.module'
 
 import { HealthController } from '../health/health.controller'
 import { AppController } from './app.controller'
@@ -52,6 +53,7 @@ const TypeOrmModuleOptions = {
         LoggerModule.forRoot(LoggerModuleOptions),
         TerminusModule, // Health module
         TypeOrmModule.forRoot(TypeOrmModuleOptions),
+        CatsModule,
     ],
     controllers: [AppController, HealthController],
     providers: [AppService],
