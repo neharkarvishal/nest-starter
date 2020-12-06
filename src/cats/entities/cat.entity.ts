@@ -1,20 +1,18 @@
-import { ApiProperty } from '@nestjs/swagger'
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
 
-import { ICat } from 'src/cats/interfaces/cat.interface'
+@Entity({ name: 'cats' })
+export class Cat {
+    public static readonly NAME_LENGTH = 36
 
-export class Cat implements ICat {
-    /**
-     * The name of the Cat
-     * @example Kitty
-     */
+    @PrimaryGeneratedColumn()
+    id: number
+
+    @Column({ name: 'cat_name', length: Cat.NAME_LENGTH })
     name: string
 
-    @ApiProperty({ example: 1, description: 'The age of the Cat' })
+    @Column({ name: 'cat_age' })
     age: number
 
-    @ApiProperty({
-        example: 'Maine Coon',
-        description: 'The breed of the Cat',
-    })
+    @Column({ name: 'cat_breed' })
     breed: string
 }

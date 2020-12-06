@@ -8,6 +8,7 @@ import { PinoLogger, LoggerModule } from 'nestjs-pino'
 
 import * as Joi from '@hapi/joi'
 import { CatsModule } from 'src/cats/cats.module'
+import { Cat } from 'src/cats/entities/cat.entity'
 
 import { HealthController } from '../health/health.controller'
 import { AppController } from './app.controller'
@@ -41,6 +42,7 @@ const LoggerModuleOptions = {
 }
 
 const TypeOrmModuleOptions = {
+    entities: [`${__dirname}/../**/*.entity.{ts,js}`],
     type: 'sqlite' as const,
     database: 'database.sqlite',
     synchronize: true,
@@ -48,6 +50,7 @@ const TypeOrmModuleOptions = {
 }
 
 @Module({
+    controllers: [AppController, HealthController],
     imports: [
         ConfigModule.forRoot(ConfigModuleOptions),
         LoggerModule.forRoot(LoggerModuleOptions),
@@ -55,7 +58,6 @@ const TypeOrmModuleOptions = {
         TypeOrmModule.forRoot(TypeOrmModuleOptions),
         CatsModule,
     ],
-    controllers: [AppController, HealthController],
     providers: [AppService],
 })
 export class AppModule implements OnModuleInit, OnApplicationShutdown {

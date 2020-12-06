@@ -42,7 +42,7 @@
 
 <ol class="breadcrumb">
   <li>Classes</li>
-  <li>Cat</li>
+  <li>CatDto</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -60,11 +60,17 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/cats/entities/cat.entity.ts</code>
+            <code>src/cats/dto/cat.dto.ts</code>
         </p>
 
 
 
+            <p class="comment">
+                <h3>Implements</h3>
+            </p>
+            <p class="comment">
+                            <code><a href="../interfaces/ICat.html" target="_self" >ICat</a></code>
+            </p>
 
 
             <section>
@@ -80,21 +86,21 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#age">age</a>
                             </li>
                             <li>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#breed">breed</a>
                             </li>
                             <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#id">id</a>
                             </li>
                             <li>
-                                <a href="#name">name</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Static</span>
                                     <span class="modifier">Readonly</span>
-                                <a href="#NAME_LENGTH">NAME_LENGTH</a>
+                                <a href="#name">name</a>
                             </li>
                         </ul>
                     </td>
@@ -122,6 +128,7 @@
                         <a name="age"></a>
                         <span class="name">
                             <b>
+                                <span class="modifier">Readonly</span>
                             age</b>
                             <a href="#age"><span class="icon ion-ios-link"></span></a>
                         </span>
@@ -138,13 +145,13 @@
                             <b>Decorators : </b>
                             <br />
                             <code>
-                                @Column({name: &#x27;cat_age&#x27;})<br />
+                                @ApiProperty({description: &#x27;The age of the Cat&#x27;, example: 1})<br />@IsInt()<br />
                             </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/cats/entities/cat.entity.ts:14</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/cats/dto/cat.dto.ts:30</a></div>
                             </td>
                         </tr>
 
@@ -158,6 +165,7 @@
                         <a name="breed"></a>
                         <span class="name">
                             <b>
+                                <span class="modifier">Readonly</span>
                             breed</b>
                             <a href="#breed"><span class="icon ion-ios-link"></span></a>
                         </span>
@@ -174,13 +182,13 @@
                             <b>Decorators : </b>
                             <br />
                             <code>
-                                @Column({name: &#x27;cat_breed&#x27;})<br />
+                                @ApiProperty({description: &#x27;The breed of the Cat&#x27;, example: &#x27;Maine Coon&#x27;})<br />@IsString()<br />
                             </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/cats/entities/cat.entity.ts:17</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/cats/dto/cat.dto.ts:34</a></div>
                             </td>
                         </tr>
 
@@ -194,6 +202,8 @@
                         <a name="id"></a>
                         <span class="name">
                             <b>
+                                <span class="modifier">Public</span>
+                                <span class="modifier">Readonly</span>
                             id</b>
                             <a href="#id"><span class="icon ion-ios-link"></span></a>
                         </span>
@@ -210,13 +220,13 @@
                             <b>Decorators : </b>
                             <br />
                             <code>
-                                @PrimaryGeneratedColumn()<br />
+                                @ApiProperty({description: &#x27;Cat unique ID&#x27;, example: &#x27;36635263&#x27;})<br />
                             </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/cats/entities/cat.entity.ts:8</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/cats/dto/cat.dto.ts:22</a></div>
                             </td>
                         </tr>
 
@@ -230,6 +240,7 @@
                         <a name="name"></a>
                         <span class="name">
                             <b>
+                                <span class="modifier">Readonly</span>
                             name</b>
                             <a href="#name"><span class="icon ion-ios-link"></span></a>
                         </span>
@@ -246,47 +257,13 @@
                             <b>Decorators : </b>
                             <br />
                             <code>
-                                @Column({name: &#x27;cat_name&#x27;, length: undefined})<br />
+                                @ApiProperty({description: &#x27;The name of the Cat&#x27;, example: &#x27;Kitty&#x27;})<br />@IsString()<br />
                             </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/cats/entities/cat.entity.ts:11</a></div>
-                            </td>
-                        </tr>
-
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="NAME_LENGTH"></a>
-                        <span class="name">
-                            <b>
-                                <span class="modifier">Static</span>
-                                <span class="modifier">Readonly</span>
-                            NAME_LENGTH</b>
-                            <a href="#NAME_LENGTH"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>36</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="5" class="link-to-prism">src/cats/entities/cat.entity.ts:5</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/cats/dto/cat.dto.ts:26</a></div>
                             </td>
                         </tr>
 
@@ -305,23 +282,40 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Column, Entity, PrimaryGeneratedColumn } from &#x27;typeorm&#x27;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiProperty } from &#x27;@nestjs/swagger&#x27;
 
-@Entity({ name: &#x27;cats&#x27; })
-export class Cat {
-    public static readonly NAME_LENGTH &#x3D; 36
+import { IsInt, IsString } from &#x27;class-validator&#x27;
+import { ICat } from &#x27;src/cats/interfaces/cat.interface&#x27;
 
-    @PrimaryGeneratedColumn()
-    id: number
+export class CreateCatDto implements ICat {
+    @ApiProperty({ description: &#x27;The name of the Cat&#x27;, example: &#x27;Kitty&#x27; })
+    @IsString()
+    readonly name: string
 
-    @Column({ name: &#x27;cat_name&#x27;, length: Cat.NAME_LENGTH })
-    name: string
+    @ApiProperty({ description: &#x27;The age of the Cat&#x27;, example: 1 })
+    @IsInt()
+    readonly age: number
 
-    @Column({ name: &#x27;cat_age&#x27; })
-    age: number
+    @ApiProperty({ description: &#x27;The breed of the Cat&#x27;, example: &#x27;Maine Coon&#x27; })
+    @IsString()
+    readonly breed: string
+}
 
-    @Column({ name: &#x27;cat_breed&#x27; })
-    breed: string
+export class CatDto implements ICat {
+    @ApiProperty({ description: &#x27;Cat unique ID&#x27;, example: &#x27;36635263&#x27; })
+    public readonly id: number
+
+    @ApiProperty({ description: &#x27;The name of the Cat&#x27;, example: &#x27;Kitty&#x27; })
+    @IsString()
+    readonly name: string
+
+    @ApiProperty({ description: &#x27;The age of the Cat&#x27;, example: 1 })
+    @IsInt()
+    readonly age: number
+
+    @ApiProperty({ description: &#x27;The breed of the Cat&#x27;, example: &#x27;Maine Coon&#x27; })
+    @IsString()
+    readonly breed: string
 }
 </code></pre>
     </div>
@@ -351,7 +345,7 @@ export class Cat {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'Cat.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'CatDto.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

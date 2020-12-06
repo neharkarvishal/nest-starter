@@ -178,7 +178,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                        <b>Returns : </b>    <code>{}</code>
 
                     </div>
                     <div class="io-description">
@@ -213,7 +213,7 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get()<br />@ApiOperation({summary: &#x27;Get all Cats&#x27;})<br />@ApiResponse({description: &#x27;Array of all Cats Entities&#x27;, isArray: true, status: undefined, type: Cat})<br /></code>
+                    <code>@Get()<br />@ApiOperation({summary: &#x27;Get all Cats&#x27;})<br />@ApiResponse({description: &#x27;Array of all Cats Entities&#x27;, isArray: true, status: undefined, type: CatDto})<br /></code>
                 </td>
             </tr>
 
@@ -229,7 +229,7 @@
                 <td class="col-md-4">
 
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/Cat.html" target="_self" >Promise&lt;Cat[]&gt;</a></code>
+                        <b>Returns : </b>    <code>Promise&lt;CatDto[]&gt;</code>
 
                     </div>
                 </td>
@@ -259,7 +259,7 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;:id&#x27;)<br />@ApiOperation({summary: &#x27;Get a Cats by id&#x27;})<br />@ApiResponse({description: &#x27;Entity of a Cats&#x27;, isArray: false, status: undefined, type: Cat})<br /></code>
+                    <code>@Get(&#x27;:id&#x27;)<br />@ApiOperation({summary: &#x27;Get a Cats by id&#x27;})<br />@ApiResponse({description: &#x27;Entity of a Cats&#x27;, isArray: false, status: undefined, type: CatDto})<br /></code>
                 </td>
             </tr>
 
@@ -303,7 +303,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/Cat.html" target="_self" >Promise&lt;Cat&gt;</a></code>
+                        <b>Returns : </b>    <code>Promise&lt;CatDto&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -319,11 +319,11 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">/* eslint-disable */
 import { Body, Controller, Get, Param, Post, HttpStatus } from &#x27;@nestjs/common&#x27;
-import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from &#x27;@nestjs/swagger&#x27;
+import { ApiOperation, ApiResponse, ApiTags } from &#x27;@nestjs/swagger&#x27;
 
 import { CatsService } from &#x27;src/cats/cats.service&#x27;
-import { CreateCatDto } from &#x27;src/cats/dto/create-cat.dto&#x27;
-import { Cat } from &#x27;src/cats/entities/cat.entity&#x27;
+import { CreateCatDto, CatDto } from &#x27;src/cats/dto/cat.dto&#x27;
+import { Cat as CatEntity } from &#x27;src/cats/entities/cat.entity&#x27;
 
 @ApiTags(CatsController.name)
 @Controller(&#x27;cats&#x27;)
@@ -341,7 +341,7 @@ export class CatsController {
         status: HttpStatus.FORBIDDEN,
     })
     async create(@Body() createCatDto: CreateCatDto) {
-        this.catsService.create(createCatDto)
+        return await this.catsService.create(createCatDto)
     }
 
     @Get()
@@ -350,9 +350,9 @@ export class CatsController {
         description: &#x27;Array of all Cats Entities&#x27;,
         isArray: true,
         status: HttpStatus.OK,
-        type: Cat,
+        type: CatDto,
     })
-    async findAll(): Promise&lt;Cat[]&gt; {
+    async findAll(): Promise&lt;CatDto[]&gt; {
         return this.catsService.findAll()
     }
 
@@ -362,9 +362,9 @@ export class CatsController {
         description: &#x27;Entity of a Cats&#x27;,
         isArray: false,
         status: HttpStatus.OK,
-        type: Cat,
+        type: CatDto,
     })
-    findOne(@Param(&#x27;id&#x27;) id: number): Promise&lt;Cat&gt; {
+    findOne(@Param(&#x27;id&#x27;) id: number): Promise&lt;CatDto&gt; {
         return this.catsService.findOne(id)
     }
 }

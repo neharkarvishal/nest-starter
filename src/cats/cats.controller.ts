@@ -1,10 +1,10 @@
 /* eslint-disable */
 import { Body, Controller, Get, Param, Post, HttpStatus } from '@nestjs/common'
-import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 
 import { CatsService } from 'src/cats/cats.service'
-import { CreateCatDto } from 'src/cats/dto/create-cat.dto'
-import { Cat } from 'src/cats/entities/cat.entity'
+import { CreateCatDto, CatDto } from 'src/cats/dto/cat.dto'
+import { Cat as CatEntity } from 'src/cats/entities/cat.entity'
 
 @ApiTags(CatsController.name)
 @Controller('cats')
@@ -22,7 +22,7 @@ export class CatsController {
         status: HttpStatus.FORBIDDEN,
     })
     async create(@Body() createCatDto: CreateCatDto) {
-        this.catsService.create(createCatDto)
+        return await this.catsService.create(createCatDto)
     }
 
     @Get()
@@ -31,9 +31,9 @@ export class CatsController {
         description: 'Array of all Cats Entities',
         isArray: true,
         status: HttpStatus.OK,
-        type: Cat,
+        type: CatDto,
     })
-    async findAll(): Promise<Cat[]> {
+    async findAll(): Promise<CatDto[]> {
         return this.catsService.findAll()
     }
 
@@ -43,9 +43,9 @@ export class CatsController {
         description: 'Entity of a Cats',
         isArray: false,
         status: HttpStatus.OK,
-        type: Cat,
+        type: CatDto,
     })
-    findOne(@Param('id') id: number): Promise<Cat> {
+    findOne(@Param('id') id: number): Promise<CatDto> {
         return this.catsService.findOne(id)
     }
 }
