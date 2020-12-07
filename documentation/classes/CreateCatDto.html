@@ -257,23 +257,6 @@ export class CreateCatDto implements ICat {
     @IsString()
     readonly breed: string
 }
-
-export class CatDto implements ICat {
-    @ApiProperty({ description: &#x27;Cat unique ID&#x27;, example: &#x27;36635263&#x27; })
-    public readonly id: number
-
-    @ApiProperty({ description: &#x27;The name of the Cat&#x27;, example: &#x27;Kitty&#x27; })
-    @IsString()
-    readonly name: string
-
-    @ApiProperty({ description: &#x27;The age of the Cat&#x27;, example: 1 })
-    @IsInt()
-    readonly age: number
-
-    @ApiProperty({ description: &#x27;The breed of the Cat&#x27;, example: &#x27;Maine Coon&#x27; })
-    @IsString()
-    readonly breed: string
-}
 </code></pre>
     </div>
 </div>

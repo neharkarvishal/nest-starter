@@ -290,8 +290,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="28"
-                            class="link-to-prism">src/cats/cats.service.ts:28</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="27"
+                            class="link-to-prism">src/cats/cats.service.ts:27</a></div>
                 </td>
             </tr>
 
@@ -370,12 +370,8 @@ export class CatsService {
         return this.catRepo.find()
     }
 
-    // eslint-disable-next-line class-methods-use-this
     async findOne(id: number): Promise&lt;Cat&gt; {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-        // if (this?.cats[id]) return this.cats[id]
-
-        return Promise.reject(new Error(&#x27;No Cats&#x27;))
+        return this.catRepo.findOne(id)
     }
 }
 </code></pre>

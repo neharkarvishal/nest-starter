@@ -134,14 +134,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post()<br />@ApiOperation({summary: &#x27;Create cat&#x27;})<br />@ApiResponse({status: undefined, description: &#x27;Created Cat Successfully&#x27;})<br />@ApiResponse({description: &#x27;Forbidden&#x27;, status: undefined})<br /></code>
+                    <code>@Post()<br />@ApiOperation({summary: &#x27;Create cat&#x27;})<br />@ApiResponse({status: undefined, description: &#x27;Created Cat Successfully&#x27;, type: CatEntity})<br />@ApiResponse({description: &#x27;Forbidden&#x27;, status: undefined})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="24"
-                            class="link-to-prism">src/cats/cats.controller.ts:24</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="25"
+                            class="link-to-prism">src/cats/cats.controller.ts:25</a></div>
                 </td>
             </tr>
 
@@ -178,7 +178,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
+                        <b>Returns : </b>        <code><a href="../classes/Cat.html" target="_self" >Promise&lt;CatEntity&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -213,14 +213,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get()<br />@ApiOperation({summary: &#x27;Get all Cats&#x27;})<br />@ApiResponse({description: &#x27;Array of all Cats Entities&#x27;, isArray: true, status: undefined, type: CatDto})<br /></code>
+                    <code>@Get()<br />@ApiOperation({summary: &#x27;Get all Cats&#x27;})<br />@ApiResponse({description: &#x27;Array of all Cats Entities&#x27;, isArray: true, status: undefined, type: CatEntity})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="36"
-                            class="link-to-prism">src/cats/cats.controller.ts:36</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="37"
+                            class="link-to-prism">src/cats/cats.controller.ts:37</a></div>
                 </td>
             </tr>
 
@@ -229,7 +229,7 @@
                 <td class="col-md-4">
 
                     <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;CatDto[]&gt;</code>
+                        <b>Returns : </b>        <code><a href="../classes/Cat.html" target="_self" >Promise&lt;CatEntity[]&gt;</a></code>
 
                     </div>
                 </td>
@@ -259,14 +259,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;:id&#x27;)<br />@ApiOperation({summary: &#x27;Get a Cats by id&#x27;})<br />@ApiResponse({description: &#x27;Entity of a Cats&#x27;, isArray: false, status: undefined, type: CatDto})<br /></code>
+                    <code>@Get(&#x27;:id&#x27;)<br />@ApiOperation({summary: &#x27;Get a Cats by id&#x27;})<br />@ApiResponse({description: &#x27;Entity of a Cats&#x27;, isArray: false, status: undefined, type: CatEntity})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="48"
-                            class="link-to-prism">src/cats/cats.controller.ts:48</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="49"
+                            class="link-to-prism">src/cats/cats.controller.ts:49</a></div>
                 </td>
             </tr>
 
@@ -303,7 +303,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;CatDto&gt;</code>
+                        <b>Returns : </b>        <code><a href="../classes/Cat.html" target="_self" >Promise&lt;CatEntity&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -322,7 +322,7 @@ import { Body, Controller, Get, Param, Post, HttpStatus } from &#x27;@nestjs/com
 import { ApiOperation, ApiResponse, ApiTags } from &#x27;@nestjs/swagger&#x27;
 
 import { CatsService } from &#x27;src/cats/cats.service&#x27;
-import { CreateCatDto, CatDto } from &#x27;src/cats/dto/cat.dto&#x27;
+import { CreateCatDto } from &#x27;src/cats/dto/cat.dto&#x27;
 import { Cat as CatEntity } from &#x27;src/cats/entities/cat.entity&#x27;
 
 @ApiTags(CatsController.name)
@@ -335,12 +335,13 @@ export class CatsController {
     @ApiResponse({
         status: HttpStatus.CREATED,
         description: &#x27;Created Cat Successfully&#x27;,
+        type: CatEntity,
     })
     @ApiResponse({
         description: &#x27;Forbidden&#x27;,
         status: HttpStatus.FORBIDDEN,
     })
-    async create(@Body() createCatDto: CreateCatDto) {
+    async create(@Body() createCatDto: CreateCatDto): Promise&lt;CatEntity&gt; {
         return await this.catsService.create(createCatDto)
     }
 
@@ -350,9 +351,9 @@ export class CatsController {
         description: &#x27;Array of all Cats Entities&#x27;,
         isArray: true,
         status: HttpStatus.OK,
-        type: CatDto,
+        type: CatEntity,
     })
-    async findAll(): Promise&lt;CatDto[]&gt; {
+    async findAll(): Promise&lt;CatEntity[]&gt; {
         return this.catsService.findAll()
     }
 
@@ -362,9 +363,9 @@ export class CatsController {
         description: &#x27;Entity of a Cats&#x27;,
         isArray: false,
         status: HttpStatus.OK,
-        type: CatDto,
+        type: CatEntity,
     })
-    findOne(@Param(&#x27;id&#x27;) id: number): Promise&lt;CatDto&gt; {
+    findOne(@Param(&#x27;id&#x27;) id: number): Promise&lt;CatEntity&gt; {
         return this.catsService.findOne(id)
     }
 }

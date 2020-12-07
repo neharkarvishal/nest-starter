@@ -138,13 +138,13 @@
                             <b>Decorators : </b>
                             <br />
                             <code>
-                                @Column({name: &#x27;cat_age&#x27;})<br />
+                                @ApiProperty({description: &#x27;The age of the Cat&#x27;, example: 1})<br />@Column({name: &#x27;cat_age&#x27;})<br />
                             </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/cats/entities/cat.entity.ts:14</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/cats/entities/cat.entity.ts:19</a></div>
                             </td>
                         </tr>
 
@@ -174,13 +174,13 @@
                             <b>Decorators : </b>
                             <br />
                             <code>
-                                @Column({name: &#x27;cat_breed&#x27;})<br />
+                                @ApiProperty({description: &#x27;The breed of the Cat&#x27;, example: &#x27;Maine Coon&#x27;})<br />@Column({name: &#x27;cat_breed&#x27;})<br />
                             </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/cats/entities/cat.entity.ts:17</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/cats/entities/cat.entity.ts:23</a></div>
                             </td>
                         </tr>
 
@@ -210,13 +210,13 @@
                             <b>Decorators : </b>
                             <br />
                             <code>
-                                @PrimaryGeneratedColumn()<br />
+                                @ApiProperty({description: &#x27;Cat unique ID&#x27;, example: &#x27;36635263&#x27;})<br />@PrimaryGeneratedColumn()<br />
                             </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/cats/entities/cat.entity.ts:8</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/cats/entities/cat.entity.ts:11</a></div>
                             </td>
                         </tr>
 
@@ -246,13 +246,13 @@
                             <b>Decorators : </b>
                             <br />
                             <code>
-                                @Column({name: &#x27;cat_name&#x27;, length: undefined})<br />
+                                @ApiProperty({description: &#x27;The name of the Cat&#x27;, example: &#x27;Kitty&#x27;})<br />@Column({name: &#x27;cat_name&#x27;, length: undefined})<br />
                             </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/cats/entities/cat.entity.ts:11</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/cats/entities/cat.entity.ts:15</a></div>
                             </td>
                         </tr>
 
@@ -286,7 +286,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="5" class="link-to-prism">src/cats/entities/cat.entity.ts:5</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/cats/entities/cat.entity.ts:7</a></div>
                             </td>
                         </tr>
 
@@ -305,21 +305,27 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Column, Entity, PrimaryGeneratedColumn } from &#x27;typeorm&#x27;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiProperty } from &#x27;@nestjs/swagger&#x27;
+
+import { Column, Entity, PrimaryGeneratedColumn } from &#x27;typeorm&#x27;
 
 @Entity({ name: &#x27;cats&#x27; })
 export class Cat {
     public static readonly NAME_LENGTH &#x3D; 36
 
+    @ApiProperty({ description: &#x27;Cat unique ID&#x27;, example: &#x27;36635263&#x27; })
     @PrimaryGeneratedColumn()
     id: number
 
+    @ApiProperty({ description: &#x27;The name of the Cat&#x27;, example: &#x27;Kitty&#x27; })
     @Column({ name: &#x27;cat_name&#x27;, length: Cat.NAME_LENGTH })
     name: string
 
+    @ApiProperty({ description: &#x27;The age of the Cat&#x27;, example: 1 })
     @Column({ name: &#x27;cat_age&#x27; })
     age: number
 
+    @ApiProperty({ description: &#x27;The breed of the Cat&#x27;, example: &#x27;Maine Coon&#x27; })
     @Column({ name: &#x27;cat_breed&#x27; })
     breed: string
 }
