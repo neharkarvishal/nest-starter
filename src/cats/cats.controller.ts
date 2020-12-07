@@ -3,7 +3,7 @@ import { Body, Controller, Get, Param, Post, HttpStatus } from '@nestjs/common'
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 
 import { CatsService } from 'src/cats/cats.service'
-import { CreateCatDto, CatDto } from 'src/cats/dto/cat.dto'
+import { CreateCatDto } from 'src/cats/dto/cat.dto'
 import { Cat as CatEntity } from 'src/cats/entities/cat.entity'
 
 @ApiTags(CatsController.name)
@@ -16,12 +16,13 @@ export class CatsController {
     @ApiResponse({
         status: HttpStatus.CREATED,
         description: 'Created Cat Successfully',
+        type: CatEntity,
     })
     @ApiResponse({
         description: 'Forbidden',
         status: HttpStatus.FORBIDDEN,
     })
-    async create(@Body() createCatDto: CreateCatDto) {
+    async create(@Body() createCatDto: CreateCatDto): Promise<CatEntity> {
         return await this.catsService.create(createCatDto)
     }
 
@@ -31,9 +32,9 @@ export class CatsController {
         description: 'Array of all Cats Entities',
         isArray: true,
         status: HttpStatus.OK,
-        type: CatDto,
+        type: CatEntity,
     })
-    async findAll(): Promise<CatDto[]> {
+    async findAll(): Promise<CatEntity[]> {
         return this.catsService.findAll()
     }
 
@@ -43,9 +44,9 @@ export class CatsController {
         description: 'Entity of a Cats',
         isArray: false,
         status: HttpStatus.OK,
-        type: CatDto,
+        type: CatEntity,
     })
-    findOne(@Param('id') id: number): Promise<CatDto> {
+    findOne(@Param('id') id: number): Promise<CatEntity> {
         return this.catsService.findOne(id)
     }
 }

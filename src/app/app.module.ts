@@ -13,6 +13,8 @@ import { Cat } from 'src/cats/entities/cat.entity'
 import { HealthController } from '../health/health.controller'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
+import { ScheduleModule } from '@nestjs/schedule'
+import { CronModule } from '../cron/cron.module'
 
 const ConfigModuleOptions = {
     isGlobal: true,
@@ -54,6 +56,8 @@ const TypeOrmModuleOptions = {
     imports: [
         ConfigModule.forRoot(ConfigModuleOptions),
         LoggerModule.forRoot(LoggerModuleOptions),
+        ScheduleModule.forRoot(),
+        CronModule,
         TerminusModule, // Health module
         TypeOrmModule.forRoot(TypeOrmModuleOptions),
         CatsModule,

@@ -24,11 +24,7 @@ export class CatsService {
         return this.catRepo.find()
     }
 
-    // eslint-disable-next-line class-methods-use-this
     async findOne(id: number): Promise<Cat> {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-        // if (this?.cats[id]) return this.cats[id]
-
-        return Promise.reject(new Error('No Cats'))
+        return this.catRepo.findOne(id)
     }
 }
