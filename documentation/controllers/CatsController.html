@@ -54,7 +54,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/cats/cats.controller.ts</code>
+            <code>src/modules/cats/cats.controller.ts</code>
         </p>
 
             <p class="comment">
@@ -90,7 +90,14 @@
                                 <a href="#findAll">findAll</a>
                             </li>
                             <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#findOne">findOne</a>
+                            </li>
+                            <li>
+                                <a href="#remove">remove</a>
+                            </li>
+                            <li>
+                                <a href="#update">update</a>
                             </li>
                         </ul>
                     </td>
@@ -140,8 +147,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="25"
-                            class="link-to-prism">src/cats/cats.controller.ts:25</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="34"
+                            class="link-to-prism">src/modules/cats/cats.controller.ts:34</a></div>
                 </td>
             </tr>
 
@@ -219,8 +226,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="37"
-                            class="link-to-prism">src/cats/cats.controller.ts:37</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="46"
+                            class="link-to-prism">src/modules/cats/cats.controller.ts:46</a></div>
                 </td>
             </tr>
 
@@ -243,6 +250,7 @@
                     <a name="findOne"></a>
                     <span class="name">
                         <b>
+                            <span class="modifier">Async</span>
                             findOne
                         </b>
                         <a href="#findOne"><span class="icon ion-ios-link"></span></a>
@@ -251,7 +259,8 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>findOne(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findOne(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
@@ -265,8 +274,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="49"
-                            class="link-to-prism">src/cats/cats.controller.ts:49</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="58"
+                            class="link-to-prism">src/modules/cats/cats.controller.ts:58</a></div>
                 </td>
             </tr>
 
@@ -313,17 +322,192 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="remove"></a>
+                    <span class="name">
+                        <b>
+                            remove
+                        </b>
+                        <a href="#remove"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>remove(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Delete(&#x27;:id&#x27;)<br />@ApiOperation({summary: &#x27;Delete a Cats by id&#x27;})<br />@ApiResponse({description: &#x27;Delete a Cats&#x27;, isArray: false, status: undefined, type: CatEntity})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="82"
+                            class="link-to-prism">src/modules/cats/cats.controller.ts:82</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="update"></a>
+                    <span class="name">
+                        <b>
+                            update
+                        </b>
+                        <a href="#update"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>update(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, updateCatDto: <a href="../classes/UpdateCatDto.html">UpdateCatDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Put(&#x27;:id&#x27;)<br />@ApiOperation({summary: &#x27;Update a Cats by id&#x27;})<br />@ApiResponse({description: &#x27;Updating a Cats&#x27;, isArray: false, status: undefined, type: CatEntity})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="70"
+                            class="link-to-prism">src/modules/cats/cats.controller.ts:70</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>updateCatDto</td>
+                                    <td>
+                                                <code><a href="../classes/UpdateCatDto.html" target="_self" >UpdateCatDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>    </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">/* eslint-disable */
-import { Body, Controller, Get, Param, Post, HttpStatus } from &#x27;@nestjs/common&#x27;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">/* eslint-disable no-use-before-define,@typescript-eslint/no-use-before-define */
+import {
+    Body,
+    Controller,
+    Get,
+    Param,
+    Post,
+    HttpStatus,
+    Delete,
+    Put,
+} from &#x27;@nestjs/common&#x27;
 import { ApiOperation, ApiResponse, ApiTags } from &#x27;@nestjs/swagger&#x27;
 
-import { CatsService } from &#x27;src/cats/cats.service&#x27;
-import { CreateCatDto } from &#x27;src/cats/dto/cat.dto&#x27;
-import { Cat as CatEntity } from &#x27;src/cats/entities/cat.entity&#x27;
+import { CatsService } from &#x27;src/modules/cats/cats.service&#x27;
+import { CreateCatDto, UpdateCatDto } from &#x27;src/modules/cats/dto/cat.dto&#x27;
+import { Cat as CatEntity } from &#x27;src/modules/cats/entities/cat.entity&#x27;
 
 @ApiTags(CatsController.name)
 @Controller(&#x27;cats&#x27;)
@@ -342,7 +526,7 @@ export class CatsController {
         status: HttpStatus.FORBIDDEN,
     })
     async create(@Body() createCatDto: CreateCatDto): Promise&lt;CatEntity&gt; {
-        return await this.catsService.create(createCatDto)
+        return this.catsService.create(createCatDto)
     }
 
     @Get()
@@ -365,8 +549,32 @@ export class CatsController {
         status: HttpStatus.OK,
         type: CatEntity,
     })
-    findOne(@Param(&#x27;id&#x27;) id: number): Promise&lt;CatEntity&gt; {
+    async findOne(@Param(&#x27;id&#x27;) id: number): Promise&lt;CatEntity&gt; {
         return this.catsService.findOne(id)
+    }
+
+    @Put(&#x27;:id&#x27;)
+    @ApiOperation({ summary: &#x27;Update a Cats by id&#x27; })
+    @ApiResponse({
+        description: &#x27;Updating a Cats&#x27;,
+        isArray: false,
+        status: HttpStatus.OK,
+        type: CatEntity,
+    })
+    update(@Param(&#x27;id&#x27;) id: number, @Body() updateCatDto: UpdateCatDto) {
+        return this.catsService.update(id, updateCatDto)
+    }
+
+    @Delete(&#x27;:id&#x27;)
+    @ApiOperation({ summary: &#x27;Delete a Cats by id&#x27; })
+    @ApiResponse({
+        description: &#x27;Delete a Cats&#x27;,
+        isArray: false,
+        status: HttpStatus.OK,
+        type: CatEntity,
+    })
+    remove(@Param(&#x27;id&#x27;) id: number) {
+        return this.catsService.remove(id)
     }
 }
 </code></pre>

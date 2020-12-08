@@ -38,7 +38,7 @@
 
 <ol class="breadcrumb">
   <li>Injectables</li>
-  <li>CatsService</li>
+  <li>UsersService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -56,7 +56,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/modules/cats/cats.service.ts</code>
+            <code>src/modules/users/users.service.ts</code>
         </p>
 
 
@@ -76,23 +76,18 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Async</span>
                                 <a href="#create">create</a>
                             </li>
                             <li>
-                                    <span class="modifier">Async</span>
                                 <a href="#findAll">findAll</a>
                             </li>
                             <li>
-                                    <span class="modifier">Async</span>
                                 <a href="#findOne">findOne</a>
                             </li>
                             <li>
-                                    <span class="modifier">Async</span>
                                 <a href="#remove">remove</a>
                             </li>
                             <li>
-                                    <span class="modifier">Async</span>
                                 <a href="#update">update</a>
                             </li>
                         </ul>
@@ -107,54 +102,6 @@
     </table>
 </section>
 
-            <section>
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor(catRepo: <a href="../classes/Cat.html">Repository<Cat></a>)</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/modules/cats/cats.service.ts:10</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>catRepo</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../classes/Cat.html" target="_self" >Repository&lt;Cat&gt;</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-</section>
 
             <section>
     
@@ -168,7 +115,6 @@
                     <a name="create"></a>
                     <span class="name">
                         <b>
-                            <span class="modifier">Async</span>
                             create
                         </b>
                         <a href="#create"><span class="icon ion-ios-link"></span></a>
@@ -177,16 +123,15 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>create(cat: <a href="../classes/CreateCatDto.html">CreateCatDto</a>)</code>
+<code>create(createUserDto: <a href="../classes/CreateUserDto.html">CreateUserDto</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="13"
-                            class="link-to-prism">src/modules/cats/cats.service.ts:13</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="7"
+                            class="link-to-prism">src/modules/users/users.service.ts:7</a></div>
                 </td>
             </tr>
 
@@ -206,9 +151,9 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>cat</td>
+                                    <td>createUserDto</td>
                                     <td>
-                                                <code><a href="../classes/CreateCatDto.html" target="_self" >CreateCatDto</a></code>
+                                                <code><a href="../classes/CreateUserDto.html" target="_self" >CreateUserDto</a></code>
                                     </td>
 
                                     <td>
@@ -223,7 +168,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
                     </div>
                     <div class="io-description">
@@ -240,7 +185,6 @@
                     <a name="findAll"></a>
                     <span class="name">
                         <b>
-                            <span class="modifier">Async</span>
                             findAll
                         </b>
                         <a href="#findAll"><span class="icon ion-ios-link"></span></a>
@@ -249,16 +193,15 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findAll()</code>
+<code>findAll()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="23"
-                            class="link-to-prism">src/modules/cats/cats.service.ts:23</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="11"
+                            class="link-to-prism">src/modules/users/users.service.ts:11</a></div>
                 </td>
             </tr>
 
@@ -267,7 +210,7 @@
                 <td class="col-md-4">
 
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/Cat.html" target="_self" >Promise&lt;Cat[]&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
                     </div>
                 </td>
@@ -281,7 +224,6 @@
                     <a name="findOne"></a>
                     <span class="name">
                         <b>
-                            <span class="modifier">Async</span>
                             findOne
                         </b>
                         <a href="#findOne"><span class="icon ion-ios-link"></span></a>
@@ -290,16 +232,15 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findOne(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+<code>findOne(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="27"
-                            class="link-to-prism">src/modules/cats/cats.service.ts:27</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="15"
+                            class="link-to-prism">src/modules/users/users.service.ts:15</a></div>
                 </td>
             </tr>
 
@@ -336,7 +277,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/Cat.html" target="_self" >Promise&lt;Cat&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
                     </div>
                     <div class="io-description">
@@ -353,7 +294,6 @@
                     <a name="remove"></a>
                     <span class="name">
                         <b>
-                            <span class="modifier">Async</span>
                             remove
                         </b>
                         <a href="#remove"><span class="icon ion-ios-link"></span></a>
@@ -362,16 +302,15 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>remove(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+<code>remove(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="35"
-                            class="link-to-prism">src/modules/cats/cats.service.ts:35</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="23"
+                            class="link-to-prism">src/modules/users/users.service.ts:23</a></div>
                 </td>
             </tr>
 
@@ -408,7 +347,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
                     </div>
                     <div class="io-description">
@@ -425,7 +364,6 @@
                     <a name="update"></a>
                     <span class="name">
                         <b>
-                            <span class="modifier">Async</span>
                             update
                         </b>
                         <a href="#update"><span class="icon ion-ios-link"></span></a>
@@ -434,16 +372,15 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>update(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, updateCatDto: <a href="../classes/UpdateCatDto.html">UpdateCatDto</a>)</code>
+<code>update(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, updateUserDto: <a href="../classes/UpdateUserDto.html">UpdateUserDto</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="31"
-                            class="link-to-prism">src/modules/cats/cats.service.ts:31</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="19"
+                            class="link-to-prism">src/modules/users/users.service.ts:19</a></div>
                 </td>
             </tr>
 
@@ -475,9 +412,9 @@
 
                                 </tr>
                                 <tr>
-                                    <td>updateCatDto</td>
+                                    <td>updateUserDto</td>
                                     <td>
-                                                <code><a href="../classes/UpdateCatDto.html" target="_self" >UpdateCatDto</a></code>
+                                                <code><a href="../classes/UpdateUserDto.html" target="_self" >UpdateUserDto</a></code>
                                     </td>
 
                                     <td>
@@ -492,7 +429,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
                     </div>
                     <div class="io-description">
@@ -509,41 +446,29 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;
-import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;
 
-import { CreateCatDto, UpdateCatDto } from &#x27;src/modules/cats/dto/cat.dto&#x27;
-import { Cat } from &#x27;src/modules/cats/entities/cat.entity&#x27;
-
-import { Repository } from &#x27;typeorm&#x27;
+import { CreateUserDto, UpdateUserDto } from &#x27;src/modules/users/dto/user.dto&#x27;
 
 @Injectable()
-export class CatsService {
-    constructor(@InjectRepository(Cat) private readonly catRepo: Repository&lt;Cat&gt;) {}
-
-    async create(cat: CreateCatDto) {
-        const newCat &#x3D; new Cat()
-
-        newCat.name &#x3D; cat.name
-        newCat.age &#x3D; cat.age
-        newCat.breed &#x3D; cat.breed
-
-        return this.catRepo.save(newCat)
+export class UsersService {
+    create(createUserDto: CreateUserDto) {
+        return &#x27;This action adds a new user&#x27;
     }
 
-    async findAll(): Promise&lt;Cat[]&gt; {
-        return this.catRepo.find()
+    findAll() {
+        return &#x60;This action returns all users&#x60;
     }
 
-    async findOne(id: number): Promise&lt;Cat&gt; {
-        return this.catRepo.findOne(id)
+    findOne(id: number) {
+        return &#x60;This action returns a #${id} user&#x60;
     }
 
-    async update(id: number, updateCatDto: UpdateCatDto) {
-        return &#x60;This action updates a #${id} cat&#x60;
+    update(id: number, updateUserDto: UpdateUserDto) {
+        return &#x60;This action updates a #${id} user&#x60;
     }
 
-    async remove(id: number) {
-        return &#x60;This action removes a #${id} cat&#x60;
+    remove(id: number) {
+        return &#x60;This action removes a #${id} user&#x60;
     }
 }
 </code></pre>
@@ -579,7 +504,7 @@ export class CatsService {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
-            var COMPODOC_CURRENT_PAGE_URL = 'CatsService.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'UsersService.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

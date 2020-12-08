@@ -33,6 +33,7 @@ module.exports = {
         '@typescript-eslint/no-unused-vars': 'warn',
         'no-multiple-empty-lines': ['error', { max: 1, maxEOF: 0, maxBOF: 0 }],
         'no-console': ['warn', { allow: ['info', 'warn', 'error'] }],
+        'class-methods-use-this': 'off',
         'no-underscore-dangle': 'off',
         'jest/expect-expect': 'off',
         // 'function-paren-newline': ['error', { minItems: 2 }],
@@ -54,6 +55,7 @@ module.exports = {
                     'absolute', // any absolute path modules are first (ex: `/path/to/code.ts`)
                     '/^@nest/', // any import paths starting with 'nest'
                     '/^nest/', // any import paths starting with 'nest'
+                    '/^src/',
                     'module',
                     ['parent', 'sibling', 'index'],
                 ],

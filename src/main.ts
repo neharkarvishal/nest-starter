@@ -6,10 +6,10 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 
 import { Logger } from 'nestjs-pino'
 
+import { AppModule } from 'src/app/app.module'
+
 import * as rateLimit from 'express-rate-limit'
 import * as helmet from 'helmet'
-
-import { AppModule } from './app/app.module'
 
 function createSwagger(app: INestApplication) {
     const SWAGGER_TITLE = 'API'

@@ -1,9 +1,10 @@
 /* eslint-disable jest/no-hooks,jest/prefer-expect-assertions,jest/no-test-return-statement,jest/prefer-hooks-on-top */
 import { Test } from '@nestjs/testing'
 
+import { Cat } from 'src/modules/cats/entities/cat.entity'
+
 import { CatsController } from './cats.controller'
 import { CatsService } from './cats.service'
-import { Cat } from './interfaces/cat.interface'
 
 describe('catsController', () => {
     let catsController: CatsController
@@ -23,6 +24,7 @@ describe('catsController', () => {
         it('should return an array of cats', async () => {
             const result: Cat[] = [
                 {
+                    id: 1,
                     age: 2,
                     breed: 'Bombay',
                     name: 'Pixel',

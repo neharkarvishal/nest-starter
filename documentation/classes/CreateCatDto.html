@@ -60,7 +60,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/cats/dto/cat.dto.ts</code>
+            <code>src/modules/cats/dto/cat.dto.ts</code>
         </p>
 
 
@@ -140,13 +140,13 @@
                             <b>Decorators : </b>
                             <br />
                             <code>
-                                @ApiProperty({description: &#x27;The age of the Cat&#x27;, example: 1})<br />@IsInt()<br />
+                                @ApiProperty({description: &#x27;The age of the Cat&#x27;, example: 1})<br />@IsInt()<br />@IsNotEmpty()<br />
                             </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/cats/dto/cat.dto.ts:13</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/modules/cats/dto/cat.dto.ts:19</a></div>
                             </td>
                         </tr>
 
@@ -177,13 +177,13 @@
                             <b>Decorators : </b>
                             <br />
                             <code>
-                                @ApiProperty({description: &#x27;The breed of the Cat&#x27;, example: &#x27;Maine Coon&#x27;})<br />@IsString()<br />
+                                @ApiProperty({description: &#x27;The breed of the Cat&#x27;, example: &#x27;Maine Coon&#x27;})<br />@IsString()<br />@IsNotEmpty()<br />
                             </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/cats/dto/cat.dto.ts:17</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/modules/cats/dto/cat.dto.ts:24</a></div>
                             </td>
                         </tr>
 
@@ -214,13 +214,13 @@
                             <b>Decorators : </b>
                             <br />
                             <code>
-                                @ApiProperty({description: &#x27;The name of the Cat&#x27;, example: &#x27;Kitty&#x27;})<br />@IsString()<br />
+                                @ApiProperty({description: &#x27;The name of the Cat&#x27;, example: &#x27;Kitty&#x27;})<br />@IsString()<br />@IsNotEmpty()<br />@MinLength(2)<br />
                             </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/cats/dto/cat.dto.ts:9</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/modules/cats/dto/cat.dto.ts:14</a></div>
                             </td>
                         </tr>
 
@@ -239,24 +239,32 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiProperty } from &#x27;@nestjs/swagger&#x27;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { PartialType } from &#x27;@nestjs/mapped-types&#x27;
+import { ApiProperty } from &#x27;@nestjs/swagger&#x27;
 
-import { IsInt, IsString } from &#x27;class-validator&#x27;
-import { ICat } from &#x27;src/cats/interfaces/cat.interface&#x27;
+import { ICat } from &#x27;src/modules/cats/interfaces/cat.interface&#x27;
+
+import { IsInt, IsString, MinLength, IsNotEmpty } from &#x27;class-validator&#x27;
 
 export class CreateCatDto implements ICat {
     @ApiProperty({ description: &#x27;The name of the Cat&#x27;, example: &#x27;Kitty&#x27; })
     @IsString()
+    @IsNotEmpty()
+    @MinLength(2)
     readonly name: string
 
     @ApiProperty({ description: &#x27;The age of the Cat&#x27;, example: 1 })
     @IsInt()
+    @IsNotEmpty()
     readonly age: number
 
     @ApiProperty({ description: &#x27;The breed of the Cat&#x27;, example: &#x27;Maine Coon&#x27; })
     @IsString()
+    @IsNotEmpty()
     readonly breed: string
 }
+
+export class UpdateCatDto extends PartialType(CreateCatDto) {}
 </code></pre>
     </div>
 </div>

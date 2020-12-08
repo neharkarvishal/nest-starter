@@ -1,20 +1,20 @@
-/* eslint-disable no-console,@typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access */
 import { Module, OnModuleInit, OnApplicationShutdown } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
+import { ScheduleModule } from '@nestjs/schedule'
 import { TerminusModule } from '@nestjs/terminus'
 import { TypeOrmModule } from '@nestjs/typeorm'
 
 import { PinoLogger, LoggerModule } from 'nestjs-pino'
 
-import * as Joi from '@hapi/joi'
-import { CatsModule } from 'src/cats/cats.module'
-import { Cat } from 'src/cats/entities/cat.entity'
+import { AppController } from 'src/app/app.controller'
+import { AppService } from 'src/app/app.service'
+import { CronModule } from 'src/cron/cron.module'
+import { HealthController } from 'src/health/health.controller'
+import { CatsModule } from 'src/modules/cats/cats.module'
+import { UsersModule } from 'src/modules/users/users.module'
 
-import { HealthController } from '../health/health.controller'
-import { AppController } from './app.controller'
-import { AppService } from './app.service'
-import { ScheduleModule } from '@nestjs/schedule'
-import { CronModule } from '../cron/cron.module'
+import * as Joi from '@hapi/joi'
 
 const ConfigModuleOptions = {
     isGlobal: true,
@@ -57,10 +57,11 @@ const TypeOrmModuleOptions = {
         ConfigModule.forRoot(ConfigModuleOptions),
         LoggerModule.forRoot(LoggerModuleOptions),
         ScheduleModule.forRoot(),
-        CronModule,
+        // CronModule,
         TerminusModule, // Health module
         TypeOrmModule.forRoot(TypeOrmModuleOptions),
         CatsModule,
+        UsersModule,
     ],
     providers: [AppService],
 })

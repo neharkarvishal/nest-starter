@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common'
-import { CronService } from './cron.service'
+
+import { CronService } from 'src/cron/cron.service'
 
 @Module({
     providers: [CronService],
