@@ -1,6 +1,13 @@
 import { ApiProperty } from '@nestjs/swagger'
 
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
+import {
+    Column,
+    CreateDateColumn,
+    Entity,
+    PrimaryGeneratedColumn,
+    UpdateDateColumn,
+    DeleteDateColumn,
+} from 'typeorm'
 
 @Entity({ name: 'cats' })
 export class Cat {
@@ -21,4 +28,13 @@ export class Cat {
     @ApiProperty({ description: 'The breed of the Cat', example: 'Maine Coon' })
     @Column({ name: 'cat_breed' })
     breed: string
+
+    @CreateDateColumn()
+    createdAt: any
+
+    @UpdateDateColumn()
+    updatedAt: any
+
+    @DeleteDateColumn()
+    deletedAt: any
 }

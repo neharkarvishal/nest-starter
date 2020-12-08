@@ -67,7 +67,7 @@ export class CatsController {
         status: HttpStatus.OK,
         type: CatEntity,
     })
-    update(@Param('id') id: number, @Body() updateCatDto: UpdateCatDto) {
+    async update(@Param('id') id: number, @Body() updateCatDto: UpdateCatDto) {
         return this.catsService.update(id, updateCatDto)
     }
 
@@ -79,7 +79,12 @@ export class CatsController {
         status: HttpStatus.OK,
         type: CatEntity,
     })
-    remove(@Param('id') id: number) {
+    async remove(@Param('id') id: number) {
         return this.catsService.remove(id)
+    }
+
+    @Post('/clear')
+    async clear() {
+        return this.catsService.clear()
     }
 }

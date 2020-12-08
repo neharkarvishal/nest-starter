@@ -1,14 +1,17 @@
-import { Injectable } from '@nestjs/common'
+import { Injectable, Logger } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 
 import { CreateCatDto, UpdateCatDto } from 'src/modules/cats/dto/cat.dto'
 import { Cat } from 'src/modules/cats/entities/cat.entity'
 
-import { Repository } from 'typeorm'
+import { getManager, Repository } from 'typeorm'
 
 @Injectable()
 export class CatsService {
-    constructor(@InjectRepository(Cat) private readonly catRepo: Repository<Cat>) {}
+    constructor(
+        @InjectRepository(Cat) private readonly catRepo: Repository<Cat>,
+        private logger: Logger,
+    ) {}
 
     async create(cat: CreateCatDto) {
         const newCat = new Cat()
@@ -17,7 +20,10 @@ export class CatsService {
         newCat.age = cat.age
         newCat.breed = cat.breed
 
-        return this.catRepo.save(newCat)
+        const saved = await this.catRepo.save(newCat)
+        this.logger.log({ saved })
+
+        return saved
     }
 
     async findAll(): Promise<Cat[]> {
@@ -29,10 +35,24 @@ export class CatsService {
     }
 
     async update(id: number, updateCatDto: UpdateCatDto) {
-        return `This action updates a #${id} cat`
+        const updated = await this.catRepo.update(id, updateCatDto)
+        this.logger.log({ updated })
+
+        return updated
     }
 
     async remove(id: number) {
-        return `This action removes a #${id} cat`
+        const removed = this.catRepo.softDelete(id)
+        this.logger.log({ removed })
+
+        return removed
+    }
+
+    async clear() {
+        let cleared = {}
+        cleared = await getManager().query('DELETE FROM cats') // eslint-disable-line @typescript-eslint/no-unsafe-assignment
+        this.logger.log({ cleared })
+
+        return cleared
     }
 }
