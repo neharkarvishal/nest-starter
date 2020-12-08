@@ -30,12 +30,7 @@ function createSwagger(app: INestApplication) {
     SwaggerModule.setup(SWAGGER_PREFIX, app, document)
 }
 
-async function bootstrap() {
-    const API_DEFAULT_PORT = 3000
-
-    const app = await NestFactory.create(AppModule /* , { logger: false } */)
-    // app.useLogger(app.get(Logger))
-
+async function setupApp(app: INestApplication, API_DEFAULT_PORT: number) {
     createSwagger(app)
 
     app.use(helmet())
@@ -55,11 +50,24 @@ async function bootstrap() {
     app.disable('X-Powered-By')
 
     // ValidationPipe at the application level, thus ensuring all endpoints are protected from receiving incorrect data
-    app.useGlobalPipes(new ValidationPipe())
+    app.useGlobalPipes(
+        new ValidationPipe({
+            transform: true,
+            whitelist: true, // i suppose this creates a white list with properties
+            forbidUnknownValues: true, // i dont know why exists
+            forbidNonWhitelisted: true, // i suppose this restrict by white list criteria
+        }),
+    )
     app.enableShutdownHooks()
 
     await app.listen(API_DEFAULT_PORT)
+}
 
+async function bootstrap() {
+    const API_DEFAULT_PORT = 3000
+    const app = await NestFactory.create(AppModule /* , { logger: false } */)
+    // app.useLogger(app.get(Logger))
+    await setupApp(app, API_DEFAULT_PORT)
     return app
 }
 

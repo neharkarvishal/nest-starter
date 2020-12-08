@@ -14,6 +14,8 @@ export class CatsService {
     ) {}
 
     async create(cat: CreateCatDto) {
+        this.logger.log({ cat })
+
         const newCat = new Cat()
 
         newCat.name = cat.name
