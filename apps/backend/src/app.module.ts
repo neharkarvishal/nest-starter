@@ -3,9 +3,12 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CatsModule } from './cats/cats.module';
 
+import { TerminusModule } from '@nestjs/terminus';
+import { HealthController } from '@app/health';
+
 @Module({
-  imports: [CatsModule],
-  controllers: [AppController],
+  imports: [TerminusModule, CatsModule],
+  controllers: [AppController, HealthController],
   providers: [AppService],
 })
 export class AppModule {}
