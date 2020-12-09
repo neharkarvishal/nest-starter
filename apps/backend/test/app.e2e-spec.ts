@@ -3,7 +3,7 @@ import { Test, TestingModule } from '@nestjs/testing'
 
 import * as request from 'supertest'
 
-import { AppModule } from '../src/app.module'
+import { AppModule } from 'apps/backend/src/app.module'
 
 describe('appController (e2e)', () => {
     let app: INestApplication

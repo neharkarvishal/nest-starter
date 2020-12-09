@@ -1,1 +1,1 @@
-export * from './health.controller'
+export * from 'libs/health/src/health.controller'

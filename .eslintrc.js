@@ -56,6 +56,8 @@ module.exports = {
                     '/^@nest/', // any import paths starting with 'nest'
                     '/^nest/', // any import paths starting with 'nest'
                     '/^@app/',
+                    '/^app/',
+                    '/^libs/',
                     '/^src/',
                     'module',
                     ['parent', 'sibling', 'index'],

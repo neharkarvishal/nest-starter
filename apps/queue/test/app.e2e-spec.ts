@@ -3,7 +3,7 @@ import { Test, TestingModule } from '@nestjs/testing'
 
 import * as request from 'supertest'
 
-import { QueueModule } from '../src/Queue.module'
+import { QueueModule } from 'apps/queue/src/queue.module'
 
 describe('queueController (e2e)', () => {
     let app: INestApplication

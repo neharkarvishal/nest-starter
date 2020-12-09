@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing'
 
-import { QueueController } from './queue.controller'
-import { QueueService } from './queue.service'
+import { QueueController } from 'apps/queue/src/queue.controller'
+import { QueueService } from 'apps/queue/src/queue.service'
 
 describe('queueController', () => {
     let queueController: QueueController

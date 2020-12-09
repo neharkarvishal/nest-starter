@@ -3,7 +3,7 @@ import { ApiTags } from '@nestjs/swagger'
 import { DNSHealthIndicator, HealthCheck, HealthCheckService } from '@nestjs/terminus'
 
 @Controller('health')
-@ApiTags(HealthController.name)
+@ApiTags(HealthController.name) // eslint-disable-line no-use-before-define
 export class HealthController implements OnModuleInit, OnApplicationShutdown {
     constructor(
         private health: HealthCheckService,

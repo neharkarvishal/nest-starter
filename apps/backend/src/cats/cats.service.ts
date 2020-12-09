@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
 
-import { CreateCatDto } from './dto/create-cat.dto'
-import { UpdateCatDto } from './dto/update-cat.dto'
+import { CreateCatDto } from 'apps/backend/src/cats/dto/create-cat.dto'
+import { UpdateCatDto } from 'apps/backend/src/cats/dto/update-cat.dto'
 
 @Injectable()
 export class CatsService {

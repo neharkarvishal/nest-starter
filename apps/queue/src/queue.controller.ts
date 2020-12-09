@@ -1,8 +1,8 @@
 import { Controller, Get } from '@nestjs/common'
 
-import { QueueService } from './queue.service'
+import { QueueService } from 'apps/queue/src/queue.service'
 
-@Controller()
+@Controller('queue')
 export class QueueController {
     constructor(private readonly queueService: QueueService) {}
 
