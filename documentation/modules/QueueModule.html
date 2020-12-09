@@ -151,14 +151,15 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Module } from &#x27;@nestjs/common&#x27;;
-import { QueueController } from &#x27;./queue.controller&#x27;;
-import { QueueService } from &#x27;./queue.service&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Module } from &#x27;@nestjs/common&#x27;
+
+import { QueueController } from &#x27;apps/queue/src/queue.controller&#x27;
+import { QueueService } from &#x27;apps/queue/src/queue.service&#x27;
 
 @Module({
-  imports: [],
-  controllers: [QueueController],
-  providers: [QueueService],
+    imports: [],
+    controllers: [QueueController],
+    providers: [QueueService],
 })
 export class QueueModule {}
 </code></pre>

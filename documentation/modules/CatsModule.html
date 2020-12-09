@@ -151,13 +151,14 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Module } from &#x27;@nestjs/common&#x27;;
-import { CatsService } from &#x27;./cats.service&#x27;;
-import { CatsController } from &#x27;./cats.controller&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Module } from &#x27;@nestjs/common&#x27;
+
+import { CatsController } from &#x27;apps/backend/src/cats/cats.controller&#x27;
+import { CatsService } from &#x27;apps/backend/src/cats/cats.service&#x27;
 
 @Module({
-  controllers: [CatsController],
-  providers: [CatsService],
+    controllers: [CatsController],
+    providers: [CatsService],
 })
 export class CatsModule {}
 </code></pre>

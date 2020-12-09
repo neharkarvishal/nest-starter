@@ -136,8 +136,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="24"
-                            class="link-to-prism">libs/health/src/health.controller.ts:24</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="15"
+                            class="link-to-prism">libs/health/src/health.controller.ts:15</a></div>
                 </td>
             </tr>
 
@@ -175,8 +175,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="42"
-                            class="link-to-prism">libs/health/src/health.controller.ts:42</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="33"
+                            class="link-to-prism">libs/health/src/health.controller.ts:33</a></div>
                 </td>
             </tr>
 
@@ -245,8 +245,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="38"
-                            class="link-to-prism">libs/health/src/health.controller.ts:38</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="29"
+                            class="link-to-prism">libs/health/src/health.controller.ts:29</a></div>
                 </td>
             </tr>
 
@@ -266,52 +266,43 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
-  Controller,
-  Get,
-  OnApplicationShutdown,
-  OnModuleInit,
-} from &#x27;@nestjs/common&#x27;;
-import { ApiTags } from &#x27;@nestjs/swagger&#x27;;
-import {
-  DNSHealthIndicator,
-  HealthCheck,
-  HealthCheckService,
-} from &#x27;@nestjs/terminus&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, OnApplicationShutdown, OnModuleInit } from &#x27;@nestjs/common&#x27;
+import { ApiTags } from &#x27;@nestjs/swagger&#x27;
+import { DNSHealthIndicator, HealthCheck, HealthCheckService } from &#x27;@nestjs/terminus&#x27;
 
 @Controller(&#x27;health&#x27;)
-@ApiTags(HealthController.name)
+@ApiTags(HealthController.name) // eslint-disable-line no-use-before-define
 export class HealthController implements OnModuleInit, OnApplicationShutdown {
-  constructor(
-    private health: HealthCheckService,
-    private dns: DNSHealthIndicator,
-  ) {}
+    constructor(
+        private health: HealthCheckService,
+        private dns: DNSHealthIndicator,
+    ) {}
 
-  @Get()
-  @HealthCheck()
-  check() {
-    return this.health.check([
-      () &#x3D;&gt; this.dns.pingCheck(&#x27;nestjs-docs&#x27;, &#x27;https://docs.nestjs.com&#x27;),
-    ]);
-  }
+    @Get()
+    @HealthCheck()
+    check() {
+        return this.health.check([
+            () &#x3D;&gt; this.dns.pingCheck(&#x27;nestjs-docs&#x27;, &#x27;https://docs.nestjs.com&#x27;),
+        ])
+    }
 
-  /*
-   * When the application receives a termination signal it will call any registered
-   * onModuleDestroy(), beforeApplicationShutdown(), then onApplicationShutdown() methods
-   * (in the sequence described above) with the corresponding signal as the first parameter.
-   * If a registered function awaits an asynchronous call (returns a promise), Nest will not
-   * continue in the sequence until the promise is resolved or rejected.
-   */
+    /*
+     * When the application receives a termination signal it will call any registered
+     * onModuleDestroy(), beforeApplicationShutdown(), then onApplicationShutdown() methods
+     * (in the sequence described above) with the corresponding signal as the first parameter.
+     * If a registered function awaits an asynchronous call (returns a promise), Nest will not
+     * continue in the sequence until the promise is resolved or rejected.
+     */
 
-  onModuleInit(): void {
-    console.log(&#x60;ModuleInit - HealthController has been initialized.&#x60;);
-  }
+    onModuleInit(): void {
+        console.log(&#x60;ModuleInit - HealthController has been initialized.&#x60;)
+    }
 
-  onApplicationShutdown(signal?: string): void {
-    console.log(
-      &#x60;ApplicationShutdown - HealthController has been shutdown with ${signal} signal&#x60;,
-    );
-  }
+    onApplicationShutdown(signal?: string): void {
+        console.log(
+            &#x60;ApplicationShutdown - HealthController has been shutdown with ${signal} signal&#x60;,
+        )
+    }
 }
 </code></pre>
     </div>

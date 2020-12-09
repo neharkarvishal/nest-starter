@@ -130,8 +130,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="7"
-                            class="link-to-prism">apps/backend/src/cats/cats.service.ts:7</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="8"
+                            class="link-to-prism">apps/backend/src/cats/cats.service.ts:8</a></div>
                 </td>
             </tr>
 
@@ -200,8 +200,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="11"
-                            class="link-to-prism">apps/backend/src/cats/cats.service.ts:11</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="12"
+                            class="link-to-prism">apps/backend/src/cats/cats.service.ts:12</a></div>
                 </td>
             </tr>
 
@@ -239,8 +239,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="15"
-                            class="link-to-prism">apps/backend/src/cats/cats.service.ts:15</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="16"
+                            class="link-to-prism">apps/backend/src/cats/cats.service.ts:16</a></div>
                 </td>
             </tr>
 
@@ -309,8 +309,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="23"
-                            class="link-to-prism">apps/backend/src/cats/cats.service.ts:23</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="24"
+                            class="link-to-prism">apps/backend/src/cats/cats.service.ts:24</a></div>
                 </td>
             </tr>
 
@@ -379,8 +379,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="19"
-                            class="link-to-prism">apps/backend/src/cats/cats.service.ts:19</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="20"
+                            class="link-to-prism">apps/backend/src/cats/cats.service.ts:20</a></div>
                 </td>
             </tr>
 
@@ -445,31 +445,32 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;;
-import { CreateCatDto } from &#x27;./dto/create-cat.dto&#x27;;
-import { UpdateCatDto } from &#x27;./dto/update-cat.dto&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;
+
+import { CreateCatDto } from &#x27;apps/backend/src/cats/dto/create-cat.dto&#x27;
+import { UpdateCatDto } from &#x27;apps/backend/src/cats/dto/update-cat.dto&#x27;
 
 @Injectable()
 export class CatsService {
-  create(createCatDto: CreateCatDto) {
-    return &#x27;This action adds a new cat&#x27;;
-  }
+    create(createCatDto: CreateCatDto) {
+        return &#x27;This action adds a new cat&#x27;
+    }
 
-  findAll() {
-    return &#x60;This action returns all cats&#x60;;
-  }
+    findAll() {
+        return &#x60;This action returns all cats&#x60;
+    }
 
-  findOne(id: number) {
-    return &#x60;This action returns a #${id} cat&#x60;;
-  }
+    findOne(id: number) {
+        return &#x60;This action returns a #${id} cat&#x60;
+    }
 
-  update(id: number, updateCatDto: UpdateCatDto) {
-    return &#x60;This action updates a #${id} cat&#x60;;
-  }
+    update(id: number, updateCatDto: UpdateCatDto) {
+        return &#x60;This action updates a #${id} cat&#x60;
+    }
 
-  remove(id: number) {
-    return &#x60;This action removes a #${id} cat&#x60;;
-  }
+    remove(id: number) {
+        return &#x60;This action removes a #${id} cat&#x60;
+    }
 }
 </code></pre>
     </div>

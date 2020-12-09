@@ -142,8 +142,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="19"
-                            class="link-to-prism">apps/backend/src/cats/cats.controller.ts:19</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="12"
+                            class="link-to-prism">apps/backend/src/cats/cats.controller.ts:12</a></div>
                 </td>
             </tr>
 
@@ -219,8 +219,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="24"
-                            class="link-to-prism">apps/backend/src/cats/cats.controller.ts:24</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="17"
+                            class="link-to-prism">apps/backend/src/cats/cats.controller.ts:17</a></div>
                 </td>
             </tr>
 
@@ -265,8 +265,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="29"
-                            class="link-to-prism">apps/backend/src/cats/cats.controller.ts:29</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="22"
+                            class="link-to-prism">apps/backend/src/cats/cats.controller.ts:22</a></div>
                 </td>
             </tr>
 
@@ -342,8 +342,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="39"
-                            class="link-to-prism">apps/backend/src/cats/cats.controller.ts:39</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="32"
+                            class="link-to-prism">apps/backend/src/cats/cats.controller.ts:32</a></div>
                 </td>
             </tr>
 
@@ -419,8 +419,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="34"
-                            class="link-to-prism">apps/backend/src/cats/cats.controller.ts:34</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="27"
+                            class="link-to-prism">apps/backend/src/cats/cats.controller.ts:27</a></div>
                 </td>
             </tr>
 
@@ -483,47 +483,40 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Put,
-  Param,
-  Delete,
-} from &#x27;@nestjs/common&#x27;;
-import { CatsService } from &#x27;./cats.service&#x27;;
-import { CreateCatDto } from &#x27;./dto/create-cat.dto&#x27;;
-import { UpdateCatDto } from &#x27;./dto/update-cat.dto&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Post, Body, Put, Param, Delete } from &#x27;@nestjs/common&#x27;
+
+import { CatsService } from &#x27;apps/backend/src/cats/cats.service&#x27;
+import { CreateCatDto } from &#x27;apps/backend/src/cats/dto/create-cat.dto&#x27;
+import { UpdateCatDto } from &#x27;apps/backend/src/cats/dto/update-cat.dto&#x27;
 
 @Controller(&#x27;cats&#x27;)
 export class CatsController {
-  constructor(private readonly catsService: CatsService) {}
+    constructor(private readonly catsService: CatsService) {}
 
-  @Post()
-  create(@Body() createCatDto: CreateCatDto) {
-    return this.catsService.create(createCatDto);
-  }
+    @Post()
+    create(@Body() createCatDto: CreateCatDto) {
+        return this.catsService.create(createCatDto)
+    }
 
-  @Get()
-  findAll() {
-    return this.catsService.findAll();
-  }
+    @Get()
+    findAll() {
+        return this.catsService.findAll()
+    }
 
-  @Get(&#x27;:id&#x27;)
-  findOne(@Param(&#x27;id&#x27;) id: string) {
-    return this.catsService.findOne(+id);
-  }
+    @Get(&#x27;:id&#x27;)
+    findOne(@Param(&#x27;id&#x27;) id: string) {
+        return this.catsService.findOne(+id)
+    }
 
-  @Put(&#x27;:id&#x27;)
-  update(@Param(&#x27;id&#x27;) id: string, @Body() updateCatDto: UpdateCatDto) {
-    return this.catsService.update(+id, updateCatDto);
-  }
+    @Put(&#x27;:id&#x27;)
+    update(@Param(&#x27;id&#x27;) id: string, @Body() updateCatDto: UpdateCatDto) {
+        return this.catsService.update(+id, updateCatDto)
+    }
 
-  @Delete(&#x27;:id&#x27;)
-  remove(@Param(&#x27;id&#x27;) id: string) {
-    return this.catsService.remove(+id);
-  }
+    @Delete(&#x27;:id&#x27;)
+    remove(@Param(&#x27;id&#x27;) id: string) {
+        return this.catsService.remove(+id)
+    }
 }
 </code></pre>
     </div>

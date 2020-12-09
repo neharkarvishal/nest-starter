@@ -179,18 +179,19 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Module } from &#x27;@nestjs/common&#x27;;
-import { AppController } from &#x27;./app.controller&#x27;;
-import { AppService } from &#x27;./app.service&#x27;;
-import { CatsModule } from &#x27;./cats/cats.module&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Module } from &#x27;@nestjs/common&#x27;
+import { TerminusModule } from &#x27;@nestjs/terminus&#x27;
 
-import { TerminusModule } from &#x27;@nestjs/terminus&#x27;;
-import { HealthController } from &#x27;@app/health&#x27;;
+import { HealthController } from &#x27;@app/health&#x27;
+
+import { AppController } from &#x27;apps/backend/src/app.controller&#x27;
+import { AppService } from &#x27;apps/backend/src/app.service&#x27;
+import { CatsModule } from &#x27;apps/backend/src/cats/cats.module&#x27;
 
 @Module({
-  imports: [TerminusModule, CatsModule],
-  controllers: [AppController, HealthController],
-  providers: [AppService],
+    imports: [TerminusModule, CatsModule],
+    controllers: [AppController, HealthController],
+    providers: [AppService],
 })
 export class AppModule {}
 </code></pre>
