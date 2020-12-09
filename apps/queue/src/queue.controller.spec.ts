@@ -1,22 +1,23 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { QueueController } from './queue.controller';
-import { QueueService } from './queue.service';
+import { Test, TestingModule } from '@nestjs/testing'
 
-describe('QueueController', () => {
-  let queueController: QueueController;
+import { QueueController } from './queue.controller'
+import { QueueService } from './queue.service'
 
-  beforeEach(async () => {
-    const app: TestingModule = await Test.createTestingModule({
-      controllers: [QueueController],
-      providers: [QueueService],
-    }).compile();
+describe('queueController', () => {
+    let queueController: QueueController
 
-    queueController = app.get<QueueController>(QueueController);
-  });
+    beforeEach(async () => {
+        const app: TestingModule = await Test.createTestingModule({
+            controllers: [QueueController],
+            providers: [QueueService],
+        }).compile()
 
-  describe('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(queueController.getHello()).toBe('Hello World!');
-    });
-  });
-});
+        queueController = app.get<QueueController>(QueueController)
+    })
+
+    describe('root', () => {
+        it('should return "Hello World!"', () => {
+            expect(queueController.getHello()).toBe('Hello World!')
+        })
+    })
+})

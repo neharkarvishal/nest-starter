@@ -1,24 +1,26 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { INestApplication } from '@nestjs/common';
-import * as request from 'supertest';
-import { QueueModule } from './../src/Queue.module';
+import { INestApplication } from '@nestjs/common'
+import { Test, TestingModule } from '@nestjs/testing'
 
-describe('QueueController (e2e)', () => {
-  let app: INestApplication;
+import * as request from 'supertest'
 
-  beforeEach(async () => {
-    const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [QueueModule],
-    }).compile();
+import { QueueModule } from '../src/Queue.module'
 
-    app = moduleFixture.createNestApplication();
-    await app.init();
-  });
+describe('queueController (e2e)', () => {
+    let app: INestApplication
 
-  it('/ (GET)', () => {
-    return request(app.getHttpServer())
-      .get('/')
-      .expect(200)
-      .expect('Hello World!');
-  });
-});
+    beforeEach(async () => {
+        const moduleFixture: TestingModule = await Test.createTestingModule({
+            imports: [QueueModule],
+        }).compile()
+
+        app = moduleFixture.createNestApplication()
+        await app.init()
+    })
+
+    it('/ (GET)', () => {
+        return request(app.getHttpServer())
+            .get('/')
+            .expect(200)
+            .expect('Hello World!')
+    })
+})

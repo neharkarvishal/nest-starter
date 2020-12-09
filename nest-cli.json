@@ -1,48 +1,48 @@
 {
-  "collection": "@nestjs/schematics",
-  "sourceRoot": "apps/backend/src",
-  "monorepo": true,
-  "root": "apps/backend",
-  "compilerOptions": {
-    "webpack": true,
-    "tsConfigPath": "apps/backend/tsconfig.app.json"
-  },
-  "projects": {
-    "backend": {
-      "type": "application",
-      "root": "apps/backend",
-      "entryFile": "main",
-      "sourceRoot": "apps/backend/src",
-      "compilerOptions": {
+    "collection": "@nestjs/schematics",
+    "sourceRoot": "apps/backend/src",
+    "monorepo": true,
+    "root": "apps/backend",
+    "compilerOptions": {
+        "webpack": true,
         "tsConfigPath": "apps/backend/tsconfig.app.json"
-      }
     },
-    "queue": {
-      "type": "application",
-      "root": "apps/queue",
-      "entryFile": "main",
-      "sourceRoot": "apps/queue/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/queue/tsconfig.app.json"
-      }
-    },
-    "utils": {
-      "type": "library",
-      "root": "libs/utils",
-      "entryFile": "index",
-      "sourceRoot": "libs/utils/src",
-      "compilerOptions": {
-        "tsConfigPath": "libs/utils/tsconfig.lib.json"
-      }
-    },
-    "health": {
-      "type": "library",
-      "root": "libs/health",
-      "entryFile": "index",
-      "sourceRoot": "libs/health/src",
-      "compilerOptions": {
-        "tsConfigPath": "libs/health/tsconfig.lib.json"
-      }
+    "projects": {
+        "backend": {
+            "type": "application",
+            "root": "apps/backend",
+            "entryFile": "main",
+            "sourceRoot": "apps/backend/src",
+            "compilerOptions": {
+                "tsConfigPath": "apps/backend/tsconfig.app.json"
+            }
+        },
+        "queue": {
+            "type": "application",
+            "root": "apps/queue",
+            "entryFile": "main",
+            "sourceRoot": "apps/queue/src",
+            "compilerOptions": {
+                "tsConfigPath": "apps/queue/tsconfig.app.json"
+            }
+        },
+        "utils": {
+            "type": "library",
+            "root": "libs/utils",
+            "entryFile": "index",
+            "sourceRoot": "libs/utils/src",
+            "compilerOptions": {
+                "tsConfigPath": "libs/utils/tsconfig.lib.json"
+            }
+        },
+        "health": {
+            "type": "library",
+            "root": "libs/health",
+            "entryFile": "index",
+            "sourceRoot": "libs/health/src",
+            "compilerOptions": {
+                "tsConfigPath": "libs/health/tsconfig.lib.json"
+            }
+        }
     }
-  }
 }
