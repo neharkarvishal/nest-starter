@@ -57,12 +57,6 @@
             <code>apps/queue/src/queue.controller.ts</code>
         </p>
 
-            <p class="comment">
-                <h3>Prefix</h3>
-            </p>
-            <p class="comment">
-                <code>queue</code>
-            </p>
 
 
 
@@ -155,7 +149,7 @@
 
 import { QueueService } from &#x27;apps/queue/src/queue.service&#x27;
 
-@Controller(&#x27;queue&#x27;)
+@Controller()
 export class QueueController {
     constructor(private readonly queueService: QueueService) {}
 

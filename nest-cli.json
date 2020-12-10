@@ -43,6 +43,15 @@
             "compilerOptions": {
                 "tsConfigPath": "libs/health/tsconfig.lib.json"
             }
+        },
+        "cron": {
+            "type": "library",
+            "root": "libs/cron",
+            "entryFile": "index",
+            "sourceRoot": "libs/cron/src",
+            "compilerOptions": {
+                "tsConfigPath": "libs/cron/tsconfig.lib.json"
+            }
         }
     }
 }

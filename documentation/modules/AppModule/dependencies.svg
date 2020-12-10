@@ -22,45 +22,57 @@
 <text text-anchor="start" x="429.73" y="-15.4" font-family="sans-serif" font-size="14.00"> &#160;Exports</text>
 <g id="clust1" class="cluster">
 <title>cluster_AppModule</title>
-<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="121,-70 121,-195 375,-195 375,-70 121,-70"/>
+<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="68,-70 68,-195 428,-195 428,-70 68,-70"/>
 </g>
 <g id="clust6" class="cluster">
 <title>cluster_AppModule_providers</title>
-<polygon fill="none" stroke="black" points="237,-78 237,-130 367,-130 367,-78 237,-78"/>
+<polygon fill="none" stroke="black" points="290,-78 290,-130 420,-130 420,-78 290,-78"/>
 </g>
 <g id="clust3" class="cluster">
 <title>cluster_AppModule_imports</title>
-<polygon fill="none" stroke="black" points="129,-78 129,-130 229,-130 229,-78 129,-78"/>
+<polygon fill="none" stroke="black" points="76,-78 76,-130 282,-130 282,-78 76,-78"/>
 </g>
 <!-- CatsModule -->
 <g id="node1" class="node">
 <title>CatsModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="221.44,-122 218.44,-126 197.44,-126 194.44,-122 136.56,-122 136.56,-86 221.44,-86 221.44,-122"/>
-<text text-anchor="middle" x="179" y="-99.8" font-family="Times,serif" font-size="14.00">CatsModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="274.44,-122 271.44,-126 250.44,-126 247.44,-122 189.56,-122 189.56,-86 274.44,-86 274.44,-122"/>
+<text text-anchor="middle" x="232" y="-99.8" font-family="Times,serif" font-size="14.00">CatsModule</text>
 </g>
 <!-- AppModule -->
-<g id="node2" class="node">
+<g id="node3" class="node">
 <title>AppModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="281.66,-187 278.66,-191 257.66,-191 254.66,-187 198.34,-187 198.34,-151 281.66,-151 281.66,-187"/>
-<text text-anchor="middle" x="240" y="-164.8" font-family="Times,serif" font-size="14.00">AppModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="273.66,-187 270.66,-191 249.66,-191 246.66,-187 190.34,-187 190.34,-151 273.66,-151 273.66,-187"/>
+<text text-anchor="middle" x="232" y="-164.8" font-family="Times,serif" font-size="14.00">AppModule</text>
 </g>
 <!-- CatsModule&#45;&gt;AppModule -->
 <g id="edge1" class="edge">
 <title>CatsModule&#45;&gt;AppModule</title>
-<path fill="none" stroke="black" d="M209.69,-122.11C209.69,-122.11 209.69,-140.99 209.69,-140.99"/>
-<polygon fill="black" stroke="black" points="206.2,-140.99 209.69,-150.99 213.2,-140.99 206.2,-140.99"/>
+<path fill="none" stroke="black" d="M232,-122.11C232,-122.11 232,-140.99 232,-140.99"/>
+<polygon fill="black" stroke="black" points="228.5,-140.99 232,-150.99 235.5,-140.99 228.5,-140.99"/>
+</g>
+<!-- CronModule -->
+<g id="node2" class="node">
+<title>CronModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="171.55,-122 168.55,-126 147.55,-126 144.55,-122 84.45,-122 84.45,-86 171.55,-86 171.55,-122"/>
+<text text-anchor="middle" x="128" y="-99.8" font-family="Times,serif" font-size="14.00">CronModule</text>
+</g>
+<!-- CronModule&#45;&gt;AppModule -->
+<g id="edge2" class="edge">
+<title>CronModule&#45;&gt;AppModule</title>
+<path fill="none" stroke="black" d="M128,-122.11C128,-141.34 128,-169 128,-169 128,-169 180.3,-169 180.3,-169"/>
+<polygon fill="black" stroke="black" points="180.3,-172.5 190.3,-169 180.3,-165.5 180.3,-172.5"/>
 </g>
 <!-- AppService -->
-<g id="node3" class="node">
+<g id="node4" class="node">
 <title>AppService</title>
-<ellipse fill="#fdb462" stroke="black" cx="302" cy="-104" rx="56.74" ry="18"/>
-<text text-anchor="middle" x="302" y="-99.8" font-family="Times,serif" font-size="14.00">AppService</text>
+<ellipse fill="#fdb462" stroke="black" cx="355" cy="-104" rx="56.74" ry="18"/>
+<text text-anchor="middle" x="355" y="-99.8" font-family="Times,serif" font-size="14.00">AppService</text>
 </g>
 <!-- AppService&#45;&gt;AppModule -->
-<g id="edge2" class="edge">
+<g id="edge3" class="edge">
 <title>AppService&#45;&gt;AppModule</title>
-<path fill="none" stroke="black" d="M263.6,-117.47C263.6,-117.47 263.6,-140.86 263.6,-140.86"/>
-<polygon fill="black" stroke="black" points="260.1,-140.86 263.6,-150.86 267.1,-140.86 260.1,-140.86"/>
+<path fill="none" stroke="black" d="M355,-122.11C355,-141.34 355,-169 355,-169 355,-169 283.99,-169 283.99,-169"/>
+<polygon fill="black" stroke="black" points="283.99,-165.5 273.99,-169 283.99,-172.5 283.99,-165.5"/>
 </g>
 </g>
 </svg>

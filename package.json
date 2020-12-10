@@ -102,7 +102,9 @@
             "@app/utils/(.*)": "<rootDir>/libs/utils/src/$1",
             "@app/utils": "<rootDir>/libs/utils/src",
             "@app/health/(.*)": "<rootDir>/libs/health/src/$1",
-            "@app/health": "<rootDir>/libs/health/src"
+            "@app/health": "<rootDir>/libs/health/src",
+            "@app/cron/(.*)": "<rootDir>/libs/cron/src/$1",
+            "@app/cron": "<rootDir>/libs/cron/src"
         }
     }
 }

@@ -22,29 +22,45 @@
 <text text-anchor="start" x="429.73" y="-15.4" font-family="sans-serif" font-size="14.00"> &#160;Exports</text>
 <g id="clust1" class="cluster">
 <title>cluster_QueueModule</title>
-<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="167,-70 167,-195 329,-195 329,-70 167,-70"/>
+<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="111,-70 111,-195 385,-195 385,-70 111,-70"/>
 </g>
 <g id="clust6" class="cluster">
 <title>cluster_QueueModule_providers</title>
-<polygon fill="none" stroke="black" points="175,-78 175,-130 321,-130 321,-78 175,-78"/>
+<polygon fill="none" stroke="black" points="231,-78 231,-130 377,-130 377,-78 231,-78"/>
 </g>
-<!-- QueueService -->
+<g id="clust3" class="cluster">
+<title>cluster_QueueModule_imports</title>
+<polygon fill="none" stroke="black" points="119,-78 119,-130 223,-130 223,-78 119,-78"/>
+</g>
+<!-- CronModule -->
 <g id="node1" class="node">
-<title>QueueService</title>
-<ellipse fill="#fdb462" stroke="black" cx="248" cy="-104" rx="65.39" ry="18"/>
-<text text-anchor="middle" x="248" y="-99.8" font-family="Times,serif" font-size="14.00">QueueService</text>
+<title>CronModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="214.55,-122 211.55,-126 190.55,-126 187.55,-122 127.45,-122 127.45,-86 214.55,-86 214.55,-122"/>
+<text text-anchor="middle" x="171" y="-99.8" font-family="Times,serif" font-size="14.00">CronModule</text>
 </g>
 <!-- QueueModule -->
 <g id="node2" class="node">
 <title>QueueModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="296.09,-187 293.09,-191 272.09,-191 269.09,-187 199.91,-187 199.91,-151 296.09,-151 296.09,-187"/>
-<text text-anchor="middle" x="248" y="-164.8" font-family="Times,serif" font-size="14.00">QueueModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="285.09,-187 282.09,-191 261.09,-191 258.09,-187 188.91,-187 188.91,-151 285.09,-151 285.09,-187"/>
+<text text-anchor="middle" x="237" y="-164.8" font-family="Times,serif" font-size="14.00">QueueModule</text>
+</g>
+<!-- CronModule&#45;&gt;QueueModule -->
+<g id="edge1" class="edge">
+<title>CronModule&#45;&gt;QueueModule</title>
+<path fill="none" stroke="black" d="M201.87,-122.11C201.87,-122.11 201.87,-140.99 201.87,-140.99"/>
+<polygon fill="black" stroke="black" points="198.37,-140.99 201.87,-150.99 205.37,-140.99 198.37,-140.99"/>
+</g>
+<!-- QueueService -->
+<g id="node3" class="node">
+<title>QueueService</title>
+<ellipse fill="#fdb462" stroke="black" cx="304" cy="-104" rx="65.39" ry="18"/>
+<text text-anchor="middle" x="304" y="-99.8" font-family="Times,serif" font-size="14.00">QueueService</text>
 </g>
 <!-- QueueService&#45;&gt;QueueModule -->
-<g id="edge1" class="edge">
+<g id="edge2" class="edge">
 <title>QueueService&#45;&gt;QueueModule</title>
-<path fill="none" stroke="black" d="M248,-122.11C248,-122.11 248,-140.99 248,-140.99"/>
-<polygon fill="black" stroke="black" points="244.5,-140.99 248,-150.99 251.5,-140.99 244.5,-140.99"/>
+<path fill="none" stroke="black" d="M261.92,-117.78C261.92,-117.78 261.92,-140.55 261.92,-140.55"/>
+<polygon fill="black" stroke="black" points="258.42,-140.55 261.92,-150.55 265.42,-140.55 258.42,-140.55"/>
 </g>
 </g>
 </svg>
