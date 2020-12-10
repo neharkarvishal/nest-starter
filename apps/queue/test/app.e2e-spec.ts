@@ -1,9 +1,9 @@
 import { INestApplication } from '@nestjs/common'
 import { Test, TestingModule } from '@nestjs/testing'
 
-import * as request from 'supertest'
-
 import { QueueModule } from 'apps/queue/src/queue.module'
+
+import * as request from 'supertest'
 
 describe('queueController (e2e)', () => {
     let app: INestApplication
