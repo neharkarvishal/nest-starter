@@ -17,7 +17,11 @@
             "@app/health": ["libs/health/src"],
             "@app/health/*": ["libs/health/src/*"],
             "@app/cron": ["libs/cron/src"],
-            "@app/cron/*": ["libs/cron/src/*"]
+            "@app/cron/*": ["libs/cron/src/*"],
+            "@app/interfaces": ["libs/interfaces/src"],
+            "@app/interfaces/*": ["libs/interfaces/src/*"],
+            "@app/core": ["libs/core/src"],
+            "@app/core/*": ["libs/core/src/*"]
         }
     },
     "include": ["apps/**/*", "libs/**/*", ".eslintrc.js", "global.d.ts"]

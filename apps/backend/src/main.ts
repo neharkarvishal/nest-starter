@@ -62,7 +62,10 @@ async function setupApp(app: INestApplication) {
 
 async function bootstrap() {
     const API_DEFAULT_PORT = 3000
-    const app = await NestFactory.create(AppModule /* , { logger: false } */)
+    const app = await NestFactory.create(AppModule, {
+        // logger: false,
+        cors: true,
+    })
     // app.useLogger(app.get(Logger))
     await setupApp(app)
     await app.listen(API_DEFAULT_PORT)

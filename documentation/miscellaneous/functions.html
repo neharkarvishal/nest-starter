@@ -58,10 +58,25 @@
                 <td class="col-md-4">
                     <ul class="index-list">
                         <li>
+                            <a href="#arrayToObject" title="libs/core/src/utils.ts"><b>arrayToObject</b>&nbsp;&nbsp;&nbsp;(libs/.../utils.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#average" title="libs/utils/src/utils.ts"><b>average</b>&nbsp;&nbsp;&nbsp;(libs/.../utils.ts)</a>
+                        </li>
+                        <li>
                             <a href="#bootstrap" title="apps/backend/src/main.ts"><b>bootstrap</b>&nbsp;&nbsp;&nbsp;(apps/.../main.ts)</a>
                         </li>
                         <li>
                             <a href="#bootstrap" title="apps/queue/src/main.ts"><b>bootstrap</b>&nbsp;&nbsp;&nbsp;(apps/.../main.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#convertLocalToTimezone" title="libs/utils/src/utils.ts"><b>convertLocalToTimezone</b>&nbsp;&nbsp;&nbsp;(libs/.../utils.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#convertPrecisionFloatDigit" title="libs/utils/src/utils.ts"><b>convertPrecisionFloatDigit</b>&nbsp;&nbsp;&nbsp;(libs/.../utils.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#convertToDatetime" title="libs/core/src/utils.ts"><b>convertToDatetime</b>&nbsp;&nbsp;&nbsp;(libs/.../utils.ts)</a>
                         </li>
                         <li>
                             <a href="#createSwagger" title="apps/backend/src/main.ts"><b>createSwagger</b>&nbsp;&nbsp;&nbsp;(apps/.../main.ts)</a>
@@ -70,10 +85,52 @@
                             <a href="#createSwagger" title="apps/queue/src/main.ts"><b>createSwagger</b>&nbsp;&nbsp;&nbsp;(apps/.../main.ts)</a>
                         </li>
                         <li>
+                            <a href="#generatedLogoColor" title="libs/core/src/utils.ts"><b>generatedLogoColor</b>&nbsp;&nbsp;&nbsp;(libs/.../utils.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#getContrastColor" title="libs/utils/src/utils.ts"><b>getContrastColor</b>&nbsp;&nbsp;&nbsp;(libs/.../utils.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#getEmptyAddress" title="libs/interfaces/src/models/geo-location.model.ts"><b>getEmptyAddress</b>&nbsp;&nbsp;&nbsp;(libs/.../geo-location.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#getLastDayOfMonth" title="libs/core/src/utils.ts"><b>getLastDayOfMonth</b>&nbsp;&nbsp;&nbsp;(libs/.../utils.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#isEmpty" title="libs/utils/src/utils.ts"><b>isEmpty</b>&nbsp;&nbsp;&nbsp;(libs/.../utils.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#isJsObject" title="libs/utils/src/utils.ts"><b>isJsObject</b>&nbsp;&nbsp;&nbsp;(libs/.../utils.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#progressStatus" title="libs/utils/src/utils.ts"><b>progressStatus</b>&nbsp;&nbsp;&nbsp;(libs/.../utils.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#reflect" title="libs/core/src/utils.ts"><b>reflect</b>&nbsp;&nbsp;&nbsp;(libs/.../utils.ts)</a>
+                        </li>
+                        <li>
                             <a href="#setupApp" title="apps/backend/src/main.ts"><b>setupApp</b>&nbsp;&nbsp;&nbsp;(apps/.../main.ts)</a>
                         </li>
                         <li>
                             <a href="#setupApp" title="apps/queue/src/main.ts"><b>setupApp</b>&nbsp;&nbsp;&nbsp;(apps/.../main.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#tempFile" title="libs/core/src/utils.ts"><b>tempFile</b>&nbsp;&nbsp;&nbsp;(libs/.../utils.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#toFormData" title="libs/utils/src/utils.ts"><b>toFormData</b>&nbsp;&nbsp;&nbsp;(libs/.../utils.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#toHexString" title="libs/core/src/entities/toHexString.ts"><b>toHexString</b>&nbsp;&nbsp;&nbsp;(libs/.../toHexString.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#toLocal" title="libs/utils/src/utils.ts"><b>toLocal</b>&nbsp;&nbsp;&nbsp;(libs/.../utils.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#toUTC" title="libs/utils/src/utils.ts"><b>toUTC</b>&nbsp;&nbsp;&nbsp;(libs/.../utils.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#unixTimestampToDate" title="libs/core/src/utils.ts"><b>unixTimestampToDate</b>&nbsp;&nbsp;&nbsp;(libs/.../utils.ts)</a>
                         </li>
                     </ul>
                 </td>
@@ -82,7 +139,1063 @@
     </table>
 </section>
 
-    <h3>apps/backend/src/main.ts</h3>
+    <h3>libs/core/src/utils.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="arrayToObject"></a>
+                    <span class="name">
+                        <b>
+                            arrayToObject
+                        </b>
+                        <a href="#arrayToObject"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>arrayToObject(array, key, value)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>array</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>key</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>value</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="convertToDatetime"></a>
+                    <span class="name">
+                        <b>
+                            convertToDatetime
+                        </b>
+                        <a href="#convertToDatetime"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>convertToDatetime(datetime, format: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>datetime</td>
+                                    <td>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>format</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="generatedLogoColor"></a>
+                    <span class="name">
+                        <b>
+                            generatedLogoColor
+                        </b>
+                        <a href="#generatedLogoColor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>generatedLogoColor()</code>
+                </td>
+            </tr>
+
+
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getLastDayOfMonth"></a>
+                    <span class="name">
+                        <b>
+                            getLastDayOfMonth
+                        </b>
+                        <a href="#getLastDayOfMonth"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getLastDayOfMonth(year, month)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>To calculate the last day of a month, we need to set date=0 and month as the next month.
+So, if we want the last day of February (February is month = 1) we&#39;ll need to perform &#39;new Date(year, 2, 0).getDate()&#39;</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>year</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>month</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="reflect"></a>
+                    <span class="name">
+                        <b>
+                            reflect
+                        </b>
+                        <a href="#reflect"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>reflect(promise)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>promise</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tempFile"></a>
+                    <span class="name">
+                        <b>
+                            tempFile
+                        </b>
+                        <a href="#tempFile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>tempFile(prefix)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>prefix</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="unixTimestampToDate"></a>
+                    <span class="name">
+                        <b>
+                            unixTimestampToDate
+                        </b>
+                        <a href="#unixTimestampToDate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>unixTimestampToDate(timestamps, format: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>timestamps</td>
+                                    <td>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>format</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>libs/utils/src/utils.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="average"></a>
+                    <span class="name">
+                        <b>
+                            average
+                        </b>
+                        <a href="#average"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>average(items: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, column)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>items</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>column</td>
+                                    <td>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="convertLocalToTimezone"></a>
+                    <span class="name">
+                        <b>
+                            convertLocalToTimezone
+                        </b>
+                        <a href="#convertLocalToTimezone"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>convertLocalToTimezone(localDt, localDtFormat, timeZone, format: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>localDt</td>
+                                    <td>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>localDtFormat</td>
+                                    <td>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>timeZone</td>
+                                    <td>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>format</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="convertPrecisionFloatDigit"></a>
+                    <span class="name">
+                        <b>
+                            convertPrecisionFloatDigit
+                        </b>
+                        <a href="#convertPrecisionFloatDigit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>convertPrecisionFloatDigit(val, digit: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The precision for a decimal (exact numeric applies only for decimal column), which is the maximum
+number of digits that are stored.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>val</td>
+                                    <td>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>digit</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getContrastColor"></a>
+                    <span class="name">
+                        <b>
+                            getContrastColor
+                        </b>
+                        <a href="#getContrastColor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getContrastColor(hex)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>hex</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isEmpty"></a>
+                    <span class="name">
+                        <b>
+                            isEmpty
+                        </b>
+                        <a href="#isEmpty"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isEmpty(value: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>value</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isJsObject"></a>
+                    <span class="name">
+                        <b>
+                            isJsObject
+                        </b>
+                        <a href="#isJsObject"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isJsObject(object: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>object</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="progressStatus"></a>
+                    <span class="name">
+                        <b>
+                            progressStatus
+                        </b>
+                        <a href="#progressStatus"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>progressStatus(value)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>value</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toFormData"></a>
+                    <span class="name">
+                        <b>
+                            toFormData
+                        </b>
+                        <a href="#toFormData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>toFormData(obj: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, form?: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, namespace?: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>obj</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>form</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>namespace</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toLocal"></a>
+                    <span class="name">
+                        <b>
+                            toLocal
+                        </b>
+                        <a href="#toLocal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>toLocal(data)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>data</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#moment" target="_self" >moment.Moment</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toUTC"></a>
+                    <span class="name">
+                        <b>
+                            toUTC
+                        </b>
+                        <a href="#toUTC"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>toUTC(data)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>data</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#moment" target="_self" >moment.Moment</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>apps/backend/src/main.ts</h3>
     <section>
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
@@ -330,6 +1443,96 @@
                             <tbody>
                                 <tr>
                                     <td>app</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>libs/interfaces/src/models/geo-location.model.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getEmptyAddress"></a>
+                    <span class="name">
+                        <b>
+                            getEmptyAddress
+                        </b>
+                        <a href="#getEmptyAddress"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getEmptyAddress()</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/IAddress.html" target="_self" >IAddress</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>libs/core/src/entities/toHexString.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toHexString"></a>
+                    <span class="name">
+                        <b>
+                            toHexString
+                        </b>
+                        <a href="#toHexString"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>toHexString(value)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>value</td>
 
                                     <td>
                                         No

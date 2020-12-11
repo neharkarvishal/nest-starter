@@ -122,6 +122,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                             </li>
                             <li class="link">
+                                <a href="modules/CoreModule.html" data-type="entity-link">CoreModule</a>
+                            </li>
+                            <li class="link">
                                 <a href="modules/CronModule.html" data-type="entity-link">CronModule</a>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
@@ -176,24 +179,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     </ul>
                                 </li>
                             </li>
-                            <li class="link">
-                                <a href="modules/UtilsModule.html" data-type="entity-link">UtilsModule</a>
-                                <li class="chapter inner">
-                                    <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                        'data-target="#injectables-links-module-UtilsModule-8d02d7c5f3596ae3931f9ebb4956eafe"' : 'data-target="#xs-injectables-links-module-UtilsModule-8d02d7c5f3596ae3931f9ebb4956eafe"' }>
-                                        <span class="icon ion-md-arrow-round-down"></span>
-                                        <span>Injectables</span>
-                                        <span class="icon ion-ios-arrow-down"></span>
-                                    </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-UtilsModule-8d02d7c5f3596ae3931f9ebb4956eafe"' :
-                                        'id="xs-injectables-links-module-UtilsModule-8d02d7c5f3596ae3931f9ebb4956eafe"' }>
-                                        <li class="link">
-                                            <a href="injectables/UtilsService.html"
-                                                data-type="entity-link" data-context="sub-entity" data-context-id="modules" }>UtilsService</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </li>
                 </ul>
                 </li>
                         <li class="chapter">
@@ -227,10 +212,25 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? 'id="classes-links"' : 'id="xs-classes-links"' }>
                             <li class="link">
+                                <a href="classes/Base.html" data-type="entity-link">Base</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/Cat.html" data-type="entity-link">Cat</a>
                             </li>
                             <li class="link">
                                 <a href="classes/CreateCatDto.html" data-type="entity-link">CreateCatDto</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/CrudController.html" data-type="entity-link">CrudController</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/CrudService.html" data-type="entity-link">CrudService</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/Model.html" data-type="entity-link">Model</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/PaginationParams.html" data-type="entity-link">PaginationParams</a>
                             </li>
                             <li class="link">
                                 <a href="classes/UpdateCatDto.html" data-type="entity-link">UpdateCatDto</a>
@@ -255,13 +255,119 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="injectables/CronService.html" data-type="entity-link">CronService</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/QueueService.html" data-type="entity-link">QueueService</a>
+                                    <a href="injectables/DBHelper.html" data-type="entity-link">DBHelper</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/UtilsService.html" data-type="entity-link">UtilsService</a>
+                                    <a href="injectables/QueueService.html" data-type="entity-link">QueueService</a>
                                 </li>
                             </ul>
                         </li>
+                    <li class="chapter">
+                        <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ? 'data-target="#interfaces-links"' :
+                            'data-target="#xs-interfaces-links"' }>
+                            <span class="icon ion-md-information-circle-outline"></span>
+                            <span>Interfaces</span>
+                            <span class="icon ion-ios-arrow-down"></span>
+                        </div>
+                        <ul class="links collapse " ${ isNormalMode ? ' id="interfaces-links"' : 'id="xs-interfaces-links"' }>
+                            <li class="link">
+                                <a href="interfaces/FileStorageOption.html" data-type="entity-link">FileStorageOption</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/FileSystem.html" data-type="entity-link">FileSystem</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/IAddress.html" data-type="entity-link">IAddress</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/IAuthLoginInput.html" data-type="entity-link">IAuthLoginInput</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/IAuthResponse.html" data-type="entity-link">IAuthResponse</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/IBaseEntityModel.html" data-type="entity-link">IBaseEntityModel</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ICountry.html" data-type="entity-link">ICountry</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ICrudService.html" data-type="entity-link">ICrudService</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ICurrency.html" data-type="entity-link">ICurrency</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/IGeoLocationCreateObject.html" data-type="entity-link">IGeoLocationCreateObject</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/IGeolocationUpdateObject.html" data-type="entity-link">IGeolocationUpdateObject</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ILanguage.html" data-type="entity-link">ILanguage</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ILanguageFindInput.html" data-type="entity-link">ILanguageFindInput</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ILanguageName.html" data-type="entity-link">ILanguageName</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/IListQueryInput.html" data-type="entity-link">IListQueryInput</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ILocation.html" data-type="entity-link">ILocation</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/IPagination.html" data-type="entity-link">IPagination</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/IPagination-1.html" data-type="entity-link">IPagination</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/IPaginationInput.html" data-type="entity-link">IPaginationInput</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/IRole.html" data-type="entity-link">IRole</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/IRolePermission.html" data-type="entity-link">IRolePermission</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/IRolePermissionCreateInput.html" data-type="entity-link">IRolePermissionCreateInput</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/IRolePermissionUpdateInput.html" data-type="entity-link">IRolePermissionUpdateInput</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ITreeNode.html" data-type="entity-link">ITreeNode</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ITryRequest.html" data-type="entity-link">ITryRequest</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/IUser.html" data-type="entity-link">IUser</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/IUserCreateInput.html" data-type="entity-link">IUserCreateInput</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/IUserFindInput.html" data-type="entity-link">IUserFindInput</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/IUserRegistrationInput.html" data-type="entity-link">IUserRegistrationInput</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/IUserUpdateInput.html" data-type="entity-link">IUserUpdateInput</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/S3FileStorageProviderConfig.html" data-type="entity-link">S3FileStorageProviderConfig</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/UploadedFile.html" data-type="entity-link">UploadedFile</a>
+                            </li>
+                        </ul>
+                    </li>
                     <li class="chapter">
                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ? 'data-target="#miscellaneous-links"'
                             : 'data-target="#xs-miscellaneous-links"' }>
@@ -271,7 +377,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? 'id="miscellaneous-links"' : 'id="xs-miscellaneous-links"' }>
                             <li class="link">
+                                <a href="miscellaneous/enumerations.html" data-type="entity-link">Enums</a>
+                            </li>
+                            <li class="link">
                                 <a href="miscellaneous/functions.html" data-type="entity-link">Functions</a>
+                            </li>
+                            <li class="link">
+                                <a href="miscellaneous/variables.html" data-type="entity-link">Variables</a>
                             </li>
                         </ul>
                     </li>
