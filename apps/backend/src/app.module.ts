@@ -10,7 +10,7 @@ import { AppService } from 'apps/backend/src/app.service'
 import { CatsModule } from 'apps/backend/src/cats/cats.module'
 
 @Module({
-    imports: [TerminusModule, CatsModule, ScheduleModule.forRoot(), CronModule],
+    imports: [TerminusModule, ScheduleModule.forRoot(), CronModule],
     controllers: [AppController, HealthController],
     providers: [AppService],
 })

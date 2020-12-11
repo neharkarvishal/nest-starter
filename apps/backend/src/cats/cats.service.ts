@@ -1,27 +1,26 @@
-import { Injectable } from '@nestjs/common'
+import { Injectable, Logger } from '@nestjs/common'
+import { InjectRepository } from '@nestjs/typeorm'
 
 import { CreateCatDto } from 'apps/backend/src/cats/dto/create-cat.dto'
 import { UpdateCatDto } from 'apps/backend/src/cats/dto/update-cat.dto'
 
+import { CrudService } from 'libs/core/src'
+
+import { getManager, Repository } from 'typeorm'
+
+import { Cat } from './entities/cat.entity'
+
 @Injectable()
-export class CatsService {
-    create(createCatDto: CreateCatDto) {
-        return 'This action adds a new cat'
+export class CatsService extends CrudService<Cat> {
+    constructor(@InjectRepository(Cat) private readonly catRepo: Repository<Cat>) {
+        super(catRepo)
     }
 
-    findAll() {
-        return `This action returns all cats`
-    }
+    /* async clear() {
+        let cleared = {}
+        cleared = await getManager().query('DELETE FROM cats') // eslint-disable-line @typescript-eslint/no-unsafe-assignment
+        this.logger.log({ cleared })
 
-    findOne(id: number) {
-        return `This action returns a #${id} cat`
-    }
-
-    update(id: number, updateCatDto: UpdateCatDto) {
-        return `This action updates a #${id} cat`
-    }
-
-    remove(id: number) {
-        return `This action removes a #${id} cat`
-    }
+        return cleared
+    } */
 }

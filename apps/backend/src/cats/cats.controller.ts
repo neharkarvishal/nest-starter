@@ -1,35 +1,44 @@
+/* eslint-disable no-use-before-define */
 import { Controller, Get, Post, Body, Put, Param, Delete } from '@nestjs/common'
+import { ApiTags } from '@nestjs/swagger'
 
 import { CatsService } from 'apps/backend/src/cats/cats.service'
 import { CreateCatDto } from 'apps/backend/src/cats/dto/create-cat.dto'
 import { UpdateCatDto } from 'apps/backend/src/cats/dto/update-cat.dto'
 
+import { CrudController } from 'libs/core/src'
+
+import { Cat } from './entities/cat.entity'
+
 @Controller('cats')
-export class CatsController {
-    constructor(private readonly catsService: CatsService) {}
-
-    @Post()
-    create(@Body() createCatDto: CreateCatDto) {
-        return this.catsService.create(createCatDto)
+@ApiTags(CatsController.name)
+export class CatsController extends CrudController<Cat> {
+    constructor(private readonly catsService: CatsService) {
+        super(catsService)
     }
 
-    @Get()
-    findAll() {
-        return this.catsService.findAll()
-    }
+    /* @Post()
+  create(@Body() createCatDto: CreateCatDto) {
+      return this.catsService.create(createCatDto)
+  }
 
-    @Get(':id')
-    findOne(@Param('id') id: string) {
-        return this.catsService.findOne(+id)
-    }
+  @Get()
+  findAll() {
+      return this.catsService.findAll()
+  }
 
-    @Put(':id')
-    update(@Param('id') id: string, @Body() updateCatDto: UpdateCatDto) {
-        return this.catsService.update(+id, updateCatDto)
-    }
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+      return this.catsService.findOne(+id)
+  }
 
-    @Delete(':id')
-    remove(@Param('id') id: string) {
-        return this.catsService.remove(+id)
-    }
+  @Put(':id')
+  update(@Param('id') id: string, @Body() updateCatDto: UpdateCatDto) {
+      return this.catsService.update(+id, updateCatDto)
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+      return this.catsService.remove(+id)
+  } */
 }

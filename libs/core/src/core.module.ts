@@ -1,17 +1,23 @@
 import { Module } from '@nestjs/common'
-import { TypeOrmModule } from '@nestjs/typeorm'
+import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm'
+
+import { Cat } from 'apps/backend/src/cats/entities/cat.entity'
+
+const entities = [Cat]
 
 @Module({
     imports: [
-        // TypeOrmModule.forRoot({
-        //     entities: [`${__dirname}/../**/*.entity.{ts,js}`],
-        //     type: 'sqlite' as const,
-        //     database: 'database.sqlite',
-        //     synchronize: true,
-        //     logging: true,
-        // }),
+        TypeOrmModule.forRootAsync({
+            useFactory: (): TypeOrmModuleOptions => ({
+                entities,
+                type: 'sqlite' as const,
+                database: 'database.sqlite',
+                synchronize: true,
+                logging: true,
+            }),
+        }),
     ],
+    controllers: [],
     providers: [],
-    exports: [],
 })
 export class CoreModule {}
