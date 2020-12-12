@@ -1,5 +1,4 @@
 /* eslint-disable max-classes-per-file */
-import { PartialType } from '@nestjs/mapped-types'
 import { ApiProperty } from '@nestjs/swagger'
 
 import { ICat } from 'src/modules/cats/interfaces/cat.interface'

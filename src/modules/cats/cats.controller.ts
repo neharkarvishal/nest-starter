@@ -13,10 +13,10 @@ import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 
 import { CatsService } from 'src/modules/cats/cats.service'
 import { CreateCatDto, UpdateCatDto } from 'src/modules/cats/dto/cat.dto'
-import { Cat as CatEntity } from 'src/modules/cats/entities/cat.entity'
+import { Cat } from 'src/modules/cats/entities/cat.entity'
 
-@ApiTags(CatsController.name)
 @Controller('cats')
+@ApiTags(CatsController.name)
 export class CatsController {
     constructor(private readonly catsService: CatsService) {}
 
@@ -25,13 +25,13 @@ export class CatsController {
     @ApiResponse({
         status: HttpStatus.CREATED,
         description: 'Created Cat Successfully',
-        type: CatEntity,
+        type: Cat,
     })
     @ApiResponse({
         description: 'Forbidden',
         status: HttpStatus.FORBIDDEN,
     })
-    async create(@Body() createCatDto: CreateCatDto): Promise<CatEntity> {
+    async create(@Body() createCatDto: CreateCatDto) {
         return this.catsService.create(createCatDto)
     }
 
@@ -41,9 +41,9 @@ export class CatsController {
         description: 'Array of all Cats Entities',
         isArray: true,
         status: HttpStatus.OK,
-        type: CatEntity,
+        type: Cat,
     })
-    async findAll(): Promise<CatEntity[]> {
+    async findAll() {
         return this.catsService.findAll()
     }
 
@@ -53,9 +53,9 @@ export class CatsController {
         description: 'Entity of a Cats',
         isArray: false,
         status: HttpStatus.OK,
-        type: CatEntity,
+        type: Cat,
     })
-    async findOne(@Param('id') id: number): Promise<CatEntity> {
+    async findOne(@Param('id') id: number) {
         return this.catsService.findOne(id)
     }
 
@@ -65,7 +65,7 @@ export class CatsController {
         description: 'Updating a Cats',
         isArray: false,
         status: HttpStatus.OK,
-        type: CatEntity,
+        type: Cat,
     })
     async update(@Param('id') id: number, @Body() updateCatDto: UpdateCatDto) {
         return this.catsService.update(id, updateCatDto)
@@ -77,10 +77,10 @@ export class CatsController {
         description: 'Delete a Cats',
         isArray: false,
         status: HttpStatus.OK,
-        type: CatEntity,
+        type: Cat,
     })
-    async remove(@Param('id') id: number) {
-        return this.catsService.remove(id)
+    async delete(@Param('id') id: number) {
+        return this.catsService.delete(id)
     }
 
     @Post('/clear')

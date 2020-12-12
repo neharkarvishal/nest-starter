@@ -1,9 +1,12 @@
+/* eslint-disable no-use-before-define,@typescript-eslint/no-use-before-define */
 import { Controller, Get, Post, Body, Put, Param, Delete } from '@nestjs/common'
+import { ApiTags } from '@nestjs/swagger'
 
-import { CreateUserDto, UpdateUserDto } from './dto/user.dto'
-import { UsersService } from './users.service'
+import { CreateUserDto, UpdateUserDto } from 'src/modules/users/dto/user.dto'
+import { UsersService } from 'src/modules/users/users.service'
 
 @Controller('users')
+@ApiTags(UsersController.name)
 export class UsersController {
     constructor(private readonly usersService: UsersService) {}
 

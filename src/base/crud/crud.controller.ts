@@ -45,7 +45,7 @@ export abstract class CrudController<T extends Base> {
         description: 'Record not found',
     })
     @Get(':id')
-    async findById(@Param('id') id: string): Promise<T> {
+    async findOne(@Param('id') id: string): Promise<T> {
         return this.crudService.findOne(id)
     }
 

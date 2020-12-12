@@ -6,14 +6,18 @@ import { Cat } from 'src/modules/cats/entities/cat.entity'
 
 import { getManager, Repository } from 'typeorm'
 
+import { CrudService } from '../../base/crud'
+
 @Injectable()
-export class CatsService {
+export class CatsService extends CrudService<Cat> {
     constructor(
         @InjectRepository(Cat) private readonly catRepo: Repository<Cat>,
         private logger: Logger,
-    ) {}
+    ) {
+        super(catRepo)
+    }
 
-    async create(cat: CreateCatDto) {
+    /* async create(cat: CreateCatDto) {
         this.logger.log({ cat })
 
         const newCat = new Cat()
@@ -48,7 +52,7 @@ export class CatsService {
         this.logger.log({ removed })
 
         return removed
-    }
+    } */
 
     async clear() {
         let cleared = {}

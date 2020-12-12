@@ -25,6 +25,7 @@ const ConfigModuleOptions = {
     validationSchema: Joi.object({
         PORT: Joi.number().default(3000),
         NODE_ENV: Joi.string()
+            .required()
             .valid('development', 'production', 'test', 'provision')
             .default('development'),
     }),
@@ -44,7 +45,7 @@ const LoggerModuleOptions = {
 }
 
 const TypeOrmModuleOptions = {
-    entities: [`${__dirname}/../**/*.entity.{ts,js}`],
+    entities: [`${__dirname}/**/*.entity.{ts,js}`],
     type: 'sqlite' as const,
     database: 'database.sqlite',
     synchronize: true,
