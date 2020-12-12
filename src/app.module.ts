@@ -7,8 +7,8 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 
 import { PinoLogger, LoggerModule } from 'nestjs-pino'
 
-import { AppController } from 'src/app/app.controller'
-import { AppService } from 'src/app/app.service'
+import { AppController } from 'src/app.controller'
+import { AppService } from 'src/app.service'
 import { CronModule } from 'src/cron/cron.module'
 import { HealthController } from 'src/health/health.controller'
 import { CatsModule } from 'src/modules/cats/cats.module'
@@ -57,7 +57,7 @@ const TypeOrmModuleOptions = {
         ConfigModule.forRoot(ConfigModuleOptions),
         LoggerModule.forRoot(LoggerModuleOptions),
         ScheduleModule.forRoot(),
-        // CronModule,
+        CronModule,
         TerminusModule, // Health module
         TypeOrmModule.forRoot(TypeOrmModuleOptions),
         CatsModule,

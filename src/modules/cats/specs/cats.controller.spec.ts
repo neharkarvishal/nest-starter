@@ -3,8 +3,8 @@ import { Test } from '@nestjs/testing'
 
 import { Cat } from 'src/modules/cats/entities/cat.entity'
 
-import { CatsController } from './cats.controller'
-import { CatsService } from './cats.service'
+import { CatsController } from '../cats.controller'
+import { CatsService } from '../cats.service'
 
 describe('catsController', () => {
     let catsController: CatsController

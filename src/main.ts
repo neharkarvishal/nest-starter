@@ -6,7 +6,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 
 import { Logger } from 'nestjs-pino'
 
-import { AppModule } from 'src/app/app.module'
+import { AppModule } from 'src/app.module'
 
 import * as rateLimit from 'express-rate-limit'
 import * as helmet from 'helmet'
@@ -65,8 +65,8 @@ async function setupApp(app: INestApplication, API_DEFAULT_PORT: number) {
 
 async function bootstrap() {
     const API_DEFAULT_PORT = 3000
-    const app = await NestFactory.create(AppModule /* , { logger: false } */)
-    // app.useLogger(app.get(Logger))
+    const app = await NestFactory.create(AppModule, { logger: false })
+    app.useLogger(app.get(Logger))
     await setupApp(app, API_DEFAULT_PORT)
     return app
 }

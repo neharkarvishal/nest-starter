@@ -2,7 +2,7 @@
 import { Controller, Get, HttpStatus, OnModuleInit } from '@nestjs/common'
 import { ApiResponse, ApiTags } from '@nestjs/swagger'
 
-import { AppService } from 'src/app/app.service'
+import { AppService } from 'src/app.service'
 
 @ApiTags(AppController.name)
 @Controller()
