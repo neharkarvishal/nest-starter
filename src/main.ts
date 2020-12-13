@@ -52,6 +52,7 @@ async function setupApp(app: INestApplication, API_DEFAULT_PORT: number) {
     // ValidationPipe at the application level, thus ensuring all endpoints are protected from receiving incorrect data
     app.useGlobalPipes(
         new ValidationPipe({
+            disableErrorMessages: false,
             transform: true,
             whitelist: true, // i suppose this creates a white list with properties
             forbidUnknownValues: true, // i dont know why exists
@@ -67,7 +68,7 @@ async function bootstrap() {
     const API_DEFAULT_PORT = 3000
     const app = await NestFactory.create(AppModule, { logger: false })
     app.useLogger(app.get(Logger))
-    await setupApp(app, API_DEFAULT_PORT)
+    await setupApp(app, +process.env.PORT || API_DEFAULT_PORT)
     return app
 }
 

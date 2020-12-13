@@ -68,8 +68,8 @@ export abstract class CrudService<T extends Base> implements ICrudService<T> {
         // READMEWHY: https://github.com/Microsoft/TypeScript/issues/21592
         try {
             return await this.repository.save(obj as any) // eslint-disable-line @typescript-eslint/no-unsafe-return
-        } catch (err /*: WriteError */) {
-            throw new BadRequestException(err)
+        } catch (error /*: WriteError */) {
+            throw new BadRequestException(error)
         }
     }
 
@@ -94,8 +94,8 @@ export abstract class CrudService<T extends Base> implements ICrudService<T> {
             }
 
             return await this.repository.update(id, partialEntity)
-        } catch (err /*: WriteError */) {
-            throw new BadRequestException(err)
+        } catch (error /*: WriteError */) {
+            throw new BadRequestException(error)
         }
     }
 
@@ -105,8 +105,8 @@ export abstract class CrudService<T extends Base> implements ICrudService<T> {
     ): Promise<DeleteResult> {
         try {
             return await this.repository.delete(criteria)
-        } catch (err) {
-            throw new NotFoundException(`The record was not found`, err)
+        } catch (error) {
+            throw new NotFoundException(`The record was not found`, error)
         }
     }
 
