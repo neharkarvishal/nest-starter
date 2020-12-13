@@ -11,9 +11,7 @@ import { AppController } from 'src/app.controller'
 import { AppService } from 'src/app.service'
 import { CronModule } from 'src/cron/cron.module'
 import { HealthController } from 'src/health/health.controller'
-import { CatsModule } from 'src/modules/cats/cats.module'
 import { CompanyModule } from 'src/modules/company/company.module'
-import { UsersModule } from 'src/modules/users/users.module'
 
 import * as Joi from '@hapi/joi'
 
@@ -62,8 +60,6 @@ const TypeOrmModuleOptions = {
         CronModule,
         TerminusModule, // Health module
         TypeOrmModule.forRoot(TypeOrmModuleOptions),
-        CatsModule,
-        UsersModule,
         CompanyModule,
     ],
     providers: [AppService],

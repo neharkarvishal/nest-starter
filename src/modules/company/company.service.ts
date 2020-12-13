@@ -2,11 +2,9 @@ import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { TypeOrmCrudService } from '@nestjsx/crud-typeorm'
 
-import { getManager } from 'typeorm'
+import { Company } from 'src/modules/company/data/company.entity'
 
-import { CreateCompanyDto } from './dto/create-company.dto'
-import { UpdateCompanyDto } from './dto/update-company.dto'
-import { Company } from './entities/company.entity'
+import { getManager } from 'typeorm'
 
 @Injectable()
 export class CompanyService extends TypeOrmCrudService<Company> {
@@ -19,24 +17,4 @@ export class CompanyService extends TypeOrmCrudService<Company> {
         cleared = await getManager().query('DELETE FROM company') // eslint-disable-line @typescript-eslint/no-unsafe-assignment
         return cleared
     }
-
-    /* create(createCompanyDto: CreateCompanyDto) {
-        return 'This action adds a new company'
-    }
-
-    findAll() {
-        return `This action returns all company`
-    }
-
-    findOne(id: number) {
-        return `This action returns a #${id} company`
-    }
-
-    update(id: number, updateCompanyDto: UpdateCompanyDto) {
-        return `This action updates a #${id} company`
-    }
-
-    remove(id: number) {
-        return `This action removes a #${id} company`
-    } */
 }

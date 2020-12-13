@@ -36,7 +36,7 @@
 
 <ol class="breadcrumb">
   <li>Controllers</li>
-  <li>AppController</li>
+  <li>CompanyController</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -54,7 +54,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app.controller.ts</code>
+            <code>src/modules/company/company.controller.ts</code>
         </p>
 
 
@@ -76,7 +76,8 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#getHello">getHello</a>
+                                    <span class="modifier">Async</span>
+                                <a href="#clear">clear</a>
                             </li>
                         </ul>
                     </td>
@@ -99,18 +100,20 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getHello"></a>
+                    <a name="clear"></a>
                     <span class="name">
                         <b>
-                            getHello
+                            <span class="modifier">Async</span>
+                            clear
                         </b>
-                        <a href="#getHello"><span class="icon ion-ios-link"></span></a>
+                        <a href="#clear"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getHello()</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>clear()</code>
                 </td>
             </tr>
 
@@ -118,14 +121,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get()<br />@ApiResponse({status: undefined})<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Delete all companies&#x27;})<br />@Post(&#x27;/clear&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="14"
-                            class="link-to-prism">src/app.controller.ts:14</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="31"
+                            class="link-to-prism">src/modules/company/company.controller.ts:31</a></div>
                 </td>
             </tr>
 
@@ -134,7 +137,7 @@
                 <td class="col-md-4">
 
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                        <b>Returns : </b>    <code>{}</code>
 
                     </div>
                 </td>
@@ -145,21 +148,38 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">/* eslint-disable @typescript-eslint/no-unsafe-assignment,no-use-before-define,@typescript-eslint/no-use-before-define */
-import { Controller, Get, HttpStatus, OnModuleInit } from &#x27;@nestjs/common&#x27;
-import { ApiResponse, ApiTags } from &#x27;@nestjs/swagger&#x27;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">/* eslint-disable no-use-before-define,@typescript-eslint/no-use-before-define */
+import { Controller, Get, Post, Body, Put, Param, Delete } from &#x27;@nestjs/common&#x27;
+import { ApiOperation, ApiResponse, ApiTags } from &#x27;@nestjs/swagger&#x27;
+import { Crud, CrudController } from &#x27;@nestjsx/crud&#x27;
 
-import { AppService } from &#x27;src/app.service&#x27;
+import { CompanyService } from &#x27;src/modules/company/company.service&#x27;
+import {
+    CreateCompanyDto,
+    UpdateCompanyDto,
+} from &#x27;src/modules/company/data/company.dto&#x27;
+import { Company } from &#x27;src/modules/company/data/company.entity&#x27;
 
-@Controller()
-@ApiTags(AppController.name)
-export class AppController {
-    constructor(private readonly appService: AppService) {}
+@Crud({
+    model: {
+        type: Company,
+    },
+    dto: {
+        create: CreateCompanyDto,
+        update: UpdateCompanyDto,
+    },
+})
+@Controller(CompanyController.path)
+@ApiTags(CompanyController.name)
+export class CompanyController implements CrudController&lt;Company&gt; {
+    public static path &#x3D; &#x27;companies&#x27;
 
-    @Get()
-    @ApiResponse({ status: HttpStatus.OK })
-    getHello(): string {
-        return this.appService.getHello()
+    constructor(public service: CompanyService) {}
+
+    @ApiOperation({ summary: &#x27;Delete all companies&#x27; })
+    @Post(&#x27;/clear&#x27;)
+    async clear() {
+        return this.service.clear()
     }
 }
 </code></pre>
@@ -196,7 +216,7 @@ export class AppController {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'controller';
-            var COMPODOC_CURRENT_PAGE_URL = 'AppController.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'CompanyController.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

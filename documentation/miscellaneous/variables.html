@@ -58,13 +58,13 @@
                 <td class="col-md-4">
                     <ul class="index-list">
                         <li>
-                            <a href="#ConfigModuleOptions" title="src/app/app.module.ts"><b>ConfigModuleOptions</b>&nbsp;&nbsp;&nbsp;(src/.../app.module.ts)</a>
+                            <a href="#ConfigModuleOptions" title="src/app.module.ts"><b>ConfigModuleOptions</b>&nbsp;&nbsp;&nbsp;(src/.../app.module.ts)</a>
                         </li>
                         <li>
-                            <a href="#LoggerModuleOptions" title="src/app/app.module.ts"><b>LoggerModuleOptions</b>&nbsp;&nbsp;&nbsp;(src/.../app.module.ts)</a>
+                            <a href="#LoggerModuleOptions" title="src/app.module.ts"><b>LoggerModuleOptions</b>&nbsp;&nbsp;&nbsp;(src/.../app.module.ts)</a>
                         </li>
                         <li>
-                            <a href="#TypeOrmModuleOptions" title="src/app/app.module.ts"><b>TypeOrmModuleOptions</b>&nbsp;&nbsp;&nbsp;(src/.../app.module.ts)</a>
+                            <a href="#TypeOrmModuleOptions" title="src/app.module.ts"><b>TypeOrmModuleOptions</b>&nbsp;&nbsp;&nbsp;(src/.../app.module.ts)</a>
                         </li>
                     </ul>
                 </td>
@@ -73,7 +73,7 @@
     </table>
 </section>
 
-    <h3>src/app/app.module.ts</h3>
+    <h3>src/app.module.ts</h3>
     <section>
     <h3></h3>        <table class="table table-sm table-bordered">
             <tbody>
@@ -104,6 +104,7 @@
     validationSchema: Joi.object({
         PORT: Joi.number().default(3000),
         NODE_ENV: Joi.string()
+            .required()
             .valid(&#x27;development&#x27;, &#x27;production&#x27;, &#x27;test&#x27;, &#x27;provision&#x27;)
             .default(&#x27;development&#x27;),
     }),
@@ -173,7 +174,7 @@
                     <tr>
                         <td class="col-md-4">
                             <i>Default value : </i><code>{
-    entities: [&#x60;${__dirname}/../**/*.entity.{ts,js}&#x60;],
+    entities: [&#x60;${__dirname}/**/*.entity.{ts,js}&#x60;],
     type: &#x27;sqlite&#x27; as const,
     database: &#x27;database.sqlite&#x27;,
     synchronize: true,

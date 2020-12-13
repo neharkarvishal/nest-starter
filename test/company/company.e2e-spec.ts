@@ -4,31 +4,31 @@ import { Test } from '@nestjs/testing'
 
 import * as request from 'supertest'
 
-import { CatsModule } from '../../src/modules/cats/cats.module'
-import { CatsService } from '../../src/modules/cats/cats.service'
+import { CompanyModule } from '../../src/modules/company/company.module'
+import { CompanyService } from '../../src/modules/company/company.service'
 
 describe('cats', () => {
-    const catsService = { findAll: () => ['test'] }
+    const companyService = { findAll: () => ['test'] }
 
     let app: INestApplication
 
     beforeAll(async () => {
         const moduleRef = await Test.createTestingModule({
-            imports: [CatsModule],
+            imports: [CompanyModule],
         })
-            .overrideProvider(CatsService)
-            .useValue(catsService)
+            .overrideProvider(CompanyService)
+            .useValue(companyService)
             .compile()
 
         app = moduleRef.createNestApplication()
         await app.init()
     })
 
-    it(`/GET cats`, () => {
+    it(`/GET company`, () => {
         return request(app.getHttpServer())
-            .get('/cats')
+            .get('/company')
             .expect(200)
-            .expect(catsService.findAll())
+            .expect(companyService.findAll())
     })
 
     afterAll(async () => {

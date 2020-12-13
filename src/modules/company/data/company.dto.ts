@@ -1,3 +1,5 @@
+/* eslint-disable max-classes-per-file */
+import { PartialType } from '@nestjs/mapped-types'
 import { ApiProperty } from '@nestjs/swagger'
 
 import {
@@ -16,3 +18,5 @@ export class CreateCompanyDto {
     @MinLength(2)
     readonly name: string
 }
+
+export class UpdateCompanyDto extends PartialType(CreateCompanyDto) {}
