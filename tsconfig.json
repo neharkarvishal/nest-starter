@@ -10,7 +10,7 @@
         "sourceMap": true,
         "outDir": "./dist",
         "baseUrl": "./",
-        "incremental": true,
-        "include": ["src/**/*", "./test", ".eslintrc.js", "global.d.ts"]
-    }
+        "incremental": true
+    },
+    "include": ["src/**/*", "./test", ".eslintrc.js", "**/*global.d.ts"]
 }
