@@ -1,5 +1,11 @@
+.env
+
 # compiled output
 /dist
+/tmp
+/out-tsc
+
+# dependencies
 /node_modules
 
 # Logs
@@ -10,8 +16,11 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
-# OS
-.DS_Store
+# Misc
+/.sass-cache
+/connect.lock
+/libpeerconnection.log
+testem.log
 
 # Tests
 /coverage
@@ -32,3 +41,8 @@ lerna-debug.log*
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+
+# System Files
+.DS_Store
+Thumbs.db

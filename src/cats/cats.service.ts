@@ -4,23 +4,23 @@ import { UpdateCatDto } from './dto/update-cat.dto';
 
 @Injectable()
 export class CatsService {
-  create(createCatDto: CreateCatDto) {
-    return 'This action adds a new cat';
-  }
+    create(createCatDto: CreateCatDto) {
+        return 'This action adds a new cat';
+    }
 
-  findAll() {
-    return `This action returns all cats`;
-  }
+    findAll() {
+        return `This action returns all cats`;
+    }
 
-  findOne(id: number) {
-    return `This action returns a #${id} cat`;
-  }
+    findOne(id: number) {
+        return `This action returns a #${id} cat`;
+    }
 
-  update(id: number, updateCatDto: UpdateCatDto) {
-    return `This action updates a #${id} cat`;
-  }
+    update(id: number, updateCatDto: UpdateCatDto) {
+        return `This action updates a #${id} cat`;
+    }
 
-  remove(id: number) {
-    return `This action removes a #${id} cat`;
-  }
+    remove(id: number) {
+        return `This action removes a #${id} cat`;
+    }
 }
