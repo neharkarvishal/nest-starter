@@ -1,9 +1,14 @@
+/* eslint-disable no-use-before-define */
 import { Controller, Get } from '@nestjs/common'
+import { ApiTags } from '@nestjs/swagger'
 
 import { AppService } from './app.service'
 
-@Controller()
+@Controller(AppController.path)
+@ApiTags(AppController.name)
 export class AppController {
+    static path = '/'
+
     constructor(private readonly appService: AppService) {}
 
     @Get()

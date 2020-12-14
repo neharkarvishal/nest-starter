@@ -1,11 +1,16 @@
+/* eslint-disable no-use-before-define */
 import { Controller, Get, Post, Body, Put, Param, Delete } from '@nestjs/common'
+import { ApiTags } from '@nestjs/swagger'
 
 import { CatsService } from './cats.service'
 import { CreateCatDto } from './datum/create-cat.dto'
 import { UpdateCatDto } from './datum/update-cat.dto'
 
-@Controller('cats')
+@Controller(CatsController.path)
+@ApiTags(CatsController.name)
 export class CatsController {
+    static path = 'cats'
+
     constructor(private readonly catsService: CatsService) {}
 
     @Post()
