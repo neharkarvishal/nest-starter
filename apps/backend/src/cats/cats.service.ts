@@ -8,7 +8,7 @@ import { CrudService } from 'libs/core/src'
 
 import { getManager, Repository } from 'typeorm'
 
-import { Cat } from './entities/cat.entity'
+import { Cat } from 'apps/backend/src/cats/entities/cat.entity'
 
 @Injectable()
 export class CatsService extends CrudService<Cat> {
