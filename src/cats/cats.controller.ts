@@ -4,7 +4,7 @@ import { ApiOperation, ApiTags } from '@nestjs/swagger'
 import { Crud, CrudController } from '@nestjsx/crud'
 
 import { CatsService } from './cats.service'
-import { CreateCatDto, UpdateCatDto } from './datum/cat.dto'
+import { CreateCatDto, UpdateCatDto, GetCatResponseDto } from './datum/cat.dto'
 import { Cat } from './datum/cat.entity'
 
 @Controller(CatsController.path)
@@ -16,6 +16,12 @@ import { Cat } from './datum/cat.entity'
     dto: {
         create: CreateCatDto,
         update: UpdateCatDto,
+    },
+    serialize: {
+        get: GetCatResponseDto,
+    },
+    query: {
+        alwaysPaginate: true,
     },
 })
 export class CatsController implements CrudController<Cat> {

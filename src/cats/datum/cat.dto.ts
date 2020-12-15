@@ -1,5 +1,7 @@
+/* eslint-disable max-classes-per-file */
 import { ApiProperty } from '@nestjs/swagger'
 
+import { Exclude } from 'class-transformer'
 import {
     IsInt,
     IsString,
@@ -54,4 +56,27 @@ export class UpdateCatDto implements Partial<ICat> {
     @IsNotEmpty()
     @IsOptional()
     readonly breed?: string
+}
+
+export class GetCatResponseDto {
+    @ApiProperty({ type: 'number' })
+    id: string
+
+    @ApiProperty({ description: 'The name of the Cat', example: 'Kitty' })
+    name: string
+
+    @ApiProperty({ description: 'The age of the Cat', example: 1 })
+    age: number
+
+    @ApiProperty({ description: 'The breed of the Cat', example: 'Maine Coon' })
+    breed: string
+
+    @Exclude()
+    readonly createdAt: any
+
+    @Exclude()
+    readonly updatedAt: any
+
+    @Exclude()
+    readonly deletedAt: any
 }

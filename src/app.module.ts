@@ -31,7 +31,10 @@ const ConfigModuleOptions = {
 }
 
 const TypeOrmModuleOptions = {
-    entities: [Cat, `${__dirname}/**/*.entity.{ts,js}`],
+    entities: [
+        Cat,
+        // `${__dirname}/**/*.entity.{ts,js}`,
+    ],
     type: 'sqlite' as const,
     database: 'database.sqlite',
     synchronize: true,

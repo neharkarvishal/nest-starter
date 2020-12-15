@@ -9,7 +9,7 @@ import { CatRepository } from './datum/cat.repository'
 
 @Injectable()
 export class CatsService extends TypeOrmCrudService<Cat> {
-    constructor(@InjectRepository(Cat) public repo: CatRepository) {
+    constructor(@InjectRepository(CatRepository) public repo: CatRepository) {
         super(repo)
     }
 

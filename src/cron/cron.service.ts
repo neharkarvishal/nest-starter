@@ -3,11 +3,16 @@ import { Cron, Interval, Timeout } from '@nestjs/schedule'
 
 @Injectable()
 export class CronService {
+    public static count = 0
+
     private readonly logger = new Logger(CronService.name)
 
     @Cron('60 * * * * *')
     handleCron() {
-        this.logger.debug('Called when the second is 60')
+        CronService.count += 1
+        this.logger.debug(
+            `Called when the second is 60, current count is ${CronService.count}`,
+        )
     }
 
     @Interval(100000)
