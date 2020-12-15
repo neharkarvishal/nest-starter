@@ -52,11 +52,11 @@ async function setupApp(app: INestApplication, API_DEFAULT_PORT: number) {
      */
     app.useGlobalPipes(
         new ValidationPipe({
-            // disableErrorMessages: false,
-            // transform: true,
-            // whitelist: true, // i suppose this creates a white list with properties
-            // forbidUnknownValues: true, // i dont know why exists
-            // forbidNonWhitelisted: true, // i suppose this restrict by white list criteria
+            disableErrorMessages: false,
+            transform: true,
+            whitelist: true, // i suppose this creates a white list with properties
+            forbidUnknownValues: true, // i dont know why exists
+            forbidNonWhitelisted: true, // i suppose this restrict by white list criteria
         }),
     )
     app.enableShutdownHooks()

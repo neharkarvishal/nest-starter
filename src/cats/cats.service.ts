@@ -1,27 +1,22 @@
 import { Injectable } from '@nestjs/common'
+import { InjectRepository } from '@nestjs/typeorm'
+import { TypeOrmCrudService } from '@nestjsx/crud-typeorm'
 
-import { CreateCatDto } from './datum/create-cat.dto'
-import { UpdateCatDto } from './datum/update-cat.dto'
+import { getManager } from 'typeorm'
+
+import { Cat } from './datum/cat.entity'
+import { CatRepository } from './datum/cat.repository'
 
 @Injectable()
-export class CatsService {
-    create(createCatDto: CreateCatDto) {
-        return 'This action adds a new cat'
+export class CatsService extends TypeOrmCrudService<Cat> {
+    constructor(@InjectRepository(Cat) public repo: CatRepository) {
+        super(repo)
     }
 
-    findAll() {
-        return `This action returns all cats`
-    }
-
-    findOne(id: number) {
-        return `This action returns a #${id} cat`
-    }
-
-    update(id: number, updateCatDto: UpdateCatDto) {
-        return `This action updates a #${id} cat`
-    }
-
-    remove(id: number) {
-        return `This action removes a #${id} cat`
+    /**
+     * Deletes all of the Cat records form database
+     */
+    async clear() {
+        return this.repo.clearAll()
     }
 }

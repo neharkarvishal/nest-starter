@@ -13,6 +13,7 @@ import * as Joi from '@hapi/joi'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
 import { CatsModule } from './cats/cats.module'
+import { Cat } from './cats/datum/cat.entity'
 
 const ConfigModuleOptions = {
     isGlobal: true,
@@ -30,7 +31,7 @@ const ConfigModuleOptions = {
 }
 
 const TypeOrmModuleOptions = {
-    entities: [`${__dirname}/**/*.entity.{ts,js}`],
+    entities: [Cat, `${__dirname}/**/*.entity.{ts,js}`],
     type: 'sqlite' as const,
     database: 'database.sqlite',
     synchronize: true,
