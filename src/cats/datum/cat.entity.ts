@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger'
 
+import { Type } from 'class-transformer'
 import {
     Column,
     CreateDateColumn,
@@ -7,11 +8,16 @@ import {
     PrimaryGeneratedColumn,
     UpdateDateColumn,
     DeleteDateColumn,
+    ManyToOne,
 } from 'typeorm'
+
+import { User } from '../../users/datum/user.entity' // eslint-disable-line import/no-cycle
 
 @Entity({ name: 'cats' })
 export class Cat {
     public static readonly NAME_LENGTH = 36
+
+    public static exclude = ['createdAt', 'updatedAt', 'deletedAt']
 
     @ApiProperty({ description: 'Cat unique ID', example: '36635263' })
     @PrimaryGeneratedColumn()
@@ -37,4 +43,12 @@ export class Cat {
 
     @DeleteDateColumn()
     deletedAt: any
+
+    /**
+     * Relations
+     */
+
+    @ManyToOne((type) => User, (u) => u.cats)
+    @Type((t) => User)
+    user: User
 }

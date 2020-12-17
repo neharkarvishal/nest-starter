@@ -36,7 +36,7 @@
 
 <ol class="breadcrumb">
   <li>Controllers</li>
-  <li>CatsController</li>
+  <li>UsersController</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -54,7 +54,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/cats/cats.controller.ts</code>
+            <code>src/users/users.controller.ts</code>
         </p>
 
 
@@ -62,89 +62,8 @@
 
 
 
-            <section>
-    <h3 id="index">Index</h3>
-    <table class="table table-sm table-bordered index-table">
-        <tbody>
 
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Methods</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#clear">clear</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
-
-
-
-
-
-        </tbody>
-    </table>
-</section>
-
-            <section>
-    
-    <h3 id="methods">
-        Methods
-    </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="clear"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Async</span>
-                            clear
-                        </b>
-                        <a href="#clear"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>clear()</code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@ApiOperation({summary: &#x27;Delete all Cats&#x27;})<br />@Post(&#x27;/clear&#x27;)<br /></code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="38"
-                            class="link-to-prism">src/cats/cats.controller.ts:38</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</section>    </div>
+    </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
@@ -153,41 +72,40 @@ import { Controller, Get, Post, Body, Put, Param, Delete } from &#x27;@nestjs/co
 import { ApiOperation, ApiTags } from &#x27;@nestjs/swagger&#x27;
 import { Crud, CrudController } from &#x27;@nestjsx/crud&#x27;
 
-import { CatsService } from &#x27;./cats.service&#x27;
-import { CreateCatDto, UpdateCatDto, GetCatResponseDto } from &#x27;./datum/cat.dto&#x27;
-import { Cat } from &#x27;./datum/cat.entity&#x27;
+import { CreateUserDto, GetUserResponseDto, UpdateUserDto } from &#x27;./datum/user.dto&#x27;
+import { User } from &#x27;./datum/user.entity&#x27;
+import { UsersService } from &#x27;./users.service&#x27;
 
-@Controller(CatsController.path)
-@ApiTags(CatsController.name)
+@Controller(UsersController.path)
+@ApiTags(UsersController.name)
 @Crud({
     model: {
-        type: Cat,
+        type: User,
     },
     dto: {
-        create: CreateCatDto,
-        replace: CreateCatDto,
-        update: UpdateCatDto,
+        create: CreateUserDto,
+        replace: CreateUserDto,
+        update: UpdateUserDto,
     },
     serialize: {
-        create: GetCatResponseDto,
-        delete: GetCatResponseDto,
-        get: GetCatResponseDto,
-        update: GetCatResponseDto,
+        create: GetUserResponseDto,
+        delete: GetUserResponseDto,
+        get: GetUserResponseDto,
+        update: GetUserResponseDto,
     },
     query: {
         alwaysPaginate: true,
+        join: {
+            cats: {
+                eager: true,
+            },
+        },
     },
 })
-export class CatsController implements CrudController&lt;Cat&gt; {
-    static path &#x3D; &#x27;cats&#x27;
+export class UsersController implements CrudController&lt;User&gt; {
+    static path &#x3D; &#x27;users&#x27;
 
-    constructor(public service: CatsService) {}
-
-    @ApiOperation({ summary: &#x27;Delete all Cats&#x27; })
-    @Post(&#x27;/clear&#x27;)
-    async clear() {
-        return this.service.clear()
-    }
+    constructor(public service: UsersService) {}
 }
 </code></pre>
     </div>
@@ -223,7 +141,7 @@ export class CatsController implements CrudController&lt;Cat&gt; {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'controller';
-            var COMPODOC_CURRENT_PAGE_URL = 'CatsController.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'UsersController.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

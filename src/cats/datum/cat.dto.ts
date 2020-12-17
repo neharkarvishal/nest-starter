@@ -1,5 +1,5 @@
 /* eslint-disable max-classes-per-file */
-import { ApiProperty } from '@nestjs/swagger'
+import { ApiHideProperty, ApiProperty } from '@nestjs/swagger'
 
 import { Exclude } from 'class-transformer'
 import {
@@ -11,13 +11,7 @@ import {
     IsOptional,
 } from 'class-validator'
 
-export interface ICat {
-    readonly name: string
-    readonly age: number
-    readonly breed: string
-}
-
-export class CreateCatDto implements ICat {
+export class CreateCatDto {
     @ApiProperty({ description: 'The name of the Cat', example: 'Kitty' })
     @IsString()
     @IsNotEmpty()
@@ -36,7 +30,7 @@ export class CreateCatDto implements ICat {
     readonly breed: string
 }
 
-export class UpdateCatDto implements Partial<ICat> {
+export class UpdateCatDto {
     @ApiProperty({ description: 'The name of the Cat', example: 'Kitty' })
     @IsString()
     @IsNotEmpty()
@@ -71,12 +65,15 @@ export class GetCatResponseDto {
     @ApiProperty({ description: 'The breed of the Cat', example: 'Maine Coon' })
     breed: string
 
+    @ApiHideProperty()
     @Exclude()
-    readonly createdAt: any
+    createdAt: any
 
+    @ApiHideProperty()
     @Exclude()
-    readonly updatedAt: any
+    updatedAt: any
 
+    @ApiHideProperty()
     @Exclude()
-    readonly deletedAt: any
+    deletedAt: any
 }
