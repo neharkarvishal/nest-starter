@@ -183,13 +183,12 @@ import { User } from &#x27;../users/datum/user.entity&#x27;
 import { UserRepository } from &#x27;../users/datum/user.repository&#x27;
 import { CatsController } from &#x27;./cats.controller&#x27;
 import { CatsService } from &#x27;./cats.service&#x27;
-import { Cat } from &#x27;./datum/cat.entity&#x27;
 import { CatRepository } from &#x27;./datum/cat.repository&#x27;
 
 @Module({
     controllers: [CatsController],
     exports: [CatsService],
-    imports: [TypeOrmModule.forFeature([CatRepository, UserRepository, User])],
+    imports: [TypeOrmModule.forFeature([CatRepository])],
     providers: [CatsService],
 })
 export class CatsModule {}

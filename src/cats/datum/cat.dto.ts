@@ -18,6 +18,11 @@ export class CreateCatDto {
     @MinLength(2)
     readonly name: string
 
+    @ApiProperty({ description: 'ID of the Owner', example: 1 })
+    @IsInt()
+    @IsNotEmpty()
+    readonly userId: number
+
     @ApiProperty({ description: 'The age of the Cat', example: 1 })
     @IsInt()
     @IsPositive()
@@ -55,6 +60,9 @@ export class UpdateCatDto {
 export class GetCatResponseDto {
     @ApiProperty({ type: 'number' })
     id: string
+
+    @ApiProperty({ description: 'ID of the Owner', example: 1 })
+    userId: number
 
     @ApiProperty({ description: 'The name of the Cat', example: 'Kitty' })
     name: string

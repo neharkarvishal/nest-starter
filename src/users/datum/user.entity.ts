@@ -40,7 +40,10 @@ export class User {
      * Relations
      */
 
-    @OneToMany((type) => Cat, (c) => c.user)
+    @OneToMany((type) => Cat, (c) => c.user, {
+        lazy: false, // true sets relation to be lazy, lazy relations are promise of that entity
+        nullable: false, // if relation column value can be nullable or not, {LEFT JOIN <-> INNER JOIN}?}
+    })
     @Type((t) => Cat)
     cats: Cat[]
 }

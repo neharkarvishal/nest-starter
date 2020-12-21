@@ -88,6 +88,21 @@
                     </td>
                 </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#clear">clear</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
 
 
@@ -108,7 +123,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/users/users.service.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/users/users.service.ts:9</a></div>
                             </td>
                         </tr>
 
@@ -146,7 +161,55 @@
         </table>
 </section>
 
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="clear"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Async</span>
+                            clear
+                        </b>
+                        <a href="#clear"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>clear()</code>
+                </td>
+            </tr>
 
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="17"
+                            class="link-to-prism">src/users/users.service.ts:17</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Deletes all of the Cat records form database</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>{}</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
             <section>
     
         <h3 id="inputs">
@@ -182,7 +245,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/users/users.service.ts:11</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/users/users.service.ts:10</a></div>
                             </td>
                         </tr>
 
@@ -199,7 +262,6 @@
 import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;
 import { TypeOrmCrudService } from &#x27;@nestjsx/crud-typeorm&#x27;
 
-import { CreateUserDto, UpdateUserDto } from &#x27;./datum/user.dto&#x27;
 import { User } from &#x27;./datum/user.entity&#x27;
 import { UserRepository } from &#x27;./datum/user.repository&#x27;
 
@@ -207,6 +269,13 @@ import { UserRepository } from &#x27;./datum/user.repository&#x27;
 export class UsersService extends TypeOrmCrudService&lt;User&gt; {
     constructor(@InjectRepository(UserRepository) public repo: UserRepository) {
         super(repo)
+    }
+
+    /**
+     * Deletes all of the Cat records form database
+     */
+    async clear() {
+        return this.repo.clearAll()
     }
 }
 </code></pre>

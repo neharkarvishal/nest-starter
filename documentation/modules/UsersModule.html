@@ -188,7 +188,7 @@ import { UsersService } from &#x27;./users.service&#x27;
 @Module({
     controllers: [UsersController],
     exports: [UsersService],
-    imports: [TypeOrmModule.forFeature([UserRepository, CatRepository, Cat])],
+    imports: [TypeOrmModule.forFeature([UserRepository])],
     providers: [UsersService],
 })
 export class UsersModule {}

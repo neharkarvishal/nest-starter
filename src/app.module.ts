@@ -14,8 +14,8 @@ import { AppController } from './app.controller'
 import { AppService } from './app.service'
 import { CatsModule } from './cats/cats.module'
 import { Cat } from './cats/datum/cat.entity'
-import { UsersModule } from './users/users.module'
 import { User } from './users/datum/user.entity'
+import { UsersModule } from './users/users.module'
 
 const ConfigModuleOptions = {
     isGlobal: true,
@@ -42,6 +42,9 @@ const TypeOrmModuleOptions = {
     database: 'database.sqlite',
     synchronize: true,
     logging: true,
+    // migrations: [`${__dirname}/**/migrations/*{.ts,.js}`],
+    // migrationsTableName: 'migrations_typeorm',
+    // migrationsRun: true,
 }
 
 @Module({

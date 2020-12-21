@@ -9,6 +9,8 @@ import {
     UpdateDateColumn,
     DeleteDateColumn,
     ManyToOne,
+    PrimaryColumn,
+    Index,
 } from 'typeorm'
 
 import { User } from '../../users/datum/user.entity' // eslint-disable-line import/no-cycle
@@ -22,6 +24,11 @@ export class Cat {
     @ApiProperty({ description: 'Cat unique ID', example: '36635263' })
     @PrimaryGeneratedColumn()
     id: number
+
+    @ApiProperty({ description: 'ID of the Owner', example: 1 })
+    @Column()
+    @Index()
+    userId: number
 
     @ApiProperty({ description: 'The name of the Cat', example: 'Kitty' })
     @Column({ name: 'cat_name', length: Cat.NAME_LENGTH })
@@ -48,7 +55,10 @@ export class Cat {
      * Relations
      */
 
-    @ManyToOne((type) => User, (u) => u.cats)
+    @ManyToOne((type) => User, (u) => u.cats, {
+        lazy: false, // true sets relation to be lazy, lazy relations are promise of that entity
+        nullable: false, // if relation column value can be nullable or not, {LEFT JOIN <-> INNER JOIN}?
+    })
     @Type((t) => User)
     user: User
 }

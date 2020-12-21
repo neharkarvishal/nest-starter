@@ -29,7 +29,7 @@ import { User } from '../users/datum/user.entity'
         alwaysPaginate: true,
         join: {
             user: {
-                eager: false,
+                eager: true,
                 exclude: User.exclude,
             },
         },
