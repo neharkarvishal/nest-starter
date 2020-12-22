@@ -9,6 +9,7 @@ import {
     IsNotEmpty,
     IsPositive,
     IsOptional,
+    MaxLength,
 } from 'class-validator'
 
 export class CreateCatDto {
@@ -16,6 +17,7 @@ export class CreateCatDto {
     @IsString()
     @IsNotEmpty()
     @MinLength(2)
+    @MaxLength(36)
     readonly name: string
 
     @ApiProperty({ description: 'ID of the Owner', example: 1 })
@@ -32,6 +34,8 @@ export class CreateCatDto {
     @ApiProperty({ description: 'The breed of the Cat', example: 'Maine Coon' })
     @IsString()
     @IsNotEmpty()
+    @MinLength(2)
+    @MaxLength(36)
     readonly breed: string
 }
 
@@ -40,6 +44,7 @@ export class UpdateCatDto {
     @IsString()
     @IsNotEmpty()
     @MinLength(2)
+    @MaxLength(36)
     @IsOptional()
     readonly name?: string
 
@@ -53,6 +58,8 @@ export class UpdateCatDto {
     @ApiProperty({ description: 'The breed of the Cat', example: 'Maine Coon' })
     @IsString()
     @IsNotEmpty()
+    @MinLength(2)
+    @MaxLength(36)
     @IsOptional()
     readonly breed?: string
 }

@@ -7,6 +7,7 @@ import {
     MinLength,
     IsNotEmpty,
     IsOptional,
+    MaxLength,
 } from 'class-validator'
 
 export class CreateUserDto {
@@ -14,6 +15,7 @@ export class CreateUserDto {
     @IsString()
     @IsNotEmpty()
     @MinLength(2)
+    @MaxLength(36)
     readonly name: string
 }
 
@@ -22,6 +24,7 @@ export class UpdateUserDto {
     @IsString()
     @IsNotEmpty()
     @MinLength(2)
+    @MaxLength(36)
     @IsOptional()
     readonly name?: string
 }
