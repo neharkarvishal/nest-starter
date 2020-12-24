@@ -1,10 +1,15 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 import { ValidationPipe } from '@nestjs/common'
 import type { INestApplication } from '@nestjs/common'
-import { NestFactory } from '@nestjs/core'
+import { NestFactory, HttpAdapterHost } from '@nestjs/core'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 
 import { AppModule } from 'src/app.module'
+import { QueryFailedFilter } from 'src/infra/filters'
+import {
+    TimeoutInterceptor,
+    ExcludeNullUndefinedInterceptor,
+} from 'src/infra/interceptors'
 
 import * as rateLimit from 'express-rate-limit'
 import * as helmet from 'helmet'
@@ -28,8 +33,10 @@ function createSwagger(app: INestApplication) {
 }
 
 async function setupApp(app: INestApplication, API_DEFAULT_PORT: number) {
+    // swagger api docs autogen
     createSwagger(app)
 
+    // middlewares (express specific)
     app.use(helmet())
     app.enableCors()
     app.use(
@@ -46,9 +53,9 @@ async function setupApp(app: INestApplication, API_DEFAULT_PORT: number) {
     // @ts-ignore
     app.disable('X-Powered-By')
 
+    // pipes
     /**
-     * ValidationPipe at the application level, thus ensuring all endpoints are
-     * protected from receiving incorrect data
+     * ValidationPipe at the application level, thus ensuring all endpoints are protected from receiving incorrect data
      */
     app.useGlobalPipes(
         new ValidationPipe({
@@ -59,6 +66,15 @@ async function setupApp(app: INestApplication, API_DEFAULT_PORT: number) {
             forbidNonWhitelisted: true, // i suppose this restrict by white list criteria
         }),
     )
+
+    // interceptors
+    app.useGlobalInterceptors(new TimeoutInterceptor())
+    app.useGlobalInterceptors(new ExcludeNullUndefinedInterceptor())
+
+    // filters
+    // const { httpAdapter } = app.get(HttpAdapterHost)
+    app.useGlobalFilters(new QueryFailedFilter())
+
     app.enableShutdownHooks()
 
     await app.listen(API_DEFAULT_PORT)
