@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unused-vars */
 import { ValidationPipe } from '@nestjs/common'
 import type { INestApplication } from '@nestjs/common'
 import { NestFactory, HttpAdapterHost } from '@nestjs/core'
@@ -9,13 +9,14 @@ import { QueryFailedFilter } from 'src/infra/filters'
 import { RequestGuard, ResponseGuard } from 'src/infra/guards'
 import {
     TimeoutInterceptor,
+    TransformInterceptor,
     ExcludeNullUndefinedInterceptor,
 } from 'src/infra/interceptors'
 
 import * as rateLimit from 'express-rate-limit'
 import * as helmet from 'helmet'
 
-function createSwagger(app: INestApplication) {
+function setupSwaggerDocs(app: INestApplication) {
     const SWAGGER_TITLE = 'API'
     const SWAGGER_DESCRIPTION = 'API'
     const SWAGGER_PREFIX = '/docs'
@@ -33,27 +34,7 @@ function createSwagger(app: INestApplication) {
     SwaggerModule.setup(SWAGGER_PREFIX, app, document)
 }
 
-async function setupApp(app: INestApplication, API_DEFAULT_PORT: number) {
-    // swagger api docs autogen
-    createSwagger(app)
-
-    // middlewares (express specific)
-    app.use(helmet())
-    app.enableCors()
-    app.use(
-        rateLimit({
-            windowMs: 15 * 60 * 1000, // 15 minutes
-            max: 100, // limit each IP to 100 requests per windowMs
-            message: 'Too many requests from this IP, please try again later',
-        }),
-    )
-
-    // @ts-ignore
-    app.disable('ETag')
-
-    // @ts-ignore
-    app.disable('X-Powered-By')
-
+function setupInfra(app: INestApplication) {
     // pipes
     /**
      * ValidationPipe at the application level, thus ensuring all endpoints are protected from receiving incorrect data
@@ -69,6 +50,7 @@ async function setupApp(app: INestApplication, API_DEFAULT_PORT: number) {
     )
 
     // interceptors
+    // app.useGlobalInterceptors(new TransformInterceptor())
     app.useGlobalInterceptors(new TimeoutInterceptor())
     app.useGlobalInterceptors(new ExcludeNullUndefinedInterceptor())
 
@@ -79,16 +61,38 @@ async function setupApp(app: INestApplication, API_DEFAULT_PORT: number) {
     // guards (express specific)
     // app.useGlobalGuards(new ResponseGuard())
     app.useGlobalGuards(new RequestGuard())
+}
+
+function setupMiddlewares(app: INestApplication) {
+    // middlewares (express specific)
+    app.use(helmet())
+    app.enableCors()
+    app.use(
+        rateLimit({
+            windowMs: 15 * 60 * 1000, // 15 minutes
+            max: 100, // limit each IP to 100 requests per windowMs
+            message: 'Too many requests from this IP, please try again later',
+        }),
+    )
+
+    // @ts-ignore
+    app.disable('ETag')
+    // @ts-ignore
+    app.disable('X-Powered-By')
 
     app.enableShutdownHooks()
-
-    await app.listen(API_DEFAULT_PORT)
 }
 
 async function bootstrap() {
     const API_DEFAULT_PORT = 3000
     const app = await NestFactory.create(AppModule, { cors: true })
-    await setupApp(app, +process.env.PORT || API_DEFAULT_PORT)
+
+    setupSwaggerDocs(app)
+    setupInfra(app)
+    setupMiddlewares(app)
+
+    await app.listen(API_DEFAULT_PORT)
+
     return app
 }
 
