@@ -5,15 +5,14 @@ import { ScheduleModule } from '@nestjs/schedule'
 import { TerminusModule } from '@nestjs/terminus'
 import { TypeOrmModule } from '@nestjs/typeorm'
 
-import { CronModule } from 'src/cron/cron.module'
-import { HealthController } from 'src/health/health.controller'
-
 import * as Joi from '@hapi/joi'
 
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
 import { CatsModule } from './cats/cats.module'
 import { Cat } from './cats/datum/cat.entity'
+import { CronModule } from './cron/cron.module'
+import { HealthController } from './health/health.controller'
 import { User } from './users/datum/user.entity'
 import { UsersModule } from './users/users.module'
 
@@ -32,7 +31,7 @@ const ConfigModuleOptions = {
     }),
 }
 
-const TypeOrmModuleOptions = {
+export const TypeOrmModuleOptions = {
     entities: [
         Cat,
         User,

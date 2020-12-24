@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 import {
     Controller,
     Get,
@@ -12,10 +13,11 @@ import {
     HealthCheckService,
 } from '@nestjs/terminus'
 
-// eslint-disable-next-line no-use-before-define
 @ApiTags(HealthController.name)
-@Controller('health')
+@Controller(HealthController.path)
 export class HealthController implements OnModuleInit, OnApplicationShutdown {
+    static path = 'health'
+
     constructor(
         private health: HealthCheckService,
         private dns: DNSHealthIndicator,

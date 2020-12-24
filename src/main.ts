@@ -4,17 +4,16 @@ import type { INestApplication } from '@nestjs/common'
 import { NestFactory, HttpAdapterHost } from '@nestjs/core'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 
-import { AppModule } from 'src/app.module'
-import { QueryFailedFilter } from 'src/infra/filters'
-import { RequestGuard, ResponseGuard } from 'src/infra/guards'
-import {
-    TimeoutInterceptor,
-    TransformInterceptor,
-    ExcludeNullUndefinedInterceptor,
-} from 'src/infra/interceptors'
-
 import * as rateLimit from 'express-rate-limit'
 import * as helmet from 'helmet'
+
+import { AppModule } from './app.module'
+import { QueryFailedFilter } from './infra/filters/query-failed.filter'
+import { RequestGuard } from './infra/guards/req'
+import { ResponseGuard } from './infra/guards/res'
+import { ExcludeNullUndefinedInterceptor } from './infra/interceptors/null-undefined-override'
+import { TimeoutInterceptor } from './infra/interceptors/timeout'
+import { TransformInterceptor } from './infra/interceptors/transform'
 
 function setupSwaggerDocs(app: INestApplication) {
     const SWAGGER_TITLE = 'API'
