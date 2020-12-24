@@ -6,6 +6,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 
 import { AppModule } from 'src/app.module'
 import { QueryFailedFilter } from 'src/infra/filters'
+import { RequestGuard, ResponseGuard } from 'src/infra/guards'
 import {
     TimeoutInterceptor,
     ExcludeNullUndefinedInterceptor,
@@ -74,6 +75,10 @@ async function setupApp(app: INestApplication, API_DEFAULT_PORT: number) {
     // filters
     // const { httpAdapter } = app.get(HttpAdapterHost)
     app.useGlobalFilters(new QueryFailedFilter())
+
+    // guards (express specific)
+    // app.useGlobalGuards(new ResponseGuard())
+    app.useGlobalGuards(new RequestGuard())
 
     app.enableShutdownHooks()
 
