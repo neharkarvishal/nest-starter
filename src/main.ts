@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unused-vars */
+import 'source-map-support/register'
+
 import { ValidationPipe } from '@nestjs/common'
 import type { INestApplication } from '@nestjs/common'
 import { NestFactory, HttpAdapterHost } from '@nestjs/core'

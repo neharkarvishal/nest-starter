@@ -142,7 +142,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/users/datum/user.dto.ts:38</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/users/datum/user.dto.ts:41</a></div>
                             </td>
                         </tr>
 
@@ -178,7 +178,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/users/datum/user.dto.ts:46</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/users/datum/user.dto.ts:49</a></div>
                             </td>
                         </tr>
 
@@ -214,7 +214,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/users/datum/user.dto.ts:31</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/users/datum/user.dto.ts:34</a></div>
                             </td>
                         </tr>
 
@@ -250,7 +250,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/users/datum/user.dto.ts:34</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/users/datum/user.dto.ts:37</a></div>
                             </td>
                         </tr>
 
@@ -286,7 +286,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/users/datum/user.dto.ts:42</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/users/datum/user.dto.ts:45</a></div>
                             </td>
                         </tr>
 
@@ -313,6 +313,7 @@ import {
     MinLength,
     IsNotEmpty,
     IsOptional,
+    MaxLength,
 } from &#x27;class-validator&#x27;
 
 export class CreateUserDto {
@@ -320,6 +321,7 @@ export class CreateUserDto {
     @IsString()
     @IsNotEmpty()
     @MinLength(2)
+    @MaxLength(36)
     readonly name: string
 }
 
@@ -328,6 +330,7 @@ export class UpdateUserDto {
     @IsString()
     @IsNotEmpty()
     @MinLength(2)
+    @MaxLength(36)
     @IsOptional()
     readonly name?: string
 }

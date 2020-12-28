@@ -144,7 +144,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/cats/datum/cat.dto.ts:51</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/cats/datum/cat.dto.ts:56</a></div>
                             </td>
                         </tr>
 
@@ -176,13 +176,13 @@
                             <b>Decorators : </b>
                             <br />
                             <code>
-                                @ApiProperty({description: &#x27;The breed of the Cat&#x27;, example: &#x27;Maine Coon&#x27;})<br />@IsString()<br />@IsNotEmpty()<br />@IsOptional()<br />
+                                @ApiProperty({description: &#x27;The breed of the Cat&#x27;, example: &#x27;Maine Coon&#x27;})<br />@IsString()<br />@IsNotEmpty()<br />@MinLength(2)<br />@MaxLength(36)<br />@IsOptional()<br />
                             </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/cats/datum/cat.dto.ts:57</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/cats/datum/cat.dto.ts:64</a></div>
                             </td>
                         </tr>
 
@@ -214,13 +214,13 @@
                             <b>Decorators : </b>
                             <br />
                             <code>
-                                @ApiProperty({description: &#x27;The name of the Cat&#x27;, example: &#x27;Kitty&#x27;})<br />@IsString()<br />@IsNotEmpty()<br />@MinLength(2)<br />@IsOptional()<br />
+                                @ApiProperty({description: &#x27;The name of the Cat&#x27;, example: &#x27;Kitty&#x27;})<br />@IsString()<br />@IsNotEmpty()<br />@MinLength(2)<br />@MaxLength(36)<br />@IsOptional()<br />
                             </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/cats/datum/cat.dto.ts:44</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/cats/datum/cat.dto.ts:49</a></div>
                             </td>
                         </tr>
 
@@ -249,6 +249,7 @@ import {
     IsNotEmpty,
     IsPositive,
     IsOptional,
+    MaxLength,
 } from &#x27;class-validator&#x27;
 
 export class CreateCatDto {
@@ -256,6 +257,7 @@ export class CreateCatDto {
     @IsString()
     @IsNotEmpty()
     @MinLength(2)
+    @MaxLength(36)
     readonly name: string
 
     @ApiProperty({ description: &#x27;ID of the Owner&#x27;, example: 1 })
@@ -272,6 +274,8 @@ export class CreateCatDto {
     @ApiProperty({ description: &#x27;The breed of the Cat&#x27;, example: &#x27;Maine Coon&#x27; })
     @IsString()
     @IsNotEmpty()
+    @MinLength(2)
+    @MaxLength(36)
     readonly breed: string
 }
 
@@ -280,6 +284,7 @@ export class UpdateCatDto {
     @IsString()
     @IsNotEmpty()
     @MinLength(2)
+    @MaxLength(36)
     @IsOptional()
     readonly name?: string
 
@@ -293,6 +298,8 @@ export class UpdateCatDto {
     @ApiProperty({ description: &#x27;The breed of the Cat&#x27;, example: &#x27;Maine Coon&#x27; })
     @IsString()
     @IsNotEmpty()
+    @MinLength(2)
+    @MaxLength(36)
     @IsOptional()
     readonly breed?: string
 }

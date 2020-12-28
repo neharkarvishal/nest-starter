@@ -151,7 +151,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/cats/datum/cat.dto.ts:71</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/cats/datum/cat.dto.ts:78</a></div>
                             </td>
                         </tr>
 
@@ -187,7 +187,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/cats/datum/cat.dto.ts:74</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/cats/datum/cat.dto.ts:81</a></div>
                             </td>
                         </tr>
 
@@ -223,7 +223,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/cats/datum/cat.dto.ts:78</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/cats/datum/cat.dto.ts:85</a></div>
                             </td>
                         </tr>
 
@@ -259,7 +259,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/cats/datum/cat.dto.ts:86</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/cats/datum/cat.dto.ts:93</a></div>
                             </td>
                         </tr>
 
@@ -295,7 +295,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/cats/datum/cat.dto.ts:62</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/cats/datum/cat.dto.ts:69</a></div>
                             </td>
                         </tr>
 
@@ -331,7 +331,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/cats/datum/cat.dto.ts:68</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/cats/datum/cat.dto.ts:75</a></div>
                             </td>
                         </tr>
 
@@ -367,7 +367,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/cats/datum/cat.dto.ts:82</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/cats/datum/cat.dto.ts:89</a></div>
                             </td>
                         </tr>
 
@@ -403,7 +403,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/cats/datum/cat.dto.ts:65</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/cats/datum/cat.dto.ts:72</a></div>
                             </td>
                         </tr>
 
@@ -432,6 +432,7 @@ import {
     IsNotEmpty,
     IsPositive,
     IsOptional,
+    MaxLength,
 } from &#x27;class-validator&#x27;
 
 export class CreateCatDto {
@@ -439,6 +440,7 @@ export class CreateCatDto {
     @IsString()
     @IsNotEmpty()
     @MinLength(2)
+    @MaxLength(36)
     readonly name: string
 
     @ApiProperty({ description: &#x27;ID of the Owner&#x27;, example: 1 })
@@ -455,6 +457,8 @@ export class CreateCatDto {
     @ApiProperty({ description: &#x27;The breed of the Cat&#x27;, example: &#x27;Maine Coon&#x27; })
     @IsString()
     @IsNotEmpty()
+    @MinLength(2)
+    @MaxLength(36)
     readonly breed: string
 }
 
@@ -463,6 +467,7 @@ export class UpdateCatDto {
     @IsString()
     @IsNotEmpty()
     @MinLength(2)
+    @MaxLength(36)
     @IsOptional()
     readonly name?: string
 
@@ -476,6 +481,8 @@ export class UpdateCatDto {
     @ApiProperty({ description: &#x27;The breed of the Cat&#x27;, example: &#x27;Maine Coon&#x27; })
     @IsString()
     @IsNotEmpty()
+    @MinLength(2)
+    @MaxLength(36)
     @IsOptional()
     readonly breed?: string
 }

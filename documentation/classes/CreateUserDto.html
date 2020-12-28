@@ -126,13 +126,13 @@
                             <b>Decorators : </b>
                             <br />
                             <code>
-                                @ApiProperty({description: &#x27;The name of the User&#x27;, example: &#x27;Name&#x27;})<br />@IsString()<br />@IsNotEmpty()<br />@MinLength(2)<br />
+                                @ApiProperty({description: &#x27;The name of the User&#x27;, example: &#x27;Name&#x27;})<br />@IsString()<br />@IsNotEmpty()<br />@MinLength(2)<br />@MaxLength(36)<br />
                             </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/users/datum/user.dto.ts:17</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/users/datum/user.dto.ts:19</a></div>
                             </td>
                         </tr>
 
@@ -159,6 +159,7 @@ import {
     MinLength,
     IsNotEmpty,
     IsOptional,
+    MaxLength,
 } from &#x27;class-validator&#x27;
 
 export class CreateUserDto {
@@ -166,6 +167,7 @@ export class CreateUserDto {
     @IsString()
     @IsNotEmpty()
     @MinLength(2)
+    @MaxLength(36)
     readonly name: string
 }
 
@@ -174,6 +176,7 @@ export class UpdateUserDto {
     @IsString()
     @IsNotEmpty()
     @MinLength(2)
+    @MaxLength(36)
     @IsOptional()
     readonly name?: string
 }

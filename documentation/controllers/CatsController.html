@@ -79,6 +79,34 @@
                                     <span class="modifier">Async</span>
                                 <a href="#clear">clear</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#createMany">createMany</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#createOne">createOne</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#deleteOne">deleteOne</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getMany">getMany</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getOne">getOne</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#replaceOne">replaceOne</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#updateOne">updateOne</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -127,8 +155,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="45"
-                            class="link-to-prism">src/cats/cats.controller.ts:45</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="107"
+                            class="link-to-prism">src/cats/cats.controller.ts:107</a></div>
                 </td>
             </tr>
 
@@ -144,6 +172,607 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createMany"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Async</span>
+                            createMany
+                        </b>
+                        <a href="#createMany"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createMany(r: CrudRequest, cats: <a href="../classes/Cat.html">CreateManyDto<Cat></a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Override()<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="77"
+                            class="link-to-prism">src/cats/cats.controller.ts:77</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>r</td>
+                                    <td>
+                                            <code>CrudRequest</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>cats</td>
+                                    <td>
+                                                <code><a href="../classes/Cat.html" target="_self" >CreateManyDto&lt;Cat&gt;</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>{}</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createOne"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Async</span>
+                            createOne
+                        </b>
+                        <a href="#createOne"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createOne(r: CrudRequest, cat: <a href="../classes/CreateCatDto.html">CreateCatDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Override()<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="69"
+                            class="link-to-prism">src/cats/cats.controller.ts:69</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>r</td>
+                                    <td>
+                                            <code>CrudRequest</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>cat</td>
+                                    <td>
+                                                <code><a href="../classes/CreateCatDto.html" target="_self" >CreateCatDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>{}</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteOne"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Async</span>
+                            deleteOne
+                        </b>
+                        <a href="#deleteOne"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>deleteOne(r: CrudRequest)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Override()<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="101"
+                            class="link-to-prism">src/cats/cats.controller.ts:101</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>r</td>
+                                    <td>
+                                            <code>CrudRequest</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>{}</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getMany"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Async</span>
+                            getMany
+                        </b>
+                        <a href="#getMany"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getMany(r: CrudRequest)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Override()<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="64"
+                            class="link-to-prism">src/cats/cats.controller.ts:64</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>r</td>
+                                    <td>
+                                            <code>CrudRequest</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>{}</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getOne"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Async</span>
+                            getOne
+                        </b>
+                        <a href="#getOne"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getOne(r: CrudRequest)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Override()<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="59"
+                            class="link-to-prism">src/cats/cats.controller.ts:59</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>r</td>
+                                    <td>
+                                            <code>CrudRequest</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>{}</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="replaceOne"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Async</span>
+                            replaceOne
+                        </b>
+                        <a href="#replaceOne"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>replaceOne(r: CrudRequest, cat: <a href="../classes/CreateCatDto.html">CreateCatDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Override()<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="93"
+                            class="link-to-prism">src/cats/cats.controller.ts:93</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>r</td>
+                                    <td>
+                                            <code>CrudRequest</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>cat</td>
+                                    <td>
+                                                <code><a href="../classes/CreateCatDto.html" target="_self" >CreateCatDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>{}</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateOne"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Async</span>
+                            updateOne
+                        </b>
+                        <a href="#updateOne"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateOne(r: CrudRequest, cat: <a href="../classes/UpdateCatDto.html">UpdateCatDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Override()<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="85"
+                            class="link-to-prism">src/cats/cats.controller.ts:85</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>r</td>
+                                    <td>
+                                            <code>CrudRequest</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>cat</td>
+                                    <td>
+                                                <code><a href="../classes/UpdateCatDto.html" target="_self" >UpdateCatDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>{}</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>    </div>
 
 
@@ -151,44 +780,106 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">/* eslint-disable no-use-before-define */
 import { Controller, Post } from &#x27;@nestjs/common&#x27;
 import { ApiOperation, ApiTags } from &#x27;@nestjs/swagger&#x27;
-import { Crud, CrudController } from &#x27;@nestjsx/crud&#x27;
+import {
+    CreateManyDto,
+    Crud,
+    CrudController,
+    CrudRequest,
+    Override,
+    ParsedBody,
+    ParsedRequest,
+} from &#x27;@nestjsx/crud&#x27;
+import { CrudOptions } from &#x27;@nestjsx/crud/lib/interfaces&#x27;
 
-import { CatsService } from &#x27;./cats.service&#x27;
-import { CreateCatDto, UpdateCatDto, GetCatResponseDto } from &#x27;./datum/cat.dto&#x27;
-import { Cat } from &#x27;./datum/cat.entity&#x27;
 import { User } from &#x27;../users/datum/user.entity&#x27;
+import { CatsService } from &#x27;./cats.service&#x27;
+import { CreateCatDto, GetCatResponseDto, UpdateCatDto } from &#x27;./datum/cat.dto&#x27;
+import { Cat } from &#x27;./datum/cat.entity&#x27;
 
 @Controller(CatsController.path)
 @ApiTags(CatsController.name)
-@Crud({
-    model: {
-        type: Cat,
-    },
-    dto: {
-        create: CreateCatDto,
-        replace: CreateCatDto,
-        update: UpdateCatDto,
-    },
-    serialize: {
-        create: GetCatResponseDto,
-        delete: GetCatResponseDto,
-        get: GetCatResponseDto,
-        update: GetCatResponseDto,
-    },
-    query: {
-        alwaysPaginate: true,
-        join: {
-            user: {
-                eager: true,
-                exclude: User.exclude,
-            },
-        },
-    },
-})
+@Crud(CatsController.crudOptions)
 export class CatsController implements CrudController&lt;Cat&gt; {
     static path &#x3D; &#x27;cats&#x27;
 
+    static crudOptions: CrudOptions &#x3D; {
+        model: {
+            type: Cat,
+        },
+        dto: {
+            create: CreateCatDto,
+            replace: CreateCatDto,
+            update: UpdateCatDto,
+        },
+        serialize: {
+            create: GetCatResponseDto,
+            delete: GetCatResponseDto,
+            get: GetCatResponseDto,
+            update: GetCatResponseDto,
+        },
+        query: {
+            alwaysPaginate: true,
+            join: {
+                user: {
+                    eager: true,
+                    exclude: User.exclude,
+                },
+            },
+        },
+    }
+
     constructor(public service: CatsService) {}
+
+    get base(): CrudController&lt;Cat&gt; {
+        return this
+    }
+
+    @Override()
+    async getOne(@ParsedRequest() r: CrudRequest) {
+        return this.base.getOneBase(r)
+    }
+
+    @Override()
+    async getMany(@ParsedRequest() r: CrudRequest) {
+        return this.base.getManyBase(r)
+    }
+
+    @Override()
+    async createOne(
+        @ParsedRequest() r: CrudRequest,
+        @ParsedBody() cat: CreateCatDto,
+    ) {
+        return this.base.createOneBase(r, cat as Cat)
+    }
+
+    @Override()
+    async createMany(
+        @ParsedRequest() r: CrudRequest,
+        @ParsedBody() cats: CreateManyDto&lt;Cat&gt;,
+    ) {
+        return this.base.createManyBase(r, cats)
+    }
+
+    @Override()
+    async updateOne(
+        @ParsedRequest() r: CrudRequest,
+        @ParsedBody() cat: UpdateCatDto,
+    ) {
+        return this.base.updateOneBase(r, cat as Cat)
+    }
+
+    @Override()
+    async replaceOne(
+        @ParsedRequest() r: CrudRequest,
+        @ParsedBody() cat: CreateCatDto,
+    ) {
+        return this.base.replaceOneBase(r, cat as Cat)
+    }
+
+    @Override()
+    async deleteOne(@ParsedRequest() r: CrudRequest) {
+        return this.base.deleteOneBase(r)
+    }
 
     @ApiOperation({ summary: &#x27;Delete all Cats&#x27; })
     @Post(&#x27;/clear&#x27;)

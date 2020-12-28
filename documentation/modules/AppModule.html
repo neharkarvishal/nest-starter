@@ -231,8 +231,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="65"
-                            class="link-to-prism">src/app.module.ts:65</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="67"
+                            class="link-to-prism">src/app.module.ts:67</a></div>
                 </td>
             </tr>
 
@@ -301,8 +301,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="61"
-                            class="link-to-prism">src/app.module.ts:61</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="63"
+                            class="link-to-prism">src/app.module.ts:63</a></div>
                 </td>
             </tr>
 
@@ -330,17 +330,16 @@ import { ScheduleModule } from &#x27;@nestjs/schedule&#x27;
 import { TerminusModule } from &#x27;@nestjs/terminus&#x27;
 import { TypeOrmModule } from &#x27;@nestjs/typeorm&#x27;
 
-import { CronModule } from &#x27;src/cron/cron.module&#x27;
-import { HealthController } from &#x27;src/health/health.controller&#x27;
-
 import * as Joi from &#x27;@hapi/joi&#x27;
 
 import { AppController } from &#x27;./app.controller&#x27;
 import { AppService } from &#x27;./app.service&#x27;
 import { CatsModule } from &#x27;./cats/cats.module&#x27;
 import { Cat } from &#x27;./cats/datum/cat.entity&#x27;
-import { UsersModule } from &#x27;./users/users.module&#x27;
+import { CronModule } from &#x27;./cron/cron.module&#x27;
+import { HealthController } from &#x27;./health/health.controller&#x27;
 import { User } from &#x27;./users/datum/user.entity&#x27;
+import { UsersModule } from &#x27;./users/users.module&#x27;
 
 const ConfigModuleOptions &#x3D; {
     isGlobal: true,
@@ -357,7 +356,7 @@ const ConfigModuleOptions &#x3D; {
     }),
 }
 
-const TypeOrmModuleOptions &#x3D; {
+export const TypeOrmModuleOptions &#x3D; {
     entities: [
         Cat,
         User,
@@ -367,6 +366,9 @@ const TypeOrmModuleOptions &#x3D; {
     database: &#x27;database.sqlite&#x27;,
     synchronize: true,
     logging: true,
+    // migrations: [&#x60;${__dirname}/**/migrations/*{.ts,.js}&#x60;],
+    // migrationsTableName: &#x27;migrations_typeorm&#x27;,
+    // migrationsRun: true,
 }
 
 @Module({
