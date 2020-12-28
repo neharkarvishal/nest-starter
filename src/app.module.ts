@@ -2,10 +2,12 @@
 import { Module, OnApplicationShutdown, OnModuleInit } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { ScheduleModule } from '@nestjs/schedule'
+import { ServeStaticModule } from '@nestjs/serve-static'
 import { TerminusModule } from '@nestjs/terminus'
 import { TypeOrmModule } from '@nestjs/typeorm'
 
 import * as Joi from '@hapi/joi'
+import { join } from 'path'
 
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
@@ -50,6 +52,10 @@ export const TypeOrmModuleOptions = {
     controllers: [AppController, HealthController],
     imports: [
         ConfigModule.forRoot(ConfigModuleOptions),
+        ServeStaticModule.forRoot({
+            rootPath: join(__dirname, '..', 'redoc'),
+            exclude: ['/api*'],
+        }),
         ScheduleModule.forRoot(),
         CronModule,
         TerminusModule, // Health module

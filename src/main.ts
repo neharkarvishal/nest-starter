@@ -24,14 +24,16 @@ function setupSwaggerDocs(app: INestApplication) {
 
     const version = (require('../package.json').version as string) || '' // eslint-disable-line @typescript-eslint/no-var-requires,global-require,@typescript-eslint/no-unsafe-member-access
 
-    const options = new DocumentBuilder()
+    const config = new DocumentBuilder()
         .setTitle(SWAGGER_TITLE)
         .setDescription(SWAGGER_DESCRIPTION)
         .setVersion(version)
         .addBearerAuth()
         .build()
 
-    const document = SwaggerModule.createDocument(app, options)
+    const document = SwaggerModule.createDocument(app, config, {
+        deepScanRoutes: true,
+    })
     SwaggerModule.setup(SWAGGER_PREFIX, app, document)
 }
 
@@ -66,8 +68,8 @@ function setupInfra(app: INestApplication) {
 
 function setupMiddlewares(app: INestApplication) {
     // middlewares (express specific)
-    app.use(helmet())
-    app.enableCors()
+    app.use(helmet({ contentSecurityPolicy: false }))
+    app.enableCors({ origin: '*' })
     app.use(
         rateLimit({
             windowMs: 15 * 60 * 1000, // 15 minutes
@@ -86,7 +88,10 @@ function setupMiddlewares(app: INestApplication) {
 
 async function bootstrap() {
     const API_DEFAULT_PORT = 3000
+    const GLOBAL_PREFIX = 'api'
+
     const app = await NestFactory.create(AppModule, { cors: true })
+    app.setGlobalPrefix(GLOBAL_PREFIX)
 
     setupSwaggerDocs(app)
     setupInfra(app)
