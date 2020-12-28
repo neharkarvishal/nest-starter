@@ -2,49 +2,52 @@
 import { Controller, Post } from '@nestjs/common'
 import { ApiOperation, ApiTags } from '@nestjs/swagger'
 import {
+    CreateManyDto,
     Crud,
     CrudController,
     CrudRequest,
     Override,
     ParsedBody,
     ParsedRequest,
-    CreateManyDto,
 } from '@nestjsx/crud'
+import { CrudOptions } from '@nestjsx/crud/lib/interfaces'
 
 import { User } from '../users/datum/user.entity'
 import { CatsService } from './cats.service'
-import { CreateCatDto, UpdateCatDto, GetCatResponseDto } from './datum/cat.dto'
+import { CreateCatDto, GetCatResponseDto, UpdateCatDto } from './datum/cat.dto'
 import { Cat } from './datum/cat.entity'
 
 @Controller(CatsController.path)
 @ApiTags(CatsController.name)
-@Crud({
-    model: {
-        type: Cat,
-    },
-    dto: {
-        create: CreateCatDto,
-        replace: CreateCatDto,
-        update: UpdateCatDto,
-    },
-    serialize: {
-        create: GetCatResponseDto,
-        delete: GetCatResponseDto,
-        get: GetCatResponseDto,
-        update: GetCatResponseDto,
-    },
-    query: {
-        alwaysPaginate: true,
-        join: {
-            user: {
-                eager: true,
-                exclude: User.exclude,
-            },
-        },
-    },
-})
+@Crud(CatsController.crudOptions)
 export class CatsController implements CrudController<Cat> {
     static path = 'cats'
+
+    static crudOptions: CrudOptions = {
+        model: {
+            type: Cat,
+        },
+        dto: {
+            create: CreateCatDto,
+            replace: CreateCatDto,
+            update: UpdateCatDto,
+        },
+        serialize: {
+            create: GetCatResponseDto,
+            delete: GetCatResponseDto,
+            get: GetCatResponseDto,
+            update: GetCatResponseDto,
+        },
+        query: {
+            alwaysPaginate: true,
+            join: {
+                user: {
+                    eager: true,
+                    exclude: User.exclude,
+                },
+            },
+        },
+    }
 
     constructor(public service: CatsService) {}
 
@@ -52,43 +55,50 @@ export class CatsController implements CrudController<Cat> {
         return this
     }
 
-    @Override() async getOne(@ParsedRequest() r: CrudRequest) {
+    @Override()
+    async getOne(@ParsedRequest() r: CrudRequest) {
         return this.base.getOneBase(r)
     }
 
-    @Override() async getMany(@ParsedRequest() r: CrudRequest) {
+    @Override()
+    async getMany(@ParsedRequest() r: CrudRequest) {
         return this.base.getManyBase(r)
     }
 
-    @Override() async createOne(
+    @Override()
+    async createOne(
         @ParsedRequest() r: CrudRequest,
         @ParsedBody() cat: CreateCatDto,
     ) {
         return this.base.createOneBase(r, cat as Cat)
     }
 
-    @Override() async createMany(
+    @Override()
+    async createMany(
         @ParsedRequest() r: CrudRequest,
         @ParsedBody() cats: CreateManyDto<Cat>,
     ) {
         return this.base.createManyBase(r, cats)
     }
 
-    @Override() async updateOne(
+    @Override()
+    async updateOne(
         @ParsedRequest() r: CrudRequest,
         @ParsedBody() cat: UpdateCatDto,
     ) {
         return this.base.updateOneBase(r, cat as Cat)
     }
 
-    @Override() async replaceOne(
+    @Override()
+    async replaceOne(
         @ParsedRequest() r: CrudRequest,
         @ParsedBody() cat: CreateCatDto,
     ) {
         return this.base.replaceOneBase(r, cat as Cat)
     }
 
-    @Override() async deleteOne(@ParsedRequest() r: CrudRequest) {
+    @Override()
+    async deleteOne(@ParsedRequest() r: CrudRequest) {
         return this.base.deleteOneBase(r)
     }
 
