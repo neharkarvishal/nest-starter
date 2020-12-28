@@ -1,12 +1,20 @@
 /* eslint-disable no-use-before-define */
 import { Controller, Post } from '@nestjs/common'
 import { ApiOperation, ApiTags } from '@nestjs/swagger'
-import { Crud, CrudController } from '@nestjsx/crud'
+import {
+    Crud,
+    CrudController,
+    CrudRequest,
+    Override,
+    ParsedBody,
+    ParsedRequest,
+    CreateManyDto,
+} from '@nestjsx/crud'
 
+import { User } from '../users/datum/user.entity'
 import { CatsService } from './cats.service'
 import { CreateCatDto, UpdateCatDto, GetCatResponseDto } from './datum/cat.dto'
 import { Cat } from './datum/cat.entity'
-import { User } from '../users/datum/user.entity'
 
 @Controller(CatsController.path)
 @ApiTags(CatsController.name)
@@ -39,6 +47,50 @@ export class CatsController implements CrudController<Cat> {
     static path = 'cats'
 
     constructor(public service: CatsService) {}
+
+    get base(): CrudController<Cat> {
+        return this
+    }
+
+    @Override() async getOne(@ParsedRequest() r: CrudRequest) {
+        return this.base.getOneBase(r)
+    }
+
+    @Override() async getMany(@ParsedRequest() r: CrudRequest) {
+        return this.base.getManyBase(r)
+    }
+
+    @Override() async createOne(
+        @ParsedRequest() r: CrudRequest,
+        @ParsedBody() cat: CreateCatDto,
+    ) {
+        return this.base.createOneBase(r, cat as Cat)
+    }
+
+    @Override() async createMany(
+        @ParsedRequest() r: CrudRequest,
+        @ParsedBody() cats: CreateManyDto<Cat>,
+    ) {
+        return this.base.createManyBase(r, cats)
+    }
+
+    @Override() async updateOne(
+        @ParsedRequest() r: CrudRequest,
+        @ParsedBody() cat: UpdateCatDto,
+    ) {
+        return this.base.updateOneBase(r, cat as Cat)
+    }
+
+    @Override() async replaceOne(
+        @ParsedRequest() r: CrudRequest,
+        @ParsedBody() cat: CreateCatDto,
+    ) {
+        return this.base.replaceOneBase(r, cat as Cat)
+    }
+
+    @Override() async deleteOne(@ParsedRequest() r: CrudRequest) {
+        return this.base.deleteOneBase(r)
+    }
 
     @ApiOperation({ summary: 'Delete all Cats' })
     @Post('/clear')
