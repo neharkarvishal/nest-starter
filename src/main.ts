@@ -68,8 +68,8 @@ function setupInfra(app: INestApplication) {
 
 function setupMiddlewares(app: INestApplication) {
     // middlewares (express specific)
-    app.use(helmet({ contentSecurityPolicy: false }))
-    app.enableCors({ origin: '*' })
+    app.use(helmet())
+    app.enableCors()
     app.use(
         rateLimit({
             windowMs: 15 * 60 * 1000, // 15 minutes
@@ -88,10 +88,7 @@ function setupMiddlewares(app: INestApplication) {
 
 async function bootstrap() {
     const API_DEFAULT_PORT = 3000
-    const GLOBAL_PREFIX = 'api'
-
     const app = await NestFactory.create(AppModule, { cors: true })
-    app.setGlobalPrefix(GLOBAL_PREFIX)
 
     setupSwaggerDocs(app)
     setupInfra(app)

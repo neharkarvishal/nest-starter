@@ -2,12 +2,10 @@
 import { Module, OnApplicationShutdown, OnModuleInit } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { ScheduleModule } from '@nestjs/schedule'
-import { ServeStaticModule } from '@nestjs/serve-static'
 import { TerminusModule } from '@nestjs/terminus'
 import { TypeOrmModule } from '@nestjs/typeorm'
 
 import * as Joi from '@hapi/joi'
-import { join } from 'path'
 
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
@@ -52,10 +50,6 @@ export const TypeOrmModuleOptions = {
     controllers: [AppController, HealthController],
     imports: [
         ConfigModule.forRoot(ConfigModuleOptions),
-        ServeStaticModule.forRoot({
-            rootPath: join(__dirname, '..', 'redoc'),
-            exclude: ['/api*'],
-        }),
         ScheduleModule.forRoot(),
         CronModule,
         TerminusModule, // Health module
@@ -66,6 +60,25 @@ export const TypeOrmModuleOptions = {
     providers: [AppService],
 })
 export class AppModule implements OnModuleInit, OnApplicationShutdown {
+    // kill -15
+    // // eslint-disable-next-line @typescript-eslint/no-misused-promises
+    // process.on('SIGTERM', async () => {
+    //     console.warn("process.on('SIGTERM')")
+    //
+    //     setTimeout(() => process.exit(1), 5000)
+    //     await app.close()
+    //     process.exit(0)
+    // })
+    //
+    // // eslint-disable-next-line @typescript-eslint/no-misused-promises
+    // process.on('SIGINT', async () => {
+    //     console.warn("process.on('SIGINT')")
+    //
+    //     setTimeout(() => process.exit(1), 5000)
+    //     await app.close()
+    //     process.exit(0)
+    // })
+
     onModuleInit(): void {
         console.info(`ModuleInit - AppModule has been initialized.`)
     }
