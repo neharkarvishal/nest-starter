@@ -70,7 +70,8 @@ export class CatsController implements CrudController<Cat> {
         @ParsedRequest() r: CrudRequest,
         @ParsedBody() cat: CreateCatDto,
     ) {
-        return this.base.createOneBase(r, cat as Cat)
+        // @ts-ignore
+        return this.base.createOneBase(r, cat)
     }
 
     @Override()
@@ -94,7 +95,8 @@ export class CatsController implements CrudController<Cat> {
         @ParsedRequest() r: CrudRequest,
         @ParsedBody() cat: CreateCatDto,
     ) {
-        return this.base.replaceOneBase(r, cat as Cat)
+        // @ts-ignore
+        return this.base.replaceOneBase(r, cat)
     }
 
     @Override()

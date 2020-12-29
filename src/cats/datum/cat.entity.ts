@@ -11,6 +11,8 @@ import {
     ManyToOne,
     PrimaryColumn,
     Index,
+    VersionColumn,
+    JoinColumn,
 } from 'typeorm'
 
 import { User } from '../../users/datum/user.entity' // eslint-disable-line import/no-cycle
@@ -27,7 +29,7 @@ export class Cat {
 
     @ApiProperty({ description: 'ID of the Owner', example: 1 })
     @Column()
-    @Index()
+    // @Index()
     userId: number
 
     @ApiProperty({ description: 'The name of the Cat', example: 'Kitty' })
@@ -41,6 +43,13 @@ export class Cat {
     @ApiProperty({ description: 'The breed of the Cat', example: 'Maine Coon' })
     @Column({ name: 'cat_breed' })
     breed: string
+
+    /**
+     * Meta
+     */
+
+    @VersionColumn()
+    version: number
 
     @CreateDateColumn()
     createdAt: any
@@ -59,6 +68,7 @@ export class Cat {
         lazy: false, // true sets relation to be lazy, lazy relations are promise of that entity
         nullable: false, // if relation column value can be nullable or not, {LEFT JOIN <-> INNER JOIN}?
     })
+    @JoinColumn({ name: 'userId', referencedColumnName: 'id' })
     @Type((t) => User)
     user: User
 }

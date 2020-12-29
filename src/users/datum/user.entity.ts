@@ -9,6 +9,7 @@ import {
     UpdateDateColumn,
     DeleteDateColumn,
     OneToMany,
+    VersionColumn,
 } from 'typeorm'
 
 import { Cat } from '../../cats/datum/cat.entity' // eslint-disable-line import/no-cycle
@@ -27,6 +28,13 @@ export class User {
     @Column({ name: 'user_name', length: User.NAME_LENGTH })
     name: string
 
+    /**
+     * Meta
+     */
+
+    @VersionColumn()
+    version: number
+
     @CreateDateColumn()
     createdAt: any
 
@@ -35,6 +43,10 @@ export class User {
 
     @DeleteDateColumn()
     deletedAt: any
+
+    /**
+     * Relations
+     */
 
     /**
      * Relations
