@@ -82,6 +82,10 @@ export class GetCatResponseDto {
 
     @ApiHideProperty()
     @Exclude()
+    version: any
+
+    @ApiHideProperty()
+    @Exclude()
     createdAt: any
 
     @ApiHideProperty()

@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 import { ApiProperty } from '@nestjs/swagger'
 
 import { Type } from 'class-transformer'
@@ -10,43 +11,40 @@ import {
     DeleteDateColumn,
     OneToMany,
     VersionColumn,
+    EntityOptions,
 } from 'typeorm'
 
 import { Cat } from '../../cats/datum/cat.entity' // eslint-disable-line import/no-cycle
 
-@Entity({ name: 'users' })
+@Entity(User.options)
 export class User {
-    public static readonly NAME_LENGTH = 36
+    public static options: EntityOptions = { name: 'users' }
 
     public static exclude = ['createdAt', 'updatedAt', 'deletedAt']
 
-    @ApiProperty({ description: 'User unique ID', example: '36635263' })
+    @ApiProperty({ description: 'User unique ID', example: 1 })
     @PrimaryGeneratedColumn()
     id: number
 
     @ApiProperty({ description: 'The name of the User', example: 'Name' })
-    @Column({ name: 'user_name', length: User.NAME_LENGTH })
+    @Column()
     name: string
 
     /**
      * Meta
      */
 
-    @VersionColumn()
+    @VersionColumn({ default: 1, select: false, nullable: true })
     version: number
 
-    @CreateDateColumn()
-    createdAt: any
+    @CreateDateColumn({ nullable: true })
+    createdAt: Date
 
-    @UpdateDateColumn()
-    updatedAt: any
+    @UpdateDateColumn({ nullable: true })
+    updatedAt: Date
 
-    @DeleteDateColumn()
-    deletedAt: any
-
-    /**
-     * Relations
-     */
+    @DeleteDateColumn({ nullable: true })
+    deletedAt: Date | null
 
     /**
      * Relations

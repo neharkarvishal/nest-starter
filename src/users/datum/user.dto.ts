@@ -38,6 +38,10 @@ export class GetUserResponseDto {
 
     @ApiHideProperty()
     @Exclude()
+    version: any
+
+    @ApiHideProperty()
+    @Exclude()
     createdAt: any
 
     @ApiHideProperty()

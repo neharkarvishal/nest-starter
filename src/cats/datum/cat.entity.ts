@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 import { ApiProperty } from '@nestjs/swagger'
 
 import { Type } from 'class-transformer'
@@ -14,51 +15,51 @@ import {
     VersionColumn,
     JoinColumn,
 } from 'typeorm'
+import type { EntityOptions } from 'typeorm'
 
 import { User } from '../../users/datum/user.entity' // eslint-disable-line import/no-cycle
 
-@Entity({ name: 'cats' })
+@Entity(Cat.options)
 export class Cat {
-    public static readonly NAME_LENGTH = 36
+    public static options: EntityOptions = { name: 'cats' }
 
     public static exclude = ['createdAt', 'updatedAt', 'deletedAt']
 
-    @ApiProperty({ description: 'Cat unique ID', example: '36635263' })
+    @ApiProperty({ description: 'Cat unique ID', example: 1 })
     @PrimaryGeneratedColumn()
     id: number
 
     @ApiProperty({ description: 'ID of the Owner', example: 1 })
     @Column()
-    // @Index()
     userId: number
 
     @ApiProperty({ description: 'The name of the Cat', example: 'Kitty' })
-    @Column({ name: 'cat_name', length: Cat.NAME_LENGTH })
+    @Column()
     name: string
 
     @ApiProperty({ description: 'The age of the Cat', example: 1 })
-    @Column({ name: 'cat_age' })
+    @Column()
     age: number
 
     @ApiProperty({ description: 'The breed of the Cat', example: 'Maine Coon' })
-    @Column({ name: 'cat_breed' })
+    @Column()
     breed: string
 
     /**
      * Meta
      */
 
-    @VersionColumn()
+    @VersionColumn({ default: 1, select: false, nullable: true })
     version: number
 
-    @CreateDateColumn()
-    createdAt: any
+    @CreateDateColumn({ nullable: true })
+    createdAt: Date
 
-    @UpdateDateColumn()
-    updatedAt: any
+    @UpdateDateColumn({ nullable: true })
+    updatedAt: Date
 
-    @DeleteDateColumn()
-    deletedAt: any
+    @DeleteDateColumn({ nullable: true })
+    deletedAt: Date | null
 
     /**
      * Relations
