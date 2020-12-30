@@ -39,7 +39,7 @@ export const TypeOrmModuleOptions = {
     ],
     type: 'sqlite' as const,
     database: 'database.sqlite',
-    synchronize: true,
+    synchronize: false,
     logging: true,
     // migrations: [`${__dirname}/**/migrations/*{.ts,.js}`],
     // migrationsTableName: 'migrations_typeorm',
