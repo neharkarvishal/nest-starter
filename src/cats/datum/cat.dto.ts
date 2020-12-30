@@ -1,5 +1,6 @@
 /* eslint-disable max-classes-per-file */
 import { ApiHideProperty, ApiProperty } from '@nestjs/swagger'
+import { GetManyDefaultResponse } from '@nestjsx/crud/lib/interfaces/get-many-default-response.interface'
 
 import { Exclude } from 'class-transformer'
 import {
@@ -95,4 +96,17 @@ export class GetCatResponseDto {
     @ApiHideProperty()
     @Exclude()
     deletedAt: any
+}
+
+export class GetManyCatResponseDto
+    implements GetManyDefaultResponse<GetCatResponseDto> {
+    count: number
+
+    data: GetCatResponseDto[]
+
+    page: number
+
+    pageCount: number
+
+    total: number
 }

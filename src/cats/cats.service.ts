@@ -2,8 +2,6 @@ import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { TypeOrmCrudService } from '@nestjsx/crud-typeorm'
 
-import { getManager } from 'typeorm'
-
 import { Cat } from './datum/cat.entity'
 import { CatRepository } from './datum/cat.repository'
 

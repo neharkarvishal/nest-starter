@@ -24,7 +24,7 @@ export abstract class Model {
     }
 }
 
-export abstract class Base extends Model implements IBaseEntityModel {
+export abstract class BaseEntity extends Model implements IBaseEntityModel {
     @ApiPropertyOptional({ type: String })
     @PrimaryGeneratedColumn()
     id?: number

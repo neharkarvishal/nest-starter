@@ -31,21 +31,6 @@ const ConfigModuleOptions = {
     }),
 }
 
-export const TypeOrmModuleOptions = {
-    entities: [
-        Cat,
-        User,
-        // `${__dirname}/**/*.entity.{ts,js}`,
-    ],
-    type: 'sqlite' as const,
-    database: 'database.sqlite',
-    synchronize: false,
-    logging: true,
-    // migrations: [`${__dirname}/**/migrations/*{.ts,.js}`],
-    // migrationsTableName: 'migrations_typeorm',
-    // migrationsRun: true,
-}
-
 @Module({
     controllers: [AppController, HealthController],
     imports: [
@@ -53,7 +38,7 @@ export const TypeOrmModuleOptions = {
         ScheduleModule.forRoot(),
         CronModule,
         TerminusModule, // Health module
-        TypeOrmModule.forRoot(TypeOrmModuleOptions),
+        TypeOrmModule.forRoot(),
         CatsModule,
         UsersModule,
     ],

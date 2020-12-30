@@ -15,12 +15,12 @@ import {
 } from 'typeorm'
 import { QueryDeepPartialEntity } from 'typeorm/query-builder/QueryPartialEntity'
 
-import { Base } from '../entities/base'
+import { BaseEntity } from '../datum/base-entity'
 import { ICrudService } from './icrud.service'
 import { IPagination } from './pagination'
 import { ITryRequest } from './try-request'
 
-export abstract class CrudService<T extends Base> implements ICrudService<T> {
+export abstract class CrudService<T extends BaseEntity> implements ICrudService<T> {
     saltRounds: number
 
     protected constructor(protected readonly repository: Repository<T>) {

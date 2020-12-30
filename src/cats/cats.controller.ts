@@ -1,6 +1,6 @@
 /* eslint-disable no-use-before-define */
-import { Controller, Post } from '@nestjs/common'
-import { ApiOperation, ApiTags } from '@nestjs/swagger'
+import { Controller, HttpStatus, Post } from '@nestjs/common'
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import {
     CreateManyDto,
     Crud,
@@ -14,7 +14,12 @@ import { CrudOptions } from '@nestjsx/crud/lib/interfaces'
 
 import { User } from '../users/datum/user.entity'
 import { CatsService } from './cats.service'
-import { CreateCatDto, GetCatResponseDto, UpdateCatDto } from './datum/cat.dto'
+import {
+    CreateCatDto,
+    GetCatResponseDto,
+    GetManyCatResponseDto,
+    UpdateCatDto,
+} from './datum/cat.dto'
 import { Cat } from './datum/cat.entity'
 
 @Controller(CatsController.path)
@@ -55,16 +60,19 @@ export class CatsController implements CrudController<Cat> {
         return this
     }
 
+    @ApiResponse({ status: HttpStatus.OK, type: GetCatResponseDto })
     @Override()
     async getOne(@ParsedRequest() r: CrudRequest) {
         return this.base.getOneBase(r)
     }
 
+    @ApiResponse({ status: HttpStatus.OK, type: GetManyCatResponseDto })
     @Override()
     async getMany(@ParsedRequest() r: CrudRequest) {
         return this.base.getManyBase(r)
     }
 
+    @ApiResponse({ status: HttpStatus.OK, type: GetCatResponseDto })
     @Override()
     async createOne(
         @ParsedRequest() r: CrudRequest,
@@ -74,6 +82,7 @@ export class CatsController implements CrudController<Cat> {
         return this.base.createOneBase(r, cat)
     }
 
+    @ApiResponse({ status: HttpStatus.OK, type: GetManyCatResponseDto })
     @Override()
     async createMany(
         @ParsedRequest() r: CrudRequest,
@@ -82,6 +91,7 @@ export class CatsController implements CrudController<Cat> {
         return this.base.createManyBase(r, cats)
     }
 
+    @ApiResponse({ status: HttpStatus.OK, type: GetCatResponseDto })
     @Override()
     async updateOne(
         @ParsedRequest() r: CrudRequest,
@@ -90,6 +100,7 @@ export class CatsController implements CrudController<Cat> {
         return this.base.updateOneBase(r, cat as Cat)
     }
 
+    @ApiResponse({ status: HttpStatus.OK, type: GetCatResponseDto })
     @Override()
     async replaceOne(
         @ParsedRequest() r: CrudRequest,
