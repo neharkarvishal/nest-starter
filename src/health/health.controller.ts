@@ -2,6 +2,7 @@
 import {
     Controller,
     Get,
+    HttpCode,
     OnApplicationShutdown,
     OnModuleInit,
 } from '@nestjs/common'
@@ -24,7 +25,14 @@ export class HealthController implements OnModuleInit, OnApplicationShutdown {
         private config: ConfigService,
     ) {}
 
-    @Get()
+    @Get('dead')
+    @HttpCode(500)
+    dead() {
+        return 'DEAD'
+    }
+
+    @Get('alive')
+    @HttpCode(200)
     @HealthCheck()
     check() {
         return this.health.check([

@@ -68,7 +68,7 @@ function setupInfra(app: INestApplication) {
 
 function setupMiddlewares(app: INestApplication) {
     // middlewares (express specific)
-    app.use(helmet())
+    // app.use(helmet())
     app.enableCors()
 
     // limit for all paths

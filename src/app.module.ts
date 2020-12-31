@@ -13,6 +13,50 @@ import { CatsModule } from './cats/cats.module'
 import { CronModule } from './cron/cron.module'
 import { HealthController } from './health/health.controller'
 import { UsersModule } from './users/users.module'
+import { StatusMonitorModule } from 'nest-status-monitor'
+
+const MonitoringModuleOptions = {
+    pageTitle: 'Nest.js Monitoring Page',
+    port: 3000,
+    path: '/status',
+    ignoreStartsWith: '/health/alive',
+    spans: [
+        {
+            interval: 1, // Every 0.5 second
+            retention: 60, // Keep 60 datapoints in memory
+        },
+        {
+            interval: 3,
+            retention: 60,
+        },
+        {
+            interval: 9,
+            retention: 60,
+        },
+    ],
+    chartVisibility: {
+        cpu: true,
+        mem: true,
+        load: true,
+        responseTime: true,
+        rps: true,
+        statusCodes: true,
+    },
+    healthChecks: [
+        {
+            protocol: 'http',
+            host: 'localhost',
+            path: '/health/alive',
+            port: 3000,
+        },
+        {
+            protocol: 'http',
+            host: 'localhost',
+            path: '/health/dead',
+            port: 3000,
+        },
+    ],
+}
 
 const ConfigModuleOptions = {
     isGlobal: true,
@@ -34,6 +78,8 @@ const ConfigModuleOptions = {
     }),
 }
 
+// TODO: https://github.com/GauSim/nestjs-typeorm/blob/master/code/src/scripts/write-type-orm-config.ts,
+//  https://medium.com/@gausmann.simon/nestjs-typeorm-and-postgresql-full-example-development-and-project-setup-working-with-database-c1a2b1b11b8f
 const TypeOrmModuleOptions = {
     // following field actually sets the connection name when calling `forRootAsync`,
     // not the other one in `useFactory`
@@ -70,6 +116,7 @@ const TypeOrmModuleOptions = {
         ScheduleModule.forRoot(), // CronModules deps
         CronModule,
         TerminusModule, // Health module
+        StatusMonitorModule.setUp(MonitoringModuleOptions),
         CatsModule,
         UsersModule,
     ],
