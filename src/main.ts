@@ -70,11 +70,24 @@ function setupMiddlewares(app: INestApplication) {
     // middlewares (express specific)
     app.use(helmet())
     app.enableCors()
+
+    // limit for all paths
     app.use(
         rateLimit({
             windowMs: 15 * 60 * 1000, // 15 minutes
-            max: 100, // limit each IP to 100 requests per windowMs
+            max: 500, // limit each IP to 500 requests per windowMs
             message: 'Too many requests from this IP, please try again later',
+        }),
+    )
+
+    // signup limiter
+    app.use(
+        '/auth/signup',
+        rateLimit({
+            windowMs: 60 * 60 * 1000, // 1 hour window
+            max: 10, // start blocking after 10 requests
+            message:
+                'Too many signup request from this IP, please try again after an hour',
         }),
     )
 

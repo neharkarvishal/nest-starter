@@ -1,6 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access,no-use-before-define */
+/* eslint-disable */
 import { Module, OnApplicationShutdown, OnModuleInit } from '@nestjs/common'
-import { ConfigModule } from '@nestjs/config'
+import { ConfigModule, ConfigService } from '@nestjs/config'
 import { ScheduleModule } from '@nestjs/schedule'
 import { TerminusModule } from '@nestjs/terminus'
 import { TypeOrmModule } from '@nestjs/typeorm'
@@ -10,10 +10,8 @@ import * as Joi from '@hapi/joi'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
 import { CatsModule } from './cats/cats.module'
-import { Cat } from './cats/datum/cat.entity'
 import { CronModule } from './cron/cron.module'
 import { HealthController } from './health/health.controller'
-import { User } from './users/datum/user.entity'
 import { UsersModule } from './users/users.module'
 
 const ConfigModuleOptions = {
@@ -28,6 +26,39 @@ const ConfigModuleOptions = {
             .required()
             .valid('development', 'production', 'test', 'provision')
             .default('development'),
+        // DB
+        database: Joi.string().required(),
+        type: Joi.string().required(),
+        logging: Joi.string().required(),
+        synchronize: Joi.string().required(),
+    }),
+}
+
+const TypeOrmModuleOptions = {
+    // following field actually sets the connection name when calling `forRootAsync`,
+    // not the other one in `useFactory`
+    name: 'default',
+    inject: [ConfigService],
+    useFactory: async (config: ConfigService) => ({
+        name: 'default', // this field is ignored when calling forRootAsync
+        type: config.get('type'),
+        database: config.get('database'),
+        entities: [`dist/**/*.entity.js`],
+        migrations: [`dist/migration/**/*.js`],
+        subscribers: [`dist/subscriber/**/*.js`],
+        migrationsTableName: 'migrations_typeorm',
+        cli: {
+            entitiesDir: 'src/entity',
+            migrationsDir: 'src/migration',
+            subscribersDir: 'src/subscriber',
+        },
+        // 1 = true, 0 = false, cuz they get parsed to strings, so we `!!parseInt(var)` it for bool; hax, lol
+        synchronize: !!parseInt(config.get('synchronize'), 10),
+        logging: !!parseInt(config.get('logging'), 10),
+
+        // entities: [`${__dirname}/entity/*.{js,ts}`],
+        // subscribers: [`${__dirname}/subscriber/*.{js,ts}`],
+        // migrations: [`${__dirname}/migration/*.{js,ts}`],
     }),
 }
 
@@ -35,10 +66,10 @@ const ConfigModuleOptions = {
     controllers: [AppController, HealthController],
     imports: [
         ConfigModule.forRoot(ConfigModuleOptions),
-        ScheduleModule.forRoot(),
+        TypeOrmModule.forRootAsync(TypeOrmModuleOptions),
+        ScheduleModule.forRoot(), // CronModules deps
         CronModule,
         TerminusModule, // Health module
-        TypeOrmModule.forRoot(),
         CatsModule,
         UsersModule,
     ],
