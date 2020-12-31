@@ -55,7 +55,7 @@ function setupInfra(app: INestApplication) {
 
     // interceptors
     // app.useGlobalInterceptors(new TransformInterceptor())
-    app.useGlobalInterceptors(new TimeoutInterceptor())
+    // app.useGlobalInterceptors(new TimeoutInterceptor())
     app.useGlobalInterceptors(new ExcludeNullUndefinedInterceptor())
 
     // filters
@@ -69,8 +69,8 @@ function setupInfra(app: INestApplication) {
 
 function setupMiddlewares(app: INestApplication) {
     // middlewares (express specific)
-    // app.use(helmet())
-    app.enableCors()
+    // app.use(helmet({ contentSecurityPolicy: false }))
+    app.enableCors({ origin: '*' })
 
     // limit for all paths
     app.use(
@@ -102,6 +102,7 @@ function setupMiddlewares(app: INestApplication) {
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule, { cors: true })
+    app.setGlobalPrefix('api')
     const config: ConfigService<EnvironmentVariables> = app.get(ConfigService)
 
     setupSwaggerDocs(app)

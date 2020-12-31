@@ -2,10 +2,12 @@
 import { Module, OnApplicationShutdown, OnModuleInit } from '@nestjs/common'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { ScheduleModule } from '@nestjs/schedule'
+import { ServeStaticModule } from '@nestjs/serve-static'
 import { TerminusModule } from '@nestjs/terminus'
 import { TypeOrmModule } from '@nestjs/typeorm'
 
 import * as Joi from '@hapi/joi'
+import { join } from 'path'
 
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
@@ -13,50 +15,6 @@ import { CatsModule } from './cats/cats.module'
 import { CronModule } from './cron/cron.module'
 import { HealthController } from './health/health.controller'
 import { UsersModule } from './users/users.module'
-import { StatusMonitorModule } from 'nest-status-monitor'
-
-const MonitoringModuleOptions = {
-    pageTitle: 'Nest.js Monitoring Page',
-    port: 3000,
-    path: '/status',
-    ignoreStartsWith: '/health/alive',
-    spans: [
-        {
-            interval: 1, // Every 0.5 second
-            retention: 60, // Keep 60 datapoints in memory
-        },
-        {
-            interval: 3,
-            retention: 60,
-        },
-        {
-            interval: 9,
-            retention: 60,
-        },
-    ],
-    chartVisibility: {
-        cpu: true,
-        mem: true,
-        load: true,
-        responseTime: true,
-        rps: true,
-        statusCodes: true,
-    },
-    healthChecks: [
-        {
-            protocol: 'http',
-            host: 'localhost',
-            path: '/health/alive',
-            port: 3000,
-        },
-        {
-            protocol: 'http',
-            host: 'localhost',
-            path: '/health/dead',
-            port: 3000,
-        },
-    ],
-}
 
 const ConfigModuleOptions = {
     isGlobal: true,
@@ -112,11 +70,14 @@ const TypeOrmModuleOptions = {
     controllers: [AppController, HealthController],
     imports: [
         ConfigModule.forRoot(ConfigModuleOptions),
+        ServeStaticModule.forRoot({
+            rootPath: join(__dirname, '..', 'redoc'),
+            exclude: ['/api*'],
+        }),
         TypeOrmModule.forRootAsync(TypeOrmModuleOptions),
         ScheduleModule.forRoot(), // CronModules deps
         CronModule,
         TerminusModule, // Health module
-        StatusMonitorModule.setUp(MonitoringModuleOptions),
         CatsModule,
         UsersModule,
     ],

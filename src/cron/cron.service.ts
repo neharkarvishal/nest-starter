@@ -33,7 +33,7 @@ export class CronService {
 
         let ok = true
         for (let i = 0; i < this.times; i++) {
-            ok = ok && this.factorial(16) === this.fact16
+            // ok = ok && this.factorial(16) === this.fact16
         }
         this.logger.debug(`node.js finish ${this.times} - ${ok ? 'ok' : 'fail'}`)
     }
@@ -44,7 +44,7 @@ export class CronService {
 
         let ok = true
         for (let i = 0; i < this.times; i++) {
-            ok = ok && this.factorial(16) === this.fact16
+            // ok = ok && this.factorial(16) === this.fact16
         }
         this.logger.debug(`node.js finish ${this.times} - ${ok ? 'ok' : 'fail'}`)
     }
@@ -55,7 +55,7 @@ export class CronService {
 
         let ok = true
         for (let i = 0; i < this.times; i++) {
-            ok = ok && this.factorial(16) === this.fact16
+            // ok = ok && this.factorial(16) === this.fact16
         }
         this.logger.debug(`node.js finish ${this.times} - ${ok ? 'ok' : 'fail'}`)
     }
