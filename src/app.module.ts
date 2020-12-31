@@ -85,7 +85,7 @@ const TypeOrmModuleOptions = {
     // not the other one in `useFactory`
     name: 'default',
     inject: [ConfigService],
-    useFactory: async (config: ConfigService) => ({
+    useFactory: async (config: ConfigService<EnvironmentVariables>) => ({
         name: 'default', // this field is ignored when calling forRootAsync
         type: config.get('type'),
         database: config.get('database'),

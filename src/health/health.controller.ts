@@ -22,7 +22,7 @@ export class HealthController implements OnModuleInit, OnApplicationShutdown {
     constructor(
         private health: HealthCheckService,
         private dns: DNSHealthIndicator,
-        private config: ConfigService,
+        private config: ConfigService<EnvironmentVariables>,
     ) {}
 
     @Get('dead')

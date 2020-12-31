@@ -3,6 +3,7 @@ import 'source-map-support/register'
 
 import { ValidationPipe } from '@nestjs/common'
 import type { INestApplication } from '@nestjs/common'
+import { ConfigService } from '@nestjs/config'
 import { NestFactory, HttpAdapterHost } from '@nestjs/core'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 
@@ -100,14 +101,14 @@ function setupMiddlewares(app: INestApplication) {
 }
 
 async function bootstrap() {
-    const API_DEFAULT_PORT = 3000
     const app = await NestFactory.create(AppModule, { cors: true })
+    const config: ConfigService<EnvironmentVariables> = app.get(ConfigService)
 
     setupSwaggerDocs(app)
     setupInfra(app)
     setupMiddlewares(app)
 
-    await app.listen(API_DEFAULT_PORT)
+    await app.listen(+config.get('PORT') || 3000)
 
     return app
 }
