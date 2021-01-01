@@ -1,4 +1,4 @@
-/* eslint-disable */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/require-await */
 import { Module, OnApplicationShutdown, OnModuleInit } from '@nestjs/common'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { ScheduleModule } from '@nestjs/schedule'
@@ -28,7 +28,7 @@ const ConfigModuleOptions = {
             .required()
             .valid('development', 'production', 'test', 'provision')
             .default('development'),
-        // DB
+
         database: Joi.string().required(),
         type: Joi.string().required(),
         logging: Joi.string().required(),
@@ -38,10 +38,9 @@ const ConfigModuleOptions = {
 
 // TODO: https://github.com/GauSim/nestjs-typeorm/blob/master/code/src/scripts/write-type-orm-config.ts,
 //  https://medium.com/@gausmann.simon/nestjs-typeorm-and-postgresql-full-example-development-and-project-setup-working-with-database-c1a2b1b11b8f
-const TypeOrmModuleOptions = {
-    // following field actually sets the connection name when calling `forRootAsync`,
-    // not the other one in `useFactory`
-    name: 'default',
+
+export const TypeOrmModuleOptions = {
+    name: 'default', // following field actually sets the connection name when calling `forRootAsync`, not the other one in `useFactory`
     inject: [ConfigService],
     useFactory: async (config: ConfigService<EnvironmentVariables>) => ({
         name: 'default', // this field is ignored when calling forRootAsync
@@ -56,13 +55,8 @@ const TypeOrmModuleOptions = {
             migrationsDir: 'src/migration',
             subscribersDir: 'src/subscriber',
         },
-        // 1 = true, 0 = false, cuz they get parsed to strings, so we `!!parseInt(var)` it for bool; hax, lol
         synchronize: !!parseInt(config.get('synchronize'), 10),
-        logging: !!parseInt(config.get('logging'), 10),
-
-        // entities: [`${__dirname}/entity/*.{js,ts}`],
-        // subscribers: [`${__dirname}/subscriber/*.{js,ts}`],
-        // migrations: [`${__dirname}/migration/*.{js,ts}`],
+        logging: !!parseInt(config.get('logging'), 10), // 1 = true, 0 = false, cuz they get parsed to strings, so we `!!parseInt(var)` it for bool; hax, lol
     }),
 }
 
@@ -84,24 +78,13 @@ const TypeOrmModuleOptions = {
     providers: [AppService],
 })
 export class AppModule implements OnModuleInit, OnApplicationShutdown {
-    // kill -15
-    // // eslint-disable-next-line @typescript-eslint/no-misused-promises
-    // process.on('SIGTERM', async () => {
-    //     console.warn("process.on('SIGTERM')")
-    //
-    //     setTimeout(() => process.exit(1), 5000)
-    //     await app.close()
-    //     process.exit(0)
-    // })
-    //
-    // // eslint-disable-next-line @typescript-eslint/no-misused-promises
-    // process.on('SIGINT', async () => {
-    //     console.warn("process.on('SIGINT')")
-    //
-    //     setTimeout(() => process.exit(1), 5000)
-    //     await app.close()
-    //     process.exit(0)
-    // })
+    /*
+     * When the application receives a termination signal it will call any registered
+     * onModuleDestroy(), beforeApplicationShutdown(), then onApplicationShutdown() methods
+     * (in the sequence described above) with the corresponding signal as the first parameter.
+     * If a registered function awaits an asynchronous call (returns a promise), Nest will not
+     * continue in the sequence until the promise is resolved or rejected.
+     */
 
     onModuleInit(): void {
         console.info(`ModuleInit - AppModule has been initialized.`)

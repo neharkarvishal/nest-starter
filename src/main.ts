@@ -19,15 +19,11 @@ import { TimeoutInterceptor } from './infra/interceptors/timeout'
 import { TransformInterceptor } from './infra/interceptors/transform'
 
 function setupSwaggerDocs(app: INestApplication) {
-    const SWAGGER_TITLE = 'API'
-    const SWAGGER_DESCRIPTION = 'API'
-    const SWAGGER_PREFIX = '/docs'
-
     const version = (require('../package.json').version as string) || '' // eslint-disable-line @typescript-eslint/no-var-requires,global-require,@typescript-eslint/no-unsafe-member-access
 
     const config = new DocumentBuilder()
-        .setTitle(SWAGGER_TITLE)
-        .setDescription(SWAGGER_DESCRIPTION)
+        .setTitle('API')
+        .setDescription('API')
         .setVersion(version)
         .addBearerAuth()
         .build()
@@ -35,7 +31,8 @@ function setupSwaggerDocs(app: INestApplication) {
     const document = SwaggerModule.createDocument(app, config, {
         deepScanRoutes: true,
     })
-    SwaggerModule.setup(SWAGGER_PREFIX, app, document)
+
+    SwaggerModule.setup('/docs', app, document)
 }
 
 function setupInfra(app: INestApplication) {

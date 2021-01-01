@@ -69,26 +69,6 @@ export class HealthController implements OnModuleInit, OnApplicationShutdown {
         ])
     }
 
-    /*
-     * When the application receives a termination signal it will call any registered
-     * onModuleDestroy(), beforeApplicationShutdown(), then onApplicationShutdown() methods
-     * (in the sequence described above) with the corresponding signal as the first parameter.
-     * If a registered function awaits an asynchronous call (returns a promise), Nest will not
-     * continue in the sequence until the promise is resolved or rejected.
-     */
-
-    onModuleInit(): void {
-        console.log(`ModuleInit - HealthController has been initialized.`, {
-            config: this.config.get<string>('NODE_ENV'),
-        })
-    }
-
-    onApplicationShutdown(signal?: string): void {
-        console.log(
-            `ApplicationShutdown - HealthController has been shutdown with ${signal} signal`,
-        )
-    }
-
     collectOsMetrics(metrics) {
         pidusage(process.pid, (err, stat) => {
             if (err) return
@@ -100,5 +80,17 @@ export class HealthController implements OnModuleInit, OnApplicationShutdown {
 
             metrics.os = stat
         })
+    }
+
+    onModuleInit() {
+        console.log(`ModuleInit - HealthController has been initialized.`, {
+            config: this.config.get<string>('NODE_ENV'),
+        })
+    }
+
+    onApplicationShutdown(signal?: string) {
+        console.log(
+            `ApplicationShutdown - HealthController has been shutdown with ${signal} signal`,
+        )
     }
 }

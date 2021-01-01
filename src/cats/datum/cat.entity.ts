@@ -23,7 +23,7 @@ import { User } from '../../users/datum/user.entity' // eslint-disable-line impo
 export class Cat {
     public static options: EntityOptions = { name: 'cats' }
 
-    public static exclude = ['createdAt', 'updatedAt', 'deletedAt']
+    public static exclude = ['version', 'createdAt', 'updatedAt', 'deletedAt']
 
     @ApiProperty({ description: 'Cat unique ID', example: 1 })
     @PrimaryGeneratedColumn()
@@ -65,11 +65,11 @@ export class Cat {
      * Relations
      */
 
-    @ManyToOne((type) => User, (u) => u.cats, {
+    @ManyToOne(() => User, (u) => u.cats, {
         lazy: false, // true sets relation to be lazy, lazy relations are promise of that entity
         nullable: false, // if relation column value can be nullable or not, {LEFT JOIN <-> INNER JOIN}?
     })
     @JoinColumn({ name: 'userId', referencedColumnName: 'id' })
-    @Type((t) => User)
+    @Type(() => User)
     user: User
 }
