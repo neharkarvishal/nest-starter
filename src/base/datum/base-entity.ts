@@ -1,55 +1,44 @@
 /* eslint-disable max-classes-per-file */
-import { ApiPropertyOptional, ApiProperty } from '@nestjs/swagger'
+import { ApiProperty } from '@nestjs/swagger'
 
 import {
     PrimaryGeneratedColumn,
     UpdateDateColumn,
     CreateDateColumn,
     DeleteDateColumn,
+    VersionColumn,
 } from 'typeorm'
 
-export interface IBaseEntityModel {
-    id?: number
+export abstract class BaseEntity {
+    public static exclude = [
+        'password',
+        'version',
+        'createdAt',
+        'updatedAt',
+        'deletedAt',
+    ]
 
-    readonly createdAt?: Date
-    readonly updatedAt?: Date
-    readonly deletedAt?: Date | null
-}
-
-export abstract class Model {
-    constructor(input?: any) {
-        if (input) {
-            Object.assign(this, input)
-        }
-    }
-}
-
-export abstract class BaseEntity extends Model implements IBaseEntityModel {
-    @ApiPropertyOptional({ type: String })
+    @ApiProperty({ description: 'Unique ID', example: 1 })
     @PrimaryGeneratedColumn()
-    id?: number
+    id: number
 
-    @ApiProperty({
-        type: 'string',
-        format: 'date-time',
-        example: '2000-01-01T12:00:00.000Z',
+    @ApiProperty({ example: '2000-01-01T12:00:00.000Z' })
+    @VersionColumn({
+        default: 1,
+        select: false,
+        nullable: true,
     })
-    @CreateDateColumn()
+    version?: number
+
+    @ApiProperty({ example: '2000-01-01T12:00:00.000Z' })
+    @CreateDateColumn({ nullable: true })
     createdAt?: Date
 
-    @ApiProperty({
-        type: 'string',
-        format: 'date-time',
-        example: '2000-01-01T12:00:00.000Z',
-    })
-    @UpdateDateColumn()
+    @ApiProperty({ example: '2000-01-01T12:00:00.000Z' })
+    @UpdateDateColumn({ nullable: true })
     updatedAt?: Date
 
-    @ApiProperty({
-        type: 'string',
-        format: 'date-time',
-        example: '2000-01-01T12:00:00.000Z',
-    })
-    @DeleteDateColumn()
+    @ApiProperty({ example: '2000-01-01T12:00:00.000Z' })
+    @DeleteDateColumn({ nullable: true })
     deletedAt?: Date | null
 }

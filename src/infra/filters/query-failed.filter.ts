@@ -8,10 +8,11 @@ import {
 } from '@nestjs/common'
 
 import { QueryFailedError } from 'typeorm'
+import { EntityNotFoundError } from 'typeorm/error/EntityNotFoundError'
 
-@Catch(QueryFailedError)
+@Catch(QueryFailedError, EntityNotFoundError)
 export class QueryFailedFilter implements ExceptionFilter {
-    catch(exception: QueryFailedError, host: ArgumentsHost) {
+    catch(exception: QueryFailedError | EntityNotFoundError, host: ArgumentsHost) {
         const ctx = host.switchToHttp()
         const response = ctx.getResponse<Response>()
         const request = ctx.getRequest<Request>()

@@ -1,50 +1,38 @@
 /* eslint-disable no-use-before-define */
 import { ApiProperty } from '@nestjs/swagger'
 
-import { Type } from 'class-transformer'
-import {
-    Column,
-    CreateDateColumn,
-    Entity,
-    PrimaryGeneratedColumn,
-    UpdateDateColumn,
-    DeleteDateColumn,
-    OneToMany,
-    VersionColumn,
-    EntityOptions,
-} from 'typeorm'
+import { Exclude, Type } from 'class-transformer'
+import { Column, Entity, OneToMany, EntityOptions } from 'typeorm'
 
+import { BaseEntity } from '../../base'
 import { Cat } from '../../cats/datum/cat.entity' // eslint-disable-line import/no-cycle
 
 @Entity(User.options)
-export class User {
+export class User extends BaseEntity {
     public static options: EntityOptions = { name: 'users' }
 
-    public static exclude = ['version', 'createdAt', 'updatedAt', 'deletedAt']
+    @Column({ nullable: false })
+    username: string
 
-    @ApiProperty({ description: 'User unique ID', example: 1 })
-    @PrimaryGeneratedColumn()
-    id: number
+    @Column({
+        nullable: false,
+        // unique: true,
+    })
+    email: string
 
-    @ApiProperty({ description: 'The name of the User', example: 'Name' })
-    @Column()
-    name: string
+    @Column({ nullable: false, select: false })
+    password: string
 
-    /**
-     * Meta
-     */
+    @Column({ nullable: false })
+    firstName: string
 
-    @VersionColumn({ default: 1, select: false, nullable: true })
-    version: number
+    @ApiProperty({ example: 'Middle' })
+    @Column({ nullable: true })
+    middleName: string
 
-    @CreateDateColumn({ nullable: true })
-    createdAt: Date
-
-    @UpdateDateColumn({ nullable: true })
-    updatedAt: Date
-
-    @DeleteDateColumn({ nullable: true })
-    deletedAt: Date | null
+    @ApiProperty({ example: 'Last' })
+    @Column({ nullable: false })
+    lastName: string
 
     /**
      * Relations

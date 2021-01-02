@@ -1,5 +1,5 @@
 /* eslint-disable no-use-before-define */
-import { Controller, HttpStatus, Post } from '@nestjs/common'
+import { Controller, Get, HttpStatus, Param, Post } from '@nestjs/common'
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import {
     CreateManyDto,
@@ -51,6 +51,19 @@ export class CatsController implements CrudController<Cat> {
                     exclude: User.exclude,
                 },
             },
+        },
+        params: {
+            id: {
+                field: 'id', // `/api/cats/:slug` -> `/api/cats/1`
+                type: 'number',
+                primary: true,
+            },
+            // catId: {
+            //     field: 'catId', // `/api/cats/:catId/user` -> `/api/cats/1/user`
+            //     type: 'number',
+            //     primary: false,
+            //     disabled: false,
+            // },
         },
     }
 
@@ -113,6 +126,11 @@ export class CatsController implements CrudController<Cat> {
     @Override()
     async deleteOne(@ParsedRequest() r: CrudRequest) {
         return this.base.deleteOneBase(r)
+    }
+
+    @Get('/:catId/user')
+    async getUserByCatId(@Param('catId') catId: number) {
+        return this.service.getUserByCatId(catId)
     }
 
     @ApiOperation({ summary: 'Delete all Cats' })

@@ -2,32 +2,15 @@
 import { ApiProperty } from '@nestjs/swagger'
 
 import { Type } from 'class-transformer'
-import {
-    Column,
-    CreateDateColumn,
-    Entity,
-    PrimaryGeneratedColumn,
-    UpdateDateColumn,
-    DeleteDateColumn,
-    ManyToOne,
-    PrimaryColumn,
-    Index,
-    VersionColumn,
-    JoinColumn,
-} from 'typeorm'
+import { Column, Entity, ManyToOne, JoinColumn } from 'typeorm'
 import type { EntityOptions } from 'typeorm'
 
+import { BaseEntity } from '../../base'
 import { User } from '../../users/datum/user.entity' // eslint-disable-line import/no-cycle
 
 @Entity(Cat.options)
-export class Cat {
+export class Cat extends BaseEntity {
     public static options: EntityOptions = { name: 'cats' }
-
-    public static exclude = ['version', 'createdAt', 'updatedAt', 'deletedAt']
-
-    @ApiProperty({ description: 'Cat unique ID', example: 1 })
-    @PrimaryGeneratedColumn()
-    id: number
 
     @ApiProperty({ description: 'ID of the Owner', example: 1 })
     @Column()
@@ -44,22 +27,6 @@ export class Cat {
     @ApiProperty({ description: 'The breed of the Cat', example: 'Maine Coon' })
     @Column()
     breed: string
-
-    /**
-     * Meta
-     */
-
-    @VersionColumn({ default: 1, select: false, nullable: true })
-    version: number
-
-    @CreateDateColumn({ nullable: true })
-    createdAt: Date
-
-    @UpdateDateColumn({ nullable: true })
-    updatedAt: Date
-
-    @DeleteDateColumn({ nullable: true })
-    deletedAt: Date | null
 
     /**
      * Relations

@@ -19,25 +19,25 @@ export class CreateCatDto {
     @IsNotEmpty()
     @MinLength(2)
     @MaxLength(36)
-    readonly name: string
+    name: string
 
     @ApiProperty({ description: 'ID of the Owner', example: 1 })
     @IsInt()
     @IsNotEmpty()
-    readonly userId: number
+    userId: number
 
     @ApiProperty({ description: 'The age of the Cat', example: 1 })
     @IsInt()
     @IsPositive()
     @IsNotEmpty()
-    readonly age: number
+    age: number
 
     @ApiProperty({ description: 'The breed of the Cat', example: 'Maine Coon' })
     @IsString()
     @IsNotEmpty()
     @MinLength(2)
     @MaxLength(36)
-    readonly breed: string
+    breed: string
 }
 
 export class UpdateCatDto {
@@ -47,14 +47,14 @@ export class UpdateCatDto {
     @MinLength(2)
     @MaxLength(36)
     @IsOptional()
-    readonly name?: string
+    name?: string
 
     @ApiProperty({ description: 'The age of the Cat', example: 1 })
     @IsInt()
     @IsPositive()
     @IsNotEmpty()
     @IsOptional()
-    readonly age?: number
+    age?: number
 
     @ApiProperty({ description: 'The breed of the Cat', example: 'Maine Coon' })
     @IsString()
@@ -62,7 +62,7 @@ export class UpdateCatDto {
     @MinLength(2)
     @MaxLength(36)
     @IsOptional()
-    readonly breed?: string
+    breed?: string
 }
 
 export class GetCatResponseDto {
