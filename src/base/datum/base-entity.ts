@@ -31,14 +31,14 @@ export abstract class BaseEntity {
     version?: number
 
     @ApiProperty({ example: '2000-01-01T12:00:00.000Z' })
-    @CreateDateColumn({ nullable: true })
+    @CreateDateColumn({ select: false, nullable: true })
     createdAt?: Date
 
     @ApiProperty({ example: '2000-01-01T12:00:00.000Z' })
-    @UpdateDateColumn({ nullable: true })
+    @UpdateDateColumn({ select: false, nullable: true })
     updatedAt?: Date
 
     @ApiProperty({ example: '2000-01-01T12:00:00.000Z' })
-    @DeleteDateColumn({ nullable: true })
+    @DeleteDateColumn({ select: false, nullable: true })
     deletedAt?: Date | null
 }
