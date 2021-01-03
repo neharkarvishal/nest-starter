@@ -2,7 +2,7 @@
 import { ApiProperty } from '@nestjs/swagger'
 
 import { Type } from 'class-transformer'
-import { Column, Entity, ManyToOne, JoinColumn } from 'typeorm'
+import { Column, Entity, ManyToOne, JoinColumn, RelationId } from 'typeorm'
 import type { EntityOptions } from 'typeorm'
 
 import { BaseEntity } from '../../base'

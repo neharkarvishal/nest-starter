@@ -6,32 +6,27 @@ import { of, throwError } from 'rxjs'
 import { mergeMap } from 'rxjs/operators'
 import {
     DeepPartial,
-    DeleteResult,
     FindConditions,
     FindManyOptions,
     FindOneOptions,
     Repository,
-    UpdateResult,
 } from 'typeorm'
 import { QueryDeepPartialEntity } from 'typeorm/query-builder/QueryPartialEntity'
 
-import { BaseEntity } from '../datum/base-entity'
 import { ICrudService } from './icrud.service'
-import { IPagination } from './pagination'
-import { ITryRequest } from './try-request'
 
-export abstract class CrudService<T extends BaseEntity> implements ICrudService<T> {
+export abstract class CrudService<T> implements ICrudService<T> {
     saltRounds: number
 
     protected constructor(protected readonly repository: Repository<T>) {
         this.saltRounds = 12
     }
 
-    async count(filter?: FindManyOptions<T>): Promise<number> {
+    async count(filter?: FindManyOptions<T>) {
         return this.repository.count(filter)
     }
 
-    async findAll(filter?: FindManyOptions<T>): Promise<IPagination<T>> {
+    async findAll(filter?: FindManyOptions<T>) {
         const total = await this.repository.count(filter)
         const items = await this.repository.find(filter)
 
@@ -41,7 +36,7 @@ export abstract class CrudService<T extends BaseEntity> implements ICrudService<
     async findOneOrFail(
         id: string | number | FindOneOptions<T> | FindConditions<T>,
         options?: FindOneOptions<T>,
-    ): Promise<ITryRequest> {
+    ) {
         try {
             const record = await this.repository.findOneOrFail(id as any, options)
 
@@ -54,7 +49,7 @@ export abstract class CrudService<T extends BaseEntity> implements ICrudService<
     async findOne(
         id: string | number | FindOneOptions<T> | FindConditions<T>,
         options?: FindOneOptions<T>,
-    ): Promise<T> {
+    ) {
         const record = await this.repository.findOne(id as any, options)
 
         if (!record)
@@ -63,7 +58,7 @@ export abstract class CrudService<T extends BaseEntity> implements ICrudService<
         return record
     }
 
-    async create(entity: DeepPartial<T>, ...options: any[]): Promise<T> {
+    async create(entity: DeepPartial<T>, ...options: any[]) {
         const obj = this.repository.create(entity)
 
         // READMEWHY: https://github.com/Microsoft/TypeScript/issues/21592
@@ -74,7 +69,8 @@ export abstract class CrudService<T extends BaseEntity> implements ICrudService<
         }
     }
 
-    async getPasswordHash(password: string): Promise<string> {
+    // eslint-disable-next-line @typescript-eslint/require-await
+    async getPasswordHash(password: string) {
         return bcrypt.hash(password, this.saltRounds)
     }
 
@@ -82,7 +78,7 @@ export abstract class CrudService<T extends BaseEntity> implements ICrudService<
         id: string | number | FindConditions<T>,
         partialEntity: QueryDeepPartialEntity<T>,
         ...options: any[]
-    ): Promise<UpdateResult | T> {
+    ) {
         try {
             // method getPasswordHash is copied from AuthService
             // try if can import somehow the service and use its method
@@ -90,9 +86,7 @@ export abstract class CrudService<T extends BaseEntity> implements ICrudService<
             // @ts-ignore
             if (partialEntity.hash) {
                 // @ts-ignore
-                const hashPassword = await this.getPasswordHash(partialEntity.hash)
-                // @ts-ignore
-                partialEntity.hash = hashPassword // eslint-disable-line no-param-reassign
+                partialEntity.hash = await this.getPasswordHash(partialEntity.hash) // eslint-disable-line @typescript-eslint/no-unsafe-assignment,no-param-reassign
             }
 
             return await this.repository.update(id, partialEntity)
@@ -101,10 +95,7 @@ export abstract class CrudService<T extends BaseEntity> implements ICrudService<
         }
     }
 
-    async delete(
-        criteria: string | number | FindConditions<T>,
-        ...options: any[]
-    ): Promise<DeleteResult> {
+    async delete(criteria: string | number | FindConditions<T>, ...options: any[]) {
         try {
             return await this.repository.delete(criteria)
         } catch (err) {

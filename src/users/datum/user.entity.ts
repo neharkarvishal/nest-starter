@@ -2,7 +2,7 @@
 import { ApiProperty } from '@nestjs/swagger'
 
 import { Exclude, Type } from 'class-transformer'
-import { Column, Entity, OneToMany, EntityOptions } from 'typeorm'
+import { Column, Entity, OneToMany, EntityOptions, RelationId } from 'typeorm'
 
 import { BaseEntity } from '../../base'
 import { Cat } from '../../cats/datum/cat.entity' // eslint-disable-line import/no-cycle
@@ -37,6 +37,9 @@ export class User extends BaseEntity {
     /**
      * Relations
      */
+
+    @RelationId((user: User) => user.cats) // these are virtual and not stored in db
+    catIds: number[]
 
     @OneToMany(() => Cat, (c) => c.user, {
         lazy: false, // true sets relation to be lazy, lazy relations are promise of that entity

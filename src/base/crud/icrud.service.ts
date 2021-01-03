@@ -21,22 +21,18 @@ export interface IPagination<T> {
 }
 
 export interface ICrudService<T> {
-    count(filter?: FindManyOptions<T>): Promise<number>
+    count(filter?: FindManyOptions<T>)
 
-    findAll(filter?: FindManyOptions<T>): Promise<IPagination<T>>
+    findAll(filter?: FindManyOptions<T>)
 
     findOne(
         id: string | number | FindOneOptions<T> | FindConditions<T>,
         options?: FindOneOptions<T>,
-    ): Promise<T>
+    )
 
-    create(entity: DeepPartial<T>, ...options: any[]): Promise<T>
+    create(entity: DeepPartial<T>, ...options: any[])
 
-    update(
-        id: any,
-        entity: QueryDeepPartialEntity<T>,
-        ...options: any[]
-    ): Promise<UpdateResult | T>
+    update(id: any, entity: QueryDeepPartialEntity<T>, ...options: any[])
 
-    delete(id: any, ...options: any[]): Promise<DeleteResult>
+    delete(id: any, ...options: any[])
 }

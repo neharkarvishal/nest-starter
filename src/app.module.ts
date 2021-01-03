@@ -9,6 +9,7 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 import * as Joi from '@hapi/joi'
 import { join } from 'path'
 
+import { AdminModule } from './admin/admin.module'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
 import { CatsModule } from './cats/cats.module'
@@ -72,6 +73,7 @@ export const TypeOrmModuleOptions = {
         ScheduleModule.forRoot(), // CronModules deps
         CronModule,
         TerminusModule, // Health module
+        AdminModule,
         CatsModule,
         UsersModule,
     ],
