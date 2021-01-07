@@ -14,7 +14,11 @@ import { AppController } from './app.controller'
 import { AppService } from './app.service'
 import { CatsModule } from './cats/cats.module'
 import { CronModule } from './cron/cron.module'
+import { DatabaseModule } from './database/database.module'
 import { HealthController } from './health/health.controller'
+import { NotesModule } from './notes/notes.module'
+import { TagsModule } from './tags/tags.module'
+import { ThemesModule } from './themes/themes.module'
 import { UsersModule } from './users/users.module'
 
 const ConfigModuleOptions = {
@@ -76,6 +80,10 @@ export const TypeOrmModuleOptions = {
         AdminModule,
         CatsModule,
         UsersModule,
+        TagsModule,
+        ThemesModule,
+        NotesModule,
+        DatabaseModule,
     ],
     providers: [AppService],
 })

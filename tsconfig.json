@@ -12,5 +12,5 @@
         "baseUrl": "./",
         "incremental": true
     },
-    "include": ["src/**/*", "./test", ".eslintrc.js", "**/*global.d.ts"]
+    "include": ["src/**/*", "./test", ".eslintrc.js", "knexfile.ts", "**/*global.d.ts"]
 }
