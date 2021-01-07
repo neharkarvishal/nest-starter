@@ -1,9 +1,9 @@
 import * as Knex from 'knex'
 
-import { ThemeModel } from '../models/theme.model'
+import { Theme } from '../models/theme'
 
 export async function seed(knex: Knex): Promise<any> {
-    await ThemeModel.query(knex).insert({
+    await Theme.query(knex).insert({
         name: 'Dracula',
         fontSize: 14,
         fontFamily: 'Code Saver',

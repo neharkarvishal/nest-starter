@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 
-import { NoteTagModel } from '../database/models/note-tag.model'
+import { NoteTag } from '../database/models/note-tag.model'
 
 @Injectable()
 export class NoteTagsService {
@@ -8,11 +8,11 @@ export class NoteTagsService {
         return null
     }
 
-    create(props: Partial<NoteTagModel>) {
+    create(props: Partial<NoteTag>) {
         return null
     }
 
-    async delete(props: Partial<NoteTagModel>) {
+    async delete(props: Partial<NoteTag>) {
         return null
     }
 

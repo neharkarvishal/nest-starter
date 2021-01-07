@@ -1,6 +1,6 @@
 import { BaseModel } from './base.model'
 
-export class TagModel extends BaseModel {
+export class Tag extends BaseModel {
     static tableName = 'tags'
 
     name: string

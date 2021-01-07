@@ -2,14 +2,14 @@ import { Inject, Injectable } from '@nestjs/common'
 
 import { ModelClass, transaction } from 'objection'
 
-import { ThemeModel } from '../database/models/theme.model'
+import { Theme } from '../database/models/theme'
 import { NotesService } from '../notes/notes.service'
 
 @Injectable()
 export class ThemesService {
     constructor(
         private noteService: NotesService,
-        @Inject('ThemeModel') private modelClass: ModelClass<ThemeModel>,
+        @Inject(Theme.name) private modelClass: ModelClass<Theme>,
     ) {}
 
     findAll() {
@@ -20,11 +20,11 @@ export class ThemesService {
         return this.modelClass.query().findById(id)
     }
 
-    create(props: Partial<ThemeModel>) {
+    create(props: Partial<Theme>) {
         return this.modelClass.query().insert(props).returning('*')
     }
 
-    update(id: number, props: Partial<ThemeModel>) {
+    update(id: number, props: Partial<Theme>) {
         return this.modelClass
             .query()
             .patch(props)

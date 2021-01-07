@@ -2,14 +2,14 @@ import { Inject, Injectable } from '@nestjs/common'
 
 import { ModelClass, transaction } from 'objection'
 
-import { TagModel } from '../database/models/tag.model'
+import { Tag } from '../database/models/tag.model'
 import { NoteTagsService } from '../notes/note-tags.service'
 
 @Injectable()
 export class TagsService {
     constructor(
         private noteTagsService: NoteTagsService,
-        @Inject('TagModel') private modelClass: ModelClass<TagModel>,
+        @Inject(Tag.name) private modelClass: ModelClass<Tag>,
     ) {}
 
     findAll() {
@@ -20,11 +20,11 @@ export class TagsService {
         return this.modelClass.query().findById(id)
     }
 
-    create(props: Partial<TagModel>) {
+    create(props: Partial<Tag>) {
         return this.modelClass.query().insert(props).returning('*')
     }
 
-    update(id: number, props: Partial<TagModel>) {
+    update(id: number, props: Partial<Tag>) {
         return this.modelClass
             .query()
             .patch(props)

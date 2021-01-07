@@ -1,19 +1,19 @@
 import { Model } from 'objection'
 
 import { BaseModel } from './base.model'
-import { TagModel } from './tag.model'
-import { ThemeModel } from './theme.model'
+import { Tag } from './tag.model'
+import { Theme } from './theme'
 
-export class NoteModel extends BaseModel {
+export class Note extends BaseModel {
     static tableName = 'notes'
 
     text: string
 
     themeId: number
 
-    theme: ThemeModel
+    theme: Theme
 
-    tags: TagModel[]
+    tags: Tag[]
 
     static relationMappings = {
         theme: {

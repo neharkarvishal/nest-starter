@@ -3,12 +3,12 @@ import { Global, Module } from '@nestjs/common'
 import * as Knex from 'knex'
 import { knexSnakeCaseMappers, Model } from 'objection'
 
-import { NoteTagModel } from './models/note-tag.model'
-import { NoteModel } from './models/note.model'
-import { TagModel } from './models/tag.model'
-import { ThemeModel } from './models/theme.model'
+import { NoteTag } from './models/note-tag.model'
+import { Note } from './models/note.model'
+import { Tag } from './models/tag.model'
+import { Theme } from './models/theme'
 
-const models = [TagModel, NoteModel, ThemeModel, NoteTagModel]
+const models = [Tag, Note, Theme, NoteTag]
 
 const modelProviders = models.map((model) => {
     return {

@@ -1,6 +1,6 @@
 import { BaseModel } from './base.model'
 
-export class NoteTagModel extends BaseModel {
+export class NoteTag extends BaseModel {
     static tableName = 'note_tags'
 
     noteId: number

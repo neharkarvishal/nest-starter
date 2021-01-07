@@ -9,7 +9,7 @@ import {
     Put,
 } from '@nestjs/common'
 
-import { TagModel } from '../database/models/tag.model'
+import { Tag } from '../database/models/tag.model'
 import { TagsService } from './tags.service'
 
 @Controller('tags')
@@ -27,7 +27,7 @@ export class TagsController {
     }
 
     @Post()
-    async create(@Body() props: Partial<TagModel>) {
+    async create(@Body() props: Partial<Tag>) {
         return this.tagsService.create(props)
     }
 
@@ -39,7 +39,7 @@ export class TagsController {
     @Put(':id')
     async update(
         @Param('id', new ParseIntPipe()) id: number,
-        @Body() props: Partial<TagModel>,
+        @Body() props: Partial<Tag>,
     ) {
         return this.tagsService.update(id, props)
     }

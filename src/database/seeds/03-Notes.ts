@@ -1,9 +1,9 @@
 import * as Knex from 'knex'
 
-import { NoteModel } from '../models/note.model'
+import { Note } from '../models/note.model'
 
 export async function seed(knex: Knex): Promise<any> {
-    await NoteModel.query(knex).insert({
+    await Note.query(knex).insert({
         text:
             'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, ex.',
         themeId: 1,

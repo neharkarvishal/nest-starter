@@ -9,7 +9,7 @@ import {
     Put,
 } from '@nestjs/common'
 
-import { NoteModel } from '../database/models/note.model'
+import { Note } from '../database/models/note.model'
 import { NotesService } from './notes.service'
 
 @Controller('notes')
@@ -29,7 +29,7 @@ export class NotesController {
     }
 
     @Post()
-    async create(@Body() props: Partial<NoteModel>) {
+    async create(@Body() props: Partial<Note>) {
         return this.notesService.create(props)
     }
 

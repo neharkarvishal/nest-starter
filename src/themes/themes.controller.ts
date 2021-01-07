@@ -9,7 +9,7 @@ import {
     Put,
 } from '@nestjs/common'
 
-import { ThemeModel } from '../database/models/theme.model'
+import { Theme } from '../database/models/theme'
 import { ThemesService } from './themes.service'
 
 @Controller('themes')
@@ -27,7 +27,7 @@ export class ThemesController {
     }
 
     @Post()
-    async create(@Body() props: Partial<ThemeModel>) {
+    async create(@Body() props: Partial<Theme>) {
         return this.themesService.create(props)
     }
 
@@ -39,7 +39,7 @@ export class ThemesController {
     @Put(':id')
     async update(
         @Param('id', new ParseIntPipe()) id: number,
-        @Body() props: Partial<ThemeModel>,
+        @Body() props: Partial<Theme>,
     ) {
         return this.themesService.update(id, props)
     }
