@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define,@typescript-eslint/no-unused-vars */
 import {
     Body,
     Controller,
@@ -7,40 +8,70 @@ import {
     ParseIntPipe,
     Post,
     Put,
+    UseInterceptors,
 } from '@nestjs/common'
+import { ApiOperation, ApiTags } from '@nestjs/swagger'
+import {
+    CrudRequest,
+    CrudRequestInterceptor,
+    ParsedBody,
+    ParsedRequest,
+} from '@nestjsx/crud'
 
 import { Tag } from '../database/models/tag.model'
+import { CreateTagsDto, UpdateTagsDto, GetTagsResponseDto } from './tags.dto'
 import { TagsService } from './tags.service'
 
-@Controller('tags')
+@Controller(TagsController.path)
+@ApiTags(TagsController.name)
+@UseInterceptors(CrudRequestInterceptor)
 export class TagsController {
-    constructor(private tagsService: TagsService) {}
+    static path = 'tags'
+
+    constructor(private service: TagsService) {}
 
     @Get()
-    async findAll() {
-        return this.tagsService.findAll()
+    async findAll(@ParsedRequest() r: CrudRequest) {
+        const { parsed, options } = r
+
+        return this.service.findAll({ parsed, options })
     }
 
     @Get(':id')
-    async findOne(@Param('id', new ParseIntPipe()) id: number) {
-        return this.tagsService.findOne(id)
+    async findOne(
+        @ParsedRequest() r: CrudRequest,
+        @Param('id', ParseIntPipe) id: number,
+    ) {
+        const { parsed, options } = r
+
+        return this.service.findOne({ parsed, options }, id)
     }
 
     @Post()
-    async create(@Body() props: Partial<Tag>) {
-        return this.tagsService.create(props)
+    async create(@ParsedRequest() r: CrudRequest, @Body() props: CreateTagsDto) {
+        const { parsed, options } = r
+
+        return this.service.create({ parsed, options }, props)
     }
 
     @Delete(':id')
-    async delete(@Param('id', new ParseIntPipe()) id: number) {
-        return this.tagsService.delete(id)
+    async delete(
+        @ParsedRequest() r: CrudRequest,
+        @Param('id', ParseIntPipe) id: number,
+    ) {
+        const { parsed, options } = r
+
+        return this.service.delete({ parsed, options }, id)
     }
 
     @Put(':id')
     async update(
-        @Param('id', new ParseIntPipe()) id: number,
-        @Body() props: Partial<Tag>,
+        @ParsedRequest() r: CrudRequest,
+        @Param('id', ParseIntPipe) id: number,
+        @Body() props: UpdateTagsDto,
     ) {
-        return this.tagsService.update(id, props)
+        const { parsed, options } = r
+
+        return this.service.update({ parsed, options }, id, props)
     }
 }

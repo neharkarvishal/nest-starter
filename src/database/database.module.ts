@@ -1,14 +1,12 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Global, Module } from '@nestjs/common'
 
 import * as Knex from 'knex'
 import { knexSnakeCaseMappers, Model } from 'objection'
 
-import { NoteTag } from './models/note-tag.model'
-import { Note } from './models/note.model'
 import { Tag } from './models/tag.model'
-import { Theme } from './models/theme'
 
-const models = [Tag, Note, Theme, NoteTag]
+const models = [Tag]
 
 const modelProviders = models.map((model) => {
     return {
@@ -30,7 +28,7 @@ const providers = [
                     filename: './knex.sqlite',
                 },
                 debug: true,
-                ...knexSnakeCaseMappers(),
+                // ...knexSnakeCaseMappers(),
             })
 
             Model.knex(knex)

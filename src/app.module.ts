@@ -1,25 +1,19 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/require-await */
 import { Module, OnApplicationShutdown, OnModuleInit } from '@nestjs/common'
-import { ConfigModule, ConfigService } from '@nestjs/config'
+import { ConfigModule } from '@nestjs/config'
 import { ScheduleModule } from '@nestjs/schedule'
 import { ServeStaticModule } from '@nestjs/serve-static'
 import { TerminusModule } from '@nestjs/terminus'
-import { TypeOrmModule } from '@nestjs/typeorm'
 
 import * as Joi from '@hapi/joi'
 import { join } from 'path'
 
-import { AdminModule } from './admin/admin.module'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
-import { CatsModule } from './cats/cats.module'
 import { CronModule } from './cron/cron.module'
 import { DatabaseModule } from './database/database.module'
 import { HealthController } from './health/health.controller'
-import { NotesModule } from './notes/notes.module'
 import { TagsModule } from './tags/tags.module'
-import { ThemesModule } from './themes/themes.module'
-import { UsersModule } from './users/users.module'
 
 const ConfigModuleOptions = {
     isGlobal: true,
@@ -41,30 +35,6 @@ const ConfigModuleOptions = {
     }),
 }
 
-// TODO: https://github.com/GauSim/nestjs-typeorm/blob/master/code/src/scripts/write-type-orm-config.ts,
-//  https://medium.com/@gausmann.simon/nestjs-typeorm-and-postgresql-full-example-development-and-project-setup-working-with-database-c1a2b1b11b8f
-
-export const TypeOrmModuleOptions = {
-    name: 'default', // following field actually sets the connection name when calling `forRootAsync`, not the other one in `useFactory`
-    inject: [ConfigService],
-    useFactory: async (config: ConfigService<EnvironmentVariables>) => ({
-        name: 'default', // this field is ignored when calling forRootAsync
-        type: config.get('type'),
-        database: config.get('database'),
-        entities: [`dist/**/*.entity.js`],
-        migrations: [`dist/migration/**/*.js`],
-        subscribers: [`dist/subscriber/**/*.js`],
-        migrationsTableName: 'migrations_typeorm',
-        cli: {
-            entitiesDir: 'src/entity',
-            migrationsDir: 'src/migration',
-            subscribersDir: 'src/subscriber',
-        },
-        synchronize: !!parseInt(config.get('synchronize'), 10),
-        logging: !!parseInt(config.get('logging'), 10), // 1 = true, 0 = false, cuz they get parsed to strings, so we `!!parseInt(var)` it for bool; hax, lol
-    }),
-}
-
 @Module({
     controllers: [AppController, HealthController],
     imports: [
@@ -73,17 +43,11 @@ export const TypeOrmModuleOptions = {
             rootPath: join(__dirname, '..', 'redoc'),
             exclude: ['/api*'],
         }),
-        TypeOrmModule.forRootAsync(TypeOrmModuleOptions),
+        DatabaseModule,
         ScheduleModule.forRoot(), // CronModules deps
         CronModule,
         TerminusModule, // Health module
-        AdminModule,
-        CatsModule,
-        UsersModule,
         TagsModule,
-        ThemesModule,
-        NotesModule,
-        DatabaseModule,
     ],
     providers: [AppService],
 })

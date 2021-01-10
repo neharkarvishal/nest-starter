@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import 'dotenv/config'
 import * as Knex from 'knex'
 import { knexSnakeCaseMappers } from 'objection'
@@ -17,5 +18,5 @@ module.exports = {
         directory: './src/database/seeds',
         stub: './src/database/seed.stub',
     },
-    ...knexSnakeCaseMappers(),
+    // ...knexSnakeCaseMappers(),
 } as Knex.Config

@@ -2,6 +2,10 @@ import * as Knex from 'knex'
 
 import { Tag } from '../models/tag.model'
 
+if (process.env.NODE_ENV === 'production') {
+    throw new Error("Can't run seeds in production")
+}
+
 export async function seed(knex: Knex): Promise<any> {
     await Tag.query(knex).insert({
         name: 'Workout',

@@ -19,7 +19,7 @@ import { TimeoutInterceptor } from './infra/interceptors/timeout'
 import { TransformInterceptor } from './infra/interceptors/transform'
 
 function setupSwaggerDocs(app: INestApplication) {
-    const version = (require('../package.json').version as string) || '' // eslint-disable-line @typescript-eslint/no-var-requires,global-require,@typescript-eslint/no-unsafe-member-access
+    const version = (require('../../package.json').version as string) || '' // eslint-disable-line @typescript-eslint/no-var-requires,global-require,@typescript-eslint/no-unsafe-member-access
 
     const config = new DocumentBuilder()
         .setTitle('API')
