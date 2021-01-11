@@ -1,21 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Model } from 'objection'
+import { ApiProperty } from '@nestjs/swagger'
+
 import type { JSONSchema, Modifier } from 'objection'
 
 import { BaseModel } from './base.model'
 
-export class Tag extends Model {
+export class Tag extends BaseModel {
     static tableName = 'tags'
 
-    id!: number
-
-    createdAt?: Date
-
-    updatedAt?: Date
-
-    deletedAt?: Date | null
-
-    name: string
+    @ApiProperty() name: string
 
     // JSON schema is not the database schema! Nothing is generated based on this.
     // This is only used for validation. Whenever a model instance is created it is checked against this schema.

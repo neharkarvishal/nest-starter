@@ -1,31 +1,24 @@
 /* eslint-disable @typescript-eslint/no-unused-vars,@typescript-eslint/no-floating-promises,no-restricted-syntax */
-import { Model } from 'objection'
+import { ApiProperty } from '@nestjs/swagger'
+
 import type { JSONSchema, Modifiers, AnyQueryBuilder } from 'objection'
 
 import { BaseModel } from './base.model'
 
-export class User extends Model {
+export class User extends BaseModel {
     static tableName = 'users'
 
-    id!: number
+    @ApiProperty() username: string
 
-    createdAt?: Date
+    @ApiProperty() email: string
 
-    updatedAt?: Date
+    @ApiProperty() firstName: string
 
-    deletedAt?: Date | null
+    @ApiProperty() lastName: string
 
-    username: string
-
-    email: string
+    @ApiProperty() isActive: boolean
 
     password: string
-
-    firstName: string
-
-    lastName: string
-
-    isActive: boolean
 
     // JSON schema is not the database schema! Nothing is generated based on this.
     // This is only used for validation. Whenever a model instance is created it is checked against this schema.
