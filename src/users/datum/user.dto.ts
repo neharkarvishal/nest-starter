@@ -8,6 +8,7 @@ import {
     IsNotEmpty,
     IsOptional,
     MaxLength,
+    IsEmail,
 } from 'class-validator'
 
 export class CreateUserDto {
@@ -19,7 +20,7 @@ export class CreateUserDto {
     username: string
 
     @ApiProperty({ example: 'user1@demo.com' })
-    @IsString()
+    @IsEmail()
     @IsNotEmpty()
     @MinLength(2)
     email: string

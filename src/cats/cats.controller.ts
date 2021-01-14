@@ -22,10 +22,12 @@ import {
 } from './datum/cat.dto'
 import { Cat } from './datum/cat.entity'
 
-@Controller(CatsController.path)
 @ApiTags(CatsController.name)
+@Controller(CatsController.path)
 @Crud(CatsController.crudOptions)
 export class CatsController implements CrudController<Cat> {
+    constructor(public service: CatsService) {}
+
     static path = 'cats'
 
     static crudOptions: CrudOptions = {
@@ -67,52 +69,67 @@ export class CatsController implements CrudController<Cat> {
         },
     }
 
-    constructor(public service: CatsService) {}
-
     get base(): CrudController<Cat> {
         return this
     }
 
+    /**
+     * Get one CAT
+     */
     @ApiResponse({ status: HttpStatus.OK, type: GetCatResponseDto })
     @Override()
     async getOne(@ParsedRequest() r: CrudRequest) {
-        return this.base.getOneBase(r)
+        return this.service.getOne(r)
     }
 
+    /**
+     * Get many CATs
+     */
     @ApiResponse({ status: HttpStatus.OK, type: GetManyCatResponseDto })
     @Override()
     async getMany(@ParsedRequest() r: CrudRequest) {
-        return this.base.getManyBase(r)
+        return this.service.getMany(r)
     }
 
+    /**
+     * Create one CAT
+     */
     @ApiResponse({ status: HttpStatus.OK, type: GetCatResponseDto })
     @Override()
     async createOne(
         @ParsedRequest() r: CrudRequest,
         @ParsedBody() cat: CreateCatDto,
     ) {
-        // @ts-ignore
-        return this.base.createOneBase(r, cat)
+        return this.service.createOne(r, cat)
     }
 
+    /**
+     * Create many CATs
+     */
     @ApiResponse({ status: HttpStatus.OK, type: GetManyCatResponseDto })
     @Override()
     async createMany(
         @ParsedRequest() r: CrudRequest,
         @ParsedBody() cats: CreateManyDto<Cat>,
     ) {
-        return this.base.createManyBase(r, cats)
+        return this.service.createMany(r, cats)
     }
 
+    /**
+     * Update  CAT
+     */
     @ApiResponse({ status: HttpStatus.OK, type: GetCatResponseDto })
     @Override()
     async updateOne(
         @ParsedRequest() r: CrudRequest,
         @ParsedBody() cat: UpdateCatDto,
     ) {
-        return this.base.updateOneBase(r, cat as Cat)
+        return this.service.updateOne(r, cat as Cat)
     }
 
+    /**
+     * Replace CAT
+     */
     @ApiResponse({ status: HttpStatus.OK, type: GetCatResponseDto })
     @Override()
     async replaceOne(
@@ -120,19 +137,28 @@ export class CatsController implements CrudController<Cat> {
         @ParsedBody() cat: CreateCatDto,
     ) {
         // @ts-ignore
-        return this.base.replaceOneBase(r, cat)
+        return this.service.replaceOne(r, cat)
     }
 
+    /**
+     * Delete CAT
+     */
     @Override()
     async deleteOne(@ParsedRequest() r: CrudRequest) {
-        return this.base.deleteOneBase(r)
+        return this.service.deleteOne(r)
     }
 
+    /**
+     * Get CATs owner
+     */
     @Get('/:catId/user')
     async getUserByCatId(@Param('catId') catId: number) {
         return this.service.getUserByCatId(catId)
     }
 
+    /**
+     * Delete all CAT
+     */
     @ApiOperation({ summary: 'Delete all Cats' })
     @Post('/clear')
     async clear() {

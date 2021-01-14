@@ -4,6 +4,13 @@
     "compilerOptions": {
         "assets": ["**/*.html"],
         "webpack": false,
-        "plugins": ["@nestjs/swagger"]
+        "plugins": [
+            {
+                "name": "@nestjs/swagger",
+                "options": {
+                    "introspectComments": true
+                }
+            }
+        ]
     }
 }

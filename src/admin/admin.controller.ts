@@ -6,14 +6,14 @@ import { CrudController } from '../base/crud'
 import { AdminService } from './admin.service'
 import { Admin } from './datum/admin.entity'
 
-@Controller(AdminController.path)
 @ApiTags(AdminController.name)
+@Controller(AdminController.path)
 export class AdminController extends CrudController<Admin> {
-    static path = 'admin'
-
     constructor(readonly service: AdminService) {
         super(service)
     }
+
+    static path = 'admin'
 
     @Get('/email/:email')
     async findByEmail(@Param('email') email: string) {

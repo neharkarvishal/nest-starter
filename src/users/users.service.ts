@@ -11,9 +11,10 @@ export class UsersService extends TypeOrmCrudService<User> {
         super(repo)
     }
 
-    /**
-     * Deletes all of the Cat records form database
-     */
+    async getUserByEmail(email: string) {
+        return this.repo.getUserByEmail(email)
+    }
+
     async clear() {
         return this.repo.clearAll()
     }

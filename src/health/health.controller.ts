@@ -6,7 +6,6 @@ import {
     OnApplicationShutdown,
     OnModuleInit,
     MessageEvent,
-    Res,
     Sse,
 } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
@@ -17,9 +16,7 @@ import {
     HealthCheckService,
 } from '@nestjs/terminus'
 
-import { readFileSync } from 'fs'
 import * as os from 'os'
-import { join } from 'path'
 import * as pidusage from 'pidusage'
 import { interval, Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
@@ -35,14 +32,9 @@ export class HealthController implements OnModuleInit, OnApplicationShutdown {
         private config: ConfigService<EnvironmentVariables>,
     ) {}
 
-    @Get()
-    index(@Res() response) {
-        response
-            // @ts-ignore
-            .type('text/html')
-            .send(readFileSync(join(__dirname, 'sse.html')).toString())
-    }
-
+    /**
+     * Get SSE Observable of OS Metrics
+     */
     @Sse('sse')
     sse(): Observable<MessageEvent> {
         const metrics = {
@@ -60,6 +52,9 @@ export class HealthController implements OnModuleInit, OnApplicationShutdown {
         )
     }
 
+    /**
+     * Get Health check
+     */
     @Get()
     @HttpCode(200)
     @HealthCheck()

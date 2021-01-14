@@ -1,6 +1,4 @@
 /* eslint-disable max-classes-per-file */
-import { ApiProperty } from '@nestjs/swagger'
-
 import {
     PrimaryGeneratedColumn,
     UpdateDateColumn,
@@ -10,6 +8,7 @@ import {
 } from 'typeorm'
 
 export abstract class BaseEntity {
+    // to be excluded from response
     public static exclude = [
         'password',
         'version',
@@ -18,11 +17,9 @@ export abstract class BaseEntity {
         'deletedAt',
     ]
 
-    @ApiProperty({ description: 'Unique ID', example: 1 })
     @PrimaryGeneratedColumn()
     id: number
 
-    @ApiProperty({ example: '2000-01-01T12:00:00.000Z' })
     @VersionColumn({
         default: 1,
         select: false,
@@ -30,15 +27,12 @@ export abstract class BaseEntity {
     })
     version?: number
 
-    @ApiProperty({ example: '2000-01-01T12:00:00.000Z' })
     @CreateDateColumn({ select: false, nullable: true })
-    createdAt?: Date
+    createdAt?: Date | null
 
-    @ApiProperty({ example: '2000-01-01T12:00:00.000Z' })
     @UpdateDateColumn({ select: false, nullable: true })
-    updatedAt?: Date
+    updatedAt?: Date | null
 
-    @ApiProperty({ example: '2000-01-01T12:00:00.000Z' })
     @DeleteDateColumn({ select: false, nullable: true })
     deletedAt?: Date | null
 }

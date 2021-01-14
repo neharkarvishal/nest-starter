@@ -11,13 +11,10 @@ import { Cat } from '../../cats/datum/cat.entity' // eslint-disable-line import/
 export class User extends BaseEntity {
     public static options: EntityOptions = { name: 'users' }
 
-    @Column({ nullable: false })
+    @Column({ nullable: false, unique: true })
     username: string
 
-    @Column({
-        nullable: false,
-        // unique: true,
-    })
+    @Column({ nullable: false, unique: true })
     email: string
 
     @Column({ nullable: false, select: false })
@@ -34,7 +31,7 @@ export class User extends BaseEntity {
     @Column({ nullable: false })
     lastName: string
 
-    /**
+    /*
      * Relations
      */
 

@@ -1,12 +1,11 @@
 import 'dotenv/config'
 import * as Knex from 'knex'
-import { knexSnakeCaseMappers } from 'objection'
 
 module.exports = {
     client: 'sqlite3',
     useNullAsDefault: true,
     connection: {
-        filename: './knex.sqlite',
+        filename: './database.sqlite',
     },
     debug: true,
     migrations: {
@@ -17,5 +16,4 @@ module.exports = {
         directory: './src/database/seeds',
         stub: './src/database/seed.stub',
     },
-    ...knexSnakeCaseMappers(),
 } as Knex.Config

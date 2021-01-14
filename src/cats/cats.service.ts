@@ -19,11 +19,8 @@ export class CatsService extends TypeOrmCrudService<Cat> {
     /**
      * User owning Cat database
      */
-    async getUserByCatId(catId = 1) {
-        return this.userRepo
-            .createQueryBuilder('u')
-            .innerJoinAndMapMany('u.cats', 'u.cats', 'cats', 'cats.userId = u.Id')
-            .getOneOrFail()
+    async getUserByCatId(catId) {
+        return this.userRepo.getUserByCatId(catId)
     }
 
     /**

@@ -1,7 +1,7 @@
 /* eslint-disable no-use-before-define */
-import { Controller, Post } from '@nestjs/common'
+import { Controller, Get, Param, Post } from '@nestjs/common'
 import { ApiOperation, ApiTags } from '@nestjs/swagger'
-import { Crud, CrudController, CrudAuth } from '@nestjsx/crud'
+import { Crud, CrudController } from '@nestjsx/crud'
 import { CrudOptions } from '@nestjsx/crud/lib/interfaces'
 
 import { Cat } from '../cats/datum/cat.entity'
@@ -9,10 +9,12 @@ import { CreateUserDto, GetUserResponseDto, UpdateUserDto } from './datum/user.d
 import { User } from './datum/user.entity'
 import { UsersService } from './users.service'
 
-@Controller(UsersController.path)
 @ApiTags(UsersController.name)
+@Controller(UsersController.path)
 @Crud(UsersController.crudOptions)
 export class UsersController implements CrudController<User> {
+    constructor(public service: UsersService) {}
+
     static path = 'users'
 
     static crudOptions: CrudOptions = {
@@ -41,7 +43,11 @@ export class UsersController implements CrudController<User> {
         },
     }
 
-    constructor(public service: UsersService) {}
+    @ApiOperation({ summary: 'Get the User of provided email' })
+    @Get('/email/:email')
+    async findByEmail(@Param('email') email: string) {
+        return this.service.getUserByEmail(email)
+    }
 
     @ApiOperation({ summary: 'Delete all User' })
     @Post('/clear')
