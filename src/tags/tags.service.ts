@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Inject, Injectable } from '@nestjs/common'
-import { CrudRequest } from '@nestjsx/crud'
 
 import { ModelClass, transaction } from 'objection'
 
@@ -8,36 +7,27 @@ import { Tag } from '../database/models/tag.model'
 
 @Injectable()
 export class TagsService {
-    constructor(@Inject(Tag.name) private modelClass: ModelClass<Tag>) {}
+    constructor(@Inject(Tag.name) readonly model: ModelClass<Tag>) {}
 
-    async findAll({ parsed, options }: CrudRequest) {
-        return this.modelClass.query()
+    async findAll() {
+        return this.model.query()
     }
 
-    async findOne({ parsed, options }: CrudRequest, id: number) {
-        return this.modelClass.query().findById(id)
+    async findOne(id: number) {
+        return this.model.query().findById(id).throwIfNotFound()
     }
 
-    async create({ parsed, options }: CrudRequest, props: Partial<Tag>) {
-        return this.modelClass.query().insert(props).returning('*')
+    async create(props: Partial<Tag>) {
+        return this.model.query().insert(props).returning('*')
     }
 
-    async update(
-        { parsed, options }: CrudRequest,
-        id: number,
-        props: Partial<Tag>,
-    ) {
-        return this.modelClass
-            .query()
-            .patch(props)
-            .where({ id })
-            .returning('*')
-            .first()
+    async update(id: number, props: Partial<Tag>) {
+        return this.model.query().patch(props).where({ id }).returning('*').first()
     }
 
-    async delete({ parsed, options }: CrudRequest, id: number) {
-        return transaction(this.modelClass, async (_, trx) => {
-            return this.modelClass
+    async delete(id: number) {
+        return transaction(this.model, async (_, trx) => {
+            return this.model
                 .query()
                 .deleteById(id)
                 .returning('*')

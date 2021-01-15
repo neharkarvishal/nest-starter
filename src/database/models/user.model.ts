@@ -24,11 +24,16 @@ export class User extends BaseModel {
     // This is only used for validation. Whenever a model instance is created it is checked against this schema.
     static jsonSchema: JSONSchema = {
         type: 'object',
-        required: ['username', 'email', 'displayName', 'password'],
+        required: ['username', 'email', 'password'],
         properties: {
             id: { type: 'integer' },
             username: { type: 'string', minLength: 3, maxLength: 255 },
-            email: { type: 'string', minLength: 3, maxLength: 255 },
+            email: {
+                type: 'string',
+                minLength: 3,
+                maxLength: 255,
+                format: 'email',
+            },
             password: { type: 'string', minLength: 8, maxLength: 255 },
             firstName: { type: 'string', minLength: 1, maxLength: 255 },
             lastName: { type: 'string', minLength: 1, maxLength: 255 },

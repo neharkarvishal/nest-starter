@@ -1,7 +1,0 @@
-<script type="text/javascript">
-    const eventSource = new EventSource('/sse')
-
-    eventSource.onmessage = ({ data }) => {
-        document.body.innerText = `<pre>${data}</pre>`
-    }
-</script>

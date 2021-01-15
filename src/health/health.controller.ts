@@ -35,14 +35,6 @@ export class HealthController implements OnModuleInit, OnApplicationShutdown {
         private config: ConfigService<EnvironmentVariables>,
     ) {}
 
-    @Get()
-    index(@Res() response) {
-        response
-            // @ts-ignore
-            .type('text/html')
-            .send(readFileSync(join(__dirname, 'sse.html')).toString())
-    }
-
     @Sse('sse')
     sse(): Observable<MessageEvent> {
         const metrics = {

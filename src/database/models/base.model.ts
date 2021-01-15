@@ -2,6 +2,7 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger'
 
 import {
+    fn,
     mixin,
     Model,
     ModelOptions,
@@ -22,9 +23,11 @@ export class BaseModel extends mixin(Model, [visibilityPlugin, DBErrors]) {
 
     @ApiProperty() id: number
 
-    @ApiProperty() createdAt: Date
-    @ApiProperty() updatedAt: Date
-    @ApiPropertyOptional() deletedAt?: Date | null
+    @ApiProperty() created_at: any
+
+    @ApiProperty() updated_at: any
+
+    @ApiPropertyOptional() deleted_at?: any | null
 
     // fetch data with relation mapping
     async fetchRelation(expression: RelationExpression<any>, options = {}) {
@@ -34,16 +37,20 @@ export class BaseModel extends mixin(Model, [visibilityPlugin, DBErrors]) {
         return this
     }
 
-    /* async $beforeInsert(queryContext: QueryContext) {
-        await super.$beforeInsert(queryContext)
-
-        this.createdAt = new Date()
-        this.updatedAt = new Date()
-    }
-
     async $beforeUpdate(opt: ModelOptions, queryContext: QueryContext) {
         await super.$beforeUpdate(opt, queryContext)
 
-        this.updatedAt = new Date()
-    } */
+        this.updated_at = new Date().toISOString() // fn.now()
+    }
+
+    /*
+    async $beforeInsert(queryContext: QueryContext) {
+        await super.$beforeInsert(queryContext)
+
+        const date = fn.now() // new Date().toISOString()
+
+        this.created_at = date
+        this.updated_at = date
+    }
+    */
 }

@@ -2,10 +2,11 @@
 import { ApiProperty } from '@nestjs/swagger'
 
 import type { JSONSchema, Modifier } from 'objection'
+import { Model } from 'objection'
 
 import { BaseModel } from './base.model'
 
-export class Tag extends BaseModel {
+export class Tag extends Model {
     static tableName = 'tags'
 
     @ApiProperty() name: string

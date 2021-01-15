@@ -1,9 +1,8 @@
-import { Global, Module } from '@nestjs/common'
+import { Module } from '@nestjs/common'
 
 import { TagsController } from './tags.controller'
 import { TagsService } from './tags.service'
 
-@Global()
 @Module({
     controllers: [TagsController],
     providers: [TagsService],

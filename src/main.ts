@@ -52,7 +52,7 @@ function setupInfra(app: INestApplication) {
 
     // interceptors
     // app.useGlobalInterceptors(new TransformInterceptor())
-    // app.useGlobalInterceptors(new TimeoutInterceptor())
+    app.useGlobalInterceptors(new TimeoutInterceptor())
     app.useGlobalInterceptors(new ExcludeNullUndefinedInterceptor())
 
     // filters

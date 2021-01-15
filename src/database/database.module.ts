@@ -5,8 +5,9 @@ import * as Knex from 'knex'
 import { knexSnakeCaseMappers, Model } from 'objection'
 
 import { Tag } from './models/tag.model'
+import { User } from './models/user.model'
 
-const models = [Tag]
+const models = [Tag, User]
 
 const modelProviders = models.map((model) => {
     return {
