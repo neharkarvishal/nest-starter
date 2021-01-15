@@ -38,7 +38,7 @@
 
 <ol class="breadcrumb">
   <li>Injectables</li>
-  <li>TagsService</li>
+  <li>UsersService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -56,7 +56,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/tags/tags.service.ts</code>
+            <code>src/users/users.service.ts</code>
         </p>
 
 
@@ -81,15 +81,15 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#delete">delete</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Async</span>
                                 <a href="#findAll">findAll</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
                                 <a href="#findOne">findOne</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#remove">remove</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
@@ -113,12 +113,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(tag: <a href="../classes/Tag.html">ModelClass<Tag></a>)</code>
+<code>constructor(user: <a href="../interfaces/User.html">ModelClass<User></a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/tags/tags.service.ts:9</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/users/users.service.ts:8</a></div>
                             </td>
                         </tr>
 
@@ -136,10 +136,10 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>tag</td>
+                                                        <td>user</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../classes/Tag.html" target="_self" >ModelClass&lt;Tag&gt;</a></code>
+                                                                        <code><a href="../interfaces/User.html" target="_self" >ModelClass&lt;User&gt;</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -178,15 +178,15 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>create(tag)</code>
+                    <code>create(user)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="20"
-                            class="link-to-prism">src/tags/tags.service.ts:20</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="11"
+                            class="link-to-prism">src/users/users.service.ts:11</a></div>
                 </td>
             </tr>
 
@@ -205,7 +205,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>tag</td>
+                                    <td>user</td>
 
                                     <td>
                                         No
@@ -233,28 +233,69 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="delete"></a>
+                    <a name="findAll"></a>
                     <span class="name">
                         <b>
                             <span class="modifier">Async</span>
-                            delete
+                            findAll
                         </b>
-                        <a href="#delete"><span class="icon ion-ios-link"></span></a>
+                        <a href="#findAll"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>delete(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>findAll()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="28"
-                            class="link-to-prism">src/tags/tags.service.ts:28</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="15"
+                            class="link-to-prism">src/users/users.service.ts:15</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>{}</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findOne"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Async</span>
+                            findOne
+                        </b>
+                        <a href="#findOne"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findOne(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="19"
+                            class="link-to-prism">src/users/users.service.ts:19</a></div>
                 </td>
             </tr>
 
@@ -305,69 +346,28 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="findAll"></a>
+                    <a name="remove"></a>
                     <span class="name">
                         <b>
                             <span class="modifier">Async</span>
-                            findAll
+                            remove
                         </b>
-                        <a href="#findAll"><span class="icon ion-ios-link"></span></a>
+                        <a href="#remove"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findAll()</code>
+                    <code>remove(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="12"
-                            class="link-to-prism">src/tags/tags.service.ts:12</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="findOne"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Async</span>
-                            findOne
-                        </b>
-                        <a href="#findOne"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findOne(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="16"
-                            class="link-to-prism">src/tags/tags.service.ts:16</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="27"
+                            class="link-to-prism">src/users/users.service.ts:27</a></div>
                 </td>
             </tr>
 
@@ -431,15 +431,15 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>update(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, tag)</code>
+                    <code>update(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, user)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="24"
-                            class="link-to-prism">src/tags/tags.service.ts:24</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="23"
+                            class="link-to-prism">src/users/users.service.ts:23</a></div>
                 </td>
             </tr>
 
@@ -471,7 +471,7 @@
 
                                 </tr>
                                 <tr>
-                                    <td>tag</td>
+                                    <td>user</td>
                                     <td>
                                     </td>
 
@@ -505,39 +505,32 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Inject, Injectable } from &#x27;@nestjs/common&#x27;
 
-import { ModelClass, transaction } from &#x27;objection&#x27;
+import { ModelClass } from &#x27;objection&#x27;
 
-import { Tag } from &#x27;./tag.model&#x27;
+import { User } from &#x27;./user.model&#x27;
 
 @Injectable()
-export class TagsService {
-    constructor(@Inject(Tag.name) private tag: ModelClass&lt;Tag&gt;) {}
+export class UsersService {
+    constructor(@Inject(User.name) private user: ModelClass&lt;User&gt;) {}
+
+    async create(user) {
+        return this.user.query().insertAndFetch(user)
+    }
 
     async findAll() {
-        return this.tag.query()
+        return this.user.query()
     }
 
     async findOne(id: number) {
-        return this.tag.query().findById(id)
+        return this.user.query().findById(id).first() // .throwIfNotFound()
     }
 
-    async create(tag) {
-        return this.tag.query().insert(tag).returning(&#x27;*&#x27;)
+    async update(id: number, user) {
+        return this.user.query().patchAndFetchById(id, user)
     }
 
-    async update(id: number, tag) {
-        return this.tag.query().patch(tag).where({ id }).returning(&#x27;*&#x27;).first()
-    }
-
-    async delete(id: number) {
-        return transaction(this.tag, async (_, trx) &#x3D;&gt; {
-            return this.tag
-                .query()
-                .deleteById(id)
-                .returning(&#x27;*&#x27;)
-                .first()
-                .transacting(trx)
-        })
+    async remove(id: number) {
+        return Promise.resolve(&#x60;This action removes a #${id} user&#x60;)
     }
 }
 </code></pre>
@@ -573,7 +566,7 @@ export class TagsService {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
-            var COMPODOC_CURRENT_PAGE_URL = 'TagsService.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'UsersService.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

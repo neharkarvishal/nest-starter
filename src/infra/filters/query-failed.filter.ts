@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access */
 import { ArgumentsHost, Catch, ExceptionFilter, HttpStatus } from '@nestjs/common'
 
+import { NotFoundError } from 'objection'
 import {
     UniqueViolationError,
     NotNullViolationError,
@@ -17,6 +18,7 @@ import {
     ForeignKeyViolationError,
     NotNullViolationError,
     UniqueViolationError,
+    NotFoundError,
 )
 export class QueryFailedFilter implements ExceptionFilter {
     catch(
@@ -26,7 +28,8 @@ export class QueryFailedFilter implements ExceptionFilter {
             | DataError
             | ForeignKeyViolationError
             | NotNullViolationError
-            | UniqueViolationError,
+            | UniqueViolationError
+            | NotFoundError,
         host: ArgumentsHost,
     ) {
         const ctx = host.switchToHttp()
@@ -35,28 +38,34 @@ export class QueryFailedFilter implements ExceptionFilter {
         const status = HttpStatus.PRECONDITION_FAILED
 
         const {
-            message,
-            nativeError,
             name, // @ts-ignore
+            data, // @ts-ignore
+            type, // @ts-ignore
             table, // @ts-ignore
             column, // @ts-ignore
+            schema, // @ts-ignore
+            message, // @ts-ignore
             columns, // @ts-ignore
             database, // @ts-ignore
             constraint, // @ts-ignore
-            schema,
+            nativeError, // @ts-ignore
         } = exception
 
         // @ts-ignore
         response.status(status).json({
             statusCode: status,
             message,
-            nativeError,
+
             name,
             table,
-            columns: column ? [column] : columns,
+            schema,
             database,
             constraint,
-            schema,
+            nativeError,
+            columns: column ? [column] : columns,
+
+            data,
+            type,
 
             path: request.url,
             // timestamp: new Date().toISOString(),

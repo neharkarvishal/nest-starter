@@ -76,9 +76,10 @@ import { Global, Module } from &#x27;@nestjs/common&#x27;
 import * as Knex from &#x27;knex&#x27;
 import { knexSnakeCaseMappers, Model } from &#x27;objection&#x27;
 
-import { Tag } from &#x27;./models/tag.model&#x27;
+import { User } from &#x27;../users/user.model&#x27;
+import { Tag } from &#x27;../tags/tag.model&#x27;
 
-const models &#x3D; [Tag]
+const models &#x3D; [Tag, User]
 
 const modelProviders &#x3D; models.map((model) &#x3D;&gt; {
     return {

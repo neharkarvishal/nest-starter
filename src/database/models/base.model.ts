@@ -2,6 +2,7 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger'
 
 import {
+    fn,
     mixin,
     Model,
     ModelOptions,
@@ -15,27 +16,27 @@ import { CustomQueryBuilder } from './helpers'
 
 export interface IBaseModel {
     id: number
-    createdAt: any
-    updatedAt: any
-    deletedAt?: any
+    created_at: any
+    updated_at: any
+    deleted_at?: any
 }
 
 export class BaseModel
     extends mixin(Model, [visibilityPlugin, DBErrors])
     implements IBaseModel {
-    static hidden = ['salt', 'password', 'createdAt', 'updatedAt', 'deletedAt'] // hidden fields to filter from query result
+    static hidden = ['salt', 'password', 'created_at', 'updated_at', 'deleted_at'] // hidden fields to filter from query result
 
     QueryBuilderType!: CustomQueryBuilder<this> // custom query builder for pagination
 
     static QueryBuilder = CustomQueryBuilder
 
-    id: number
+    @ApiProperty() id: number
 
-    createdAt: any
+    created_at: any
 
-    updatedAt: any
+    updated_at: any
 
-    deletedAt?: any | null
+    deleted_at?: any | null
 
     // fetch data with relation mapping
     async fetchRelation(expression: RelationExpression<any>, options = {}) {
@@ -45,16 +46,20 @@ export class BaseModel
         return this
     }
 
-    /* async $beforeInsert(queryContext: QueryContext) {
-        await super.$beforeInsert(queryContext)
-
-        this.createdAt = new Date()
-        this.updatedAt = new Date()
-    }
-
+    /*
     async $beforeUpdate(opt: ModelOptions, queryContext: QueryContext) {
         await super.$beforeUpdate(opt, queryContext)
 
-        this.updatedAt = new Date()
-    } */
+        this.updated_at = new Date().toISOString() // fn.now()
+    }
+
+    async $beforeInsert(queryContext: QueryContext) {
+        await super.$beforeInsert(queryContext)
+
+        const date = fn.now() // new Date().toISOString()
+
+        this.created_at = date
+        this.updated_at = date
+    }
+    */
 }

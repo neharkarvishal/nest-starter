@@ -27,18 +27,16 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content injectable">
+               <div class="content controller">
                    <div class="content-data">
 
 
 
 
 
-
-
 <ol class="breadcrumb">
-  <li>Injectables</li>
-  <li>TagsService</li>
+  <li>Controllers</li>
+  <li>UsersController</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -56,8 +54,10 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/tags/tags.service.ts</code>
+            <code>src/users/users.controller.ts</code>
         </p>
+
+
 
 
 
@@ -81,15 +81,15 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#delete">delete</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Async</span>
                                 <a href="#findAll">findAll</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
                                 <a href="#findOne">findOne</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#remove">remove</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
@@ -105,55 +105,6 @@
 
         </tbody>
     </table>
-</section>
-
-            <section>
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor(tag: <a href="../classes/Tag.html">ModelClass<Tag></a>)</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/tags/tags.service.ts:9</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>tag</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../classes/Tag.html" target="_self" >ModelClass&lt;Tag&gt;</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
 </section>
 
             <section>
@@ -178,15 +129,22 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>create(tag)</code>
+                    <code>create(user: <a href="../interfaces/User.html">CreateUserDto</a>)</code>
                 </td>
             </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@ApiOperation({summary: &#x27;Create a User&#x27;, description: &#x27;Create a new User and store it in database&#x27;})<br />@Post()<br /></code>
+                </td>
+            </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="20"
-                            class="link-to-prism">src/tags/tags.service.ts:20</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="29"
+                            class="link-to-prism">src/users/users.controller.ts:29</a></div>
                 </td>
             </tr>
 
@@ -200,12 +158,16 @@
                             <thead>
                                 <tr>
                                     <td>Name</td>
+                                    <td>Type</td>
                                     <td>Optional</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>tag</td>
+                                    <td>user</td>
+                                    <td>
+                                                <code><a href="../interfaces/User.html" target="_self" >CreateUserDto</a></code>
+                                    </td>
 
                                     <td>
                                         No
@@ -233,28 +195,83 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="delete"></a>
+                    <a name="findAll"></a>
                     <span class="name">
                         <b>
                             <span class="modifier">Async</span>
-                            delete
+                            findAll
                         </b>
-                        <a href="#delete"><span class="icon ion-ios-link"></span></a>
+                        <a href="#findAll"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>delete(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>findAll()</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@ApiOperation({summary: &#x27;Get all of the users&#x27;, description: &#x27;Get all of the users&#x27;})<br />@Get()<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="38"
+                            class="link-to-prism">src/users/users.controller.ts:38</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="28"
-                            class="link-to-prism">src/tags/tags.service.ts:28</a></div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>{}</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findOne"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Async</span>
+                            findOne
+                        </b>
+                        <a href="#findOne"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findOne(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@ApiOperation({summary: &#x27;Get one users by id&#x27;, description: &#x27;Get one users by id&#x27;})<br />@Get(&#x27;:id&#x27;)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="47"
+                            class="link-to-prism">src/users/users.controller.ts:47</a></div>
                 </td>
             </tr>
 
@@ -305,69 +322,35 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="findAll"></a>
+                    <a name="remove"></a>
                     <span class="name">
                         <b>
                             <span class="modifier">Async</span>
-                            findAll
+                            remove
                         </b>
-                        <a href="#findAll"><span class="icon ion-ios-link"></span></a>
+                        <a href="#remove"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findAll()</code>
+                    <code>remove(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
-
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="12"
-                            class="link-to-prism">src/tags/tags.service.ts:12</a></div>
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@ApiOperation({summary: &#x27;Delete one users by id&#x27;, description: &#x27;Delete one users by id&#x27;})<br />@Delete(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
-
             <tr>
                 <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="findOne"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Async</span>
-                            findOne
-                        </b>
-                        <a href="#findOne"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findOne(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="16"
-                            class="link-to-prism">src/tags/tags.service.ts:16</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="68"
+                            class="link-to-prism">src/users/users.controller.ts:68</a></div>
                 </td>
             </tr>
 
@@ -431,15 +414,22 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>update(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, tag)</code>
+                    <code>update(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, updatedUser: <a href="../interfaces/User.html">UpdateUserDto</a>)</code>
                 </td>
             </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@ApiOperation({summary: &#x27;Update one users by id&#x27;, description: &#x27;Update one users by id&#x27;})<br />@Put(&#x27;:id&#x27;)<br /></code>
+                </td>
+            </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="24"
-                            class="link-to-prism">src/tags/tags.service.ts:24</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="56"
+                            class="link-to-prism">src/users/users.controller.ts:56</a></div>
                 </td>
             </tr>
 
@@ -471,8 +461,9 @@
 
                                 </tr>
                                 <tr>
-                                    <td>tag</td>
+                                    <td>updatedUser</td>
                                     <td>
+                                                <code><a href="../interfaces/User.html" target="_self" >UpdateUserDto</a></code>
                                     </td>
 
                                     <td>
@@ -497,53 +488,86 @@
             </tr>
         </tbody>
     </table>
-</section>
-
-    </div>
+</section>    </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Inject, Injectable } from &#x27;@nestjs/common&#x27;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">/* eslint-disable no-use-before-define,@typescript-eslint/no-unsafe-call */
+import {
+    Controller,
+    Get,
+    Post,
+    Body,
+    Put,
+    Param,
+    Delete,
+    ParseIntPipe,
+} from &#x27;@nestjs/common&#x27;
+import { ApiOperation, ApiTags } from &#x27;@nestjs/swagger&#x27;
 
-import { ModelClass, transaction } from &#x27;objection&#x27;
+import { CreateUserDto, UpdateUserDto } from &#x27;./user.model&#x27;
+import { UsersService } from &#x27;./users.service&#x27;
 
-import { Tag } from &#x27;./tag.model&#x27;
+@Controller(UsersController.path)
+@ApiTags(UsersController.name)
+export class UsersController {
+    static path &#x3D; &#x27;users&#x27;
 
-@Injectable()
-export class TagsService {
-    constructor(@Inject(Tag.name) private tag: ModelClass&lt;Tag&gt;) {}
+    constructor(private readonly service: UsersService) {}
 
+    @ApiOperation({
+        summary: &#x27;Create a User&#x27;,
+        description: &#x27;Create a new User and store it in database&#x27;,
+    })
+    @Post()
+    async create(@Body() user: CreateUserDto) {
+        return this.service.create(user)
+    }
+
+    @ApiOperation({
+        summary: &#x27;Get all of the users&#x27;,
+        description: &#x27;Get all of the users&#x27;,
+    })
+    @Get()
     async findAll() {
-        return this.tag.query()
+        return this.service.findAll()
     }
 
-    async findOne(id: number) {
-        return this.tag.query().findById(id)
+    @ApiOperation({
+        summary: &#x27;Get one users by id&#x27;,
+        description: &#x27;Get one users by id&#x27;,
+    })
+    @Get(&#x27;:id&#x27;)
+    async findOne(@Param(&#x27;id&#x27;, ParseIntPipe) id: number) {
+        return this.service.findOne(id)
     }
 
-    async create(tag) {
-        return this.tag.query().insert(tag).returning(&#x27;*&#x27;)
+    @ApiOperation({
+        summary: &#x27;Update one users by id&#x27;,
+        description: &#x27;Update one users by id&#x27;,
+    })
+    @Put(&#x27;:id&#x27;)
+    async update(
+        @Param(&#x27;id&#x27;, ParseIntPipe) id: number,
+        @Body() updatedUser: UpdateUserDto,
+    ) {
+        return this.service.update(id, updatedUser)
     }
 
-    async update(id: number, tag) {
-        return this.tag.query().patch(tag).where({ id }).returning(&#x27;*&#x27;).first()
-    }
-
-    async delete(id: number) {
-        return transaction(this.tag, async (_, trx) &#x3D;&gt; {
-            return this.tag
-                .query()
-                .deleteById(id)
-                .returning(&#x27;*&#x27;)
-                .first()
-                .transacting(trx)
-        })
+    @ApiOperation({
+        summary: &#x27;Delete one users by id&#x27;,
+        description: &#x27;Delete one users by id&#x27;,
+    })
+    @Delete(&#x27;:id&#x27;)
+    async remove(@Param(&#x27;id&#x27;, ParseIntPipe) id: number) {
+        return this.service.remove(id)
     }
 }
 </code></pre>
     </div>
-
 </div>
+
+
 
 
 
@@ -572,8 +596,8 @@ export class TagsService {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
-            var COMPODOC_CURRENT_PAGE_URL = 'TagsService.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'controller';
+            var COMPODOC_CURRENT_PAGE_URL = 'UsersController.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

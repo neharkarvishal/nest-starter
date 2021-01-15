@@ -27,7 +27,7 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content injectable">
+               <div class="content class">
                    <div class="content-data">
 
 
@@ -36,9 +36,13 @@
 
 
 
+
+
+
+
 <ol class="breadcrumb">
-  <li>Injectables</li>
-  <li>TagsService</li>
+  <li>Classes</li>
+  <li>CustomQueryBuilder</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -56,9 +60,16 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/tags/tags.service.ts</code>
+            <code>src/database/models/helpers.ts</code>
         </p>
 
+
+            <p class="comment">
+                <h3>Extends</h3>
+            </p>
+            <p class="comment">
+                    <code>QueryBuilder</code>
+            </p>
 
 
 
@@ -66,6 +77,29 @@
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#ArrayQueryBuilderType">ArrayQueryBuilderType</a>
+                            </li>
+                            <li>
+                                <a href="#NumberQueryBuilderType">NumberQueryBuilderType</a>
+                            </li>
+                            <li>
+                                <a href="#PageQueryBuilderType">PageQueryBuilderType</a>
+                            </li>
+                            <li>
+                                <a href="#SingleQueryBuilderType">SingleQueryBuilderType</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -77,23 +111,19 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#create">create</a>
+                                <a href="#chunk">chunk</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#delete">delete</a>
+                                <a href="#exists">exists</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#findAll">findAll</a>
+                                <a href="#onlyCount">onlyCount</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#findOne">findOne</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#update">update</a>
+                                <a href="#paginate">paginate</a>
                             </li>
                         </ul>
                     </td>
@@ -107,51 +137,118 @@
     </table>
 </section>
 
+
             <section>
-    <h3 id="constructor">Constructor</h3>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(tag: <a href="../classes/Tag.html">ModelClass<Tag></a>)</code>
+                        <a name="ArrayQueryBuilderType"></a>
+                        <span class="name">
+                            <b>
+                            ArrayQueryBuilderType</b>
+                            <a href="#ArrayQueryBuilderType"><span class="icon ion-ios-link"></span></a>
+                        </span>
                     </td>
                 </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../classes/CustomQueryBuilder.html" target="_self" >CustomQueryBuilder&lt;M | M[]&gt;</a></code>
+
+                        </td>
+                    </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/tags/tags.service.ts:9</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/database/models/helpers.ts:37</a></div>
                             </td>
                         </tr>
 
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
                 <tr>
                     <td class="col-md-4">
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>tag</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../classes/Tag.html" target="_self" >ModelClass&lt;Tag&gt;</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
+                        <a name="NumberQueryBuilderType"></a>
+                        <span class="name">
+                            <b>
+                            NumberQueryBuilderType</b>
+                            <a href="#NumberQueryBuilderType"><span class="icon ion-ios-link"></span></a>
+                        </span>
                     </td>
                 </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../classes/CustomQueryBuilder.html" target="_self" >CustomQueryBuilder&lt;M | number&gt;</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/database/models/helpers.ts:41</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="PageQueryBuilderType"></a>
+                        <span class="name">
+                            <b>
+                            PageQueryBuilderType</b>
+                            <a href="#PageQueryBuilderType"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../classes/CustomQueryBuilder.html" target="_self" >CustomQueryBuilder&lt;M | Page&lt;M&gt;&gt;</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/database/models/helpers.ts:43</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="SingleQueryBuilderType"></a>
+                        <span class="name">
+                            <b>
+                            SingleQueryBuilderType</b>
+                            <a href="#SingleQueryBuilderType"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../classes/CustomQueryBuilder.html" target="_self" >CustomQueryBuilder&lt;M | M&gt;</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/database/models/helpers.ts:39</a></div>
+                            </td>
+                        </tr>
+
+
             </tbody>
         </table>
 </section>
@@ -165,96 +262,28 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="create"></a>
+                    <a name="chunk"></a>
                     <span class="name">
                         <b>
                             <span class="modifier">Async</span>
-                            create
+                            chunk
                         </b>
-                        <a href="#create"><span class="icon ion-ios-link"></span></a>
+                        <a href="#chunk"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>create(tag)</code>
+                    <code>chunk(cb: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" target="_blank">Function</a>, size: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="20"
-                            class="link-to-prism">src/tags/tags.service.ts:20</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>tag</td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="delete"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Async</span>
-                            delete
-                        </b>
-                        <a href="#delete"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>delete(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="28"
-                            class="link-to-prism">src/tags/tags.service.ts:28</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="71"
+                            class="link-to-prism">src/database/models/helpers.ts:71</a></div>
                 </td>
             </tr>
 
@@ -274,7 +303,19 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>id</td>
+                                    <td>cb</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" target="_blank" >Function</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>size</td>
                                     <td>
                                                 <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
                                     </td>
@@ -291,7 +332,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -305,28 +346,28 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="findAll"></a>
+                    <a name="exists"></a>
                     <span class="name">
                         <b>
                             <span class="modifier">Async</span>
-                            findAll
+                            exists
                         </b>
-                        <a href="#findAll"><span class="icon ion-ios-link"></span></a>
+                        <a href="#exists"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findAll()</code>
+                    <code>exists()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="12"
-                            class="link-to-prism">src/tags/tags.service.ts:12</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="66"
+                            class="link-to-prism">src/database/models/helpers.ts:66</a></div>
                 </td>
             </tr>
 
@@ -346,28 +387,69 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="findOne"></a>
+                    <a name="onlyCount"></a>
                     <span class="name">
                         <b>
                             <span class="modifier">Async</span>
-                            findOne
+                            onlyCount
                         </b>
-                        <a href="#findOne"><span class="icon ion-ios-link"></span></a>
+                        <a href="#onlyCount"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findOne(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>onlyCount()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="16"
-                            class="link-to-prism">src/tags/tags.service.ts:16</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="61"
+                            class="link-to-prism">src/database/models/helpers.ts:61</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>{}</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="paginate"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Async</span>
+                            paginate
+                        </b>
+                        <a href="#paginate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>paginate(page: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, perPage: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="45"
+                            class="link-to-prism">src/database/models/helpers.ts:45</a></div>
                 </td>
             </tr>
 
@@ -387,79 +469,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>id</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="update"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Async</span>
-                            update
-                        </b>
-                        <a href="#update"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>update(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, tag)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="24"
-                            class="link-to-prism">src/tags/tags.service.ts:24</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>id</td>
+                                    <td>page</td>
                                     <td>
                                                 <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
                                     </td>
@@ -471,8 +481,9 @@
 
                                 </tr>
                                 <tr>
-                                    <td>tag</td>
+                                    <td>perPage</td>
                                     <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
                                     </td>
 
                                     <td>
@@ -499,55 +510,105 @@
     </table>
 </section>
 
+
+
+
+
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Inject, Injectable } from &#x27;@nestjs/common&#x27;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { cloneDeep } from &#x27;lodash&#x27;
+import { Model, Page, QueryBuilder } from &#x27;objection&#x27;
 
-import { ModelClass, transaction } from &#x27;objection&#x27;
+/**
+ * Check if value is of type object.
+ *
+ * @param value
+ */
+export function isObject(value: any): boolean {
+    return typeof value &#x3D;&#x3D;&#x3D; &#x27;object&#x27; &amp;&amp; value !&#x3D;&#x3D; null
+}
 
-import { Tag } from &#x27;./tag.model&#x27;
+/**
+ * Check if value is empty
+ *
+ * @param value
+ */
+export function isEmpty(value: any): boolean {
+    if (Array.isArray(value) &amp;&amp; value.length &lt; 1) return true
+    if (isObject(value) &amp;&amp; Object.keys(value).length &lt; 1) return true
+    return !value
+}
 
-@Injectable()
-export class TagsService {
-    constructor(@Inject(Tag.name) private tag: ModelClass&lt;Tag&gt;) {}
+/**
+ * Check if value is not empty
+ *
+ * @param value
+ */
+export function isNotEmpty(value: any): boolean {
+    return !isEmpty(value)
+}
 
-    async findAll() {
-        return this.tag.query()
+export class CustomQueryBuilder&lt;M extends Model, R &#x3D; M[]&gt; extends QueryBuilder&lt;
+    M,
+    R
+&gt; {
+    ArrayQueryBuilderType!: CustomQueryBuilder&lt;M, M[]&gt;
+
+    SingleQueryBuilderType!: CustomQueryBuilder&lt;M, M&gt;
+
+    NumberQueryBuilderType!: CustomQueryBuilder&lt;M, number&gt;
+
+    PageQueryBuilderType!: CustomQueryBuilder&lt;M, Page&lt;M&gt;&gt;
+
+    async paginate(page: number, perPage: number) {
+        page &#x3D; +page ? +page : 1 // eslint-disable-line no-param-reassign
+        perPage &#x3D; +perPage ? +perPage : 15 // eslint-disable-line no-param-reassign
+
+        const result &#x3D; await this.page(page - 1, perPage)
+        return {
+            pagination: {
+                currentPage: page,
+                totalPages: Math.ceil(result.total / perPage),
+                perPage,
+                total: result.total,
+            },
+            data: result.results,
+        }
     }
 
-    async findOne(id: number) {
-        return this.tag.query().findById(id)
+    async onlyCount() {
+        const result &#x3D; await this.count({ c: &#x27;*&#x27; })
+        return result[0].c // eslint-disable-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-return
     }
 
-    async create(tag) {
-        return this.tag.query().insert(tag).returning(&#x27;*&#x27;)
+    async exists() {
+        return !!(await this.onlyCount())
     }
 
-    async update(id: number, tag) {
-        return this.tag.query().patch(tag).where({ id }).returning(&#x27;*&#x27;).first()
-    }
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    async chunk(cb: Function, size: number): Promise&lt;void&gt; {
+        let offset &#x3D; 0
+        let hasMore &#x3D; true
 
-    async delete(id: number) {
-        return transaction(this.tag, async (_, trx) &#x3D;&gt; {
-            return this.tag
-                .query()
-                .deleteById(id)
-                .returning(&#x27;*&#x27;)
-                .first()
-                .transacting(trx)
-        })
+        while (!offset || hasMore) {
+            const query &#x3D; cloneDeep(this) // eslint-disable-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-assignment
+            const records &#x3D; await query.offset(offset).limit(size) // eslint-disable-line @typescript-eslint/no-unsafe-call,no-await-in-loop,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-assignment
+
+            hasMore &#x3D; isNotEmpty(records)
+
+            if (!hasMore) return
+
+            await cb(records) // eslint-disable-line no-await-in-loop
+
+            offset +&#x3D; size
+        }
     }
 }
 </code></pre>
     </div>
-
 </div>
-
-
-
-
 
 
 
@@ -572,8 +633,8 @@ export class TagsService {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
-            var COMPODOC_CURRENT_PAGE_URL = 'TagsService.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
+            var COMPODOC_CURRENT_PAGE_URL = 'CustomQueryBuilder.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

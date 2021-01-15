@@ -27,16 +27,22 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content controller">
+               <div class="content class">
                    <div class="content-data">
 
 
 
 
 
+
+
+
+
+
+
 <ol class="breadcrumb">
-  <li>Controllers</li>
-  <li>AppController</li>
+  <li>Classes</li>
+  <li>ValidationFailedFilter</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -54,12 +60,17 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app.controller.ts</code>
+            <code>src/infra/filters/validation-failed.filter.ts</code>
         </p>
 
 
 
-
+            <p class="comment">
+                <h3>Implements</h3>
+            </p>
+            <p class="comment">
+                        <code>ExceptionFilter</code>
+            </p>
 
 
             <section>
@@ -76,7 +87,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#getHello">getHello</a>
+                                <a href="#catch">catch</a>
                             </li>
                         </ul>
                     </td>
@@ -90,6 +101,8 @@
     </table>
 </section>
 
+
+
             <section>
     
     <h3 id="methods">
@@ -99,33 +112,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getHello"></a>
+                    <a name="catch"></a>
                     <span class="name">
                         <b>
-                            getHello
+                            catch
                         </b>
-                        <a href="#getHello"><span class="icon ion-ios-link"></span></a>
+                        <a href="#catch"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getHello()</code>
+<code>catch(exception: ValidationError, host: ArgumentsHost)</code>
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Get()<br /></code>
-                </td>
-            </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="10"
-                            class="link-to-prism">src/app.controller.ts:10</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="8"
+                            class="link-to-prism">src/infra/filters/validation-failed.filter.ts:8</a></div>
                 </td>
             </tr>
 
@@ -134,39 +140,102 @@
                 <td class="col-md-4">
 
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>exception</td>
+                                    <td>
+                                            <code>ValidationError</code>
+                                    </td>
 
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>host</td>
+                                    <td>
+                                            <code>ArgumentsHost</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
                     </div>
                 </td>
             </tr>
         </tbody>
     </table>
-</section>    </div>
+</section>
+
+
+
+
+
+    </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">/* eslint-disable no-use-before-define */
-import { Controller, Get } from &#x27;@nestjs/common&#x27;
-import { ApiTags } from &#x27;@nestjs/swagger&#x27;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ArgumentsHost, Catch, ExceptionFilter, HttpStatus } from &#x27;@nestjs/common&#x27;
 
-@Controller(AppController.path)
-@ApiTags(AppController.name)
-export class AppController {
-    static path &#x3D; &#x27;/&#x27;
+import { ValidationError } from &#x27;objection&#x27;
 
-    @Get() getHello() {
-        return &#x27;Hello World!&#x27;
+@Catch(ValidationError)
+export class ValidationFailedFilter implements ExceptionFilter {
+    catch(exception: ValidationError, host: ArgumentsHost) {
+        const ctx &#x3D; host.switchToHttp()
+        const response &#x3D; ctx.getResponse&lt;Response&gt;()
+        const request &#x3D; ctx.getRequest&lt;Request&gt;()
+        const status &#x3D; HttpStatus.PRECONDITION_FAILED
+
+        const {
+            statusCode: validationErrorCode,
+            message,
+            data, // ErrorHash?
+            type, // ValidationErrorType
+        } &#x3D; exception
+
+        // @ts-ignore
+        response.status(status).json({
+            data,
+            type,
+            message,
+            validationErrorCode,
+
+            statusCode: status,
+
+            path: request.url,
+            // timestamp: new Date().toISOString(),
+        })
     }
 }
 </code></pre>
     </div>
 </div>
-
-
-
-
-
-
 
 
 
@@ -191,8 +260,8 @@ export class AppController {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'controller';
-            var COMPODOC_CURRENT_PAGE_URL = 'AppController.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
+            var COMPODOC_CURRENT_PAGE_URL = 'ValidationFailedFilter.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

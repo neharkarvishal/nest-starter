@@ -82,9 +82,6 @@
                                 <a href="#collectOsMetrics">collectOsMetrics</a>
                             </li>
                             <li>
-                                <a href="#index">index</a>
-                            </li>
-                            <li>
                                 <a href="#onApplicationShutdown">onApplicationShutdown</a>
                             </li>
                             <li>
@@ -139,8 +136,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="66"
-                            class="link-to-prism">src/health/health.controller.ts:66</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="55"
+                            class="link-to-prism">src/health/health.controller.ts:55</a></div>
                 </td>
             </tr>
 
@@ -178,8 +175,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="72"
-                            class="link-to-prism">src/health/health.controller.ts:72</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="61"
+                            class="link-to-prism">src/health/health.controller.ts:61</a></div>
                 </td>
             </tr>
 
@@ -226,79 +223,6 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="index"></a>
-                    <span class="name">
-                        <b>
-                            index
-                        </b>
-                        <a href="#index"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>index(response)</code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Get()<br /></code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="39"
-                            class="link-to-prism">src/health/health.controller.ts:39</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>response</td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="onApplicationShutdown"></a>
                     <span class="name">
                         <b>
@@ -317,8 +241,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="91"
-                            class="link-to-prism">src/health/health.controller.ts:91</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="80"
+                            class="link-to-prism">src/health/health.controller.ts:80</a></div>
                 </td>
             </tr>
 
@@ -387,8 +311,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="85"
-                            class="link-to-prism">src/health/health.controller.ts:85</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="74"
+                            class="link-to-prism">src/health/health.controller.ts:74</a></div>
                 </td>
             </tr>
 
@@ -433,8 +357,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="47"
-                            class="link-to-prism">src/health/health.controller.ts:47</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="36"
+                            class="link-to-prism">src/health/health.controller.ts:36</a></div>
                 </td>
             </tr>
 
@@ -462,7 +386,6 @@ import {
     OnApplicationShutdown,
     OnModuleInit,
     MessageEvent,
-    Res,
     Sse,
 } from &#x27;@nestjs/common&#x27;
 import { ConfigService } from &#x27;@nestjs/config&#x27;
@@ -473,9 +396,7 @@ import {
     HealthCheckService,
 } from &#x27;@nestjs/terminus&#x27;
 
-import { readFileSync } from &#x27;fs&#x27;
 import * as os from &#x27;os&#x27;
-import { join } from &#x27;path&#x27;
 import * as pidusage from &#x27;pidusage&#x27;
 import { interval, Observable } from &#x27;rxjs&#x27;
 import { map } from &#x27;rxjs/operators&#x27;
@@ -490,14 +411,6 @@ export class HealthController implements OnModuleInit, OnApplicationShutdown {
         private dns: DNSHealthIndicator,
         private config: ConfigService&lt;EnvironmentVariables&gt;,
     ) {}
-
-    @Get()
-    index(@Res() response) {
-        response
-            // @ts-ignore
-            .type(&#x27;text/html&#x27;)
-            .send(readFileSync(join(__dirname, &#x27;sse.html&#x27;)).toString())
-    }
 
     @Sse(&#x27;sse&#x27;)
     sse(): Observable&lt;MessageEvent&gt; {

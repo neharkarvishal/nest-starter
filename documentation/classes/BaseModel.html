@@ -65,6 +65,12 @@
 
 
 
+            <p class="comment">
+                <h3>Implements</h3>
+            </p>
+            <p class="comment">
+                            <code><a href="../interfaces/IBaseModel.html" target="_self" >IBaseModel</a></code>
+            </p>
 
 
             <section>
@@ -80,21 +86,48 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Optional</span>
-                                <a href="#createdAt">createdAt</a>
+                                <a href="#created_at">created_at</a>
                             </li>
                             <li>
                                     <span class="modifier">Optional</span>
-                                <a href="#deletedAt">deletedAt</a>
+                                <a href="#deleted_at">deleted_at</a>
                             </li>
                             <li>
-                                    <span class="modifier">Optional</span>
-                                <a href="#updatedAt">updatedAt</a>
+                                    <span class="modifier">Static</span>
+                                <a href="#hidden">hidden</a>
+                            </li>
+                            <li>
+                                <a href="#id">id</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#QueryBuilder">QueryBuilder</a>
+                            </li>
+                            <li>
+                                <a href="#QueryBuilderType">QueryBuilderType</a>
+                            </li>
+                            <li>
+                                <a href="#updated_at">updated_at</a>
                             </li>
                         </ul>
                     </td>
                 </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#fetchRelation">fetchRelation</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
 
 
@@ -114,33 +147,23 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="createdAt"></a>
+                        <a name="created_at"></a>
                         <span class="name">
                             <b>
-                                <span class="modifier">Optional</span>
-                            createdAt</b>
-                            <a href="#createdAt"><span class="icon ion-ios-link"></span></a>
+                            created_at</b>
+                            <a href="#created_at"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <b>Decorators : </b>
-                            <br />
-                            <code>
-                                @ApiProperty({example: &#x27;2000-01-01T12:00:00.000Z&#x27;})<br />
-                            </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/database/models/base.model.ts:16</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/database/models/base.model.ts:35</a></div>
                             </td>
                         </tr>
 
@@ -151,33 +174,24 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="deletedAt"></a>
+                        <a name="deleted_at"></a>
                         <span class="name">
                             <b>
                                 <span class="modifier">Optional</span>
-                            deletedAt</b>
-                            <a href="#deletedAt"><span class="icon ion-ios-link"></span></a>
+                            deleted_at</b>
+                            <a href="#deleted_at"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code>Date | null</code>
+                            <i>Type : </i>    <code>any | null</code>
 
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <b>Decorators : </b>
-                            <br />
-                            <code>
-                                @ApiProperty({example: &#x27;2000-01-01T12:00:00.000Z&#x27;})<br />
-                            </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/database/models/base.model.ts:22</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/database/models/base.model.ts:39</a></div>
                             </td>
                         </tr>
 
@@ -188,33 +202,137 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="updatedAt"></a>
+                        <a name="hidden"></a>
                         <span class="name">
                             <b>
-                                <span class="modifier">Optional</span>
-                            updatedAt</b>
-                            <a href="#updatedAt"><span class="icon ion-ios-link"></span></a>
+                                <span class="modifier">Static</span>
+                            hidden</b>
+                            <a href="#hidden"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+                            <i>Type : </i>    <code>[]</code>
 
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <b>Decorators : </b>
-                            <br />
-                            <code>
-                                @ApiProperty({example: &#x27;2000-01-01T12:00:00.000Z&#x27;})<br />
-                            </code>
+                            <i>Default value : </i><code>[&#x27;salt&#x27;, &#x27;password&#x27;, &#x27;created_at&#x27;, &#x27;updated_at&#x27;, &#x27;deleted_at&#x27;]</code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/database/models/base.model.ts:19</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/database/models/base.model.ts:27</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="id"></a>
+                        <span class="name">
+                            <b>
+                            id</b>
+                            <a href="#id"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/database/models/base.model.ts:33</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="QueryBuilder"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Static</span>
+                            QueryBuilder</b>
+                            <a href="#QueryBuilder"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>CustomQueryBuilder</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/database/models/base.model.ts:31</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="QueryBuilderType"></a>
+                        <span class="name">
+                            <b>
+                            QueryBuilderType</b>
+                            <a href="#QueryBuilderType"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../classes/CustomQueryBuilder.html" target="_self" >CustomQueryBuilder&lt;&gt;</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/database/models/base.model.ts:29</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="updated_at"></a>
+                        <span class="name">
+                            <b>
+                            updated_at</b>
+                            <a href="#updated_at"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/database/models/base.model.ts:37</a></div>
                             </td>
                         </tr>
 
@@ -223,7 +341,102 @@
         </table>
 </section>
 
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fetchRelation"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Async</span>
+                            fetchRelation
+                        </b>
+                        <a href="#fetchRelation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>fetchRelation(expression: RelationExpression<any>, options: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank">object</a>)</code>
+                </td>
+            </tr>
 
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="42"
+                            class="link-to-prism">src/database/models/base.model.ts:42</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Default value</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>expression</td>
+                                    <td>
+                                            <code>RelationExpression&lt;any&gt;</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>options</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>{}</code>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>{}</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
 
 
 
@@ -233,41 +446,69 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiProperty } from &#x27;@nestjs/swagger&#x27;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiProperty, ApiPropertyOptional } from &#x27;@nestjs/swagger&#x27;
 
 import {
+    fn,
+    mixin,
     Model,
     ModelOptions,
     QueryContext,
-    snakeCaseMappers,
-    ColumnNameMappers,
-    mixin,
+    RelationExpression,
 } from &#x27;objection&#x27;
 import { DBErrors } from &#x27;objection-db-errors&#x27;
 import visibilityPlugin from &#x27;objection-visibility&#x27;
 
-export class BaseModel extends mixin(Model, [visibilityPlugin, DBErrors]) {
-    @ApiProperty({ example: &#x27;2000-01-01T12:00:00.000Z&#x27; })
-    createdAt?: Date
+import { CustomQueryBuilder } from &#x27;./helpers&#x27;
 
-    @ApiProperty({ example: &#x27;2000-01-01T12:00:00.000Z&#x27; })
-    updatedAt?: Date
+export interface IBaseModel {
+    id: number
+    created_at: any
+    updated_at: any
+    deleted_at?: any
+}
 
-    @ApiProperty({ example: &#x27;2000-01-01T12:00:00.000Z&#x27; })
-    deletedAt?: Date | null
+export class BaseModel
+    extends mixin(Model, [visibilityPlugin, DBErrors])
+    implements IBaseModel {
+    static hidden &#x3D; [&#x27;salt&#x27;, &#x27;password&#x27;, &#x27;created_at&#x27;, &#x27;updated_at&#x27;, &#x27;deleted_at&#x27;] // hidden fields to filter from query result
 
-    // async $beforeInsert(queryContext: QueryContext) {
-    //     await super.$beforeInsert(queryContext)
-    //
-    //     this.createdAt &#x3D; new Date()
-    //     this.updatedAt &#x3D; new Date()
-    // }
-    //
-    // async $beforeUpdate(opt: ModelOptions, queryContext: QueryContext) {
-    //     await super.$beforeUpdate(opt, queryContext)
-    //
-    //     this.updatedAt &#x3D; new Date()
-    // }
+    QueryBuilderType!: CustomQueryBuilder&lt;this&gt; // custom query builder for pagination
+
+    static QueryBuilder &#x3D; CustomQueryBuilder
+
+    id: number
+
+    created_at: any
+
+    updated_at: any
+
+    deleted_at?: any | null
+
+    // fetch data with relation mapping
+    async fetchRelation(expression: RelationExpression&lt;any&gt;, options &#x3D; {}) {
+        if (this[expression.toString()]) return this
+
+        await this.$fetchGraph(expression, options)
+        return this
+    }
+
+    /*
+    async $beforeUpdate(opt: ModelOptions, queryContext: QueryContext) {
+        await super.$beforeUpdate(opt, queryContext)
+
+        this.updated_at &#x3D; new Date().toISOString() // fn.now()
+    }
+
+    async $beforeInsert(queryContext: QueryContext) {
+        await super.$beforeInsert(queryContext)
+
+        const date &#x3D; fn.now() // new Date().toISOString()
+
+        this.created_at &#x3D; date
+        this.updated_at &#x3D; date
+    }
+    */
 }
 </code></pre>
     </div>

@@ -42,7 +42,7 @@
 
 <ol class="breadcrumb">
   <li>Classes</li>
-  <li>UpdateTagsDto</li>
+  <li>UpdateUserDto</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -60,7 +60,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/tags/tag.model.ts</code>
+            <code>src/users/user.model.ts</code>
         </p>
 
 
@@ -83,42 +83,128 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { PartialType as MappedPartialType } from &#x27;@nestjs/mapped-types&#x27;
 import { ApiProperty, PartialType } from &#x27;@nestjs/swagger&#x27;
 
-import { IsNotEmpty, IsString, MaxLength, MinLength } from &#x27;class-validator&#x27;
-import type { JSONSchema } from &#x27;objection&#x27;
+import {
+    IsString,
+    MinLength,
+    IsNotEmpty,
+    IsOptional,
+    MaxLength,
+    IsEmail,
+    IsBoolean,
+} from &#x27;class-validator&#x27;
+import type { JSONSchema, Modifiers } from &#x27;objection&#x27;
 
 import { BaseModel } from &#x27;../database/models/base.model&#x27;
 
-interface ITag {
-    name: string
+interface IUser {
+    username: string
+    email: string
+    firstName: string
+    lastName: string
+    isActive: boolean
+    password: string
 }
 
-export class Tag extends BaseModel implements ITag {
-    static tableName &#x3D; &#x27;tags&#x27;
+export class User extends BaseModel implements IUser {
+    static tableName &#x3D; &#x27;users&#x27;
 
-    @ApiProperty() name: string
+    username: string
+
+    email: string
+
+    firstName: string
+
+    lastName: string
+
+    isActive: boolean
+
+    password: string
 
     // JSON schema is not the database schema! Nothing is generated based on this.
     // This is only used for validation. Whenever a model instance is created it is checked against this schema.
     static jsonSchema: JSONSchema &#x3D; {
         type: &#x27;object&#x27;,
-        required: [&#x27;name&#x27;],
+        required: [&#x27;username&#x27;, &#x27;email&#x27;, &#x27;password&#x27;],
         properties: {
-            id: { type: &#x27;integer&#x27; },
-            name: { type: &#x27;string&#x27;, minLength: 2, maxLength: 255 },
+            id: { type: &#x27;integer&#x27;, readOnly: true },
+            username: { type: &#x27;string&#x27;, minLength: 3, maxLength: 255 },
+            email: {
+                type: &#x27;string&#x27;,
+                minLength: 3,
+                maxLength: 255,
+                format: &#x27;email&#x27;,
+            },
+            password: { type: &#x27;string&#x27;, minLength: 8, maxLength: 255 },
+            firstName: { type: &#x27;string&#x27;, minLength: 1, maxLength: 255 },
+            lastName: { type: &#x27;string&#x27;, minLength: 1, maxLength: 255 },
+            isActive: { type: &#x27;boolean&#x27; },
+        },
+    }
+
+    // Modifiers are reusable query snippets that can be used in various places.
+    static modifiers: Modifiers &#x3D; {
+        // Our example modifier is a a semi-dumb fuzzy name match. We split the name into pieces using whitespace
+        // and then try to partially match each of those pieces to both the &#x60;firstName&#x60; and the &#x60;lastName&#x60; fields.
+
+        searchByName(query, name: string) {
+            // This &#x60;where&#x60; simply creates parentheses so that other &#x60;where&#x60; statements don&#x27;t get mixed with the these.
+
+            query.where((q) &#x3D;&gt; {
+                for (const namePart of name.trim().split(/\s+/)) {
+                    for (const column of [&#x27;firstName&#x27;, &#x27;lastName&#x27;]) {
+                        q.orWhereRaw(&#x27;lower(??) like ?&#x27;, [
+                            column,
+                            &#x60;${namePart.toLowerCase()}%&#x60;,
+                        ])
+                    }
+                }
+            })
         },
     }
 }
 
-export class CreateTagsDto implements ITag {
+export class CreateUserDto implements IUser {
     @ApiProperty()
     @IsString()
     @IsNotEmpty()
     @MinLength(2)
     @MaxLength(36)
-    name: string
+    username: string
+
+    @ApiProperty()
+    @IsEmail()
+    @IsNotEmpty()
+    @MinLength(2)
+    email: string
+
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+    @MinLength(8)
+    password: string
+
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+    @MinLength(2)
+    firstName: string
+
+    @ApiProperty()
+    @IsOptional()
+    middleName: string
+
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+    @MinLength(2)
+    lastName: string
+
+    @ApiProperty()
+    @IsBoolean()
+    isActive: boolean
 }
 
-export class UpdateTagsDto extends PartialType(CreateTagsDto) {}
+export class UpdateUserDto extends PartialType(CreateUserDto) {}
 </code></pre>
     </div>
 </div>
@@ -147,7 +233,7 @@ export class UpdateTagsDto extends PartialType(CreateTagsDto) {}
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'UpdateTagsDto.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'UpdateUserDto.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

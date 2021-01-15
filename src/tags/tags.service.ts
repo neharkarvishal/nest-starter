@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Inject, Injectable } from '@nestjs/common'
-import { CrudRequest } from '@nestjsx/crud'
 
 import { ModelClass, transaction } from 'objection'
 

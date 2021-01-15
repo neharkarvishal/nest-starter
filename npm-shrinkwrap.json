@@ -8811,9 +8811,9 @@
             }
         },
         "objection": {
-            "version": "2.2.4",
-            "resolved": "https://registry.npmjs.org/objection/-/objection-2.2.4.tgz",
-            "integrity": "sha512-yY/Pf6gLWVnTrkhYMZ4qjuk4ztJ8NHizfC1S/cp89oSevd9hDS2GqCYKQMHJRnY+Wu+qFtqMMFgWV3qRQrX0iA==",
+            "version": "2.2.6",
+            "resolved": "https://registry.npmjs.org/objection/-/objection-2.2.6.tgz",
+            "integrity": "sha512-1oceoMuWMtUBTGZ6Y3aIfsjhX83JDpETOVm73ZnyuJx0KsAcf+ZLAtSHWChCQw1DZydHQOMxHlq5vTQ4HYPLAw==",
             "requires": {
                 "ajv": "^6.12.6",
                 "db-errors": "^0.2.3"
@@ -8825,6 +8825,14 @@
             "integrity": "sha512-WIxQQHmPuCk+GYQy1pvnyqB0MJXpmiD+HCyIAafXFecvgfCwlLtD+IgthkMQxrJP79j3ETvpB4ArVYEk8Hq5sw==",
             "requires": {
                 "db-errors": "^0.2.1"
+            }
+        },
+        "objection-find": {
+            "version": "3.0.1",
+            "resolved": "https://registry.npmjs.org/objection-find/-/objection-find-3.0.1.tgz",
+            "integrity": "sha512-be1JjJqiREFN3NVHtYVH/Wv7B7+FRzs9ulvZoYa4JESTldzGRRpuuA//KbHnVB64zdAKGHBTGY+u7kT3zRvUBg==",
+            "requires": {
+                "lodash": "^4.17.20"
             }
         },
         "objection-visibility": {

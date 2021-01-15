@@ -7,7 +7,6 @@ import { TerminusModule } from '@nestjs/terminus'
 import * as Joi from '@hapi/joi'
 
 import { AppController } from './app.controller'
-import { AppService } from './app.service'
 import { CronModule } from './cron/cron.module'
 import { DatabaseModule } from './database/database.module'
 import { HealthController } from './health/health.controller'
@@ -45,7 +44,7 @@ const ConfigModuleOptions = {
         TagsModule,
         UsersModule,
     ],
-    providers: [AppService],
+    providers: [],
 })
 export class AppModule implements OnModuleInit, OnApplicationShutdown {
     /*

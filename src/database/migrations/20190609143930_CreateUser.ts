@@ -6,9 +6,9 @@ export async function up(knex: Knex): Promise<any> {
     return knex.schema.createTable(tableName, (table) => {
         table.increments('id').primary()
 
-        table.string('username').notNullable()
+        table.string('username').notNullable().unique()
 
-        table.string('email').notNullable()
+        table.string('email').notNullable().unique()
 
         table.string('password').notNullable()
 
@@ -18,11 +18,13 @@ export async function up(knex: Knex): Promise<any> {
 
         table.boolean('isActive').defaultTo(false)
 
-        table.timestamp('updatedAt').defaultTo(knex.fn.now())
+        table.timestamps(true, true) // created_at, updated_at, useTimestamps, defaultToNow
 
-        table.timestamp('createdAt').defaultTo(knex.fn.now())
+        // table.timestamp('updatedAt').defaultTo(knex.fn.now())
 
-        table.timestamp('deletedAt').nullable().defaultTo(null)
+        // table.timestamp('createdAt').defaultTo(knex.fn.now())
+
+        table.timestamp('deleted_at').nullable().defaultTo(null)
     })
 }
 

@@ -91,18 +91,6 @@
         <tr class="low">
             <td>
                 <!-- miscellaneous -->
-                <a href="./injectables/AppService.html">src/app.service.ts</a>
-            </td>
-            <td>injectable</td>
-            <td>AppService</td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/2)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
                 <a href="./injectables/DBHelper.html">src/base/DBHelper.ts</a>
             </td>
             <td>injectable</td>
@@ -373,37 +361,85 @@
             <td>BaseModel</td>
             <td align="right" data-sort="0">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/4)</span>
+                <span class="coverage-count">(0/9)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
                 <!-- miscellaneous -->
-                <a href="./classes/Tag.html">src/database/models/tag.model.ts</a>
+                <a href="./interfaces/IBaseModel.html">src/database/models/base.model.ts</a>
             </td>
-            <td>class</td>
-            <td>Tag</td>
+            <td>interface</td>
+            <td>IBaseModel</td>
             <td align="right" data-sort="0">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/8)</span>
+                <span class="coverage-count">(0/5)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
                 <!-- miscellaneous -->
-                <a href="./classes/User.html">src/database/models/user.model.ts</a>
+                <a href="./classes/CustomQueryBuilder.html">src/database/models/helpers.ts</a>
             </td>
             <td>class</td>
-            <td>User</td>
+            <td>CustomQueryBuilder</td>
             <td align="right" data-sort="0">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/14)</span>
+                <span class="coverage-count">(0/9)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href=".//functions.html#isEmpty">src/database/models/helpers.ts</a>
+            </td>
+            <td>function</td>
+            <td>isEmpty</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href=".//functions.html#isNotEmpty">src/database/models/helpers.ts</a>
+            </td>
+            <td>function</td>
+            <td>isNotEmpty</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href=".//functions.html#isObject">src/database/models/helpers.ts</a>
+            </td>
+            <td>function</td>
+            <td>isObject</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
                 <!-- miscellaneous -->
-                <a href=".//functions.html#seed">src/database/seeds/01-Tags.ts</a>
+                <a href=".//functions.html#seed">src/database/seeds/01-User.ts</a>
+            </td>
+            <td>function</td>
+            <td>seed</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href=".//functions.html#seed">src/database/seeds/02-Tag.ts</a>
             </td>
             <td>function</td>
             <td>seed</td>
@@ -661,7 +697,7 @@
             <td>HealthController</td>
             <td align="right" data-sort="0">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/7)</span>
+                <span class="coverage-count">(0/6)</span>
             </td>
         </tr>
         <tr class="low">
@@ -671,6 +707,18 @@
             </td>
             <td>class</td>
             <td>QueryFailedFilter</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/2)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./classes/ValidationFailedFilter.html">src/infra/filters/validation-failed.filter.ts</a>
+            </td>
+            <td>class</td>
+            <td>ValidationFailedFilter</td>
             <td align="right" data-sort="0">
                 <span class="coverage-percent">0 %</span>
                 <span class="coverage-count">(0/2)</span>
@@ -799,6 +847,54 @@
         <tr class="low">
             <td>
                 <!-- miscellaneous -->
+                <a href="./classes/CreateTagsDto.html">src/tags/tag.model.ts</a>
+            </td>
+            <td>class</td>
+            <td>CreateTagsDto</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/2)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./classes/Tag.html">src/tags/tag.model.ts</a>
+            </td>
+            <td>class</td>
+            <td>Tag</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/12)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./classes/UpdateTagsDto.html">src/tags/tag.model.ts</a>
+            </td>
+            <td>class</td>
+            <td>UpdateTagsDto</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/ITag.html">src/tags/tag.model.ts</a>
+            </td>
+            <td>interface</td>
+            <td>ITag</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/2)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
                 <a href="./controllers/TagsController.html">src/tags/tags.controller.ts</a>
             </td>
             <td>controller</td>
@@ -811,34 +907,34 @@
         <tr class="low">
             <td>
                 <!-- miscellaneous -->
-                <a href="./classes/CreateTagsDto.html">src/tags/tags.dto.ts</a>
+                <a href="./injectables/TagsService.html">src/tags/tags.service.ts</a>
             </td>
-            <td>class</td>
-            <td>CreateTagsDto</td>
+            <td>injectable</td>
+            <td>TagsService</td>
             <td align="right" data-sort="0">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/2)</span>
+                <span class="coverage-count">(0/7)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
                 <!-- miscellaneous -->
-                <a href="./classes/GetTagsResponseDto.html">src/tags/tags.dto.ts</a>
+                <a href="./classes/CreateUserDto.html">src/users/user.model.ts</a>
             </td>
             <td>class</td>
-            <td>GetTagsResponseDto</td>
+            <td>CreateUserDto</td>
             <td align="right" data-sort="0">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/6)</span>
+                <span class="coverage-count">(0/8)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
                 <!-- miscellaneous -->
-                <a href="./classes/UpdateTagsDto.html">src/tags/tags.dto.ts</a>
+                <a href="./classes/UpdateUserDto.html">src/users/user.model.ts</a>
             </td>
             <td>class</td>
-            <td>UpdateTagsDto</td>
+            <td>UpdateUserDto</td>
             <td align="right" data-sort="0">
                 <span class="coverage-percent">0 %</span>
                 <span class="coverage-count">(0/1)</span>
@@ -847,10 +943,46 @@
         <tr class="low">
             <td>
                 <!-- miscellaneous -->
-                <a href="./injectables/TagsService.html">src/tags/tags.service.ts</a>
+                <a href="./classes/User.html">src/users/user.model.ts</a>
+            </td>
+            <td>class</td>
+            <td>User</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/18)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/IUser.html">src/users/user.model.ts</a>
+            </td>
+            <td>interface</td>
+            <td>IUser</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/7)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./controllers/UsersController.html">src/users/users.controller.ts</a>
+            </td>
+            <td>controller</td>
+            <td>UsersController</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/6)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/UsersService.html">src/users/users.service.ts</a>
             </td>
             <td>injectable</td>
-            <td>TagsService</td>
+            <td>UsersService</td>
             <td align="right" data-sort="0">
                 <span class="coverage-percent">0 %</span>
                 <span class="coverage-count">(0/7)</span>

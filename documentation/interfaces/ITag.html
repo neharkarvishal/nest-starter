@@ -27,16 +27,23 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content controller">
+               <div class="content interface">
                    <div class="content-data">
 
 
 
 
 
+
+
+
+
+
+
+
 <ol class="breadcrumb">
-  <li>Controllers</li>
-  <li>AppController</li>
+  <li>Interfaces</li>
+  <li>ITag</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -54,120 +61,113 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app.controller.ts</code>
+            <code>src/tags/tag.model.ts</code>
         </p>
 
 
 
+        <section>
+            <h3 id="index">Index</h3>
+            <table class="table table-sm table-bordered index-table">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Properties</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                        <a href="#name">name</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
 
 
 
             <section>
-    <h3 id="index">Index</h3>
-    <table class="table table-sm table-bordered index-table">
-        <tbody>
-
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Methods</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                <a href="#getHello">getHello</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
+                <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="name"></a>
+                                        <span class="name"><b>name</b><a href="#name"><span class="icon ion-ios-link"></span></a></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>name:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
 
 
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
 
 
 
-        </tbody>
-    </table>
-</section>
-
-            <section>
-    
-    <h3 id="methods">
-        Methods
-    </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="getHello"></a>
-                    <span class="name">
-                        <b>
-                            getHello
-                        </b>
-                        <a href="#getHello"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>getHello()</code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Get()<br /></code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="10"
-                            class="link-to-prism">src/app.controller.ts:10</a></div>
-                </td>
-            </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</section>    </div>
+                        </tbody>
+                    </table>
+            </section>
+    </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">/* eslint-disable no-use-before-define */
-import { Controller, Get } from &#x27;@nestjs/common&#x27;
-import { ApiTags } from &#x27;@nestjs/swagger&#x27;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { PartialType as MappedPartialType } from &#x27;@nestjs/mapped-types&#x27;
+import { ApiProperty, PartialType } from &#x27;@nestjs/swagger&#x27;
 
-@Controller(AppController.path)
-@ApiTags(AppController.name)
-export class AppController {
-    static path &#x3D; &#x27;/&#x27;
+import { IsNotEmpty, IsString, MaxLength, MinLength } from &#x27;class-validator&#x27;
+import type { JSONSchema } from &#x27;objection&#x27;
 
-    @Get() getHello() {
-        return &#x27;Hello World!&#x27;
+import { BaseModel } from &#x27;../database/models/base.model&#x27;
+
+interface ITag {
+    name: string
+}
+
+export class Tag extends BaseModel implements ITag {
+    static tableName &#x3D; &#x27;tags&#x27;
+
+    @ApiProperty() name: string
+
+    // JSON schema is not the database schema! Nothing is generated based on this.
+    // This is only used for validation. Whenever a model instance is created it is checked against this schema.
+    static jsonSchema: JSONSchema &#x3D; {
+        type: &#x27;object&#x27;,
+        required: [&#x27;name&#x27;],
+        properties: {
+            id: { type: &#x27;integer&#x27; },
+            name: { type: &#x27;string&#x27;, minLength: 2, maxLength: 255 },
+        },
     }
 }
+
+export class CreateTagsDto implements ITag {
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+    @MinLength(2)
+    @MaxLength(36)
+    name: string
+}
+
+export class UpdateTagsDto extends PartialType(CreateTagsDto) {}
 </code></pre>
     </div>
 </div>
-
-
-
-
-
-
-
 
 
                    
@@ -191,8 +191,8 @@ export class AppController {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'controller';
-            var COMPODOC_CURRENT_PAGE_URL = 'AppController.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'ITag.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

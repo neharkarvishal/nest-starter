@@ -1,4 +1,4 @@
-/* eslint-disable no-use-before-define */
+/* eslint-disable no-use-before-define,@typescript-eslint/no-unsafe-call */
 import {
     Controller,
     Get,
@@ -11,15 +11,18 @@ import {
 } from '@nestjs/common'
 import { ApiOperation, ApiTags } from '@nestjs/swagger'
 
-import { CreateUserDto, UpdateUserDto } from './user.model'
+import { CrudController } from '../base/crud'
+import { CreateUserDto, UpdateUserDto, User } from './user.model'
 import { UsersService } from './users.service'
 
 @Controller(UsersController.path)
 @ApiTags(UsersController.name)
-export class UsersController {
+export class UsersController extends CrudController<User> {
     static path = 'users'
 
-    constructor(private readonly service: UsersService) {}
+    constructor(readonly service: UsersService) {
+        super(service)
+    }
 
     @ApiOperation({
         summary: 'Create a User',
@@ -28,24 +31,6 @@ export class UsersController {
     @Post()
     async create(@Body() user: CreateUserDto) {
         return this.service.create(user)
-    }
-
-    @ApiOperation({
-        summary: 'Get all of the users',
-        description: 'Get all of the users',
-    })
-    @Get()
-    async findAll() {
-        return this.service.findAll()
-    }
-
-    @ApiOperation({
-        summary: 'Get one users by id',
-        description: 'Get one users by id',
-    })
-    @Get(':id')
-    async findOne(@Param('id', ParseIntPipe) id: number) {
-        return this.service.findOne(id)
     }
 
     @ApiOperation({

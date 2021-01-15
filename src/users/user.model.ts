@@ -47,7 +47,12 @@ export class User extends BaseModel implements IUser {
         properties: {
             id: { type: 'integer', readOnly: true },
             username: { type: 'string', minLength: 3, maxLength: 255 },
-            email: { type: 'string', minLength: 3, maxLength: 255 },
+            email: {
+                type: 'string',
+                minLength: 3,
+                maxLength: 255,
+                format: 'email',
+            },
             password: { type: 'string', minLength: 8, maxLength: 255 },
             firstName: { type: 'string', minLength: 1, maxLength: 255 },
             lastName: { type: 'string', minLength: 1, maxLength: 255 },
@@ -102,10 +107,6 @@ export class CreateUserDto implements IUser {
     @IsNotEmpty()
     @MinLength(2)
     firstName: string
-
-    @ApiProperty()
-    @IsOptional()
-    middleName: string
 
     @ApiProperty()
     @IsString()
