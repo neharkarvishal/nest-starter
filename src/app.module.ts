@@ -2,11 +2,9 @@
 import { Module, OnApplicationShutdown, OnModuleInit } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { ScheduleModule } from '@nestjs/schedule'
-import { ServeStaticModule } from '@nestjs/serve-static'
 import { TerminusModule } from '@nestjs/terminus'
 
 import * as Joi from '@hapi/joi'
-import { join } from 'path'
 
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
@@ -14,6 +12,7 @@ import { CronModule } from './cron/cron.module'
 import { DatabaseModule } from './database/database.module'
 import { HealthController } from './health/health.controller'
 import { TagsModule } from './tags/tags.module'
+import { UsersModule } from './users/users.module'
 
 const ConfigModuleOptions = {
     isGlobal: true,
@@ -39,15 +38,12 @@ const ConfigModuleOptions = {
     controllers: [AppController, HealthController],
     imports: [
         ConfigModule.forRoot(ConfigModuleOptions),
-        ServeStaticModule.forRoot({
-            rootPath: join(__dirname, '..', 'redoc'),
-            exclude: ['/api*'],
-        }),
         DatabaseModule,
         ScheduleModule.forRoot(), // CronModules deps
         CronModule,
         TerminusModule, // Health module
         TagsModule,
+        UsersModule,
     ],
     providers: [AppService],
 })

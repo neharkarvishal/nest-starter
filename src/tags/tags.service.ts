@@ -4,40 +4,31 @@ import { CrudRequest } from '@nestjsx/crud'
 
 import { ModelClass, transaction } from 'objection'
 
-import { Tag } from '../database/models/tag.model'
+import { Tag } from './tag.model'
 
 @Injectable()
 export class TagsService {
-    constructor(@Inject(Tag.name) private modelClass: ModelClass<Tag>) {}
+    constructor(@Inject(Tag.name) private tag: ModelClass<Tag>) {}
 
-    async findAll({ parsed, options }: CrudRequest) {
-        return this.modelClass.query()
+    async findAll() {
+        return this.tag.query()
     }
 
-    async findOne({ parsed, options }: CrudRequest, id: number) {
-        return this.modelClass.query().findById(id)
+    async findOne(id: number) {
+        return this.tag.query().findById(id)
     }
 
-    async create({ parsed, options }: CrudRequest, props: Partial<Tag>) {
-        return this.modelClass.query().insert(props).returning('*')
+    async create(tag) {
+        return this.tag.query().insert(tag).returning('*')
     }
 
-    async update(
-        { parsed, options }: CrudRequest,
-        id: number,
-        props: Partial<Tag>,
-    ) {
-        return this.modelClass
-            .query()
-            .patch(props)
-            .where({ id })
-            .returning('*')
-            .first()
+    async update(id: number, tag) {
+        return this.tag.query().patch(tag).where({ id }).returning('*').first()
     }
 
-    async delete({ parsed, options }: CrudRequest, id: number) {
-        return transaction(this.modelClass, async (_, trx) => {
-            return this.modelClass
+    async delete(id: number) {
+        return transaction(this.tag, async (_, trx) => {
+            return this.tag
                 .query()
                 .deleteById(id)
                 .returning('*')

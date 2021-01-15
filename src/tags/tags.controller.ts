@@ -8,70 +8,44 @@ import {
     ParseIntPipe,
     Post,
     Put,
-    UseInterceptors,
 } from '@nestjs/common'
-import { ApiOperation, ApiTags } from '@nestjs/swagger'
-import {
-    CrudRequest,
-    CrudRequestInterceptor,
-    ParsedBody,
-    ParsedRequest,
-} from '@nestjsx/crud'
+import { ApiTags } from '@nestjs/swagger'
 
-import { Tag } from '../database/models/tag.model'
-import { CreateTagsDto, UpdateTagsDto, GetTagsResponseDto } from './tags.dto'
+import { CreateTagsDto, UpdateTagsDto } from './tag.model'
 import { TagsService } from './tags.service'
 
 @Controller(TagsController.path)
 @ApiTags(TagsController.name)
-@UseInterceptors(CrudRequestInterceptor)
 export class TagsController {
     static path = 'tags'
 
     constructor(private service: TagsService) {}
 
     @Get()
-    async findAll(@ParsedRequest() r: CrudRequest) {
-        const { parsed, options } = r
-
-        return this.service.findAll({ parsed, options })
+    async findAll() {
+        return this.service.findAll()
     }
 
     @Get(':id')
-    async findOne(
-        @ParsedRequest() r: CrudRequest,
-        @Param('id', ParseIntPipe) id: number,
-    ) {
-        const { parsed, options } = r
-
-        return this.service.findOne({ parsed, options }, id)
+    async findOne(@Param('id', ParseIntPipe) id: number) {
+        return this.service.findOne(id)
     }
 
     @Post()
-    async create(@ParsedRequest() r: CrudRequest, @Body() props: CreateTagsDto) {
-        const { parsed, options } = r
-
-        return this.service.create({ parsed, options }, props)
+    async create(@Body() tag: CreateTagsDto) {
+        return this.service.create(tag)
     }
 
     @Delete(':id')
-    async delete(
-        @ParsedRequest() r: CrudRequest,
-        @Param('id', ParseIntPipe) id: number,
-    ) {
-        const { parsed, options } = r
-
-        return this.service.delete({ parsed, options }, id)
+    async delete(@Param('id', ParseIntPipe) id: number) {
+        return this.service.delete(id)
     }
 
     @Put(':id')
     async update(
-        @ParsedRequest() r: CrudRequest,
         @Param('id', ParseIntPipe) id: number,
-        @Body() props: UpdateTagsDto,
+        @Body() updatedTag: UpdateTagsDto,
     ) {
-        const { parsed, options } = r
-
-        return this.service.update({ parsed, options }, id, props)
+        return this.service.update(id, updatedTag)
     }
 }

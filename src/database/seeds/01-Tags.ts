@@ -1,6 +1,6 @@
 import * as Knex from 'knex'
 
-import { Tag } from '../models/tag.model'
+import { Tag } from '../../tags/tag.model'
 
 if (process.env.NODE_ENV === 'production') {
     throw new Error("Can't run seeds in production")

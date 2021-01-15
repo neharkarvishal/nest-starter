@@ -12,6 +12,7 @@ import * as helmet from 'helmet'
 
 import { AppModule } from './app.module'
 import { QueryFailedFilter } from './infra/filters/query-failed.filter'
+import { ValidationFailedFilter } from './infra/filters/validation-failed.filter'
 import { RequestGuard } from './infra/guards/req'
 import { ResponseGuard } from './infra/guards/res'
 import { ExcludeNullUndefinedInterceptor } from './infra/interceptors/null-undefined-override'
@@ -52,12 +53,13 @@ function setupInfra(app: INestApplication) {
 
     // interceptors
     // app.useGlobalInterceptors(new TransformInterceptor())
-    // app.useGlobalInterceptors(new TimeoutInterceptor())
+    app.useGlobalInterceptors(new TimeoutInterceptor())
     app.useGlobalInterceptors(new ExcludeNullUndefinedInterceptor())
 
     // filters
     // const { httpAdapter } = app.get(HttpAdapterHost)
     app.useGlobalFilters(new QueryFailedFilter())
+    app.useGlobalFilters(new ValidationFailedFilter())
 
     // guards (express specific)
     // app.useGlobalGuards(new ResponseGuard())

@@ -13,18 +13,29 @@ import visibilityPlugin from 'objection-visibility'
 
 import { CustomQueryBuilder } from './helpers'
 
-export class BaseModel extends mixin(Model, [visibilityPlugin, DBErrors]) {
+export interface IBaseModel {
+    id: number
+    createdAt: any
+    updatedAt: any
+    deletedAt?: any
+}
+
+export class BaseModel
+    extends mixin(Model, [visibilityPlugin, DBErrors])
+    implements IBaseModel {
     static hidden = ['salt', 'password', 'createdAt', 'updatedAt', 'deletedAt'] // hidden fields to filter from query result
 
     QueryBuilderType!: CustomQueryBuilder<this> // custom query builder for pagination
 
     static QueryBuilder = CustomQueryBuilder
 
-    @ApiProperty() id: number
+    id: number
 
-    @ApiProperty() createdAt: Date
-    @ApiProperty() updatedAt: Date
-    @ApiPropertyOptional() deletedAt?: Date | null
+    createdAt: any
+
+    updatedAt: any
+
+    deletedAt?: any | null
 
     // fetch data with relation mapping
     async fetchRelation(expression: RelationExpression<any>, options = {}) {

@@ -1,22 +1,41 @@
-/* eslint-disable @typescript-eslint/no-unused-vars,@typescript-eslint/no-floating-promises,no-restricted-syntax */
-import { ApiProperty } from '@nestjs/swagger'
+/* eslint-disable no-restricted-syntax,@typescript-eslint/no-floating-promises */
+import { PartialType as MappedPartialType } from '@nestjs/mapped-types'
+import { ApiProperty, PartialType } from '@nestjs/swagger'
 
-import type { JSONSchema, Modifiers, AnyQueryBuilder } from 'objection'
+import {
+    IsString,
+    MinLength,
+    IsNotEmpty,
+    IsOptional,
+    MaxLength,
+    IsEmail,
+    IsBoolean,
+} from 'class-validator'
+import type { JSONSchema, Modifiers } from 'objection'
 
-import { BaseModel } from './base.model'
+import { BaseModel } from '../database/models/base.model'
 
-export class User extends BaseModel {
+interface IUser {
+    username: string
+    email: string
+    firstName: string
+    lastName: string
+    isActive: boolean
+    password: string
+}
+
+export class User extends BaseModel implements IUser {
     static tableName = 'users'
 
-    @ApiProperty() username: string
+    username: string
 
-    @ApiProperty() email: string
+    email: string
 
-    @ApiProperty() firstName: string
+    firstName: string
 
-    @ApiProperty() lastName: string
+    lastName: string
 
-    @ApiProperty() isActive: boolean
+    isActive: boolean
 
     password: string
 
@@ -24,9 +43,9 @@ export class User extends BaseModel {
     // This is only used for validation. Whenever a model instance is created it is checked against this schema.
     static jsonSchema: JSONSchema = {
         type: 'object',
-        required: ['username', 'email', 'displayName', 'password'],
+        required: ['username', 'email', 'password'],
         properties: {
-            id: { type: 'integer' },
+            id: { type: 'integer', readOnly: true },
             username: { type: 'string', minLength: 3, maxLength: 255 },
             email: { type: 'string', minLength: 3, maxLength: 255 },
             password: { type: 'string', minLength: 8, maxLength: 255 },
@@ -57,3 +76,46 @@ export class User extends BaseModel {
         },
     }
 }
+
+export class CreateUserDto implements IUser {
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+    @MinLength(2)
+    @MaxLength(36)
+    username: string
+
+    @ApiProperty()
+    @IsEmail()
+    @IsNotEmpty()
+    @MinLength(2)
+    email: string
+
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+    @MinLength(8)
+    password: string
+
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+    @MinLength(2)
+    firstName: string
+
+    @ApiProperty()
+    @IsOptional()
+    middleName: string
+
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+    @MinLength(2)
+    lastName: string
+
+    @ApiProperty()
+    @IsBoolean()
+    isActive: boolean
+}
+
+export class UpdateUserDto extends PartialType(CreateUserDto) {}
