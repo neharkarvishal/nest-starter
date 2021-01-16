@@ -1,4 +1,4 @@
-/* eslint-disable no-use-before-define,@typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-assignment,no-param-reassign */
+/* eslint-disable no-use-before-define */
 import {
     Controller,
     Get,
@@ -59,15 +59,16 @@ export class HealthController implements OnModuleInit, OnApplicationShutdown {
     }
 
     collectOsMetrics(metrics) {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
         pidusage(process.pid, (err, stat) => {
             if (err) return
 
             // Convert from B to MB
-            stat.memory = stat.memory / 1024 / 1024
-            stat.load = os.loadavg()
-            stat.timestamp = Date.now()
+            stat.memory = stat.memory / 1024 / 1024 // eslint-disable-line @typescript-eslint/no-unsafe-member-access,no-param-reassign
+            stat.timestamp = Date.now() // eslint-disable-line @typescript-eslint/no-unsafe-member-access,no-param-reassign
+            stat.load = os.loadavg() // eslint-disable-line @typescript-eslint/no-unsafe-member-access,no-param-reassign
 
-            metrics.os = stat
+            metrics.os = stat // eslint-disable-line @typescript-eslint/no-unsafe-member-access,no-param-reassign
         })
     }
 

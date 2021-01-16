@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-member-access */
 import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common'
 
 import { Observable } from 'rxjs'
@@ -20,20 +19,22 @@ export class RequestGuard implements CanActivate {
      */
     bindRequestHelpers(request: any): any {
         function all(): Record<string, any> {
-            const inputs = { ...request.query, ...request.body, ...request.params }
+            const inputs = { ...request.query, ...request.body, ...request.params } // eslint-disable-line @typescript-eslint/no-unsafe-member-access
 
             // eslint-disable-next-line guard-for-in,no-restricted-syntax
             for (const key in inputs) {
-                const value = inputs[key]
+                const value = inputs[key] // eslint-disable-line @typescript-eslint/no-unsafe-member-access
+
                 if (typeof value === 'string' || value instanceof String) {
-                    inputs[key] = value.trim()
+                    inputs[key] = value.trim() // eslint-disable-line @typescript-eslint/no-unsafe-member-access
                 }
             }
 
-            return inputs
+            return inputs // eslint-disable-line @typescript-eslint/no-unsafe-return
         }
 
-        request.all = all
-        return request
+        request.all = all // eslint-disable-line @typescript-eslint/no-unsafe-member-access
+
+        return request // eslint-disable-line @typescript-eslint/no-unsafe-return
     }
 }

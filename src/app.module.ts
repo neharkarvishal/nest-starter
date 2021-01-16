@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/require-await */
 import { Module, OnApplicationShutdown, OnModuleInit } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { ScheduleModule } from '@nestjs/schedule'
@@ -19,6 +18,7 @@ const ConfigModuleOptions = {
         allowUnknown: true,
         abortEarly: true,
     },
+    /* eslint-disable */
     validationSchema: Joi.object({
         PORT: Joi.number().default(3000),
         NODE_ENV: Joi.string()
@@ -31,6 +31,7 @@ const ConfigModuleOptions = {
         logging: Joi.string().required(),
         synchronize: Joi.string().required(),
     }),
+    /* eslint-enable */
 }
 
 @Module({

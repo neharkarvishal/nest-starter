@@ -37,6 +37,8 @@ module.exports = {
         'no-underscore-dangle': 'off',
         'jest/expect-expect': 'off',
         'max-classes-per-file': 'off',
+        'no-plusplus': 'off',
+        '@typescript-eslint/no-unsafe-assignment': 'off',
         // 'function-paren-newline': ['error', { minItems: 2 }],
         // 'sort-imports': [
         //     'warn',

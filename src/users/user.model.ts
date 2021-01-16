@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-syntax,@typescript-eslint/no-floating-promises */
 import { PartialType as MappedPartialType } from '@nestjs/mapped-types'
 import { ApiProperty, PartialType } from '@nestjs/swagger'
 
@@ -68,9 +67,13 @@ export class User extends BaseModel implements IUser {
         searchByName(query, name: string) {
             // This `where` simply creates parentheses so that other `where` statements don't get mixed with the these.
 
+            // eslint-disable-next-line @typescript-eslint/no-floating-promises
             query.where((q) => {
+                // eslint-disable-next-line no-restricted-syntax
                 for (const namePart of name.trim().split(/\s+/)) {
+                    // eslint-disable-next-line no-restricted-syntax
                     for (const column of ['firstName', 'lastName']) {
+                        // eslint-disable-next-line @typescript-eslint/no-floating-promises
                         q.orWhereRaw('lower(??) like ?', [
                             column,
                             `${namePart.toLowerCase()}%`,

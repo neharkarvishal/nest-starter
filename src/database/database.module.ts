@@ -1,11 +1,10 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Global, Module } from '@nestjs/common'
 
 import * as Knex from 'knex'
 import { knexSnakeCaseMappers, Model } from 'objection'
 
-import { User } from '../users/user.model'
 import { Tag } from '../tags/tag.model'
+import { User } from '../users/user.model'
 
 const models = [Tag, User]
 

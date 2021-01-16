@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-return,@typescript-eslint/require-await */
 import {
     Get,
     Post,
@@ -8,30 +7,32 @@ import {
     Param,
     ParseIntPipe,
     HttpStatus,
+    Query,
 } from '@nestjs/common'
 import { ApiOperation, ApiResponse } from '@nestjs/swagger'
 
-import { Page } from 'objection'
-import { DeepPartial } from 'typeorm'
-import { QueryDeepPartialEntity } from 'typeorm/query-builder/QueryPartialEntity'
-
 import { BaseModel } from '../../database/models/base.model'
-import { ICrudService } from './icrud.service'
-import { IPagination } from './pagination'
-import { PaginationParams } from './pagination-params'
+import { ICrudService } from './crud.service'
+import { IPagination, PaginationParams } from './pagination'
 
 export abstract class CrudController<T extends BaseModel> {
     protected constructor(protected readonly service: ICrudService<T>) {}
 
-    @ApiOperation({ summary: 'find all', description: 'Get all of the users' })
+    @ApiOperation({ summary: 'find all', description: 'Get all of the records' })
     @ApiResponse({
         status: HttpStatus.OK,
-        description: 'Found records',
-        // type: Page<BaseModel>
+        description: 'Found all records',
+        // type: IPagination<BaseModel> | BaseModel[]
     })
     @Get()
-    async findAll(filter: PaginationParams<T>): Promise<Page<T>> {
-        return this.service.findAll(filter)
+    async findAll(
+        @Query() filter: PaginationParams<T>,
+    ): Promise<IPagination<T> | T[]> {
+        if (filter) {
+            return this.service.paginatedFindAll(filter)
+        }
+
+        return this.service.findAll()
     }
 
     @ApiOperation({

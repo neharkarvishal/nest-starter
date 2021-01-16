@@ -1,4 +1,3 @@
-/* eslint-disable max-classes-per-file,@typescript-eslint/no-unused-vars */
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger'
 
 import {

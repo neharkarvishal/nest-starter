@@ -1,34 +1,78 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment,@typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-return */
-import { BadRequestException, NotFoundException } from '@nestjs/common'
+import { InternalServerErrorException } from '@nestjs/common'
 
-import * as bcrypt from 'bcryptjs'
-import { ModelClass, Page } from 'objection'
-import { of, throwError } from 'rxjs'
-import { mergeMap } from 'rxjs/operators'
-import {
-    DeepPartial,
-    FindConditions,
-    FindManyOptions,
-    FindOneOptions,
-    Repository,
-} from 'typeorm'
-import { QueryDeepPartialEntity } from 'typeorm/query-builder/QueryPartialEntity'
+import { NotFoundError, ModelClass } from 'objection'
 
 import { BaseModel } from '../../database/models/base.model'
-import { ICrudService } from './icrud.service'
-import { IPagination } from './pagination'
+import { IPagination, PaginationParams } from './pagination'
 
+export interface ICrudService<T> {
+    findAll(): Promise<T[]>
+
+    findOne(id: string | number): Promise<T>
+
+    paginatedFindAll(filter?: PaginationParams<T>): Promise<IPagination<T>>
+}
+
+/**
+ * Abstract base service that other services can extend to provide base CRUD
+ * functionality such as to create, find, update and delete data.
+ */
 export abstract class CrudService<T extends BaseModel> implements ICrudService<T> {
     saltRounds: number
 
+    /**
+     * The constructor must receive the injected model from the child service in
+     * order to provide all the proper base functionality.
+     *
+     * @param {Model} model - The injected model.
+     */
     protected constructor(protected readonly model: ModelClass<T>) {
         this.saltRounds = 12
     }
 
-    async findAll(filter) {
-        return (this.model.query().page(0, 1) as unknown) as Promise<Page<T>>
+    /**
+     * Finds all entries and return the result
+     *
+     * @throws InternalServerErrorException
+     */
+    async findAll() {
+        try {
+            return (this.model.query() as unknown) as Promise<T[]>
+        } catch (e) {
+            throw new InternalServerErrorException()
+        }
     }
 
+    /**
+     * Finds paginated entries and return the result
+     *
+     * @throws InternalServerErrorException
+     */
+    async paginatedFindAll(filter: PaginationParams<T>) {
+        const { page = 0, pageSize = 10, order } = filter
+
+        try {
+            const { results, total } = await this.model.query().page(page, pageSize)
+
+            return ({
+                data: results,
+                paging: {
+                    pageSize,
+                    page,
+                    total,
+                    totalPages: Math.ceil(total / pageSize),
+                },
+            } as unknown) as Promise<IPagination<T>>
+        } catch (e) {
+            throw new InternalServerErrorException()
+        }
+    }
+
+    /**
+     * Finds paginated entries and return the result
+     *
+     * @throws NotFoundError
+     */
     async findOne(id: string | number): Promise<T> {
         return (this.model
             .query()

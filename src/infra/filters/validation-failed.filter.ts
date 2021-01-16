@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access */
 import { ArgumentsHost, Catch, ExceptionFilter, HttpStatus } from '@nestjs/common'
 
 import { ValidationError } from 'objection'
@@ -19,6 +18,7 @@ export class ValidationFailedFilter implements ExceptionFilter {
         } = exception
 
         // @ts-ignore
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
         response.status(status).json({
             data,
             type,

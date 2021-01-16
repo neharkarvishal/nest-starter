@@ -1,4 +1,4 @@
-/* eslint-disable no-use-before-define,@typescript-eslint/no-unsafe-call */
+/* eslint-disable no-use-before-define */
 import {
     Controller,
     Get,

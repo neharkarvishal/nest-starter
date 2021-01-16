@@ -1,4 +1,4 @@
-/* eslint-disable no-use-before-define,@typescript-eslint/no-unused-vars */
+/* eslint-disable no-use-before-define */
 import {
     Body,
     Controller,
