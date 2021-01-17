@@ -43,7 +43,7 @@
 
 <ol class="breadcrumb">
   <li>Interfaces</li>
-  <li>IBaseModel</li>
+  <li>ParamOption</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -61,7 +61,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/database/models/base.model.ts</code>
+            <code>src/base/swagger-gen/utils/other.ts</code>
         </p>
 
 
@@ -79,17 +79,24 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
-                                        <a href="#created_at">created_at</a>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#disabled">disabled</a>
                                 </li>
                                 <li>
                                             <span class="modifier">Optional</span>
-                                        <a href="#deleted_at">deleted_at</a>
+                                        <a href="#enum">enum</a>
                                 </li>
                                 <li>
-                                        <a href="#id">id</a>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#field">field</a>
                                 </li>
                                 <li>
-                                        <a href="#updated_at">updated_at</a>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#primary">primary</a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#type">type</a>
                                 </li>
                             </ul>
                         </td>
@@ -106,13 +113,13 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="created_at"></a>
-                                        <span class="name"><b>created_at</b><a href="#created_at"><span class="icon ion-ios-link"></span></a></span>
+                                        <a name="disabled"></a>
+                                        <span class="name"><b>disabled</b><a href="#disabled"><span class="icon ion-ios-link"></span></a></span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>created_at:         <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                        <code>disabled:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -120,36 +127,7 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                                        </td>
-                                    </tr>
-
-
-
-
-
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="deleted_at"></a>
-                                        <span class="name"><b>deleted_at</b><a href="#deleted_at"><span class="icon ion-ios-link"></span></a></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>deleted_at:         <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-</code>
-                                    </td>
-                                </tr>
-
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
 
                                         </td>
                                     </tr>
@@ -169,13 +147,13 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="id"></a>
-                                        <span class="name"><b>id</b><a href="#id"><span class="icon ion-ios-link"></span></a></span>
+                                        <a name="enum"></a>
+                                        <span class="name"><b>enum</b><a href="#enum"><span class="icon ion-ios-link"></span></a></span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>id:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                        <code>enum:         <code><a href="../classes/Swagger.html" target="_self" >SwaggerEnumType</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -183,11 +161,16 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            <i>Type : </i>        <code><a href="../classes/Swagger.html" target="_self" >SwaggerEnumType</a></code>
 
                                         </td>
                                     </tr>
 
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
 
 
 
@@ -198,13 +181,13 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="updated_at"></a>
-                                        <span class="name"><b>updated_at</b><a href="#updated_at"><span class="icon ion-ios-link"></span></a></span>
+                                        <a name="field"></a>
+                                        <span class="name"><b>field</b><a href="#field"><span class="icon ion-ios-link"></span></a></span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>updated_at:         <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                        <code>field:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -212,11 +195,84 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
                                         </td>
                                     </tr>
 
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="primary"></a>
+                                        <span class="name"><b>primary</b><a href="#primary"><span class="icon ion-ios-link"></span></a></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>primary:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="type"></a>
+                                        <span class="name"><b>type</b><a href="#type"><span class="icon ion-ios-link"></span></a></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>type:     <code>&quot;number&quot; | &quot;string&quot; | &quot;uuid&quot;</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>&quot;number&quot; | &quot;string&quot; | &quot;uuid&quot;</code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
 
 
 
@@ -228,69 +284,86 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiProperty, ApiPropertyOptional } from &#x27;@nestjs/swagger&#x27;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ValidationPipeOptions } from &#x27;@nestjs/common&#x27;
+import { SwaggerEnumType } from &#x27;@nestjs/swagger/dist/types/swagger-enum.type&#x27;
 
-import {
-    fn,
-    mixin,
-    Model,
-    ModelOptions,
-    QueryContext,
-    RelationExpression,
-} from &#x27;objection&#x27;
-import { DBErrors } from &#x27;objection-db-errors&#x27;
-import visibilityPlugin from &#x27;objection-visibility&#x27;
+export declare type BaseRouteName &#x3D;
+    | &#x27;getManyBase&#x27;
+    | &#x27;getOneBase&#x27;
+    | &#x27;createOneBase&#x27;
+    | &#x27;createManyBase&#x27;
+    | &#x27;updateOneBase&#x27;
+    | &#x27;replaceOneBase&#x27;
+    | &#x27;deleteOneBase&#x27;
 
-import { CustomQueryBuilder } from &#x27;./helpers&#x27;
-
-export interface IBaseModel {
-    id: number
-    created_at: any
-    updated_at: any
-    deleted_at?: any
+export interface GetManyDefaultResponse&lt;T&gt; {
+    data: T[]
+    count: number
+    total: number
+    page: number
+    pageCount: number
 }
 
-export class BaseModel
-    extends mixin(Model, [visibilityPlugin, DBErrors])
-    implements IBaseModel {
-    static hidden &#x3D; [&#x27;salt&#x27;, &#x27;password&#x27;, &#x27;created_at&#x27;, &#x27;updated_at&#x27;, &#x27;deleted_at&#x27;] // hidden fields to filter from query result
+export interface ParamOption {
+    field?: string
+    type?: &#x27;number&#x27; | &#x27;string&#x27; | &#x27;uuid&#x27;
+    enum?: SwaggerEnumType
+    primary?: boolean
+    disabled?: boolean
+}
 
-    QueryBuilderType!: CustomQueryBuilder&lt;this&gt; // custom query builder for pagination
+export interface ParamsOptions {
+    [key: string]: ParamOption
+}
 
-    static QueryBuilder &#x3D; CustomQueryBuilder
-
-    @ApiProperty() id: number
-
-    created_at: any
-
-    updated_at: any
-
-    deleted_at?: any | null
-
-    // fetch data with relation mapping
-    async fetchRelation(expression: RelationExpression&lt;any&gt;, options &#x3D; {}) {
-        if (this[expression.toString()]) return this
-
-        await this.$fetchGraph(expression, options)
-        return this
+export interface CrudOptions {
+    model: {}
+    dto?: {}
+    routes?: {}
+    validation?: ValidationPipeOptions | false
+    params?: ParamsOptions
+    query?: {
+        limit?: number
+        maxLimit?: number
+        cache?: number | false
+        alwaysPaginate?: boolean
     }
-
-    /*
-    async $beforeUpdate(opt: ModelOptions, queryContext: QueryContext) {
-        await super.$beforeUpdate(opt, queryContext)
-
-        this.updated_at &#x3D; new Date().toISOString() // fn.now()
+    serialize?: {
+        getMany?: false
+        get?: false
+        create?: false
+        createMany?: false
+        update?: false
+        replace?: false
+        delete?: false
     }
+}
 
-    async $beforeInsert(queryContext: QueryContext) {
-        await super.$beforeInsert(queryContext)
-
-        const date &#x3D; fn.now() // new Date().toISOString()
-
-        this.created_at &#x3D; date
-        this.updated_at &#x3D; date
+export function safeRequire&lt;T &#x3D; any&gt;(path: string): T | null {
+    try {
+        // eslint-disable-next-line global-require,@typescript-eslint/no-var-requires,import/no-dynamic-require
+        const pack &#x3D; require(path)
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+        return pack
+    } catch (_) {
+        return null
     }
-    */
+}
+
+export const swagger &#x3D; safeRequire(&#x27;@nestjs/swagger&#x27;)
+export const swaggerConst &#x3D; safeRequire(&#x27;@nestjs/swagger/dist/constants&#x27;)
+
+export function ApiProperty(options?: any): PropertyDecorator {
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    return (target: object, propertyKey: string | symbol) &#x3D;&gt; {
+        if (swagger) {
+            const ApiPropertyDecorator &#x3D;
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+                swagger.ApiProperty || swagger.ApiModelProperty
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+            ApiPropertyDecorator(options)(target, propertyKey)
+        }
+    }
 }
 </code></pre>
     </div>
@@ -319,7 +392,7 @@ export class BaseModel
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
-            var COMPODOC_CURRENT_PAGE_URL = 'IBaseModel.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'ParamOption.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

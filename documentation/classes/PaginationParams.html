@@ -60,7 +60,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/base/crud/pagination-params.ts</code>
+            <code>src/base/crud/pagination.ts</code>
         </p>
 
             <p class="comment">
@@ -94,11 +94,11 @@
                             </li>
                             <li>
                                     <span class="modifier">Readonly</span>
-                                <a href="#skip">skip</a>
+                                <a href="#page">page</a>
                             </li>
                             <li>
                                     <span class="modifier">Readonly</span>
-                                <a href="#take">take</a>
+                                <a href="#pageSize">pageSize</a>
                             </li>
                         </ul>
                     </td>
@@ -145,7 +145,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/base/crud/pagination-params.ts:39</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/base/crud/pagination.ts:38</a></div>
                             </td>
                         </tr>
 
@@ -162,12 +162,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="skip"></a>
+                        <a name="page"></a>
                         <span class="name">
                             <b>
                                 <span class="modifier">Readonly</span>
-                            skip</b>
-                            <a href="#skip"><span class="icon ion-ios-link"></span></a>
+                            page</b>
+                            <a href="#page"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
@@ -193,13 +193,13 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/base/crud/pagination-params.ts:32</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/base/crud/pagination.ts:22</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Pagination offset</p>
+                        <div class="io-description"><p>Page</p>
 </div>
                     </td>
                 </tr>
@@ -210,12 +210,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="take"></a>
+                        <a name="pageSize"></a>
                         <span class="name">
                             <b>
                                 <span class="modifier">Readonly</span>
-                            take</b>
-                            <a href="#take"><span class="icon ion-ios-link"></span></a>
+                            pageSize</b>
+                            <a href="#pageSize"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
@@ -235,19 +235,19 @@
                             <b>Decorators : </b>
                             <br />
                             <code>
-                                @ApiPropertyOptional({type: Number, minimum: 0, maximum: 50})<br />@IsOptional()<br />@Min(0)<br />@Max(50)<br />@Transform(undefined)<br />
+                                @ApiPropertyOptional({type: Number, minimum: 0})<br />@IsOptional()<br />@Min(0)<br />@Transform(undefined)<br />
                             </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/base/crud/pagination-params.ts:23</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/base/crud/pagination.ts:31</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Pagination limit</p>
+                        <div class="io-description"><p>Page Size</p>
 </div>
                     </td>
                 </tr>
@@ -269,7 +269,7 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiPropertyOptional } from &#x27;@nestjs/swagger&#x27;
 
 import { Transform } from &#x27;class-transformer&#x27;
-import { IsOptional, Max, Min } from &#x27;class-validator&#x27;
+import { IsOptional, Min } from &#x27;class-validator&#x27;
 
 export enum OrderType {
     DESC &#x3D; &#x27;DESC&#x27;,
@@ -281,23 +281,22 @@ export enum OrderType {
  */
 export abstract class PaginationParams&lt;T&gt; {
     /**
-     * Pagination limit
-     */
-    @ApiPropertyOptional({ type: Number, minimum: 0, maximum: 50 })
-    @IsOptional()
-    @Min(0)
-    @Max(50)
-    @Transform((val: string) &#x3D;&gt; parseInt(val, 10))
-    readonly take &#x3D; 10
-
-    /**
-     * Pagination offset
+     * Page
      */
     @ApiPropertyOptional({ type: Number, minimum: 0 })
     @IsOptional()
     @Min(0)
     @Transform((val: string) &#x3D;&gt; parseInt(val, 10))
-    readonly skip &#x3D; 0
+    readonly page &#x3D; 0
+
+    /**
+     * Page Size
+     */
+    @ApiPropertyOptional({ type: Number, minimum: 0 })
+    @IsOptional()
+    @Min(0)
+    @Transform((val: string) &#x3D;&gt; parseInt(val, 10))
+    readonly pageSize &#x3D; 10
 
     /**
      * OrderBy
@@ -305,6 +304,26 @@ export abstract class PaginationParams&lt;T&gt; {
     @ApiPropertyOptional()
     @IsOptional()
     abstract readonly order?: { [P in keyof T]?: OrderType }
+}
+
+/**
+ * Generic pagination response interface
+ */
+export interface IPagination&lt;T&gt; {
+    /**
+     * Items included in the current listing
+     */
+    readonly data: T[]
+
+    /**
+     * Paging metadata
+     */
+    readonly paging: {
+        pageSize: number
+        page: number
+        total: number
+        totalPages: number
+    }
 }
 </code></pre>
     </div>

@@ -55,13 +55,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/AppModule.html" data-type="entity-link">AppModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#controllers-links-module-AppModule-b9e5a70c143328da3f7ea0ec486d6ea9"' : 'data-target="#xs-controllers-links-module-AppModule-b9e5a70c143328da3f7ea0ec486d6ea9"' }>
+                                            'data-target="#controllers-links-module-AppModule-9ecbd5a337abadf4c057783fffd871d4"' : 'data-target="#xs-controllers-links-module-AppModule-9ecbd5a337abadf4c057783fffd871d4"' }>
                                             <span class="icon ion-md-swap"></span>
                                             <span>Controllers</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-AppModule-b9e5a70c143328da3f7ea0ec486d6ea9"' :
-                                            'id="xs-controllers-links-module-AppModule-b9e5a70c143328da3f7ea0ec486d6ea9"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-AppModule-9ecbd5a337abadf4c057783fffd871d4"' :
+                                            'id="xs-controllers-links-module-AppModule-9ecbd5a337abadf4c057783fffd871d4"' }>
                                             <li class="link">
                                                 <a href="controllers/AppController.html"
                                                     data-type="entity-link" data-context="sub-entity" data-context-id="modules">AppController</a>
@@ -193,7 +193,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? 'id="classes-links"' : 'id="xs-classes-links"' }>
                             <li class="link">
-                                <a href="classes/BaseEntity.html" data-type="entity-link">BaseEntity</a>
+                                <a href="classes/ApiException.html" data-type="entity-link">ApiException</a>
                             </li>
                             <li class="link">
                                 <a href="classes/BaseModel.html" data-type="entity-link">BaseModel</a>
@@ -205,7 +205,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/CreateUserDto.html" data-type="entity-link">CreateUserDto</a>
                             </li>
                             <li class="link">
+                                <a href="classes/CrudConfigService.html" data-type="entity-link">CrudConfigService</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/CrudController.html" data-type="entity-link">CrudController</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/CrudRoutesFactory.html" data-type="entity-link">CrudRoutesFactory</a>
                             </li>
                             <li class="link">
                                 <a href="classes/CrudService.html" data-type="entity-link">CrudService</a>
@@ -214,13 +220,19 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/CustomQueryBuilder.html" data-type="entity-link">CustomQueryBuilder</a>
                             </li>
                             <li class="link">
-                                <a href="classes/GetManyDto.html" data-type="entity-link">GetManyDto</a>
-                            </li>
-                            <li class="link">
                                 <a href="classes/PaginationParams.html" data-type="entity-link">PaginationParams</a>
                             </li>
                             <li class="link">
                                 <a href="classes/QueryFailedFilter.html" data-type="entity-link">QueryFailedFilter</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/R.html" data-type="entity-link">R</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/SerializeHelper.html" data-type="entity-link">SerializeHelper</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/Swagger.html" data-type="entity-link">Swagger</a>
                             </li>
                             <li class="link">
                                 <a href="classes/Tag.html" data-type="entity-link">Tag</a>
@@ -249,9 +261,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             <ul class="links collapse " ${ isNormalMode ? 'id="injectables-links"' : 'id="xs-injectables-links"' }>
                                 <li class="link">
                                     <a href="injectables/CronService.html" data-type="entity-link">CronService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="injectables/DBHelper.html" data-type="entity-link">DBHelper</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/ExcludeNullUndefinedInterceptor.html" data-type="entity-link">ExcludeNullUndefinedInterceptor</a>
@@ -307,6 +316,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/Comments.html" data-type="entity-link">Comments</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/CrudOptions.html" data-type="entity-link">CrudOptions</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/Follower.html" data-type="entity-link">Follower</a>
                             </li>
                             <li class="link">
@@ -323,6 +335,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/GetFollowing.html" data-type="entity-link">GetFollowing</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/GetManyDefaultResponse.html" data-type="entity-link">GetManyDefaultResponse</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/GetRescueList.html" data-type="entity-link">GetRescueList</a>
@@ -343,9 +358,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/IPagination.html" data-type="entity-link">IPagination</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/IPagination-1.html" data-type="entity-link">IPagination</a>
-                            </li>
-                            <li class="link">
                                 <a href="interfaces/ITag.html" data-type="entity-link">ITag</a>
                             </li>
                             <li class="link">
@@ -353,6 +365,12 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/IUser.html" data-type="entity-link">IUser</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ParamOption.html" data-type="entity-link">ParamOption</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ParamsOptions.html" data-type="entity-link">ParamsOptions</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/PostedByUser.html" data-type="entity-link">PostedByUser</a>

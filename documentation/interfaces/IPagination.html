@@ -61,9 +61,16 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/base/crud/icrud.service.ts</code>
+            <code>src/base/crud/pagination.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Generic pagination response interface</p>
+
+            </p>
 
 
         <section>
@@ -79,10 +86,10 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
-                                        <a href="#items">items</a>
+                                        <a href="#data">data</a>
                                 </li>
                                 <li>
-                                        <a href="#total">total</a>
+                                        <a href="#paging">paging</a>
                                 </li>
                             </ul>
                         </td>
@@ -99,13 +106,13 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="items"></a>
-                                        <span class="name"><b>items</b><a href="#items"><span class="icon ion-ios-link"></span></a></span>
+                                        <a name="data"></a>
+                                        <span class="name"><b>data</b><a href="#data"><span class="icon ion-ios-link"></span></a></span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>items:     <code>T[]</code>
+                                        <code>data:     <code>T[]</code>
 </code>
                                     </td>
                                 </tr>
@@ -134,13 +141,13 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="total"></a>
-                                        <span class="name"><b>total</b><a href="#total"><span class="icon ion-ios-link"></span></a></span>
+                                        <a name="paging"></a>
+                                        <span class="name"><b>paging</b><a href="#paging"><span class="icon ion-ios-link"></span></a></span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>total:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                        <code>paging:     <code>literal type</code>
 </code>
                                     </td>
                                 </tr>
@@ -148,7 +155,7 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            <i>Type : </i>    <code>literal type</code>
 
                                         </td>
                                     </tr>
@@ -159,7 +166,7 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>Total number of available items</p>
+                                    <div class="io-description"><p>Paging metadata</p>
 </div>
                                 </td>
                             </tr>
@@ -170,43 +177,64 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
-    DeepPartial,
-    DeleteResult,
-    FindConditions,
-    FindManyOptions,
-    FindOneOptions,
-    UpdateResult,
-} from &#x27;typeorm&#x27;
-import { QueryDeepPartialEntity } from &#x27;typeorm/query-builder/QueryPartialEntity&#x27;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiPropertyOptional } from &#x27;@nestjs/swagger&#x27;
 
+import { Transform } from &#x27;class-transformer&#x27;
+import { IsOptional, Min } from &#x27;class-validator&#x27;
+
+export enum OrderType {
+    DESC &#x3D; &#x27;DESC&#x27;,
+    ASC &#x3D; &#x27;ASC&#x27;,
+}
+
+/**
+ * Describes generic pagination params
+ */
+export abstract class PaginationParams&lt;T&gt; {
+    /**
+     * Page
+     */
+    @ApiPropertyOptional({ type: Number, minimum: 0 })
+    @IsOptional()
+    @Min(0)
+    @Transform((val: string) &#x3D;&gt; parseInt(val, 10))
+    readonly page &#x3D; 0
+
+    /**
+     * Page Size
+     */
+    @ApiPropertyOptional({ type: Number, minimum: 0 })
+    @IsOptional()
+    @Min(0)
+    @Transform((val: string) &#x3D;&gt; parseInt(val, 10))
+    readonly pageSize &#x3D; 10
+
+    /**
+     * OrderBy
+     */
+    @ApiPropertyOptional()
+    @IsOptional()
+    abstract readonly order?: { [P in keyof T]?: OrderType }
+}
+
+/**
+ * Generic pagination response interface
+ */
 export interface IPagination&lt;T&gt; {
     /**
      * Items included in the current listing
      */
-    readonly items: T[]
+    readonly data: T[]
 
     /**
-     * Total number of available items
+     * Paging metadata
      */
-    readonly total: number
-}
-
-export interface ICrudService&lt;T&gt; {
-    count(filter?: FindManyOptions&lt;T&gt;)
-
-    findAll(filter?: FindManyOptions&lt;T&gt;)
-
-    findOne(
-        id: string | number | FindOneOptions&lt;T&gt; | FindConditions&lt;T&gt;,
-        options?: FindOneOptions&lt;T&gt;,
-    )
-
-    create(entity: DeepPartial&lt;T&gt;, ...options: any[])
-
-    update(id: any, entity: QueryDeepPartialEntity&lt;T&gt;, ...options: any[])
-
-    delete(id: any, ...options: any[])
+    readonly paging: {
+        pageSize: number
+        page: number
+        total: number
+        totalPages: number
+    }
 }
 </code></pre>
     </div>

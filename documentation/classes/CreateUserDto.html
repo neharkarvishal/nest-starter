@@ -98,9 +98,6 @@
                                 <a href="#lastName">lastName</a>
                             </li>
                             <li>
-                                <a href="#middleName">middleName</a>
-                            </li>
-                            <li>
                                 <a href="#password">password</a>
                             </li>
                             <li>
@@ -154,7 +151,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/users/user.model.ts:97</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/users/user.model.ts:100</a></div>
                             </td>
                         </tr>
 
@@ -190,7 +187,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/users/user.model.ts:109</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/users/user.model.ts:112</a></div>
                             </td>
                         </tr>
 
@@ -226,7 +223,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/users/user.model.ts:123</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/users/user.model.ts:122</a></div>
                             </td>
                         </tr>
 
@@ -262,43 +259,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/users/user.model.ts:119</a></div>
-                            </td>
-                        </tr>
-
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="middleName"></a>
-                        <span class="name">
-                            <b>
-                            middleName</b>
-                            <a href="#middleName"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <b>Decorators : </b>
-                            <br />
-                            <code>
-                                @ApiProperty()<br />@IsOptional()<br />
-                            </code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/users/user.model.ts:113</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/users/user.model.ts:118</a></div>
                             </td>
                         </tr>
 
@@ -334,7 +295,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/users/user.model.ts:103</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/users/user.model.ts:106</a></div>
                             </td>
                         </tr>
 
@@ -370,7 +331,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/users/user.model.ts:91</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/users/user.model.ts:94</a></div>
                             </td>
                         </tr>
 
@@ -458,9 +419,13 @@ export class User extends BaseModel implements IUser {
         searchByName(query, name: string) {
             // This &#x60;where&#x60; simply creates parentheses so that other &#x60;where&#x60; statements don&#x27;t get mixed with the these.
 
+            // eslint-disable-next-line @typescript-eslint/no-floating-promises
             query.where((q) &#x3D;&gt; {
+                // eslint-disable-next-line no-restricted-syntax
                 for (const namePart of name.trim().split(/\s+/)) {
+                    // eslint-disable-next-line no-restricted-syntax
                     for (const column of [&#x27;firstName&#x27;, &#x27;lastName&#x27;]) {
+                        // eslint-disable-next-line @typescript-eslint/no-floating-promises
                         q.orWhereRaw(&#x27;lower(??) like ?&#x27;, [
                             column,
                             &#x60;${namePart.toLowerCase()}%&#x60;,
@@ -497,10 +462,6 @@ export class CreateUserDto implements IUser {
     @IsNotEmpty()
     @MinLength(2)
     firstName: string
-
-    @ApiProperty()
-    @IsOptional()
-    middleName: string
 
     @ApiProperty()
     @IsString()

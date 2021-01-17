@@ -61,7 +61,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/base/crud/icrud.service.ts</code>
+            <code>src/base/crud/crud.service.ts</code>
         </p>
 
 
@@ -79,22 +79,13 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
-                                    <a href="#count">count</a>
-                                </li>
-                                <li>
-                                    <a href="#create">create</a>
-                                </li>
-                                <li>
-                                    <a href="#delete">delete</a>
-                                </li>
-                                <li>
                                     <a href="#findAll">findAll</a>
                                 </li>
                                 <li>
                                     <a href="#findOne">findOne</a>
                                 </li>
                                 <li>
-                                    <a href="#update">update</a>
+                                    <a href="#paginatedFindAll">paginatedFindAll</a>
                                 </li>
                             </ul>
                         </td>
@@ -112,240 +103,6 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="count"></a>
-                    <span class="name">
-                        <b>
-                            count
-                        </b>
-                        <a href="#count"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>count(filter?: FindManyOptions<T>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="24"
-                            class="link-to-prism">src/base/crud/icrud.service.ts:24</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>filter</td>
-                                    <td>
-                                            <code>FindManyOptions&lt;T&gt;</code>
-                                    </td>
-
-                                    <td>
-                                        Yes
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="create"></a>
-                    <span class="name">
-                        <b>
-                            create
-                        </b>
-                        <a href="#create"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>create(entity: DeepPartial<T>, ...options: any[])</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="33"
-                            class="link-to-prism">src/base/crud/icrud.service.ts:33</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>entity</td>
-                                    <td>
-                                            <code>DeepPartial&lt;T&gt;</code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                                <tr>
-                                    <td>options</td>
-                                    <td>
-                                            <code>any[]</code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="delete"></a>
-                    <span class="name">
-                        <b>
-                            delete
-                        </b>
-                        <a href="#delete"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>delete(id: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, ...options: any[])</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="37"
-                            class="link-to-prism">src/base/crud/icrud.service.ts:37</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>id</td>
-                                    <td>
-                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                                <tr>
-                                    <td>options</td>
-                                    <td>
-                                            <code>any[]</code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="findAll"></a>
                     <span class="name">
                         <b>
@@ -357,15 +114,15 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>findAll(filter?: FindManyOptions<T>)</code>
+<code>findAll()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="26"
-                            class="link-to-prism">src/base/crud/icrud.service.ts:26</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="9"
+                            class="link-to-prism">src/base/crud/crud.service.ts:9</a></div>
                 </td>
             </tr>
 
@@ -374,39 +131,8 @@
                 <td class="col-md-4">
 
                     <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>filter</td>
-                                    <td>
-                                            <code>FindManyOptions&lt;T&gt;</code>
-                                    </td>
+                        <b>Returns : </b>    <code>Promise&lt;T[]&gt;</code>
 
-                                    <td>
-                                        Yes
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
                     </div>
                 </td>
             </tr>
@@ -427,15 +153,15 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>findOne(id: string | number | FindOneOptions<T> | FindConditions<T>, options?: FindOneOptions<T>)</code>
+<code>findOne(id: string | number)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="28"
-                            class="link-to-prism">src/base/crud/icrud.service.ts:28</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="11"
+                            class="link-to-prism">src/base/crud/crud.service.ts:11</a></div>
                 </td>
             </tr>
 
@@ -457,7 +183,7 @@
                                 <tr>
                                     <td>id</td>
                                     <td>
-                                            <code>string | number | FindOneOptions&lt;T&gt; | FindConditions&lt;T&gt;</code>
+                                            <code>string | number</code>
                                     </td>
 
                                     <td>
@@ -466,10 +192,68 @@
 
 
                                 </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;T&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="paginatedFindAll"></a>
+                    <span class="name">
+                        <b>
+                            paginatedFindAll
+                        </b>
+                        <a href="#paginatedFindAll"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>paginatedFindAll(filter?: <a href="../classes/PaginationParams.html">PaginationParams<T></a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="13"
+                            class="link-to-prism">src/base/crud/crud.service.ts:13</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
                                 <tr>
-                                    <td>options</td>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>filter</td>
                                     <td>
-                                            <code>FindOneOptions&lt;T&gt;</code>
+                                                <code><a href="../classes/PaginationParams.html" target="_self" >PaginationParams&lt;T&gt;</a></code>
                                     </td>
 
                                     <td>
@@ -484,101 +268,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="update"></a>
-                    <span class="name">
-                        <b>
-                            update
-                        </b>
-                        <a href="#update"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>update(id: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, entity: QueryDeepPartialEntity<T>, ...options: any[])</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="35"
-                            class="link-to-prism">src/base/crud/icrud.service.ts:35</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>id</td>
-                                    <td>
-                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                                <tr>
-                                    <td>entity</td>
-                                    <td>
-                                            <code>QueryDeepPartialEntity&lt;T&gt;</code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                                <tr>
-                                    <td>options</td>
-                                    <td>
-                                            <code>any[]</code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                        <b>Returns : </b>        <code><a href="../interfaces/IPagination.html" target="_self" >Promise&lt;IPagination&lt;T&gt;&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -594,43 +284,88 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
-    DeepPartial,
-    DeleteResult,
-    FindConditions,
-    FindManyOptions,
-    FindOneOptions,
-    UpdateResult,
-} from &#x27;typeorm&#x27;
-import { QueryDeepPartialEntity } from &#x27;typeorm/query-builder/QueryPartialEntity&#x27;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { InternalServerErrorException } from &#x27;@nestjs/common&#x27;
 
-export interface IPagination&lt;T&gt; {
-    /**
-     * Items included in the current listing
-     */
-    readonly items: T[]
+import { NotFoundError, ModelClass } from &#x27;objection&#x27;
 
-    /**
-     * Total number of available items
-     */
-    readonly total: number
-}
+import { BaseModel } from &#x27;../../database/models/base.model&#x27;
+import { IPagination, PaginationParams } from &#x27;./pagination&#x27;
 
 export interface ICrudService&lt;T&gt; {
-    count(filter?: FindManyOptions&lt;T&gt;)
+    findAll(): Promise&lt;T[]&gt;
 
-    findAll(filter?: FindManyOptions&lt;T&gt;)
+    findOne(id: string | number): Promise&lt;T&gt;
 
-    findOne(
-        id: string | number | FindOneOptions&lt;T&gt; | FindConditions&lt;T&gt;,
-        options?: FindOneOptions&lt;T&gt;,
-    )
+    paginatedFindAll(filter?: PaginationParams&lt;T&gt;): Promise&lt;IPagination&lt;T&gt;&gt;
+}
 
-    create(entity: DeepPartial&lt;T&gt;, ...options: any[])
+/**
+ * Abstract base service that other services can extend to provide base CRUD
+ * functionality such as to create, find, update and delete data.
+ */
+export abstract class CrudService&lt;T extends BaseModel&gt; implements ICrudService&lt;T&gt; {
+    saltRounds: number
 
-    update(id: any, entity: QueryDeepPartialEntity&lt;T&gt;, ...options: any[])
+    /**
+     * The constructor must receive the injected model from the child service in
+     * order to provide all the proper base functionality.
+     *
+     * @param {Model} model - The injected model.
+     */
+    protected constructor(protected readonly model: ModelClass&lt;T&gt;) {
+        this.saltRounds &#x3D; 12
+    }
 
-    delete(id: any, ...options: any[])
+    /**
+     * Finds all entries and return the result
+     *
+     * @throws InternalServerErrorException
+     */
+    async findAll() {
+        try {
+            return (this.model.query() as unknown) as Promise&lt;T[]&gt;
+        } catch (e) {
+            throw new InternalServerErrorException()
+        }
+    }
+
+    /**
+     * Finds paginated entries and return the result
+     *
+     * @throws InternalServerErrorException
+     */
+    async paginatedFindAll(filter: PaginationParams&lt;T&gt;) {
+        const { page &#x3D; 0, pageSize &#x3D; 10, order } &#x3D; filter
+
+        try {
+            const { results, total } &#x3D; await this.model.query().page(page, pageSize)
+
+            return ({
+                data: results,
+                paging: {
+                    pageSize,
+                    page,
+                    total,
+                    totalPages: Math.ceil(total / pageSize),
+                },
+            } as unknown) as Promise&lt;IPagination&lt;T&gt;&gt;
+        } catch (e) {
+            throw new InternalServerErrorException()
+        }
+    }
+
+    /**
+     * Finds paginated entries and return the result
+     *
+     * @throws NotFoundError
+     */
+    async findOne(id: string | number): Promise&lt;T&gt; {
+        return (this.model
+            .query()
+            .findById(id)
+            .first()
+            .throwIfNotFound() as unknown) as Promise&lt;T&gt;
+    }
 }
 </code></pre>
     </div>

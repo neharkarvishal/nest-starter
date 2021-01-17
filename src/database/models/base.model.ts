@@ -25,11 +25,11 @@ export class BaseModel
     implements IBaseModel {
     static hidden = ['salt', 'password', 'created_at', 'updated_at', 'deleted_at'] // hidden fields to filter from query result
 
-    QueryBuilderType!: CustomQueryBuilder<this> // custom query builder for pagination
+    // QueryBuilderType!: CustomQueryBuilder<this> // custom query builder for pagination
 
     static QueryBuilder = CustomQueryBuilder
 
-    @ApiProperty() id: number
+    id: number
 
     created_at: any
 

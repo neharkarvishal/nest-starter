@@ -149,9 +149,13 @@ export class User extends BaseModel implements IUser {
         searchByName(query, name: string) {
             // This &#x60;where&#x60; simply creates parentheses so that other &#x60;where&#x60; statements don&#x27;t get mixed with the these.
 
+            // eslint-disable-next-line @typescript-eslint/no-floating-promises
             query.where((q) &#x3D;&gt; {
+                // eslint-disable-next-line no-restricted-syntax
                 for (const namePart of name.trim().split(/\s+/)) {
+                    // eslint-disable-next-line no-restricted-syntax
                     for (const column of [&#x27;firstName&#x27;, &#x27;lastName&#x27;]) {
+                        // eslint-disable-next-line @typescript-eslint/no-floating-promises
                         q.orWhereRaw(&#x27;lower(??) like ?&#x27;, [
                             column,
                             &#x60;${namePart.toLowerCase()}%&#x60;,
@@ -188,10 +192,6 @@ export class CreateUserDto implements IUser {
     @IsNotEmpty()
     @MinLength(2)
     firstName: string
-
-    @ApiProperty()
-    @IsOptional()
-    middleName: string
 
     @ApiProperty()
     @IsString()

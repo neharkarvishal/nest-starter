@@ -82,23 +82,11 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#create">create</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#delete">delete</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Async</span>
                                 <a href="#findAll">findAll</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#findById">findById</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#update">update</a>
+                                <a href="#findOne">findOne</a>
                             </li>
                         </ul>
                     </td>
@@ -119,12 +107,12 @@
                 <tr>
                     <td class="col-md-4">
                                 <span class="modifier">Protected</span>
-                        <code>constructor(crudService: <a href="../interfaces/ICrudService.html">ICrudService<T></a>)</code>
+                        <code>constructor(service: <a href="../interfaces/ICrudService.html">ICrudService<T></a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/base/crud/crud.controller.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/base/crud/crud.controller.ts:20</a></div>
                             </td>
                         </tr>
 
@@ -142,7 +130,7 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>crudService</td>
+                                                        <td>service</td>
                                                   
                                                         <td>
                                                                         <code><a href="../interfaces/ICrudService.html" target="_self" >ICrudService&lt;T&gt;</a></code>
@@ -172,188 +160,6 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="create"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Async</span>
-                            create
-                        </b>
-                        <a href="#create"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>create(entity: DeepPartial<T>, ...options: any[])</code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Post()<br /></code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="24"
-                            class="link-to-prism">src/base/crud/crud.controller.ts:24</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>entity</td>
-                                    <td>
-                                            <code>DeepPartial&lt;T&gt;</code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                                <tr>
-                                    <td>options</td>
-                                    <td>
-                                            <code>any[]</code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="delete"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Async</span>
-                            delete
-                        </b>
-                        <a href="#delete"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>delete(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, ...options: any[])</code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Delete(&#x27;:id&#x27;)<br /></code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="38"
-                            class="link-to-prism">src/base/crud/crud.controller.ts:38</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>id</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                                <tr>
-                                    <td>options</td>
-                                    <td>
-                                            <code>any[]</code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="findAll"></a>
                     <span class="name">
                         <b>
@@ -367,7 +173,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findAll(filter?: <a href="../classes/PaginationParams.html">PaginationParams<T></a>)</code>
+                    <code>findAll(filter: <a href="../classes/PaginationParams.html">PaginationParams<T></a>)</code>
                 </td>
             </tr>
 
@@ -375,14 +181,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get()<br /></code>
+                    <code>@ApiOperation({summary: &#x27;find all&#x27;, description: &#x27;Get all of the records&#x27;})<br />@ApiResponse({status: undefined, description: &#x27;Found all records&#x27;})<br />@Get()<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="14"
-                            class="link-to-prism">src/base/crud/crud.controller.ts:14</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="30"
+                            class="link-to-prism">src/base/crud/crud.controller.ts:30</a></div>
                 </td>
             </tr>
 
@@ -408,7 +214,7 @@
                                     </td>
 
                                     <td>
-                                        Yes
+                                        No
                                     </td>
 
 
@@ -419,7 +225,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
+                        <b>Returns : </b>        <code><a href="../interfaces/IPagination.html" target="_self" >Promise&lt;IPagination | []&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -433,20 +239,20 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="findById"></a>
+                    <a name="findOne"></a>
                     <span class="name">
                         <b>
                             <span class="modifier">Async</span>
-                            findById
+                            findOne
                         </b>
-                        <a href="#findById"><span class="icon ion-ios-link"></span></a>
+                        <a href="#findOne"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findById(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>findOne(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
@@ -454,14 +260,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;:id&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Get one record by id&#x27;, description: &#x27;Get one record from database with provided by id&#x27;})<br />@ApiResponse({status: undefined, description: &#x27;Found one record&#x27;, type: BaseModel})<br />@Get(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="19"
-                            class="link-to-prism">src/base/crud/crud.controller.ts:19</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="50"
+                            class="link-to-prism">src/base/crud/crud.controller.ts:50</a></div>
                 </td>
             </tr>
 
@@ -483,7 +289,7 @@
                                 <tr>
                                     <td>id</td>
                                     <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
                                     </td>
 
                                     <td>
@@ -498,110 +304,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="update"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Async</span>
-                            update
-                        </b>
-                        <a href="#update"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>update(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, entity: QueryDeepPartialEntity<T>, ...options: any[])</code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Put(&#x27;:id&#x27;)<br /></code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="29"
-                            class="link-to-prism">src/base/crud/crud.controller.ts:29</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>id</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                                <tr>
-                                    <td>entity</td>
-                                    <td>
-                                            <code>QueryDeepPartialEntity&lt;T&gt;</code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                                <tr>
-                                    <td>options</td>
-                                    <td>
-                                            <code>any[]</code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
+                        <b>Returns : </b>    <code>Promise&lt;T&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -621,44 +324,57 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Get, Post, Put, Delete, Body, Param } from &#x27;@nestjs/common&#x27;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+    Get,
+    Post,
+    Put,
+    Delete,
+    Body,
+    Param,
+    ParseIntPipe,
+    HttpStatus,
+    Query,
+} from &#x27;@nestjs/common&#x27;
+import { ApiOperation, ApiResponse } from &#x27;@nestjs/swagger&#x27;
 
-import { DeepPartial } from &#x27;typeorm&#x27;
-import { QueryDeepPartialEntity } from &#x27;typeorm/query-builder/QueryPartialEntity&#x27;
+import { BaseModel } from &#x27;../../database/models/base.model&#x27;
+import { ApiErrors } from &#x27;../swagger-gen/api-errors.decorator&#x27;
+import { ICrudService } from &#x27;./crud.service&#x27;
+import { IPagination, PaginationParams } from &#x27;./pagination&#x27;
 
-import { ICrudService } from &#x27;./icrud.service&#x27;
-import { PaginationParams } from &#x27;./pagination-params&#x27;
+@ApiErrors()
+export abstract class CrudController&lt;T extends BaseModel&gt; {
+    protected constructor(protected readonly service: ICrudService&lt;T&gt;) {}
 
-export abstract class CrudController&lt;T&gt; {
-    protected constructor(private readonly crudService: ICrudService&lt;T&gt;) {}
-
+    @ApiOperation({ summary: &#x27;find all&#x27;, description: &#x27;Get all of the records&#x27; })
+    @ApiResponse({
+        status: HttpStatus.OK,
+        description: &#x27;Found all records&#x27;,
+        // type: IPagination&lt;BaseModel&gt; | BaseModel[]
+    })
     @Get()
-    async findAll(filter?: PaginationParams&lt;T&gt;) {
-        return this.crudService.findAll(filter)
+    async findAll(
+        @Query() filter: PaginationParams&lt;T&gt;,
+    ): Promise&lt;IPagination&lt;T&gt; | T[]&gt; {
+        if (filter) {
+            return this.service.paginatedFindAll(filter)
+        }
+
+        return this.service.findAll()
     }
 
+    @ApiOperation({
+        summary: &#x27;Get one record by id&#x27;,
+        description: &#x27;Get one record from database with provided by id&#x27;,
+    })
+    @ApiResponse({
+        status: HttpStatus.OK,
+        description: &#x27;Found one record&#x27;,
+        type: BaseModel, // type: T,
+    })
     @Get(&#x27;:id&#x27;)
-    async findById(@Param(&#x27;id&#x27;) id: string) {
-        return this.crudService.findOne(id)
-    }
-
-    @Post()
-    async create(@Body() entity: DeepPartial&lt;T&gt;, ...options: any[]) {
-        return this.crudService.create(entity)
-    }
-
-    @Put(&#x27;:id&#x27;)
-    async update(
-        @Param(&#x27;id&#x27;) id: string,
-        @Body() entity: QueryDeepPartialEntity&lt;T&gt;,
-        ...options: any[]
-    ) {
-        return this.crudService.update(id, entity) // FIXME: https://github.com/typeorm/typeorm/issues/1544
-    }
-
-    @Delete(&#x27;:id&#x27;)
-    async delete(@Param(&#x27;id&#x27;) id: string, ...options: any[]) {
-        return this.crudService.delete(id)
+    async findOne(@Param(&#x27;id&#x27;, ParseIntPipe) id: number): Promise&lt;T&gt; {
+        return this.service.findOne(id)
     }
 }
 </code></pre>

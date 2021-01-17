@@ -199,7 +199,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/users/user.model.ts:32</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/users/user.model.ts:31</a></div>
                             </td>
                         </tr>
 
@@ -226,7 +226,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/users/user.model.ts:34</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/users/user.model.ts:33</a></div>
                             </td>
                         </tr>
 
@@ -253,7 +253,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/users/user.model.ts:38</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/users/user.model.ts:37</a></div>
                             </td>
                         </tr>
 
@@ -303,7 +303,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/users/user.model.ts:44</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/users/user.model.ts:43</a></div>
                             </td>
                         </tr>
 
@@ -330,7 +330,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/users/user.model.ts:36</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/users/user.model.ts:35</a></div>
                             </td>
                         </tr>
 
@@ -365,9 +365,13 @@
         searchByName(query, name: string) {
             // This &#x60;where&#x60; simply creates parentheses so that other &#x60;where&#x60; statements don&#x27;t get mixed with the these.
 
+            // eslint-disable-next-line @typescript-eslint/no-floating-promises
             query.where((q) &#x3D;&gt; {
+                // eslint-disable-next-line no-restricted-syntax
                 for (const namePart of name.trim().split(/\s+/)) {
+                    // eslint-disable-next-line no-restricted-syntax
                     for (const column of [&#x27;firstName&#x27;, &#x27;lastName&#x27;]) {
+                        // eslint-disable-next-line @typescript-eslint/no-floating-promises
                         q.orWhereRaw(&#x27;lower(??) like ?&#x27;, [
                             column,
                             &#x60;${namePart.toLowerCase()}%&#x60;,
@@ -381,7 +385,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/users/user.model.ts:64</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/users/user.model.ts:63</a></div>
                             </td>
                         </tr>
 
@@ -408,7 +412,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/users/user.model.ts:40</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/users/user.model.ts:39</a></div>
                             </td>
                         </tr>
 
@@ -441,7 +445,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/users/user.model.ts:28</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/users/user.model.ts:27</a></div>
                             </td>
                         </tr>
 
@@ -468,7 +472,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/users/user.model.ts:30</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/users/user.model.ts:29</a></div>
                             </td>
                         </tr>
 
@@ -501,7 +505,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in         <code><a href="../classes/BaseModel.html#source" target="_self" >BaseModel:35</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../classes/BaseModel.html#source" target="_self" >BaseModel:34</a></code>
 </div>
                             </td>
                         </tr>
@@ -536,7 +540,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in         <code><a href="../classes/BaseModel.html#source" target="_self" >BaseModel:39</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../classes/BaseModel.html#source" target="_self" >BaseModel:38</a></code>
 </div>
                             </td>
                         </tr>
@@ -576,7 +580,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in         <code><a href="../classes/BaseModel.html#source" target="_self" >BaseModel:27</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../classes/BaseModel.html#source" target="_self" >BaseModel:26</a></code>
 </div>
                             </td>
                         </tr>
@@ -602,6 +606,15 @@
 
                         </td>
                     </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @ApiProperty()<br />
+                            </code>
+                        </td>
+                    </tr>
                             <tr>
                                 <td class="col-md-4">
                                     <div class="io-line">Inherited from         <code><a href="../classes/BaseModel.html" target="_self" >BaseModel</a></code>
@@ -610,7 +623,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in         <code><a href="../classes/BaseModel.html#source" target="_self" >BaseModel:33</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../classes/BaseModel.html#source" target="_self" >BaseModel:32</a></code>
 </div>
                             </td>
                         </tr>
@@ -644,7 +657,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in         <code><a href="../classes/BaseModel.html#source" target="_self" >BaseModel:31</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../classes/BaseModel.html#source" target="_self" >BaseModel:30</a></code>
 </div>
                             </td>
                         </tr>
@@ -678,7 +691,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in         <code><a href="../classes/BaseModel.html#source" target="_self" >BaseModel:29</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../classes/BaseModel.html#source" target="_self" >BaseModel:28</a></code>
 </div>
                             </td>
                         </tr>
@@ -712,7 +725,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in         <code><a href="../classes/BaseModel.html#source" target="_self" >BaseModel:37</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../classes/BaseModel.html#source" target="_self" >BaseModel:36</a></code>
 </div>
                             </td>
                         </tr>
@@ -744,7 +757,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>fetchRelation(expression: RelationExpression<any>, options: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank">object</a>)</code>
+                    <code>fetchRelation(expression: <a href="../classes/R.html">RelationExpression<any></a>, options: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank">object</a>)</code>
                 </td>
             </tr>
 
@@ -757,7 +770,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../classes/BaseModel.html#source" target="_self" >BaseModel:42</a></code>
+                        <div class="io-line">Defined in         <code><a href="../classes/BaseModel.html#source" target="_self" >BaseModel:41</a></code>
 </div>
                 </td>
             </tr>
@@ -781,7 +794,7 @@
                                 <tr>
                                     <td>expression</td>
                                     <td>
-                                            <code>RelationExpression&lt;any&gt;</code>
+                                                <code><a href="../classes/R.html" target="_self" >RelationExpression&lt;any&gt;</a></code>
                                     </td>
 
                                     <td>
@@ -902,9 +915,13 @@ export class User extends BaseModel implements IUser {
         searchByName(query, name: string) {
             // This &#x60;where&#x60; simply creates parentheses so that other &#x60;where&#x60; statements don&#x27;t get mixed with the these.
 
+            // eslint-disable-next-line @typescript-eslint/no-floating-promises
             query.where((q) &#x3D;&gt; {
+                // eslint-disable-next-line no-restricted-syntax
                 for (const namePart of name.trim().split(/\s+/)) {
+                    // eslint-disable-next-line no-restricted-syntax
                     for (const column of [&#x27;firstName&#x27;, &#x27;lastName&#x27;]) {
+                        // eslint-disable-next-line @typescript-eslint/no-floating-promises
                         q.orWhereRaw(&#x27;lower(??) like ?&#x27;, [
                             column,
                             &#x60;${namePart.toLowerCase()}%&#x60;,
@@ -941,10 +958,6 @@ export class CreateUserDto implements IUser {
     @IsNotEmpty()
     @MinLength(2)
     firstName: string
-
-    @ApiProperty()
-    @IsOptional()
-    middleName: string
 
     @ApiProperty()
     @IsString()

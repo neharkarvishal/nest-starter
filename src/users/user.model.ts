@@ -86,38 +86,32 @@ export class User extends BaseModel implements IUser {
 }
 
 export class CreateUserDto implements IUser {
-    @ApiProperty()
     @IsString()
     @IsNotEmpty()
     @MinLength(2)
     @MaxLength(36)
     username: string
 
-    @ApiProperty()
     @IsEmail()
     @IsNotEmpty()
     @MinLength(2)
     email: string
 
-    @ApiProperty()
     @IsString()
     @IsNotEmpty()
     @MinLength(8)
     password: string
 
-    @ApiProperty()
     @IsString()
     @IsNotEmpty()
     @MinLength(2)
     firstName: string
 
-    @ApiProperty()
     @IsString()
     @IsNotEmpty()
     @MinLength(2)
     lastName: string
 
-    @ApiProperty()
     @IsBoolean()
     isActive: boolean
 }
