@@ -4,7 +4,7 @@ const tableName = 'users'
 
 export async function up(knex: Knex): Promise<any> {
     return knex.schema.createTable(tableName, (table) => {
-        table.increments('id').primary()
+        table.increments('id').unsigned().primary()
 
         table.string('username').notNullable().unique()
 

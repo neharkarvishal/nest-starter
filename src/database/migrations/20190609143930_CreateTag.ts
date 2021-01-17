@@ -4,7 +4,7 @@ const tableName = 'tags'
 
 export async function up(knex: Knex) {
     return knex.schema.createTable(tableName, (table) => {
-        table.increments('id').primary()
+        table.increments('id').unsigned().primary()
 
         table.string('name').notNullable() // .unique()
 

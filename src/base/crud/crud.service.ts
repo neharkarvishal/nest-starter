@@ -1,6 +1,6 @@
 import { InternalServerErrorException } from '@nestjs/common'
 
-import { NotFoundError, ModelClass } from 'objection'
+import { NotFoundError, ModelClass, raw } from 'objection'
 
 import { BaseModel } from '../../database/models/base.model'
 import { IPagination, PaginationParams } from './pagination'
@@ -11,6 +11,8 @@ export interface ICrudService<T> {
     findOne(id: string | number): Promise<T>
 
     paginatedFindAll(filter?: PaginationParams<T>): Promise<IPagination<T>>
+
+    remove(id: string | number): Promise<T>
 }
 
 /**
@@ -79,5 +81,14 @@ export abstract class CrudService<T extends BaseModel> implements ICrudService<T
             .findById(id)
             .first()
             .throwIfNotFound() as unknown) as Promise<T>
+    }
+
+    /**
+     * Soft-deletes a entry and return it
+     */
+    remove(id: number) {
+        return (this.model.query().patchAndFetchById(id, {
+            deleted_at: raw('CURRENT_TIMESTAMP'),
+        }) as unknown) as Promise<T>
     }
 }

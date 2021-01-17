@@ -44,13 +44,4 @@ export class UsersController extends CrudController<User> {
     ) {
         return this.service.update(id, updatedUser)
     }
-
-    @ApiOperation({
-        summary: 'Delete one users by id',
-        description: 'Delete one users by id',
-    })
-    @Delete(':id')
-    async remove(@Param('id', ParseIntPipe) id: number) {
-        return this.service.remove(id)
-    }
 }

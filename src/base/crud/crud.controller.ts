@@ -50,4 +50,18 @@ export abstract class CrudController<T extends BaseModel> {
     async findOne(@Param('id', ParseIntPipe) id: number): Promise<T> {
         return this.service.findOne(id)
     }
+
+    @ApiOperation({
+        summary: 'Soft-delete one record by id',
+        description: 'Soft-delete one record from database with provided by id',
+    })
+    @ApiResponse({
+        status: HttpStatus.OK,
+        description: 'Deleted one record',
+        type: BaseModel, // type: T,
+    })
+    @Delete(':id')
+    remove(@Param('id', ParseIntPipe) id: number): Promise<T> {
+        return this.service.remove(id)
+    }
 }

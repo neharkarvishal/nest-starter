@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common'
 
 import { CrudService } from 'src/base/crud/crud.service'
 
-import { ModelClass } from 'objection'
+import { ModelClass, raw } from 'objection'
 
 import { User } from './user.model'
 
@@ -18,9 +18,5 @@ export class UsersService extends CrudService<User> {
 
     async update(id: number, user) {
         return this.model.query().patchAndFetchById(id, user)
-    }
-
-    async remove(id: number) {
-        return Promise.resolve(`This action removes a #${id} user`)
     }
 }
