@@ -12,6 +12,14 @@ export class UsersService extends CrudService<User> {
         super(model)
     }
 
+    async findOne(id: string | number) {
+        return this.model.query().findById(id).first().throwIfNotFound()
+    }
+
+    async findOneByEmail(email: string) {
+        return this.model.query().findOne({ email }).throwIfNotFound()
+    }
+
     async create(user) {
         return this.model.query().insertAndFetch(user)
     }

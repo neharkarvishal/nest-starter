@@ -19,7 +19,7 @@ import { TagsService } from './tags.service'
 export class TagsController {
     static path = 'tags'
 
-    constructor(private service: TagsService) {}
+    constructor(readonly service: TagsService) {}
 
     @Get()
     async findAll() {

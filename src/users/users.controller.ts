@@ -8,6 +8,7 @@ import {
     Param,
     Delete,
     ParseIntPipe,
+    Query,
 } from '@nestjs/common'
 import { ApiOperation, ApiTags } from '@nestjs/swagger'
 
@@ -23,6 +24,15 @@ export class UsersController extends CrudController<User> {
     constructor(readonly service: UsersService) {
         super(service)
     }
+
+    // @ApiOperation({
+    //     summary: 'Get one record by email',
+    //     description: 'Get one record from database with provided by email',
+    // })
+    // @Get()
+    // async findOneByEmail(@Query() email: string) {
+    //     return this.service.findOneByEmail(email)
+    // }
 
     @ApiOperation({
         summary: 'Create a User',

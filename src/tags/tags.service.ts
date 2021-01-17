@@ -6,7 +6,7 @@ import { Tag } from './tag.model'
 
 @Injectable()
 export class TagsService {
-    constructor(@Inject(Tag.name) private tag: ModelClass<Tag>) {}
+    constructor(@Inject(Tag.name) readonly tag: ModelClass<Tag>) {}
 
     async findAll() {
         return this.tag.query()

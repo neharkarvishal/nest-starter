@@ -27,9 +27,9 @@ export class HealthController implements OnModuleInit, OnApplicationShutdown {
     static path = 'health'
 
     constructor(
-        private health: HealthCheckService,
-        private dns: DNSHealthIndicator,
-        private config: ConfigService<EnvironmentVariables>,
+        readonly health: HealthCheckService,
+        readonly dns: DNSHealthIndicator,
+        readonly config: ConfigService<EnvironmentVariables>,
     ) {}
 
     @Sse('sse')

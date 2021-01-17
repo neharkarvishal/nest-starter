@@ -10,7 +10,7 @@ import { Cron, Interval, SchedulerRegistry, Timeout } from '@nestjs/schedule'
 export class PersistedCronService implements OnApplicationBootstrap {
     logger = new Logger(PersistedCronService.name)
 
-    constructor(private schedule: SchedulerRegistry) {}
+    constructor(readonly schedule: SchedulerRegistry) {}
 
     // NestJs hook invoked when the app bootstrapped
     async onApplicationBootstrap() {

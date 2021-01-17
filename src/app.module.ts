@@ -6,6 +6,7 @@ import { TerminusModule } from '@nestjs/terminus'
 import * as Joi from '@hapi/joi'
 
 import { AppController } from './app.controller'
+import { AuthModule } from './auth/auth.module'
 import { CronModule } from './cron/cron.module'
 import { DatabaseModule } from './database/database.module'
 import { HealthController } from './health/health.controller'
@@ -26,6 +27,9 @@ const ConfigModuleOptions = {
             .valid('development', 'production', 'test', 'provision')
             .default('development'),
 
+        JWTKEY: Joi.string().required(),
+        TOKEN_EXPIRATION: Joi.string().required(),
+
         database: Joi.string().required(),
         type: Joi.string().required(),
         logging: Joi.string().required(),
@@ -44,6 +48,7 @@ const ConfigModuleOptions = {
         TerminusModule, // Health module
         TagsModule,
         UsersModule,
+        AuthModule,
     ],
     providers: [],
 })
