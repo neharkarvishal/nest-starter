@@ -12,7 +12,10 @@ import {
 } from 'class-validator'
 import type { JSONSchema, Modifiers } from 'objection'
 
+import * as bcrypt from 'bcrypt'
+
 import { BaseModel } from '../database/models/base.model'
+import { ModelOptions, QueryContext, raw } from 'objection'
 
 interface IUser {
     username: string
@@ -83,6 +86,23 @@ export class User extends BaseModel implements IUser {
             })
         },
     }
+
+    async hashPassword(password: string) {
+        const hash = await bcrypt.hash(password, 12) // eslint-disable-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-call
+        return hash // eslint-disable-line @typescript-eslint/no-unsafe-return
+    }
+
+    async $beforeInsert(queryContext: QueryContext) {
+        await super.$beforeInsert(queryContext)
+        this.password = await this.hashPassword(this.password)
+    }
+
+    /*
+    async $beforeUpdate(opt: ModelOptions, queryContext: QueryContext) {
+        await super.$beforeUpdate(opt, queryContext)
+        this.password = await this.hashPassword(this.password)
+    }
+    */
 }
 
 export class CreateUserDto implements IUser {

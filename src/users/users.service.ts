@@ -2,6 +2,7 @@ import { Inject, Injectable } from '@nestjs/common'
 
 import { CrudService } from 'src/base/crud/crud.service'
 
+import * as bcrypt from 'bcrypt'
 import { ModelClass, raw } from 'objection'
 
 import { User } from './user.model'
@@ -10,6 +11,11 @@ import { User } from './user.model'
 export class UsersService extends CrudService<User> {
     constructor(@Inject(User.name) readonly model: ModelClass<User>) {
         super(model)
+    }
+
+    async hashPassword(password: string) {
+        const hash = await bcrypt.hash(password, 12) // eslint-disable-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-call
+        return hash // eslint-disable-line @typescript-eslint/no-unsafe-return
     }
 
     async findOne(id: string | number) {
@@ -25,6 +31,8 @@ export class UsersService extends CrudService<User> {
     }
 
     async update(id: number, user) {
+        if (user?.password) user.password = await this.hashPassword(user.password) // eslint-disable-line @typescript-eslint/no-unsafe-member-access,no-param-reassign
+
         return this.model.query().patchAndFetchById(id, user)
     }
 }
