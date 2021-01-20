@@ -1,10 +1,9 @@
 import { Inject, Injectable } from '@nestjs/common'
 
-import { CrudService } from 'src/base/crud/crud.service'
-
 import * as bcrypt from 'bcrypt'
 import { ModelClass, raw } from 'objection'
 
+import { CrudService } from '../base/crud'
 import { User } from './user.model'
 
 @Injectable()

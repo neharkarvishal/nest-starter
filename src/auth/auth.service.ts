@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common'
+import { ConfigService } from '@nestjs/config'
 import { JwtService } from '@nestjs/jwt'
 
 import * as bcrypt from 'bcrypt'
@@ -8,21 +9,20 @@ import { UsersService } from '../users/users.service'
 @Injectable()
 export class AuthService {
     constructor(
+        readonly configService: ConfigService<EnvironmentVariables>,
         readonly userService: UsersService,
         readonly jwtService: JwtService,
     ) {}
 
     async comparePassword(enteredPassword: string, dbPassword: string) {
-        const match = await bcrypt.compare(enteredPassword, dbPassword) // eslint-disable-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-call
-        return match // eslint-disable-line @typescript-eslint/no-unsafe-return
+        const match = await bcrypt.compare(enteredPassword, dbPassword)
+        return match
     }
 
-    // eslint-disable-next-line @typescript-eslint/require-await
     async generateToken(user) {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-return
         return this.jwtService.signAsync(user, {
-            secret: process.env.JWTKEY,
-            expiresIn: process.env.TOKEN_EXPIRATION,
+            secret: this.configService.get('JWTKEY'),
+            expiresIn: `${this.configService.get('TOKEN_EXPIRATION')}s`, // eslint-disable-line @typescript-eslint/restrict-template-expressions
         })
     }
 
@@ -48,7 +48,6 @@ export class AuthService {
         // const user = await this.validateUser(email, password)
         const token = await this.generateToken({ email })
 
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
         return token
     }
 }

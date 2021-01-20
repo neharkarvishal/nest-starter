@@ -1,7 +1,9 @@
 import { Module } from '@nestjs/common'
+import { ConfigModule } from '@nestjs/config'
 import { JwtModule } from '@nestjs/jwt'
 import { PassportModule } from '@nestjs/passport'
 
+import { DatabaseModule } from '../database/database.module'
 import { UsersModule } from '../users/users.module'
 import { AuthController } from './auth.controller'
 import { AuthService } from './auth.service'
@@ -10,13 +12,11 @@ import { LocalStrategy } from './local.strategy'
 
 @Module({
     imports: [
+        DatabaseModule,
+        ConfigModule,
         UsersModule,
         PassportModule,
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
-        JwtModule.register({
-            secret: process.env.JWTKEY,
-            signOptions: { expiresIn: process.env.TOKEN_EXPIRATION },
-        }),
+        JwtModule.register({}),
     ],
     providers: [AuthService, LocalStrategy, JwtStrategy],
     controllers: [AuthController],
