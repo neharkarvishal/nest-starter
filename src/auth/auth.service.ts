@@ -18,7 +18,10 @@ export class AuthService {
     }
 
     async generateToken(user) {
-        return this.jwtService.signAsync(user)
+        return this.jwtService.signAsync(user, {
+            secret: process.env.JWTKEY,
+            expiresIn: process.env.TOKEN_EXPIRATION,
+        })
     }
 
     async validateUser(email: string, password: string) {
@@ -34,11 +37,15 @@ export class AuthService {
             return null
         }
 
-        return user
+        return user.toJSON({ shallow: true })
     }
 
-    async login(user) {
+    async login(loginUserDto) {
+        const { email, password } = loginUserDto
+
+        const user = await this.validateUser(email, password)
         const token = await this.generateToken(user)
+
         return { user, token }
     }
 }

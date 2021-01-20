@@ -11,26 +11,26 @@ export async function seed(knex: Knex): Promise<any> {
         {
             username: 'admin',
             email: 'admin@demo.com',
+            password: '12345678',
             firstName: 'admin',
             lastName: 'user',
             isActive: true,
-            password: '12345678',
         },
         {
             username: 'mod',
             email: 'mod@demo.com',
+            password: '12345678',
             firstName: 'mod',
             lastName: 'user',
             isActive: true,
-            password: '12345678',
         },
         {
             username: 'superuser',
             email: 'superuser@demo.com',
+            password: '12345678',
             firstName: 'superuser',
             lastName: 'user',
             isActive: true,
-            password: '12345678',
         },
     ]
 

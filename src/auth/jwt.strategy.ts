@@ -9,13 +9,14 @@ import { UsersService } from '../users/users.service'
 export class JwtStrategy extends PassportStrategy(Strategy) {
     constructor(readonly userService: UsersService) {
         super({
-            ignoreExpiration: false,
+            ignoreExpiration: true,
             secretOrKey: process.env.JWTKEY,
             jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(), // eslint-disable-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
         })
     }
 
     async validate(payload) {
+        console.log({ payload })
         const user = await this.userService.findOne(payload.id) // eslint-disable-line @typescript-eslint/no-unsafe-member-access
 
         if (!user) {
