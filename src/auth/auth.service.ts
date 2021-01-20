@@ -17,7 +17,9 @@ export class AuthService {
         return match // eslint-disable-line @typescript-eslint/no-unsafe-return
     }
 
+    // eslint-disable-next-line @typescript-eslint/require-await
     async generateToken(user) {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-return
         return this.jwtService.signAsync(user, {
             secret: process.env.JWTKEY,
             expiresIn: process.env.TOKEN_EXPIRATION,
@@ -37,15 +39,16 @@ export class AuthService {
             return null
         }
 
-        return user.toJSON({ shallow: true })
+        return user.toJSON()
     }
 
     async login(loginUserDto) {
         const { email, password } = loginUserDto
 
-        const user = await this.validateUser(email, password)
-        const token = await this.generateToken(user)
+        // const user = await this.validateUser(email, password)
+        const token = await this.generateToken({ email })
 
-        return { user, token }
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+        return token
     }
 }

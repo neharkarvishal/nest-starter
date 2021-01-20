@@ -10,12 +10,13 @@ import { LocalStrategy } from './local.strategy'
 
 @Module({
     imports: [
+        UsersModule,
+        PassportModule,
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
         JwtModule.register({
             secret: process.env.JWTKEY,
             signOptions: { expiresIn: process.env.TOKEN_EXPIRATION },
         }),
-        PassportModule,
-        UsersModule,
     ],
     providers: [AuthService, LocalStrategy, JwtStrategy],
     controllers: [AuthController],

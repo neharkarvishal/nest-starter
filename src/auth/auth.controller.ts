@@ -23,6 +23,7 @@ export class AuthController {
         readonly userService: UsersService,
     ) {}
 
+    @UseGuards(AuthGuard('local'))
     @Post('login')
     async login(@Body() user: LoginUserDto) {
         return this.authService.login(user)
