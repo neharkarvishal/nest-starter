@@ -8,6 +8,7 @@ import { AuthService } from '../auth.service'
 
 const mockedJwtService = {
     sign: () => '',
+    signAsync: async () => Promise.resolve(''),
 }
 
 const mockedConfigService = {
@@ -49,10 +50,12 @@ describe('AuthService', () => {
     })
 
     describe('when creating a token', () => {
-        it('should return a string', () => {
+        it('should return a string', async () => {
             const userId = 1
 
-            expect(typeof service.generateToken(userId)).toEqual('string')
+            const token = await service.generateToken(userId)
+
+            expect(typeof token).toEqual('string')
         })
     })
 })
