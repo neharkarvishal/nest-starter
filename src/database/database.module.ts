@@ -8,14 +8,14 @@ import { User } from '../users/user.model'
 
 const models = [Tag, User]
 
-const modelProviders = models.map((model) => {
+export const modelProviders = models.map((model) => {
     return {
         provide: model.name,
         useValue: model,
     }
 })
 
-const providers = [
+export const databaseProviders = [
     ...modelProviders,
     {
         provide: 'KnexConnection',
@@ -39,7 +39,7 @@ const providers = [
 
 @Global()
 @Module({
-    providers: [...providers],
-    exports: [...providers],
+    providers: [...databaseProviders],
+    exports: [...databaseProviders],
 })
 export class DatabaseModule {}

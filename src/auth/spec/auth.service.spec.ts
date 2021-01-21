@@ -2,10 +2,9 @@ import { ConfigService } from '@nestjs/config'
 import { JwtService } from '@nestjs/jwt'
 import { Test, TestingModule } from '@nestjs/testing'
 
-import { DatabaseModule } from '../../database/database.module'
+import { databaseProviders } from '../../database/database.module'
 import { UsersService } from '../../users/users.service'
 import { AuthService } from '../auth.service'
-import { User } from '../../users/user.model'
 
 const mockedJwtService = {
     sign: () => '',
@@ -28,7 +27,6 @@ describe('AuthService', () => {
     beforeEach(async () => {
         const module: TestingModule = await Test.createTestingModule({
             providers: [
-                DatabaseModule,
                 AuthService,
                 UsersService,
                 {
@@ -39,10 +37,7 @@ describe('AuthService', () => {
                     provide: JwtService,
                     useValue: mockedJwtService,
                 },
-                {
-                    provide: User,
-                    useValue: {},
-                },
+                ...databaseProviders,
             ],
         }).compile()
 
