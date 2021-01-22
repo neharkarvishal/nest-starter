@@ -41,7 +41,7 @@ export abstract class CrudService<T extends BaseModel> implements ICrudService<T
         try {
             return (this.model.query() as unknown) as Promise<T[]>
         } catch (e) {
-            throw new InternalServerErrorException()
+            return Promise.reject(new InternalServerErrorException())
         }
     }
 
@@ -66,7 +66,7 @@ export abstract class CrudService<T extends BaseModel> implements ICrudService<T
                 },
             } as unknown) as Promise<IPagination<T>>
         } catch (e) {
-            throw new InternalServerErrorException()
+            return Promise.reject(new InternalServerErrorException())
         }
     }
 

@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common'
-import { ConfigModule } from '@nestjs/config'
+import { ConfigModule, ConfigService } from '@nestjs/config'
 import { JwtModule } from '@nestjs/jwt'
 import { PassportModule } from '@nestjs/passport'
 
@@ -16,7 +16,17 @@ import { LocalStrategy } from './local.strategy'
         ConfigModule,
         UsersModule,
         PassportModule,
-        JwtModule.register({}),
+        JwtModule.registerAsync({
+            imports: [ConfigModule],
+            // eslint-disable-next-line @typescript-eslint/require-await
+            useFactory: async (configService: ConfigService) => ({
+                secret: configService.get('JWTKEY'),
+                signOptions: {
+                    expiresIn: configService.get<number>('TOKEN_EXPIRATION'),
+                },
+            }),
+            inject: [ConfigService],
+        }),
     ],
     providers: [AuthService, LocalStrategy, JwtStrategy],
     controllers: [AuthController],

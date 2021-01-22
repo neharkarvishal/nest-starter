@@ -11,13 +11,14 @@ import {
     UseGuards,
 } from '@nestjs/common'
 import { AuthGuard } from '@nestjs/passport'
-import { ApiTags } from '@nestjs/swagger'
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger'
 
 import { CreateTagsDto, UpdateTagsDto } from './tag.model'
 import { TagsService } from './tags.service'
 
 @Controller(TagsController.path)
 @ApiTags(TagsController.name)
+@ApiBearerAuth()
 @UseGuards(AuthGuard('jwt'))
 export class TagsController {
     static path = 'tags'

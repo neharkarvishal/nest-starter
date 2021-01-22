@@ -12,13 +12,16 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
     }
 
     async validate(email: string, password: string) {
+        if (!email || !password) return Promise.reject(new UnauthorizedException())
+
         const user = await this.authService.validateUser(email, password)
 
-        if (!user) {
-            throw new UnauthorizedException(
-                'You are not authorized to perform the operation',
+        if (!user)
+            return Promise.reject(
+                new UnauthorizedException(
+                    'You are not authorized to perform the operation',
+                ),
             )
-        }
 
         return user
     }

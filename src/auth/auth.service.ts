@@ -20,10 +20,7 @@ export class AuthService {
     }
 
     async generateToken(user) {
-        return this.jwtService.signAsync(user, {
-            secret: this.configService.get('JWTKEY'),
-            expiresIn: `${this.configService.get('TOKEN_EXPIRATION')}s`, // eslint-disable-line @typescript-eslint/restrict-template-expressions
-        })
+        return this.jwtService.signAsync(user)
     }
 
     async validateUser(email: string, password: string) {

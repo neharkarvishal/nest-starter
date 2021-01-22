@@ -5,6 +5,7 @@ import { PassportStrategy } from '@nestjs/passport'
 import { ExtractJwt, Strategy } from 'passport-jwt'
 
 import { UsersService } from '../users/users.service'
+import TokenPayload from './tokenPayload.interface'
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
@@ -19,14 +20,17 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
         })
     }
 
-    async validate(payload) {
-        const user = await this.userService.findOne(payload.id) // eslint-disable-line @typescript-eslint/no-unsafe-member-access
+    async validate(payload: TokenPayload) {
+        if (!payload.email) return Promise.reject(new UnauthorizedException())
 
-        if (!user) {
-            throw new UnauthorizedException(
-                'You are not authorized to perform the operation',
+        const user = await this.userService.findOneByEmail(payload.email) // eslint-disable-line @typescript-eslint/no-unsafe-member-access
+
+        if (!user)
+            return Promise.reject(
+                new UnauthorizedException(
+                    'You are not authorized to perform the operation',
+                ),
             )
-        }
 
         return payload // eslint-disable-line @typescript-eslint/no-unsafe-return
     }
