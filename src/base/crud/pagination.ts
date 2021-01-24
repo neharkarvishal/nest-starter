@@ -19,7 +19,7 @@ export abstract class PaginationParams<T> {
     @IsOptional()
     @Min(0)
     @Transform((val: string) => parseInt(val, 10))
-    readonly page = 0
+    readonly page // = 0
 
     /**
      * Page Size
@@ -28,7 +28,7 @@ export abstract class PaginationParams<T> {
     @IsOptional()
     @Min(0)
     @Transform((val: string) => parseInt(val, 10))
-    readonly pageSize = 10
+    readonly pageSize // = 10
 
     /**
      * OrderBy

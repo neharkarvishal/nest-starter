@@ -1,11 +1,4 @@
-import {
-    Get,
-    Delete,
-    Param,
-    ParseIntPipe,
-    HttpStatus,
-    Query,
-} from '@nestjs/common'
+import { Get, Delete, Param, ParseIntPipe, HttpStatus, Query } from '@nestjs/common'
 import { ApiOperation, ApiResponse } from '@nestjs/swagger'
 
 import { BaseModel } from '../../database/models/base.model'
@@ -27,7 +20,7 @@ export abstract class CrudController<T extends BaseModel> {
     async findAll(
         @Query() filter: PaginationParams<T>,
     ): Promise<IPagination<T> | T[]> {
-        if (filter) {
+        if (Object.keys(filter).length) {
             return this.service.paginatedFindAll(filter)
         }
 

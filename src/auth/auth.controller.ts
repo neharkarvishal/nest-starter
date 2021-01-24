@@ -1,7 +1,7 @@
 /* eslint-disable no-use-before-define */
 import { Body, Controller, Post, Req, UseGuards } from '@nestjs/common'
 import { AuthGuard } from '@nestjs/passport'
-import { ApiTags } from '@nestjs/swagger'
+import { ApiProperty, ApiTags } from '@nestjs/swagger'
 
 import { IsNotEmpty } from 'class-validator'
 
@@ -9,9 +9,13 @@ import { UsersService } from '../users/users.service'
 import { AuthService } from './auth.service'
 
 export class LoginCredsDto {
-    @IsNotEmpty() readonly email: string
+    @ApiProperty({ example: 'admin@demo.com' })
+    @IsNotEmpty()
+    readonly email: string
 
-    @IsNotEmpty() readonly password: string
+    @ApiProperty({ example: '12345678' })
+    @IsNotEmpty()
+    readonly password: string
 }
 
 @Controller(AuthController.path)

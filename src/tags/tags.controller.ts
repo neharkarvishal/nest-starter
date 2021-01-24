@@ -13,36 +13,24 @@ import {
 import { AuthGuard } from '@nestjs/passport'
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger'
 
-import { CreateTagsDto, UpdateTagsDto } from './tag.model'
+import { CrudController } from '../base/crud'
+import { CreateTagsDto, Tag, UpdateTagsDto } from './tag.model'
 import { TagsService } from './tags.service'
 
 @Controller(TagsController.path)
 @ApiTags(TagsController.name)
 @ApiBearerAuth()
 @UseGuards(AuthGuard('jwt'))
-export class TagsController {
+export class TagsController extends CrudController<Tag> {
     static path = 'tags'
 
-    constructor(readonly service: TagsService) {}
-
-    @Get()
-    async findAll() {
-        return this.service.findAll()
-    }
-
-    @Get(':id')
-    async findOne(@Param('id', ParseIntPipe) id: number) {
-        return this.service.findOne(id)
+    constructor(readonly service: TagsService) {
+        super(service)
     }
 
     @Post()
     async create(@Body() tag: CreateTagsDto) {
         return this.service.create(tag)
-    }
-
-    @Delete(':id')
-    async delete(@Param('id', ParseIntPipe) id: number) {
-        return this.service.delete(id)
     }
 
     @Put(':id')

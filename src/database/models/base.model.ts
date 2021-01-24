@@ -21,7 +21,14 @@ export interface IBaseModel {
 export class BaseModel
     extends mixin(Model, [visibilityPlugin, DBErrors])
     implements IBaseModel {
-    static hidden = ['salt', 'password', 'created_at', 'updated_at', 'deleted_at'] // hidden fields to filter from query result
+    // hidden fields to filter from query result
+    static hidden = [
+        'salt',
+        'password',
+        'created_at',
+        'updated_at',
+        // 'deleted_at'
+    ]
 
     // QueryBuilderType!: CustomQueryBuilder<this> // custom query builder for pagination
 

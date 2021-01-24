@@ -8,11 +8,11 @@ import { IPagination, PaginationParams } from './pagination'
 export interface ICrudService<T> {
     findAll(): Promise<T[]>
 
-    findOne(id: string | number): Promise<T>
+    findOne(id: number): Promise<T>
 
     paginatedFindAll(filter?: PaginationParams<T>): Promise<IPagination<T>>
 
-    remove(id: string | number): Promise<T>
+    remove(id: number): Promise<T>
 }
 
 /**
@@ -47,7 +47,7 @@ export abstract class CrudService<T extends BaseModel> implements ICrudService<T
      * @throws InternalServerErrorException
      */
     async paginatedFindAll(filter: PaginationParams<T>) {
-        const { page = 0, pageSize = 10, order } = filter
+        const { page = 0, pageSize = 3, order } = filter
 
         try {
             const { results, total } = await this.model.query().page(page, pageSize)
@@ -71,12 +71,40 @@ export abstract class CrudService<T extends BaseModel> implements ICrudService<T
      *
      * @throws NotFoundError
      */
-    async findOne(id: string | number): Promise<T> {
+    async findOne(id: number): Promise<T> {
         return (this.model
             .query()
             .findById(id)
             .first()
             .throwIfNotFound() as unknown) as Promise<T>
+    }
+
+    /**
+     * Finds onw entry by email and return the result
+     *
+     * @throws NotFoundError
+     */
+    async findOneByEmail(email: string): Promise<T> {
+        return (this.model
+            .query()
+            .findOne({ email })
+            .throwIfNotFound() as unknown) as Promise<T>
+    }
+
+    /**
+     * Created a entry and return it
+     */
+    async create(data): Promise<T> {
+        return (this.model.query().insertAndFetch(data) as unknown) as Promise<T>
+    }
+
+    /**
+     * Updates a entry and return it
+     */
+    async update(id: number, data): Promise<T> {
+        return (this.model
+            .query()
+            .patchAndFetchById(id, data) as unknown) as Promise<T>
     }
 
     /**
