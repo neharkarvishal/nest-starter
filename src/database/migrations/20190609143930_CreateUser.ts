@@ -26,7 +26,7 @@ export async function up(knex: Knex): Promise<any> {
 
 export async function down(knex: Knex): Promise<any> {
     if (process.env.NODE_ENV !== 'production') {
-        return knex.schema.dropTableIfExists('users')
+        return knex.schema.dropTableIfExists(tableName)
     }
 
     return Promise.resolve()

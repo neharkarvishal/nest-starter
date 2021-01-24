@@ -18,10 +18,10 @@ export abstract class CrudController<T extends BaseModel> {
     })
     @Get()
     async findAll(
-        @Query() filter: PaginationParams<T>,
+        @Query() paginationParams: PaginationParams<T>,
     ): Promise<IPagination<T> | T[]> {
-        if (Object.keys(filter).length) {
-            return this.service.paginatedFindAll(filter)
+        if (Object.keys(paginationParams).length) {
+            return this.service.paginatedFindAll(paginationParams)
         }
 
         return this.service.findAll()
@@ -37,8 +37,8 @@ export abstract class CrudController<T extends BaseModel> {
         type: BaseModel, // type: T,
     })
     @Get(':id')
-    async findOne(@Param('id', ParseIntPipe) id: number): Promise<T> {
-        return this.service.findOne(id)
+    async findOneById(@Param('id', ParseIntPipe) id: number): Promise<T> {
+        return this.service.findOneById(id)
     }
 
     @ApiOperation({

@@ -8,9 +8,13 @@ import { IPagination, PaginationParams } from './pagination'
 export interface ICrudService<T> {
     findAll(): Promise<T[]>
 
-    findOne(id: number): Promise<T>
+    findOneById(id: number): Promise<T>
 
-    paginatedFindAll(filter?: PaginationParams<T>): Promise<IPagination<T>>
+    findOneByEmail(email: string): Promise<T>
+
+    paginatedFindAll(
+        paginationParams?: PaginationParams<T>,
+    ): Promise<IPagination<T>>
 
     remove(id: number): Promise<T>
 }
@@ -37,7 +41,7 @@ export abstract class CrudService<T extends BaseModel> implements ICrudService<T
         try {
             return (this.model.query() as unknown) as Promise<T[]>
         } catch (e) {
-            return Promise.reject(new InternalServerErrorException())
+            return Promise.reject(e)
         }
     }
 
@@ -46,8 +50,8 @@ export abstract class CrudService<T extends BaseModel> implements ICrudService<T
      *
      * @throws InternalServerErrorException
      */
-    async paginatedFindAll(filter: PaginationParams<T>) {
-        const { page = 0, pageSize = 3, order } = filter
+    async paginatedFindAll(paginationParams: PaginationParams<T>) {
+        const { page = 0, pageSize = 3, order } = paginationParams
 
         try {
             const { results, total } = await this.model.query().page(page, pageSize)
@@ -62,7 +66,20 @@ export abstract class CrudService<T extends BaseModel> implements ICrudService<T
                 },
             } as unknown) as Promise<IPagination<T>>
         } catch (e) {
-            return Promise.reject(new InternalServerErrorException())
+            return Promise.reject(e)
+        }
+    }
+
+    /**
+     * Finds one entry with where filter and return the result
+     *
+     * @throws InternalServerErrorException
+     */
+    async findOne(filter = {}) {
+        try {
+            return (this.model.query().findOne(filter) as unknown) as Promise<T>
+        } catch (e) {
+            return Promise.reject(e)
         }
     }
 
@@ -71,12 +88,15 @@ export abstract class CrudService<T extends BaseModel> implements ICrudService<T
      *
      * @throws NotFoundError
      */
-    async findOne(id: number): Promise<T> {
-        return (this.model
-            .query()
-            .findById(id)
-            .first()
-            .throwIfNotFound() as unknown) as Promise<T>
+    async findOneById(id: number): Promise<T> {
+        try {
+            return (this.model
+                .query()
+                .findById(id)
+                .first() as unknown) as Promise<T>
+        } catch (e) {
+            return Promise.reject(e)
+        }
     }
 
     /**
@@ -85,17 +105,24 @@ export abstract class CrudService<T extends BaseModel> implements ICrudService<T
      * @throws NotFoundError
      */
     async findOneByEmail(email: string): Promise<T> {
-        return (this.model
-            .query()
-            .findOne({ email })
-            .throwIfNotFound() as unknown) as Promise<T>
+        try {
+            return (this.model.query().findOne({ email }) as unknown) as Promise<T>
+        } catch (e) {
+            return Promise.reject(e)
+        }
     }
 
     /**
      * Created a entry and return it
      */
     async create(data): Promise<T> {
-        return (this.model.query().insertAndFetch(data) as unknown) as Promise<T>
+        try {
+            return (this.model
+                .query()
+                .insertAndFetch(data) as unknown) as Promise<T>
+        } catch (e) {
+            return Promise.reject(e)
+        }
     }
 
     /**
@@ -111,8 +138,8 @@ export abstract class CrudService<T extends BaseModel> implements ICrudService<T
      * Soft-deletes a entry and return it
      */
     remove(id: number) {
-        return (this.model.query().patchAndFetchById(id, {
+        return this.update(id, {
             deleted_at: raw('CURRENT_TIMESTAMP'),
-        }) as unknown) as Promise<T>
+        })
     }
 }
