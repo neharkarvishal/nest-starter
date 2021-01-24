@@ -1,5 +1,5 @@
 import { Injectable, Logger, OnApplicationBootstrap } from '@nestjs/common'
-import { Cron, Interval, SchedulerRegistry, Timeout } from '@nestjs/schedule'
+import { SchedulerRegistry } from '@nestjs/schedule'
 
 /**
  * Each time the server restarts, this service finds the jobs from the table and restored them

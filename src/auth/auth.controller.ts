@@ -1,15 +1,16 @@
 /* eslint-disable no-use-before-define */
-import { Body, Controller, Post, UseGuards } from '@nestjs/common'
+import { Body, Controller, Post, Req, UseGuards } from '@nestjs/common'
 import { AuthGuard } from '@nestjs/passport'
-import { ApiOperation, ApiTags } from '@nestjs/swagger'
+import { ApiTags } from '@nestjs/swagger'
 
 import { IsNotEmpty } from 'class-validator'
 
 import { UsersService } from '../users/users.service'
 import { AuthService } from './auth.service'
 
-export class LoginUserDto {
+export class LoginCredsDto {
     @IsNotEmpty() readonly email: string
+
     @IsNotEmpty() readonly password: string
 }
 
@@ -25,16 +26,10 @@ export class AuthController {
 
     @UseGuards(AuthGuard('local'))
     @Post('login')
-    async login(@Body() user: LoginUserDto) {
+    async login(@Req() req, @Body() loginCreds: LoginCredsDto) {
+        const { user } = req
+        const { email, password } = loginCreds // eslint-disable-line @typescript-eslint/no-unused-vars
+
         return this.authService.login(user)
     }
-
-    // @ApiOperation({
-    //     summary: 'Create a User',
-    //     description: 'Create a new User and store it in database',
-    // })
-    // @Post('signup')
-    // async signUp(@Body() user: CreateUserDto) {
-    //     return this.userService.create(user)
-    // }
 }

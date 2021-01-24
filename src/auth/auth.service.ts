@@ -9,14 +9,12 @@ import { UsersService } from '../users/users.service'
 @Injectable()
 export class AuthService {
     constructor(
-        readonly configService: ConfigService<EnvironmentVariables>,
         readonly userService: UsersService,
         readonly jwtService: JwtService,
     ) {}
 
     async comparePassword(enteredPassword: string, dbPassword: string) {
-        const match = await bcrypt.compare(enteredPassword, dbPassword)
-        return match
+        return bcrypt.compare(enteredPassword, dbPassword)
     }
 
     async generateToken(user) {
@@ -39,12 +37,7 @@ export class AuthService {
         return user.toJSON()
     }
 
-    async login(loginUserDto) {
-        const { email, password } = loginUserDto
-
-        // const user = await this.validateUser(email, password)
-        const token = await this.generateToken({ email })
-
-        return token
+    async login(user) {
+        return this.generateToken(user)
     }
 }

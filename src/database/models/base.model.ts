@@ -1,7 +1,4 @@
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger'
-
 import {
-    fn,
     raw,
     mixin,
     Model,
@@ -51,15 +48,4 @@ export class BaseModel
 
         this.updated_at = raw('CURRENT_TIMESTAMP') // new Date().toISOString() // fn.now()
     }
-
-    /*
-    async $beforeInsert(queryContext: QueryContext) {
-        await super.$beforeInsert(queryContext)
-
-        const date = fn.now() // new Date().toISOString()
-
-        this.created_at = date
-        this.updated_at = date
-    }
-    */
 }

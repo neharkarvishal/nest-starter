@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-call */
 import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common'
 
 import { Observable } from 'rxjs'
@@ -41,7 +42,6 @@ export class ResponseGuard implements CanActivate {
                 message = error
             }
 
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
             return response.status(status).json({
                 success: false,
                 code: status,
@@ -51,14 +51,12 @@ export class ResponseGuard implements CanActivate {
         }
 
         function noContent() {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
             return response.status(204).end()
         }
 
         function withMeta(data: Record<string, any>, status = 200) {
             const { data: dataObj, ...meta } = data
 
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
             return response.status(status).json({
                 success: true,
                 code: status,
@@ -67,11 +65,11 @@ export class ResponseGuard implements CanActivate {
             })
         }
 
-        response.error = error // eslint-disable-line @typescript-eslint/no-unsafe-member-access
-        response.success = success // eslint-disable-line @typescript-eslint/no-unsafe-member-access
-        response.withMeta = withMeta // eslint-disable-line @typescript-eslint/no-unsafe-member-access
-        response.noContent = noContent // eslint-disable-line @typescript-eslint/no-unsafe-member-access
+        response.error = error
+        response.success = success
+        response.withMeta = withMeta
+        response.noContent = noContent
 
-        return response // eslint-disable-line @typescript-eslint/no-unsafe-return
+        return response
     }
 }

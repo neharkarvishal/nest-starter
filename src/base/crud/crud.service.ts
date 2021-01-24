@@ -1,6 +1,6 @@
 import { InternalServerErrorException } from '@nestjs/common'
 
-import { NotFoundError, ModelClass, raw } from 'objection'
+import { ModelClass, raw } from 'objection'
 
 import { BaseModel } from '../../database/models/base.model'
 import { IPagination, PaginationParams } from './pagination'
@@ -20,17 +20,13 @@ export interface ICrudService<T> {
  * functionality such as to create, find, update and delete data.
  */
 export abstract class CrudService<T extends BaseModel> implements ICrudService<T> {
-    saltRounds: number
-
     /**
      * The constructor must receive the injected model from the child service in
      * order to provide all the proper base functionality.
      *
      * @param {Model} model - The injected model.
      */
-    protected constructor(protected readonly model: ModelClass<T>) {
-        this.saltRounds = 12
-    }
+    protected constructor(protected readonly model: ModelClass<T>) {}
 
     /**
      * Finds all entries and return the result

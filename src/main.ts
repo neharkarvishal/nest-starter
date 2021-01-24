@@ -1,10 +1,12 @@
-import 'source-map-support/register'
+import './miscSetup'
 
 import { ValidationPipe } from '@nestjs/common'
 import type { INestApplication } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { NestFactory, HttpAdapterHost } from '@nestjs/core'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
+
+// import { SpelunkerModule } from 'nestjs-spelunker'
 
 import * as rateLimit from 'express-rate-limit'
 import * as helmet from 'helmet'
@@ -63,6 +65,8 @@ function setupInfra(app: INestApplication) {
     // guards (express specific)
     // app.useGlobalGuards(new ResponseGuard())
     app.useGlobalGuards(new RequestGuard())
+
+    // console.log(SpelunkerModule.explore(app))
 }
 
 function setupMiddlewares(app: INestApplication) {

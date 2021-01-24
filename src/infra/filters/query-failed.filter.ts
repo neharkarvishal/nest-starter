@@ -68,7 +68,7 @@ export class QueryFailedFilter implements ExceptionFilter {
             type,
 
             path: request.url,
-            // timestamp: new Date().toISOString(),
+            timestamp: new Date().toISOString(),
         })
     }
 }

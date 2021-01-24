@@ -1,9 +1,6 @@
 import {
     Get,
-    Post,
-    Put,
     Delete,
-    Body,
     Param,
     ParseIntPipe,
     HttpStatus,

@@ -1,7 +1,7 @@
 import { Global, Module } from '@nestjs/common'
 
 import * as Knex from 'knex'
-import { knexSnakeCaseMappers, Model } from 'objection'
+import { Model } from 'objection'
 
 import { Tag } from '../tags/tag.model'
 import { User } from '../users/user.model'
@@ -28,7 +28,6 @@ export const databaseProviders = [
                     filename: './knex.sqlite',
                 },
                 debug: true,
-                // ...knexSnakeCaseMappers(),
             })
 
             Model.knex(knex)

@@ -28,7 +28,7 @@ export class ValidationFailedFilter implements ExceptionFilter {
             statusCode: status,
 
             path: request.url,
-            // timestamp: new Date().toISOString(),
+            timestamp: new Date().toISOString(),
         })
     }
 }

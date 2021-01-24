@@ -6,7 +6,6 @@ import * as deepmerge from 'deepmerge'
 
 import {
     ApiProperty,
-    isArrayFull,
     isFalse,
     isFunction,
     isObjectFull,

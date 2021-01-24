@@ -20,10 +20,6 @@ export async function up(knex: Knex): Promise<any> {
 
         table.timestamps(true, true) // created_at, updated_at, useTimestamps, defaultToNow
 
-        // table.timestamp('updatedAt').defaultTo(knex.fn.now())
-
-        // table.timestamp('createdAt').defaultTo(knex.fn.now())
-
         table.timestamp('deleted_at').nullable().defaultTo(null)
     })
 }
