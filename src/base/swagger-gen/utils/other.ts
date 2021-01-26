@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-types */
-import { ValidationPipeOptions } from '@nestjs/common'
+import { RequestMethod, ValidationPipeOptions } from '@nestjs/common'
 import { SwaggerEnumType } from '@nestjs/swagger/dist/types/swagger-enum.type'
 
 export declare type BaseRouteName =
@@ -10,6 +10,16 @@ export declare type BaseRouteName =
     | 'updateOneBase'
     | 'replaceOneBase'
     | 'deleteOneBase'
+    | 'getOne'
+
+export interface BaseRoute {
+    name: BaseRouteName
+    path: string
+    method: RequestMethod
+    enable: boolean
+    override: boolean
+    withParams: boolean
+}
 
 export interface GetManyDefaultResponse<T> {
     data: T[]

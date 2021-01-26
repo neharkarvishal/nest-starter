@@ -1,6 +1,6 @@
 import 'source-map-support/register'
 
-process.on('uncaughtExceptionMonitor', (err, origin) => {
+process.on('uncaughtExceptionMonitor', (err: unknown, origin: unknown) => {
     console.log(
         '[process.on.uncaughtExceptionMonitor]\nUnhandled Exception at:',
         err,
@@ -10,7 +10,7 @@ process.on('uncaughtExceptionMonitor', (err, origin) => {
     // Application specific logging, throwing an error, or other logic here
 })
 
-process.on('uncaughtException', (err, origin) => {
+process.on('uncaughtException', (err: unknown, origin: unknown) => {
     console.log(
         '[process.on.uncaughtException]\nUnhandled Exception at:',
         err,

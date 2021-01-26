@@ -59,7 +59,11 @@ export class CustomQueryBuilder<M extends Model, R = M[]> extends QueryBuilder<
     }
 
     async onlyCount() {
-        const result = await this.count({ c: '*' })
+        const result: { c: unknown }[] = ((await this.count({
+            c: '*',
+        })) as unknown) as {
+            c: unknown
+        }[]
         return result[0].c // eslint-disable-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-return
     }
 

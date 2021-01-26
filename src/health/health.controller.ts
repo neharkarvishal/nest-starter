@@ -17,6 +17,7 @@ import {
 } from '@nestjs/terminus'
 
 import * as os from 'os'
+// @ts-ignore
 import * as pidusage from 'pidusage'
 import { interval, Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
@@ -58,18 +59,24 @@ export class HealthController implements OnModuleInit, OnApplicationShutdown {
         ])
     }
 
-    collectOsMetrics(metrics) {
+    collectOsMetrics(metrics: { os: any; interval?: number; retention?: number }) {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-        pidusage(process.pid, (err, stat) => {
-            if (err) return
+        pidusage(
+            process.pid,
+            (
+                err: any,
+                stat: { memory: number; timestamp: number; load: number[] },
+            ) => {
+                if (err) return
 
-            // Convert from B to MB
-            stat.memory = stat.memory / 1024 / 1024 // eslint-disable-line @typescript-eslint/no-unsafe-member-access,no-param-reassign
-            stat.timestamp = Date.now() // eslint-disable-line @typescript-eslint/no-unsafe-member-access,no-param-reassign
-            stat.load = os.loadavg() // eslint-disable-line @typescript-eslint/no-unsafe-member-access,no-param-reassign
+                // Convert from B to MB
+                stat.memory = stat.memory / 1024 / 1024 // eslint-disable-line @typescript-eslint/no-unsafe-member-access,no-param-reassign
+                stat.timestamp = Date.now() // eslint-disable-line @typescript-eslint/no-unsafe-member-access,no-param-reassign
+                stat.load = os.loadavg() // eslint-disable-line @typescript-eslint/no-unsafe-member-access,no-param-reassign
 
-            metrics.os = stat // eslint-disable-line @typescript-eslint/no-unsafe-member-access,no-param-reassign
-        })
+                metrics.os = stat // eslint-disable-line @typescript-eslint/no-unsafe-member-access,no-param-reassign
+            },
+        )
     }
 
     onModuleInit() {

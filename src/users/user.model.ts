@@ -20,8 +20,8 @@ import { ModelOptions, QueryContext, raw } from 'objection'
 interface IUser {
     username: string
     email: string
-    firstName: string
-    lastName: string
+    firstName?: string
+    lastName?: string
     isActive: boolean
     password: string
 }
@@ -29,17 +29,17 @@ interface IUser {
 export class User extends BaseModel implements IUser {
     static tableName = 'users'
 
-    username: string
+    username!: string
 
-    email: string
+    email!: string
 
-    firstName: string
+    firstName?: string
 
-    lastName: string
+    lastName?: string
 
-    isActive: boolean
+    isActive!: boolean
 
-    password: string
+    password!: string
 
     // JSON schema is not the database schema! Nothing is generated based on this.
     // This is only used for validation. Whenever a model instance is created it is checked against this schema.
@@ -110,30 +110,30 @@ export class CreateUserDto implements IUser {
     @IsNotEmpty()
     @MinLength(2)
     @MaxLength(36)
-    username: string
+    username!: string
 
     @IsEmail()
     @IsNotEmpty()
     @MinLength(2)
-    email: string
+    email!: string
 
     @IsString()
     @IsNotEmpty()
     @MinLength(8)
-    password: string
+    password!: string
 
     @IsString()
     @IsNotEmpty()
     @MinLength(2)
-    firstName: string
+    firstName!: string
 
     @IsString()
     @IsNotEmpty()
     @MinLength(2)
-    lastName: string
+    lastName!: string
 
     @IsBoolean()
-    isActive: boolean
+    isActive!: boolean
 }
 
 export class UpdateUserDto extends PartialType(CreateUserDto) {}

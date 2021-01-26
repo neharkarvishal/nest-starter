@@ -4,7 +4,7 @@ import * as bcrypt from 'bcrypt'
 import { ModelClass, raw } from 'objection'
 
 import { CrudService } from '../base/crud'
-import { User } from './user.model'
+import { CreateUserDto, UpdateUserDto, User } from './user.model'
 
 @Injectable()
 export class UsersService extends CrudService<User> {
@@ -18,18 +18,18 @@ export class UsersService extends CrudService<User> {
     }
 
     async findOne(id: string | number) {
-        return this.model.query().findById(id).first().throwIfNotFound()
+        return this.model.query().findById(id).first()
     }
 
     async findOneByEmail(email: string) {
-        return this.model.query().findOne({ email }).throwIfNotFound()
+        return this.model.query().findOne({ email })
     }
 
-    async create(user) {
+    async create(user: CreateUserDto) {
         return this.model.query().insertAndFetch(user)
     }
 
-    async update(id: number, user) {
+    async update(id: number, user: UpdateUserDto) {
         if (user?.password) user.password = await this.hashPassword(user.password) // eslint-disable-line @typescript-eslint/no-unsafe-member-access,no-param-reassign
 
         return this.model.query().patchAndFetchById(id, user)

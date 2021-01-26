@@ -8,6 +8,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 
 // import { SpelunkerModule } from 'nestjs-spelunker'
 
+// @ts-ignore
 import * as rateLimit from 'express-rate-limit'
 import * as helmet from 'helmet'
 

@@ -115,7 +115,7 @@ export abstract class CrudService<T extends BaseModel> implements ICrudService<T
     /**
      * Created a entry and return it
      */
-    async create(data): Promise<T> {
+    async create(data: any): Promise<T> {
         try {
             return (this.model
                 .query()
@@ -128,7 +128,7 @@ export abstract class CrudService<T extends BaseModel> implements ICrudService<T
     /**
      * Updates a entry and return it
      */
-    async update(id: number, data): Promise<T> {
+    async update(id: number, data: any): Promise<T> {
         return (this.model
             .query()
             .patchAndFetchById(id, data) as unknown) as Promise<T>

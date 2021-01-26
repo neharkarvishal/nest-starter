@@ -4,6 +4,7 @@ import { AuthGuard } from '@nestjs/passport'
 import { ApiProperty, ApiTags } from '@nestjs/swagger'
 
 import { IsNotEmpty } from 'class-validator'
+import type { Request } from 'express'
 
 import { UsersService } from '../users/users.service'
 import { AuthService } from './auth.service'
@@ -11,11 +12,11 @@ import { AuthService } from './auth.service'
 export class LoginCredsDto {
     @ApiProperty({ example: 'admin@demo.com' })
     @IsNotEmpty()
-    readonly email: string
+    readonly email!: string
 
     @ApiProperty({ example: '12345678' })
     @IsNotEmpty()
-    readonly password: string
+    readonly password!: string
 }
 
 @Controller(AuthController.path)
@@ -30,7 +31,7 @@ export class AuthController {
 
     @UseGuards(AuthGuard('local'))
     @Post('login')
-    async login(@Req() req, @Body() loginCreds: LoginCredsDto) {
+    async login(@Req() req: Request, @Body() loginCreds: LoginCredsDto) {
         const { user } = req
         const { email, password } = loginCreds // eslint-disable-line @typescript-eslint/no-unused-vars
 

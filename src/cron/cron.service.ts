@@ -18,7 +18,7 @@ export class CronService {
 
     fact16 = 20922789888000
 
-    factorial(n) {
+    factorial(n: number): number {
         if (n === 1) return 1
         return n * this.factorial(n - 1)
     }

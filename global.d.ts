@@ -10,3 +10,9 @@ interface EnvironmentVariables {
     logging: string
     synchronize: string
 }
+
+declare namespace Express {
+    interface Request {
+        user: Record<string, unknown>
+    }
+}

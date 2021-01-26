@@ -13,7 +13,7 @@ interface ITag {
 export class Tag extends BaseModel implements ITag {
     static tableName = 'tags'
 
-    name: string
+    name!: string
 
     // JSON schema is not the database schema! Nothing is generated based on this.
     // This is only used for validation. Whenever a model instance is created it is checked against this schema.
@@ -32,7 +32,7 @@ export class CreateTagsDto implements ITag {
     @IsNotEmpty()
     @MinLength(2)
     @MaxLength(36)
-    name: string
+    name!: string
 }
 
 export class UpdateTagsDto extends PartialType(CreateTagsDto) {}

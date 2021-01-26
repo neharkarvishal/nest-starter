@@ -7,22 +7,24 @@ import { AuthService } from './auth.service'
 
 @Injectable()
 export class LocalStrategy extends PassportStrategy(Strategy) {
+    static usernameField = 'email'
+
+    static passwordField = 'password'
+
     constructor(readonly authService: AuthService) {
-        super({ usernameField: 'email', session: false })
+        super({
+            usernameField: LocalStrategy.usernameField,
+            passwordField: LocalStrategy.passwordField,
+            session: false,
+        })
     }
 
     async validate(email: string, password: string) {
-        if (!email || !password) return Promise.reject(new UnauthorizedException())
-
-        const user = await this.authService.validateUser(email, password)
-
-        if (!user)
+        if (!email || !password)
             return Promise.reject(
-                new UnauthorizedException(
-                    'You are not authorized to perform the operation',
-                ),
+                new UnauthorizedException('Credentials cannot be empty'),
             )
 
-        return user
+        return this.authService.validateUser(email, password)
     }
 }

@@ -6,6 +6,7 @@ import * as deepmerge from 'deepmerge'
 
 import {
     ApiProperty,
+    BaseRoute,
     isFalse,
     isFunction,
     isObjectFull,
@@ -17,10 +18,10 @@ import type { CrudOptions, GetManyDefaultResponse, BaseRouteName } from './utils
 
 export class R {
     static set(
-        metadataKey,
-        metadataValue,
+        metadataKey: string,
+        metadataValue: any,
         target: Object,
-        propertyKey: string | symbol = undefined,
+        propertyKey?: string | symbol,
     ) {
         if (!propertyKey) {
             Reflect.defineMetadata(metadataKey, metadataValue, target)
@@ -30,23 +31,26 @@ export class R {
     }
 
     static get<T extends any>(
-        metadataKey,
+        metadataKey: any,
         target: Object,
-        propertyKey: string | symbol = undefined,
+        propertyKey?: string | symbol,
     ): T {
         if (!propertyKey) return Reflect.getMetadata(metadataKey, target)
 
         return Reflect.getMetadata(metadataKey, target, propertyKey)
     }
 
-    static setRoute(route, func: Function) {
+    static setRoute(route: BaseRoute, func: Function) {
         R.set('path', route.path, func)
         R.set('method', route.method, func)
     }
 }
 
 export class Swagger {
-    static setExtraModels(swaggerModels) {
+    static setExtraModels(swaggerModels: {
+        [x: string]: any
+        get: Record<string, unknown>
+    }) {
         if (swaggerConst) {
             const meta = Swagger.getExtraModels(swaggerModels.get)
             const models = [
@@ -64,13 +68,13 @@ export class Swagger {
         }
     }
 
-    static setResponseOk(metadata, func: Function) {
+    static setResponseOk(metadata: any[], func: Function) {
         if (swaggerConst) {
             R.set(swaggerConst.DECORATORS.API_RESPONSE, metadata, func)
         }
     }
 
-    static getExtraModels(target): any[] {
+    static getExtraModels(target: Record<string, unknown>): any[] {
         return swaggerConst
             ? R.get(swaggerConst.API_EXTRA_MODELS, target) || []
             : []
@@ -83,9 +87,13 @@ export class Swagger {
     }
 
     static createResponseMeta(
-        name: BaseRouteName | 'getOne',
+        name: BaseRouteName,
         options: CrudOptions,
-        swaggerModels,
+        swaggerModels: {
+            [x: string]: any
+            get: { name: any }
+            getMany: { name: any }
+        },
     ) {
         if (swagger) {
             const { query } = options
@@ -100,7 +108,7 @@ export class Swagger {
                     }
                 case 'getOne':
                     return {
-                        [HttpStatus.OK]: query.alwaysPaginate
+                        [HttpStatus.OK]: query?.alwaysPaginate
                             ? {
                                   description: 'Get paginated response',
                                   type: swaggerModels.getMany,
@@ -144,23 +152,23 @@ export class Swagger {
 }
 
 export class SerializeHelper {
-    static createGetManyDto(dto, resourceName: string): any {
+    static createGetManyDto(dto: any, resourceName: string): any {
         class GetManyResponseDto implements GetManyDefaultResponse<any> {
             @ApiProperty({ type: dto, isArray: true })
             @Type(() => dto)
-            data: any[]
+            data!: any[]
 
             @ApiProperty({ type: 'number' })
-            count: number
+            count!: number
 
             @ApiProperty({ type: 'number' })
-            total: number
+            total!: number
 
             @ApiProperty({ type: 'number' })
-            page: number
+            page!: number
 
             @ApiProperty({ type: 'number' })
-            pageCount: number
+            pageCount!: number
         }
 
         Object.defineProperty(GetManyResponseDto, 'name', {
@@ -190,7 +198,7 @@ export class CrudConfigService {
         },
     }
 
-    static load(config) {
+    static load(config: Record<string, unknown>) {
         const query = isObjectFull(config.query) ? config.query : {}
         const params = isObjectFull(config.params) ? config.params : {}
         const serialize = isObjectFull(config.serialize) ? config.serialize : {}
@@ -208,7 +216,7 @@ export class CrudRoutesFactory {
 
     protected swaggerModels: any = {}
 
-    constructor(private target, options) {
+    constructor(private target: Object, options: any) {
         this.options = options
         this.create()
 
@@ -222,11 +230,12 @@ export class CrudRoutesFactory {
         )
     }
 
-    static create(target, options): CrudRoutesFactory {
+    static create(target: Object, options: any): CrudRoutesFactory {
         return new CrudRoutesFactory(target, options)
     }
 
     get targetProto() {
+        // @ts-ignore
         return this.target.prototype
     }
 
@@ -247,18 +256,18 @@ export class CrudRoutesFactory {
     }
 
     getOne(name: BaseRouteName) {
-        this.targetProto[name] = function getOne(req) {
+        this.targetProto[name] = function getOne(req: any) {
             return this.service.getOne(req)
         }
     }
 
     getOneBase(name: BaseRouteName) {
-        this.targetProto[name] = function getOneBase(req) {
+        this.targetProto[name] = function getOneBase(req: any) {
             return this.service.getOneBase(req)
         }
     }
 
-    static getRoutesSchema() {
+    static getRoutesSchema(): BaseRoute[] {
         return [
             {
                 name: 'getOneBase',
@@ -363,7 +372,7 @@ export class CrudRoutesFactory {
         Swagger.setExtraModels(this.swaggerModels)
     }
 
-    enableRoutes(routesSchema) {
+    enableRoutes(routesSchema: BaseRoute[]) {
         routesSchema.forEach((route) => {
             if (!route.override && route.enable) {
                 R.setRoute(route, this.targetProto[route.name])
@@ -371,7 +380,7 @@ export class CrudRoutesFactory {
         })
     }
 
-    createRoutes(routesSchema) {
+    createRoutes(routesSchema: BaseRoute[]) {
         routesSchema.forEach((route) => {
             // create base method
             /* this[route.name](route.name) */
@@ -382,7 +391,7 @@ export class CrudRoutesFactory {
         })
     }
 
-    setSwaggerResponseOk(name) {
+    setSwaggerResponseOk(name: BaseRouteName) {
         const metadata = Swagger.getResponseOk(this.targetProto[name]) || {}
         const metadataToAdd =
             Swagger.createResponseMeta(name, this.options, this.swaggerModels) || {}

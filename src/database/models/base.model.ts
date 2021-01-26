@@ -1,4 +1,4 @@
-import {
+import Objection, {
     raw,
     mixin,
     Model,
@@ -34,7 +34,7 @@ export class BaseModel
 
     static QueryBuilder = CustomQueryBuilder
 
-    id: number
+    id!: number
 
     created_at: any
 
@@ -43,8 +43,15 @@ export class BaseModel
     deleted_at?: any | null
 
     // fetch data with relation mapping
-    async fetchRelation(expression: RelationExpression<any>, options = {}) {
-        if (this[expression.toString()]) return this
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    async fetchRelation(
+        expression: string | Record<string, unknown>,
+        options: Objection.FetchGraphOptions,
+    ) {
+        if (typeof expression === 'string' && expression.toString() in this) {
+            // @ts-ignore
+            if (this[expression.toString()]) return this
+        }
 
         await this.$fetchGraph(expression, options)
         return this
