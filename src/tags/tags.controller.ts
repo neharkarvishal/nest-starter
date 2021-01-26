@@ -29,8 +29,8 @@ export class TagsController extends CrudController<Tag> {
     }
 
     @Post()
-    async create(@Body() tag: CreateTagsDto) {
-        return this.service.create(tag)
+    async create(@Body() data: CreateTagsDto) {
+        return this.service.create(data)
     }
 
     @Put(':id')

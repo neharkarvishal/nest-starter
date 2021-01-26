@@ -1,21 +1,19 @@
-import { PartialType as MappedPartialType } from '@nestjs/mapped-types'
-import { ApiProperty, PartialType } from '@nestjs/swagger'
+/* eslint-disable no-restricted-syntax,@typescript-eslint/no-floating-promises */
+import { PartialType } from '@nestjs/swagger'
 
+import * as bcrypt from 'bcrypt'
 import {
     IsString,
     MinLength,
     IsNotEmpty,
-    IsOptional,
     MaxLength,
     IsEmail,
     IsBoolean,
 } from 'class-validator'
 import type { JSONSchema, Modifiers } from 'objection'
-
-import * as bcrypt from 'bcrypt'
+import { ModelObject, QueryContext } from 'objection'
 
 import { BaseModel } from '../database/models/base.model'
-import { ModelOptions, QueryContext, raw } from 'objection'
 
 interface IUser {
     username: string
@@ -70,13 +68,9 @@ export class User extends BaseModel implements IUser {
         searchByName(query, name: string) {
             // This `where` simply creates parentheses so that other `where` statements don't get mixed with the these.
 
-            // eslint-disable-next-line @typescript-eslint/no-floating-promises
             query.where((q) => {
-                // eslint-disable-next-line no-restricted-syntax
                 for (const namePart of name.trim().split(/\s+/)) {
-                    // eslint-disable-next-line no-restricted-syntax
                     for (const column of ['firstName', 'lastName']) {
-                        // eslint-disable-next-line @typescript-eslint/no-floating-promises
                         q.orWhereRaw('lower(??) like ?', [
                             column,
                             `${namePart.toLowerCase()}%`,
@@ -88,8 +82,8 @@ export class User extends BaseModel implements IUser {
     }
 
     async hashPassword(password: string) {
-        const hash = await bcrypt.hash(password, 12) // eslint-disable-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-call
-        return hash // eslint-disable-line @typescript-eslint/no-unsafe-return
+        const hash = await bcrypt.hash(password, 12)
+        return hash
     }
 
     async $beforeInsert(queryContext: QueryContext) {
@@ -104,6 +98,9 @@ export class User extends BaseModel implements IUser {
     }
     */
 }
+
+// The `ModelObject` generic gives you a clean interface that can be used on the frontend, without any of the objection Model class properties or methods.
+export type UserShape = ModelObject<User>
 
 export class CreateUserDto implements IUser {
     @IsString()
@@ -125,12 +122,12 @@ export class CreateUserDto implements IUser {
     @IsString()
     @IsNotEmpty()
     @MinLength(2)
-    firstName!: string
+    firstName?: string
 
     @IsString()
     @IsNotEmpty()
     @MinLength(2)
-    lastName!: string
+    lastName?: string
 
     @IsBoolean()
     isActive!: boolean

@@ -1,8 +1,8 @@
-import { InternalServerErrorException } from '@nestjs/common'
-
 import { ModelClass, raw } from 'objection'
 
 import { BaseModel } from '../../database/models/base.model'
+import { CreateTagsDto, UpdateTagsDto } from '../../tags/tag.model'
+import { CreateUserDto, UpdateUserDto } from '../../users/user.model'
 import { IPagination, PaginationParams } from './pagination'
 
 export interface ICrudService<T> {
@@ -17,6 +17,10 @@ export interface ICrudService<T> {
     ): Promise<IPagination<T>>
 
     remove(id: number): Promise<T>
+
+    create(data: T): Promise<T>
+
+    update(id: number, data: Partial<T>): Promise<T>
 }
 
 /**
@@ -34,112 +38,75 @@ export abstract class CrudService<T extends BaseModel> implements ICrudService<T
 
     /**
      * Finds all entries and return the result
-     *
-     * @throws InternalServerErrorException
      */
     async findAll() {
-        try {
-            return (this.model.query() as unknown) as Promise<T[]>
-        } catch (e) {
-            return Promise.reject(e)
-        }
+        return (this.model.query() as unknown) as Promise<T[]>
     }
 
     /**
      * Finds paginated entries and return the result
-     *
-     * @throws InternalServerErrorException
      */
     async paginatedFindAll(paginationParams: PaginationParams<T>) {
         const { page = 0, pageSize = 3, order } = paginationParams
+        const { results, total } = await this.model.query().page(page, pageSize)
 
-        try {
-            const { results, total } = await this.model.query().page(page, pageSize)
-
-            return ({
-                data: results,
-                paging: {
-                    pageSize,
-                    page,
-                    total,
-                    totalPages: Math.ceil(total / pageSize),
-                },
-            } as unknown) as Promise<IPagination<T>>
-        } catch (e) {
-            return Promise.reject(e)
-        }
+        return ({
+            data: results,
+            paging: {
+                pageSize,
+                page,
+                total,
+                totalPages: Math.ceil(total / pageSize),
+            },
+        } as unknown) as Promise<IPagination<T>>
     }
 
     /**
      * Finds one entry with where filter and return the result
-     *
-     * @throws InternalServerErrorException
      */
     async findOne(filter = {}) {
-        try {
-            return (this.model.query().findOne(filter) as unknown) as Promise<T>
-        } catch (e) {
-            return Promise.reject(e)
-        }
+        return (this.model.query().findOne(filter) as unknown) as Promise<T>
     }
 
     /**
      * Finds paginated entries and return the result
-     *
-     * @throws NotFoundError
      */
     async findOneById(id: number): Promise<T> {
-        try {
-            return (this.model
-                .query()
-                .findById(id)
-                .first() as unknown) as Promise<T>
-        } catch (e) {
-            return Promise.reject(e)
-        }
+        return (this.model.query().findById(id).first() as unknown) as Promise<T>
     }
 
     /**
      * Finds onw entry by email and return the result
-     *
-     * @throws NotFoundError
      */
     async findOneByEmail(email: string): Promise<T> {
-        try {
-            return (this.model.query().findOne({ email }) as unknown) as Promise<T>
-        } catch (e) {
-            return Promise.reject(e)
-        }
-    }
-
-    /**
-     * Created a entry and return it
-     */
-    async create(data: any): Promise<T> {
-        try {
-            return (this.model
-                .query()
-                .insertAndFetch(data) as unknown) as Promise<T>
-        } catch (e) {
-            return Promise.reject(e)
-        }
-    }
-
-    /**
-     * Updates a entry and return it
-     */
-    async update(id: number, data: any): Promise<T> {
-        return (this.model
-            .query()
-            .patchAndFetchById(id, data) as unknown) as Promise<T>
+        return (this.model.query().findOne({ email }) as unknown) as Promise<T>
     }
 
     /**
      * Soft-deletes a entry and return it
      */
-    remove(id: number) {
+    async remove(id: number) {
+        // @ts-ignore
         return this.update(id, {
             deleted_at: raw('CURRENT_TIMESTAMP'),
         })
+    }
+
+    /**
+     * Created a entry and return it
+     */
+    async create(data: CreateUserDto | CreateTagsDto | T): Promise<T> {
+        return (this.model
+            .query()
+            .insertAndFetch(data as T) as unknown) as Promise<T>
+    }
+
+    /**
+     * Updates a entry and return it
+     */
+    async update(id: number, data: Partial<T>): Promise<T> {
+        return (this.model
+            .query()
+            .patchAndFetchById(id, data) as unknown) as Promise<T>
     }
 }

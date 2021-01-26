@@ -1,8 +1,7 @@
-import { PartialType as MappedPartialType } from '@nestjs/mapped-types'
-import { ApiProperty, PartialType } from '@nestjs/swagger'
+import { PartialType } from '@nestjs/swagger'
 
 import { IsNotEmpty, IsString, MaxLength, MinLength } from 'class-validator'
-import type { JSONSchema } from 'objection'
+import type { JSONSchema, ModelObject } from 'objection'
 
 import { BaseModel } from '../database/models/base.model'
 
@@ -26,6 +25,9 @@ export class Tag extends BaseModel implements ITag {
         },
     }
 }
+
+// The `ModelObject` generic gives you a clean interface that can be used on the frontend, without any of the objection Model class properties or methods.
+export type TagShape = ModelObject<Tag>
 
 export class CreateTagsDto implements ITag {
     @IsString()

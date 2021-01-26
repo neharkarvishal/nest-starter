@@ -1,12 +1,26 @@
-import { Get, Delete, Param, ParseIntPipe, HttpStatus, Query } from '@nestjs/common'
+import {
+    Get,
+    Delete,
+    Param,
+    ParseIntPipe,
+    HttpStatus,
+    Query,
+    Body,
+    Put,
+    Post,
+} from '@nestjs/common'
 import { ApiOperation, ApiResponse } from '@nestjs/swagger'
 
 import { BaseModel } from '../../database/models/base.model'
+import { CreateTagsDto, UpdateTagsDto } from '../../tags/tag.model'
+import { CreateUserDto, UpdateUserDto } from '../../users/user.model'
 import { ApiErrors } from '../swagger-gen/api-errors.decorator'
 import { ICrudService } from './crud.service'
 import { IPagination, PaginationParams } from './pagination'
 
-@ApiErrors()
+// @ApiErrors()
+@ApiResponse({ status: HttpStatus.UNAUTHORIZED, description: 'Unauthorized' })
+@ApiResponse({ status: HttpStatus.FORBIDDEN, description: 'Forbidden' })
 export abstract class CrudController<T extends BaseModel> {
     protected constructor(protected readonly service: ICrudService<T>) {}
 
@@ -51,7 +65,38 @@ export abstract class CrudController<T extends BaseModel> {
         type: BaseModel, // type: T,
     })
     @Delete(':id')
-    remove(@Param('id', ParseIntPipe) id: number): Promise<T> {
+    async remove(@Param('id', ParseIntPipe) id: number): Promise<T> {
         return this.service.remove(id)
+    }
+
+    @ApiOperation({
+        summary: 'Create one record',
+        description: 'Creates one record',
+    })
+    @ApiResponse({
+        status: HttpStatus.OK,
+        description: 'Created one record',
+        type: BaseModel, // type: T,
+    })
+    @Post(':id')
+    async create(@Body() data: T): Promise<T> {
+        return this.service.create(data)
+    }
+
+    @ApiOperation({
+        summary: 'Update one record',
+        description: 'Updates one record',
+    })
+    @ApiResponse({
+        status: HttpStatus.OK,
+        description: 'Updated one record',
+        type: BaseModel, // type: T,
+    })
+    @Put(':id')
+    async update(
+        @Param('id', ParseIntPipe) id: number,
+        @Body() data: Partial<T>,
+    ): Promise<T> {
+        return this.service.update(id, data)
     }
 }
