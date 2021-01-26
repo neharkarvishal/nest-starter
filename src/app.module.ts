@@ -44,7 +44,7 @@ const ConfigModuleOptions = {
         ConfigModule.forRoot(ConfigModuleOptions),
         DatabaseModule,
         ScheduleModule.forRoot(), // CronModules deps
-        CronModule,
+        // CronModule,
         TerminusModule, // Health module
         AuthModule,
         TagsModule,

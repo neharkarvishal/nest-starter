@@ -10,7 +10,7 @@ import {
     IsEmail,
     IsBoolean,
 } from 'class-validator'
-import type { JSONSchema, Modifiers } from 'objection'
+import type { JSONSchema, Modifiers, PartialModelObject } from 'objection'
 import { ModelObject, QueryContext } from 'objection'
 
 import { BaseModel } from '../database/models/base.model'
@@ -101,6 +101,7 @@ export class User extends BaseModel implements IUser {
 
 // The `ModelObject` generic gives you a clean interface that can be used on the frontend, without any of the objection Model class properties or methods.
 export type UserShape = ModelObject<User>
+export type PartialUserShape = PartialModelObject<User>
 
 export class CreateUserDto implements IUser {
     @IsString()

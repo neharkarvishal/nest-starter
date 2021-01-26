@@ -42,9 +42,13 @@ export interface ParamsOptions {
 }
 
 export interface CrudOptions {
-    model: {}
+    model: {
+        type: { name: string }
+    }
     dto?: {}
-    routes?: {}
+    routes?: {
+        deleteOneBase?: { returnDeleted?: boolean }
+    }
     validation?: ValidationPipeOptions | false
     params?: ParamsOptions
     query?: {
@@ -54,13 +58,13 @@ export interface CrudOptions {
         alwaysPaginate?: boolean
     }
     serialize?: {
-        getMany?: false
-        get?: false
-        create?: false
-        createMany?: false
-        update?: false
-        replace?: false
-        delete?: false
+        getMany?: false | object
+        get?: false | object
+        create?: false | object
+        createMany?: false | object
+        update?: false | object
+        replace?: false | object
+        delete?: false | object
     }
 }
 

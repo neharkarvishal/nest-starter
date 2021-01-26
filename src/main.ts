@@ -1,13 +1,16 @@
 import './miscSetup'
 
-import { ValidationPipe } from '@nestjs/common'
+import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common'
 import type { INestApplication } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
-import { NestFactory, HttpAdapterHost } from '@nestjs/core'
+import { NestFactory, HttpAdapterHost, Reflector } from '@nestjs/core'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 
 // import { SpelunkerModule } from 'nestjs-spelunker'
 
+// @ts-ignore
+// eslint-disable-next-line import/no-extraneous-dependencies
+import * as blockedAt from 'blocked-at'
 // @ts-ignore
 import * as rateLimit from 'express-rate-limit'
 import * as helmet from 'helmet'
@@ -54,6 +57,7 @@ function setupInfra(app: INestApplication) {
     )
 
     // interceptors
+    // app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)))
     // app.useGlobalInterceptors(new TransformInterceptor())
     app.useGlobalInterceptors(new TimeoutInterceptor())
     app.useGlobalInterceptors(new ExcludeNullUndefinedInterceptor())
@@ -109,7 +113,37 @@ function setupMiddlewares(app: INestApplication) {
 async function bootstrap() {
     const app = await NestFactory.create(AppModule, { cors: true })
     app.setGlobalPrefix('api')
+
     const config: ConfigService<EnvironmentVariables> = app.get(ConfigService)
+    const isDev = config.get('NODE_ENV') === 'development'
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+    isDev &&
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+        blockedAt(
+            (
+                time: number,
+                stack: string[],
+                { type, resource }: blockedAt.Resource,
+            ) => {
+                console.log(
+                    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+                    `[${type}] Blocked for ${time}ms, operation started here:\n`,
+                    stack[stack.length - 1],
+                    '\n',
+                    resource,
+                )
+
+                if (type === 'HTTPPARSER' && resource) {
+                    // resource structure in this example assumes Node 10.x
+                    console.log(
+                        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/restrict-template-expressions
+                        `URL related to blocking operation: ${resource.resource.incoming.url}`,
+                    )
+                }
+            },
+            { trimFalsePositives: true },
+        )
 
     setupSwaggerDocs(app)
     setupInfra(app)

@@ -47,6 +47,9 @@ export class R {
 }
 
 export class Swagger {
+    /**
+     * Sets extra swagger metadata for GET Calls
+     */
     static setExtraModels(swaggerModels: {
         [x: string]: any
         get: Record<string, unknown>
@@ -68,6 +71,9 @@ export class Swagger {
         }
     }
 
+    /**
+     * Sets swagger metadata for response of GET Calls
+     */
     static setResponseOk(metadata: any[], func: Function) {
         if (swaggerConst) {
             R.set(swaggerConst.DECORATORS.API_RESPONSE, metadata, func)
@@ -216,7 +222,7 @@ export class CrudRoutesFactory {
 
     protected swaggerModels: any = {}
 
-    constructor(private target: Object, options: any) {
+    constructor(private target: Object, options: CrudOptions) {
         this.options = options
         this.create()
 
@@ -230,7 +236,7 @@ export class CrudRoutesFactory {
         )
     }
 
-    static create(target: Object, options: any): CrudRoutesFactory {
+    static create(target: Object, options: CrudOptions): CrudRoutesFactory {
         return new CrudRoutesFactory(target, options)
     }
 
@@ -239,8 +245,8 @@ export class CrudRoutesFactory {
         return this.target.prototype
     }
 
-    get modelName(): string {
-        return this.options.model.type.name
+    get modelName() {
+        return this.options.model.type?.name
     }
 
     get modelType() {
@@ -304,38 +310,38 @@ export class CrudRoutesFactory {
             ...this.options.serialize,
         }
 
-        this.options.serialize.get = isFalse(this.options.serialize.get)
+        this.options.serialize.get = isFalse(this.options.serialize?.get)
             ? false
-            : this.options.serialize.get || this.modelType
+            : this.options.serialize?.get || this.modelType
 
-        this.options.serialize.getMany = isFalse(this.options.serialize.getMany)
+        this.options.serialize.getMany = isFalse(this.options.serialize?.getMany)
             ? false
-            : this.options.serialize.getMany
-            ? this.options.serialize.getMany
-            : isFalse(this.options.serialize.get)
+            : this.options.serialize?.getMany
+            ? this.options.serialize?.getMany
+            : isFalse(this.options.serialize?.get)
             ? false
             : SerializeHelper.createGetManyDto(
-                  this.options.serialize.get,
+                  this.options.serialize?.get,
                   this.modelName,
               )
 
-        this.options.serialize.create = isFalse(this.options.serialize.create)
+        this.options.serialize.create = isFalse(this.options.serialize?.create)
             ? false
-            : this.options.serialize.create || this.modelType
+            : this.options.serialize?.create || this.modelType
 
-        this.options.serialize.update = isFalse(this.options.serialize.update)
+        this.options.serialize.update = isFalse(this.options.serialize?.update)
             ? false
-            : this.options.serialize.update || this.modelType
+            : this.options.serialize?.update || this.modelType
 
-        this.options.serialize.replace = isFalse(this.options.serialize.replace)
+        this.options.serialize.replace = isFalse(this.options.serialize?.replace)
             ? false
-            : this.options.serialize.replace || this.modelType
+            : this.options.serialize?.replace || this.modelType
 
         this.options.serialize.delete =
-            isFalse(this.options.serialize.delete) ||
+            isFalse(this.options.serialize?.delete) ||
             !this.options.routes?.deleteOneBase?.returnDeleted
                 ? false
-                : this.options.serialize.delete || this.modelType
+                : this.options.serialize?.delete || this.modelType
 
         R.set('CRUD_OPTIONS_METADATA', this.options, this.target)
     }
@@ -345,28 +351,28 @@ export class CrudRoutesFactory {
             ? this.modelType
             : SerializeHelper.createGetOneResponseDto(this.modelName)
 
-        this.swaggerModels.get = isFunction(this.options.serialize.get)
-            ? this.options.serialize.get
+        this.swaggerModels.get = isFunction(this.options.serialize?.get)
+            ? this.options.serialize?.get
             : modelType
 
         this.swaggerModels.getMany =
-            this.options.serialize.getMany ||
+            this.options.serialize?.getMany ||
             SerializeHelper.createGetManyDto(this.swaggerModels.get, this.modelName)
 
-        this.swaggerModels.create = isFunction(this.options.serialize.create)
-            ? this.options.serialize.create
+        this.swaggerModels.create = isFunction(this.options.serialize?.create)
+            ? this.options.serialize?.create
             : modelType
 
-        this.swaggerModels.update = isFunction(this.options.serialize.update)
-            ? this.options.serialize.update
+        this.swaggerModels.update = isFunction(this.options.serialize?.update)
+            ? this.options.serialize?.update
             : modelType
 
-        this.swaggerModels.replace = isFunction(this.options.serialize.replace)
-            ? this.options.serialize.replace
+        this.swaggerModels.replace = isFunction(this.options.serialize?.replace)
+            ? this.options.serialize?.replace
             : modelType
 
-        this.swaggerModels.delete = isFunction(this.options.serialize.delete)
-            ? this.options.serialize.delete
+        this.swaggerModels.delete = isFunction(this.options.serialize?.delete)
+            ? this.options.serialize?.delete
             : modelType
 
         Swagger.setExtraModels(this.swaggerModels)
