@@ -12,11 +12,12 @@ import {
 import { ApiOperation, ApiResponse } from '@nestjs/swagger'
 
 import { BaseModel } from '../../database/models/base.model'
+import { APIResponse, Result } from '../../domain'
 import { CreateTagsDto, UpdateTagsDto } from '../../tags/tag.model'
 import { CreateUserDto, UpdateUserDto } from '../../users/user.model'
 import { ApiErrors } from '../swagger-gen/api-errors.decorator'
 import { ICrudService } from './crud.service'
-import { IPagination, PaginationParams } from './pagination'
+import { IPaginationResult, PaginationParams } from './pagination'
 
 // @ApiErrors()
 @ApiResponse({ status: HttpStatus.UNAUTHORIZED, description: 'Unauthorized' })
@@ -33,12 +34,26 @@ export abstract class CrudController<T extends BaseModel> {
     @Get()
     async findAll(
         @Query() paginationParams: PaginationParams<T>,
-    ): Promise<IPagination<T> | T[]> {
-        if (Object.keys(paginationParams).length) {
-            return this.service.paginatedFindAll(paginationParams)
+    ): Promise<Result<T> | IPaginationResult<T>> {
+        let data = {}
+
+        const needPaging = Object.keys(paginationParams).length
+
+        if (needPaging) {
+            data = await this.service.paginatedFindAll(paginationParams)
+
+            return {
+                data,
+                statusCode: HttpStatus.OK,
+            } as IPaginationResult<T>
         }
 
-        return this.service.findAll()
+        data = await this.service.findAll()
+
+        return {
+            data,
+            statusCode: HttpStatus.OK,
+        } as Result<T>
     }
 
     @ApiOperation({
@@ -51,8 +66,13 @@ export abstract class CrudController<T extends BaseModel> {
         type: BaseModel, // type: T,
     })
     @Get(':id')
-    async findOneById(@Param('id', ParseIntPipe) id: number): Promise<T> {
-        return this.service.findOneById(id)
+    async findOneById(@Param('id', ParseIntPipe) id: number): Promise<Result<T>> {
+        const data = await this.service.findOneById(id)
+
+        return {
+            data,
+            statusCode: HttpStatus.OK,
+        }
     }
 
     @ApiOperation({
@@ -64,9 +84,18 @@ export abstract class CrudController<T extends BaseModel> {
         description: 'Deleted one record',
         type: BaseModel, // type: T,
     })
+    @ApiResponse({
+        status: HttpStatus.NO_CONTENT,
+        description: 'Deleted one record',
+    })
     @Delete(':id')
-    async remove(@Param('id', ParseIntPipe) id: number): Promise<T> {
-        return this.service.remove(id)
+    async remove(@Param('id', ParseIntPipe) id: number) {
+        const data = await this.service.remove(id)
+
+        return {
+            data,
+            statusCode: !data ? HttpStatus.NO_CONTENT : HttpStatus.OK,
+        }
     }
 
     @ApiOperation({
@@ -79,8 +108,13 @@ export abstract class CrudController<T extends BaseModel> {
         type: BaseModel, // type: T,
     })
     @Post(':id')
-    async create(@Body() data: T): Promise<T> {
-        return this.service.create(data)
+    async create(@Body() input: T) {
+        const data = await this.service.create(input)
+
+        return {
+            data,
+            statusCode: HttpStatus.CREATED,
+        }
     }
 
     @ApiOperation({
@@ -93,10 +127,12 @@ export abstract class CrudController<T extends BaseModel> {
         type: BaseModel, // type: T,
     })
     @Put(':id')
-    async update(
-        @Param('id', ParseIntPipe) id: number,
-        @Body() data: Partial<T>,
-    ): Promise<T> {
-        return this.service.update(id, data)
+    async update(@Param('id', ParseIntPipe) id: number, @Body() input: Partial<T>) {
+        const data = await this.service.update(id, input)
+
+        return {
+            data,
+            statusCode: !data ? HttpStatus.NO_CONTENT : HttpStatus.OK,
+        }
     }
 }

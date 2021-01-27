@@ -3,7 +3,7 @@ import { ModelClass, raw } from 'objection'
 import { BaseModel } from '../../database/models/base.model'
 import { CreateTagsDto, UpdateTagsDto } from '../../tags/tag.model'
 import { CreateUserDto, UpdateUserDto } from '../../users/user.model'
-import { IPagination, PaginationParams } from './pagination'
+import { IPaginationResult, PaginationParams } from './pagination'
 
 export interface ICrudService<T> {
     findAll(): Promise<T[]>
@@ -14,7 +14,7 @@ export interface ICrudService<T> {
 
     paginatedFindAll(
         paginationParams?: PaginationParams<T>,
-    ): Promise<IPagination<T>>
+    ): Promise<IPaginationResult<T>>
 
     remove(id: number): Promise<T>
 
@@ -58,7 +58,7 @@ export abstract class CrudService<T extends BaseModel> implements ICrudService<T
                 total,
                 totalPages: Math.ceil(total / pageSize),
             },
-        } as unknown) as Promise<IPagination<T>>
+        } as unknown) as Promise<IPaginationResult<T>>
     }
 
     /**

@@ -1,7 +1,10 @@
+import { HttpStatus } from '@nestjs/common'
 import { ApiPropertyOptional } from '@nestjs/swagger'
 
 import { Transform } from 'class-transformer'
 import { IsOptional, Min } from 'class-validator'
+
+import { APIError } from '../../domain'
 
 export enum OrderType {
     DESC = 'DESC',
@@ -41,7 +44,7 @@ export abstract class PaginationParams<T> {
 /**
  * Generic pagination response interface
  */
-export interface IPagination<T> {
+export interface IPaginationResult<T> {
     /**
      * Items included in the current listing
      */
@@ -56,4 +59,8 @@ export interface IPagination<T> {
         total: number
         totalPages: number
     }
+
+    error?: APIError
+    message?: string | string[]
+    statusCode: HttpStatus
 }

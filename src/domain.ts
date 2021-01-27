@@ -1,7 +1,7 @@
 /* eslint-disable no-use-before-define,@typescript-eslint/no-empty-interface */
 import { HttpStatus } from '@nestjs/common'
 
-export type Result =
+export type Results =
     | GetAppLaunchData
     | GetUserProfile
     | GetUserPosts
@@ -12,10 +12,17 @@ export type Result =
 
 export type APIError = Error | string | null
 
+export interface Result<T> {
+    data: T
+    error?: APIError
+    message?: string | string[]
+    statusCode: HttpStatus
+}
+
 export interface APIResponse<T> {
     data: T
-    error: APIError
-    message: string | string[]
+    error?: APIError
+    message?: string | string[]
     statusCode: HttpStatus
 
     count?: number
