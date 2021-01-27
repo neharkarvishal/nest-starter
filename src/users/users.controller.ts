@@ -9,6 +9,7 @@ import {
     Delete,
     ParseIntPipe,
     Query,
+    HttpStatus,
 } from '@nestjs/common'
 import { ApiOperation, ApiTags } from '@nestjs/swagger'
 
@@ -25,22 +26,27 @@ export class UsersController extends CrudController<User> {
         super(service)
     }
 
-    // @ApiOperation({
-    //     summary: 'Get one record by email',
-    //     description: 'Get one record from database with provided by email',
-    // })
-    // @Get()
-    // async findOneByEmail(@Query() email: string) {
-    //     return this.service.findOneByEmail(email)
-    // }
+    @ApiOperation({
+        summary: 'Get one record by email',
+        description: 'Get one record from database with provided by email',
+    })
+    @Get()
+    async findOneByEmail(@Query() email: string) {
+        return this.service.findOneByEmail(email)
+    }
 
     @ApiOperation({
         summary: 'Create a User',
         description: 'Create a new User and store it in database',
     })
     @Post()
-    async create(@Body() user: CreateUserDto) {
-        return this.service.create(user)
+    async create(@Body() input: CreateUserDto) {
+        const data = await this.service.create(input)
+
+        return {
+            data,
+            statusCode: HttpStatus.CREATED,
+        }
     }
 
     @ApiOperation({
@@ -50,8 +56,13 @@ export class UsersController extends CrudController<User> {
     @Put(':id')
     async update(
         @Param('id', ParseIntPipe) id: number,
-        @Body() updatedUser: UpdateUserDto,
+        @Body() input: UpdateUserDto,
     ) {
-        return this.service.update(id, updatedUser)
+        const data = await this.service.update(id, input)
+
+        return {
+            data,
+            statusCode: !data ? HttpStatus.NO_CONTENT : HttpStatus.OK,
+        }
     }
 }

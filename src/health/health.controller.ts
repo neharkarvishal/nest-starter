@@ -87,6 +87,7 @@ export class HealthController implements OnModuleInit, OnApplicationShutdown {
 
     onApplicationShutdown(signal?: string) {
         console.log(
+            // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
             `ApplicationShutdown - HealthController has been shutdown with ${signal} signal`,
         )
     }

@@ -67,6 +67,7 @@ export class AppModule implements OnModuleInit, OnApplicationShutdown {
 
     onApplicationShutdown(signal?: string): void {
         console.error(
+            // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
             `ApplicationShutdown - AppModule has been shutdown with ${signal} signal`,
         )
     }

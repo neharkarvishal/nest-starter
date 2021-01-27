@@ -4,6 +4,7 @@ import {
     Controller,
     Delete,
     Get,
+    HttpStatus,
     Param,
     ParseIntPipe,
     Post,
@@ -29,15 +30,25 @@ export class TagsController extends CrudController<Tag> {
     }
 
     @Post()
-    async create(@Body() data: CreateTagsDto) {
-        return this.service.create(data)
+    async create(@Body() input: CreateTagsDto) {
+        const data = await this.service.create(input)
+
+        return {
+            data,
+            statusCode: HttpStatus.CREATED,
+        }
     }
 
     @Put(':id')
     async update(
         @Param('id', ParseIntPipe) id: number,
-        @Body() updatedTag: UpdateTagsDto,
+        @Body() input: UpdateTagsDto,
     ) {
-        return this.service.update(id, updatedTag)
+        const data = await this.service.update(id, input)
+
+        return {
+            data,
+            statusCode: !data ? HttpStatus.NO_CONTENT : HttpStatus.OK,
+        }
     }
 }
