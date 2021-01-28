@@ -1,10 +1,20 @@
-import { applyDecorators, HttpStatus } from '@nestjs/common'
+import {
+    applyDecorators,
+    BadRequestException,
+    ConflictException,
+    ForbiddenException,
+    HttpStatus,
+    InternalServerErrorException,
+    NotFoundException,
+    UnauthorizedException,
+} from '@nestjs/common'
 import {
     ApiBadRequestResponse,
     ApiForbiddenResponse,
     ApiInternalServerErrorResponse,
     ApiNotFoundResponse,
     ApiUnauthorizedResponse,
+    ApiConflictResponse,
     ApiPropertyOptional,
 } from '@nestjs/swagger'
 
@@ -45,6 +55,26 @@ export class ApiException {
 }
 
 export function ApiErrors() {
+    return applyDecorators(
+        ApiBadRequestResponse({
+            type: BadRequestException,
+            description: 'BadRequestException',
+        }),
+        ApiInternalServerErrorResponse({
+            type: InternalServerErrorException,
+        }),
+        ApiUnauthorizedResponse({
+            type: UnauthorizedException,
+        }),
+        ApiForbiddenResponse({
+            type: ForbiddenException,
+        }),
+        ApiConflictResponse({
+            type: ConflictException,
+        }),
+        ApiNotFoundResponse({ type: NotFoundException, description: 'Not found' }),
+    )
+
     return applyDecorators(
         ApiNotFoundResponse({ type: ApiException, description: 'Not found' }),
         ApiBadRequestResponse({ type: ApiException, description: 'Bad Request' }),

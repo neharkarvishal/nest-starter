@@ -8,6 +8,7 @@ import {
     Body,
     Put,
     Post,
+    NotFoundException,
 } from '@nestjs/common'
 import { ApiOperation, ApiResponse } from '@nestjs/swagger'
 
@@ -19,10 +20,18 @@ import { ApiErrors } from '../swagger-gen/api-errors.decorator'
 import { ICrudService } from './crud.service'
 import { IPaginationResult, PaginationParams } from './pagination'
 
-// @ApiErrors()
-@ApiResponse({ status: HttpStatus.UNAUTHORIZED, description: 'Unauthorized' })
-@ApiResponse({ status: HttpStatus.FORBIDDEN, description: 'Forbidden' })
+/**
+ * Abstract base controller of BaseModel that other controller can extend to
+ * provide base CRUD functionality such as to create, find, update and delete data.
+ */
+@ApiErrors()
 export abstract class CrudController<T extends BaseModel> {
+    /**
+     * The constructor must receive the injected service from the child controller
+     * in order to provide all the proper base functionality.
+     *
+     * @param {ICrudService} service - The injected service.
+     */
     protected constructor(protected readonly service: ICrudService<T>) {}
 
     @ApiOperation({ summary: 'find all', description: 'Get all of the records' })
@@ -68,6 +77,10 @@ export abstract class CrudController<T extends BaseModel> {
     @Get(':id')
     async findOneById(@Param('id', ParseIntPipe) id: number): Promise<Result<T>> {
         const data = await this.service.findOneById(id)
+
+        if (!data) {
+            throw new NotFoundException()
+        }
 
         return {
             data,

@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common'
+import { Inject, Injectable, NotFoundException } from '@nestjs/common'
 
 import * as bcrypt from 'bcrypt'
 import { ModelClass, raw } from 'objection'
@@ -18,11 +18,19 @@ export class UsersService extends CrudService<User> {
     }
 
     async findOne(id: string | number) {
-        return this.model.query().findById(id).first()
+        const data = await this.model.query().findById(id).first()
+
+        if (data) return data
+
+        return Promise.reject(new NotFoundException())
     }
 
     async findOneByEmail(email: string) {
-        return this.model.query().findOne({ email })
+        const data = await this.model.query().findOne({ email })
+
+        if (data) return data
+
+        return Promise.reject(new NotFoundException())
     }
 
     async create(user: CreateUserDto) {

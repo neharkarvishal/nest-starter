@@ -11,9 +11,11 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 // @ts-ignore
 // eslint-disable-next-line import/no-extraneous-dependencies
 import * as blockedAt from 'blocked-at'
+import * as cluster from 'cluster'
 // @ts-ignore
 import * as rateLimit from 'express-rate-limit'
 import * as helmet from 'helmet'
+import * as os from 'os'
 
 import { AppModule } from './app.module'
 import { QueryFailedFilter } from './infra/filters/query-failed.filter'
@@ -154,9 +156,24 @@ async function bootstrap() {
     return app
 }
 
-bootstrap()
-    .then(({ getUrl }) => getUrl())
-    .then((url) => {
-        console.log(`Application is running on ${url}`) // eslint-disable-line no-console
-    })
-    .catch(console.error)
+export function run(
+    boot: () => Promise<INestApplication>,
+    options = { inCluster: false },
+) {
+    const numberOfCores = os.cpus().length
+
+    if (options.inCluster && cluster.isMaster) {
+        for (let i = 0; i < numberOfCores; i++) {
+            cluster.fork()
+        }
+    } else {
+        boot()
+            .then(({ getUrl }) => getUrl())
+            .then((url) => {
+                console.log(`Application is running on ${url}`) // eslint-disable-line no-console
+            })
+            .catch(console.error)
+    }
+}
+
+run(bootstrap, { inCluster: false })
