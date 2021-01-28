@@ -15,7 +15,8 @@ export default class EmailSchedulingService {
         readonly scheduler: SchedulerRegistry,
     ) {}
 
-    scheduleEmail(emailSchedule: EmailScheduleDto) {
+    // eslint-disable-next-line @typescript-eslint/require-await
+    async scheduleEmail(emailSchedule: EmailScheduleDto) {
         const date = new Date(emailSchedule.date)
 
         // eslint-disable-next-line @typescript-eslint/no-unsafe-call
