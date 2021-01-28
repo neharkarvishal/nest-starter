@@ -109,6 +109,24 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#addCronJob">addCronJob</a>
+                            </li>
+                            <li>
+                                <a href="#addInterval">addInterval</a>
+                            </li>
+                            <li>
+                                <a href="#addTimeout">addTimeout</a>
+                            </li>
+                            <li>
+                                <a href="#deleteCron">deleteCron</a>
+                            </li>
+                            <li>
+                                <a href="#deleteInterval">deleteInterval</a>
+                            </li>
+                            <li>
+                                <a href="#deleteTimeout">deleteTimeout</a>
+                            </li>
+                            <li>
                                 <a href="#factorial">factorial</a>
                             </li>
                             <li>
@@ -119,6 +137,15 @@
                             </li>
                             <li>
                                 <a href="#handleTimeout">handleTimeout</a>
+                            </li>
+                            <li>
+                                <a href="#logAllCrons">logAllCrons</a>
+                            </li>
+                            <li>
+                                <a href="#logIntervals">logIntervals</a>
+                            </li>
+                            <li>
+                                <a href="#logTimeouts">logTimeouts</a>
                             </li>
                         </ul>
                     </td>
@@ -132,12 +159,570 @@
     </table>
 </section>
 
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(scheduler: <a href="../classes/R.html">SchedulerRegistry</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/cron/cron.service.ts:27</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>scheduler</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../classes/R.html" target="_self" >SchedulerRegistry</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
 
             <section>
     
     <h3 id="methods">
         Methods
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addCronJob"></a>
+                    <span class="name">
+                        <b>
+                            addCronJob
+                        </b>
+                        <a href="#addCronJob"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addCronJob(name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, seconds: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="97"
+                            class="link-to-prism">src/cron/cron.service.ts:97</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Dynamically schedule a name CRON job</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>name</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Job Name</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>seconds</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Seconds</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addInterval"></a>
+                    <span class="name">
+                        <b>
+                            addInterval
+                        </b>
+                        <a href="#addInterval"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addInterval(name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, milliseconds: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="136"
+                            class="link-to-prism">src/cron/cron.service.ts:136</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Dynamically schedule a named Interval</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>name</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Interval Name</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>milliseconds</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Milliseconds</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addTimeout"></a>
+                    <span class="name">
+                        <b>
+                            addTimeout
+                        </b>
+                        <a href="#addTimeout"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addTimeout(name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, milliseconds: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="174"
+                            class="link-to-prism">src/cron/cron.service.ts:174</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Dynamically schedule a named Timeout</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>name</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Timeout Name</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>milliseconds</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Milliseconds</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteCron"></a>
+                    <span class="name">
+                        <b>
+                            deleteCron
+                        </b>
+                        <a href="#deleteCron"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>deleteCron(name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="112"
+                            class="link-to-prism">src/cron/cron.service.ts:112</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Dynamically delete a named scheduled CRON job</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>name</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Job Name</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteInterval"></a>
+                    <span class="name">
+                        <b>
+                            deleteInterval
+                        </b>
+                        <a href="#deleteInterval"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>deleteInterval(name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="151"
+                            class="link-to-prism">src/cron/cron.service.ts:151</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Dynamically delete a named Interval</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>name</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Interval Name</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteTimeout"></a>
+                    <span class="name">
+                        <b>
+                            deleteTimeout
+                        </b>
+                        <a href="#deleteTimeout"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>deleteTimeout(name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="187"
+                            class="link-to-prism">src/cron/cron.service.ts:187</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Dynamically delete a named Timeout</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>name</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Timeout Name</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -153,15 +738,15 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>factorial(n)</code>
+<code>factorial(n: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="21"
-                            class="link-to-prism">src/cron/cron.service.ts:21</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="31"
+                            class="link-to-prism">src/cron/cron.service.ts:31</a></div>
                 </td>
             </tr>
 
@@ -175,12 +760,16 @@
                             <thead>
                                 <tr>
                                     <td>Name</td>
+                                    <td>Type</td>
                                     <td>Optional</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>n</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
 
                                     <td>
                                         No
@@ -194,7 +783,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 
                     </div>
                     <div class="io-description">
@@ -227,14 +816,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Cron(&#x27;60 * * * * *&#x27;)<br /></code>
+                    <code>@Cron(CronExpression.EVERY_MINUTE, {name: &#x27;handleCronFn&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="27"
-                            class="link-to-prism">src/cron/cron.service.ts:27</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="37"
+                            class="link-to-prism">src/cron/cron.service.ts:37</a></div>
                 </td>
             </tr>
 
@@ -273,14 +862,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Interval(100000)<br /></code>
+                    <code>@Interval(&#x27;handleIntervalFn&#x27;, 100000)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="41"
-                            class="link-to-prism">src/cron/cron.service.ts:41</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="51"
+                            class="link-to-prism">src/cron/cron.service.ts:51</a></div>
                 </td>
             </tr>
 
@@ -319,20 +908,143 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Timeout(50000)<br /></code>
+                    <code>@Timeout(&#x27;handleTimeoutFn&#x27;, 50000)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="52"
-                            class="link-to-prism">src/cron/cron.service.ts:52</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="62"
+                            class="link-to-prism">src/cron/cron.service.ts:62</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="logAllCrons"></a>
+                    <span class="name">
+                        <b>
+                            logAllCrons
+                        </b>
+                        <a href="#logAllCrons"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>logAllCrons()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="75"
+                            class="link-to-prism">src/cron/cron.service.ts:75</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Get all of the CRON jobs</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="logIntervals"></a>
+                    <span class="name">
+                        <b>
+                            logIntervals
+                        </b>
+                        <a href="#logIntervals"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>logIntervals()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="126"
+                            class="link-to-prism">src/cron/cron.service.ts:126</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Get all of the Intervals</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="logTimeouts"></a>
+                    <span class="name">
+                        <b>
+                            logTimeouts
+                        </b>
+                        <a href="#logTimeouts"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>logTimeouts()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="164"
+                            class="link-to-prism">src/cron/cron.service.ts:164</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Get all of the Timeouts</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -374,7 +1086,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/cron/cron.service.ts:13</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/cron/cron.service.ts:21</a></div>
                             </td>
                         </tr>
 
@@ -406,7 +1118,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/cron/cron.service.ts:19</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/cron/cron.service.ts:27</a></div>
                             </td>
                         </tr>
 
@@ -432,7 +1144,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/cron/cron.service.ts:15</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/cron/cron.service.ts:23</a></div>
                             </td>
                         </tr>
 
@@ -464,7 +1176,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/cron/cron.service.ts:17</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/cron/cron.service.ts:25</a></div>
                             </td>
                         </tr>
 
@@ -478,7 +1190,15 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, Logger } from &#x27;@nestjs/common&#x27;
-import { Cron, Interval, Timeout } from &#x27;@nestjs/schedule&#x27;
+import {
+    Cron,
+    CronExpression,
+    Interval,
+    SchedulerRegistry,
+    Timeout,
+} from &#x27;@nestjs/schedule&#x27;
+
+import { CronJob } from &#x27;cron&#x27;
 
 /**
  * &#x60;@Cron&#x60; are regular cron jobs
@@ -497,45 +1217,173 @@ export class CronService {
 
     fact16 &#x3D; 20922789888000
 
-    factorial(n) {
+    constructor(readonly scheduler: SchedulerRegistry) {}
+
+    factorial(n: number): number {
         if (n &#x3D;&#x3D;&#x3D; 1) return 1
         return n * this.factorial(n - 1)
     }
 
-    @Cron(&#x27;60 * * * * *&#x27;)
+    @Cron(CronExpression.EVERY_MINUTE, { name: &#x27;handleCronFn&#x27; })
     handleCron() {
         CronService.count +&#x3D; 1
         this.logger.debug(
             &#x60;Called when the second is 60, current count is ${CronService.count}&#x60;,
         )
 
-        let ok &#x3D; true
+        const ok &#x3D; true
         for (let i &#x3D; 0; i &lt; this.times; i++) {
             // ok &#x3D; ok &amp;&amp; this.factorial(16) &#x3D;&#x3D;&#x3D; this.fact16
         }
         this.logger.debug(&#x60;node.js finish ${this.times} - ${ok ? &#x27;ok&#x27; : &#x27;fail&#x27;}&#x60;)
     }
 
-    @Interval(100000)
+    @Interval(&#x27;handleIntervalFn&#x27;, 100000)
     handleInterval() {
         this.logger.debug(&#x27;Called every 100 seconds&#x27;)
 
-        let ok &#x3D; true
+        const ok &#x3D; true
         for (let i &#x3D; 0; i &lt; this.times; i++) {
             // ok &#x3D; ok &amp;&amp; this.factorial(16) &#x3D;&#x3D;&#x3D; this.fact16
         }
         this.logger.debug(&#x60;node.js finish ${this.times} - ${ok ? &#x27;ok&#x27; : &#x27;fail&#x27;}&#x60;)
     }
 
-    @Timeout(50000)
+    @Timeout(&#x27;handleTimeoutFn&#x27;, 50000)
     handleTimeout() {
         this.logger.debug(&#x27;Called once after 50 seconds&#x27;)
 
-        let ok &#x3D; true
+        const ok &#x3D; true
         for (let i &#x3D; 0; i &lt; this.times; i++) {
             // ok &#x3D; ok &amp;&amp; this.factorial(16) &#x3D;&#x3D;&#x3D; this.fact16
         }
         this.logger.debug(&#x60;node.js finish ${this.times} - ${ok ? &#x27;ok&#x27; : &#x27;fail&#x27;}&#x60;)
+    }
+
+    /**
+     * Get all of the CRON jobs
+     */
+    logAllCrons() {
+        const jobs &#x3D; this.scheduler.getCronJobs()
+
+        jobs.forEach((value, key, map) &#x3D;&gt; {
+            let next
+
+            try {
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
+                next &#x3D; value.nextDates().toDate()
+            } catch (e) {
+                next &#x3D; &#x27;error: next fire date is in the past!&#x27;
+            }
+            // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+            this.logger.log(&#x60;job: ${key} -&gt; next: ${next}&#x60;)
+        })
+    }
+
+    /**
+     * Dynamically schedule a name CRON job
+     * @param {string} name Job Name
+     * @param {Number} seconds Seconds
+     */
+    addCronJob(name: string, seconds: string) {
+        const job &#x3D; new CronJob(&#x60;${seconds} * * * * *&#x60;, () &#x3D;&gt; {
+            this.logger.warn(&#x60;time (${seconds}) for job ${name} to run!&#x60;)
+        })
+
+        this.scheduler.addCronJob(name, job)
+        job.start()
+
+        this.logger.warn(&#x60;job ${name} added for each minute at ${seconds} seconds!&#x60;)
+    }
+
+    /**
+     * Dynamically delete a named scheduled CRON job
+     * @param {string} name Job Name
+     */
+    deleteCron(name: string) {
+        const job &#x3D; this.scheduler.getCronJob(name)
+
+        if (job) {
+            this.scheduler.deleteCronJob(name)
+            this.logger.warn(&#x60;job ${name} deleted!&#x60;)
+        } else {
+            this.logger.warn(&#x60;job ${name} not found!&#x60;)
+        }
+    }
+
+    /**
+     * Get all of the Intervals
+     */
+    logIntervals() {
+        const intervals &#x3D; this.scheduler.getIntervals()
+        intervals.forEach((key) &#x3D;&gt; this.logger.log(&#x60;Interval: ${key}&#x60;))
+    }
+
+    /**
+     * Dynamically schedule a named Interval
+     * @param {string} name Interval Name
+     * @param {Number} milliseconds Milliseconds
+     */
+    addInterval(name: string, milliseconds: number) {
+        const callback &#x3D; () &#x3D;&gt; {
+            this.logger.warn(
+                &#x60;Interval ${name} executing at time (${milliseconds})!&#x60;,
+            )
+        }
+
+        const interval &#x3D; setInterval(callback, milliseconds)
+        this.scheduler.addInterval(name, interval)
+    }
+
+    /**
+     * Dynamically delete a named Interval
+     * @param {string} name Interval Name
+     */
+    deleteInterval(name: string) {
+        const interval &#x3D; this.scheduler.getInterval(name)
+        if (interval) {
+            this.scheduler.deleteInterval(name)
+            this.logger.warn(&#x60;Interval ${name} deleted!&#x60;)
+        } else {
+            this.logger.warn(&#x60;Interval ${name} not found!&#x60;)
+        }
+    }
+
+    /**
+     * Get all of the Timeouts
+     */
+    logTimeouts() {
+        const timeouts &#x3D; this.scheduler.getTimeouts()
+        timeouts.forEach((key) &#x3D;&gt; this.logger.log(&#x60;Timeout: ${key}&#x60;))
+    }
+
+    /**
+     * Dynamically schedule a named Timeout
+     * @param {string} name Timeout Name
+     * @param {Number} milliseconds Milliseconds
+     */
+    addTimeout(name: string, milliseconds: number) {
+        const callback &#x3D; () &#x3D;&gt; {
+            this.logger.warn(&#x60;Timeout ${name} executing after (${milliseconds})!&#x60;)
+        }
+
+        const timeout &#x3D; setTimeout(callback, milliseconds)
+        this.scheduler.addTimeout(name, timeout)
+    }
+
+    /**
+     * Dynamically delete a named Timeout
+     * @param {string} name Timeout Name
+     */
+    deleteTimeout(name: string) {
+        const timeout &#x3D; this.scheduler.getTimeout(name)
+
+        if (timeout) {
+            this.scheduler.deleteTimeout(name)
+            this.logger.warn(&#x60;Timeout ${name} deleted!&#x60;)
+        } else {
+            this.logger.warn(&#x60;Timeout ${name} not found!&#x60;)
+        }
     }
 }
 </code></pre>

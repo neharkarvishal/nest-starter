@@ -125,8 +125,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="16"
-                            class="link-to-prism">src/infra/interceptors/null-undefined-override.ts:16</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="43"
+                            class="link-to-prism">src/infra/interceptors/null-undefined-override.ts:43</a></div>
                 </td>
             </tr>
 
@@ -201,6 +201,33 @@
 import { Observable } from &#x27;rxjs&#x27;
 import { map } from &#x27;rxjs/operators&#x27;
 
+// eslint-disable-next-line consistent-return
+function recursivelyStripNullValues(value: unknown): unknown {
+    if (Array.isArray(value)) {
+        return value.map(recursivelyStripNullValues)
+    }
+
+    if (value !&#x3D;&#x3D; null &amp;&amp; typeof value &#x3D;&#x3D;&#x3D; &#x27;object&#x27;) {
+        // @ts-ignore
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+        return Object.fromEntries(
+            // @ts-ignore
+            // eslint-disable-next-line @typescript-eslint/no-shadow
+            Object.entries(value).map(([key, value]) &#x3D;&gt; [
+                key,
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                recursivelyStripNullValues(value),
+            ]),
+        )
+    }
+
+    if (value !&#x3D;&#x3D; null) {
+        return value
+    }
+
+    return &#x27;&#x27;
+}
+
 /**
  * Interceptors to transform each occurrence of a null value to an empty string &#x27;&#x27;
  */
@@ -210,7 +237,7 @@ export class ExcludeNullUndefinedInterceptor implements NestInterceptor {
         return next.handle().pipe(
             map(
                 // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-                (value) &#x3D;&gt; value ?? &#x27;&#x27;,
+                (value) &#x3D;&gt; value ?? &#x27;&#x27;, // recursivelyStripNullValues(value),
             ),
         )
     }

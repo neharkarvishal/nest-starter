@@ -63,6 +63,14 @@
             <code>src/base/crud/crud.controller.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Abstract base controller of BaseModel that other controller can extend to
+provide base CRUD functionality such as to create, find, update and delete data.</p>
+
+            </p>
 
 
 
@@ -82,11 +90,23 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#create">create</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#findAll">findAll</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#findOne">findOne</a>
+                                <a href="#findOneById">findOneById</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#remove">remove</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#update">update</a>
                             </li>
                         </ul>
                     </td>
@@ -112,12 +132,15 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/base/crud/crud.controller.ts:20</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/base/crud/crud.controller.ts:28</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>The constructor must receive the injected service from the child controller
+in order to provide all the proper base functionality.</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -126,6 +149,7 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -140,6 +164,12 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <code><ul>
+<li>The injected service.</li>
+</ul>
+</code>
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -160,20 +190,20 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="findAll"></a>
+                    <a name="create"></a>
                     <span class="name">
                         <b>
                             <span class="modifier">Async</span>
-                            findAll
+                            create
                         </b>
-                        <a href="#findAll"><span class="icon ion-ios-link"></span></a>
+                        <a href="#create"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findAll(filter: <a href="../classes/PaginationParams.html">PaginationParams<T></a>)</code>
+                    <code>create(input: T)</code>
                 </td>
             </tr>
 
@@ -181,14 +211,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;find all&#x27;, description: &#x27;Get all of the records&#x27;})<br />@ApiResponse({status: undefined, description: &#x27;Found all records&#x27;})<br />@Get()<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Create one record&#x27;, description: &#x27;Creates one record&#x27;})<br />@ApiResponse({status: undefined, description: &#x27;Created one record&#x27;, type: BaseModel})<br />@Post(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="30"
-                            class="link-to-prism">src/base/crud/crud.controller.ts:30</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="124"
+                            class="link-to-prism">src/base/crud/crud.controller.ts:124</a></div>
                 </td>
             </tr>
 
@@ -208,7 +238,86 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>filter</td>
+                                    <td>input</td>
+                                    <td>
+                                            <code>T</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>{}</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findAll"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Async</span>
+                            findAll
+                        </b>
+                        <a href="#findAll"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findAll(paginationParams: <a href="../classes/PaginationParams.html">PaginationParams<T></a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@ApiOperation({summary: &#x27;find all&#x27;, description: &#x27;Get all of the records&#x27;})<br />@ApiResponse({status: undefined, description: &#x27;Found all records&#x27;})<br />@Get()<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="44"
+                            class="link-to-prism">src/base/crud/crud.controller.ts:44</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>paginationParams</td>
                                     <td>
                                                 <code><a href="../classes/PaginationParams.html" target="_self" >PaginationParams&lt;T&gt;</a></code>
                                     </td>
@@ -225,7 +334,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../interfaces/IPagination.html" target="_self" >Promise&lt;IPagination | []&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../classes/R.html" target="_self" >Promise&lt;Result | IPaginationResult&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -239,20 +348,20 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="findOne"></a>
+                    <a name="findOneById"></a>
                     <span class="name">
                         <b>
                             <span class="modifier">Async</span>
-                            findOne
+                            findOneById
                         </b>
-                        <a href="#findOne"><span class="icon ion-ios-link"></span></a>
+                        <a href="#findOneById"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findOne(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>findOneById(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
@@ -266,8 +375,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="50"
-                            class="link-to-prism">src/base/crud/crud.controller.ts:50</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="78"
+                            class="link-to-prism">src/base/crud/crud.controller.ts:78</a></div>
                 </td>
             </tr>
 
@@ -304,7 +413,177 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;T&gt;</code>
+                        <b>Returns : </b>        <code><a href="../interfaces/Result.html" target="_self" >Promise&lt;Result&lt;T&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="remove"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Async</span>
+                            remove
+                        </b>
+                        <a href="#remove"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>remove(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@ApiOperation({summary: &#x27;Soft-delete one record by id&#x27;, description: &#x27;Soft-delete one record from database with provided by id&#x27;})<br />@ApiResponse({status: undefined, description: &#x27;Deleted one record&#x27;, type: BaseModel})<br />@ApiResponse({status: undefined, description: &#x27;Deleted one record&#x27;})<br />@Delete(&#x27;:id&#x27;)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="105"
+                            class="link-to-prism">src/base/crud/crud.controller.ts:105</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>{}</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="update"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Async</span>
+                            update
+                        </b>
+                        <a href="#update"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>update(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, input: Partial<T>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@ApiOperation({summary: &#x27;Update one record&#x27;, description: &#x27;Updates one record&#x27;})<br />@ApiResponse({status: undefined, description: &#x27;Updated one record&#x27;, type: BaseModel})<br />@Put(&#x27;:id&#x27;)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="143"
+                            class="link-to-prism">src/base/crud/crud.controller.ts:143</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>input</td>
+                                    <td>
+                                            <code>Partial&lt;T&gt;</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>{}</code>
 
                     </div>
                     <div class="io-description">
@@ -326,24 +605,38 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
     Get,
-    Post,
-    Put,
     Delete,
-    Body,
     Param,
     ParseIntPipe,
     HttpStatus,
     Query,
+    Body,
+    Put,
+    Post,
+    NotFoundException,
 } from &#x27;@nestjs/common&#x27;
 import { ApiOperation, ApiResponse } from &#x27;@nestjs/swagger&#x27;
 
 import { BaseModel } from &#x27;../../database/models/base.model&#x27;
+import { APIResponse, Result } from &#x27;../../domain&#x27;
+import { CreateTagsDto, UpdateTagsDto } from &#x27;../../tags/tag.model&#x27;
+import { CreateUserDto, UpdateUserDto } from &#x27;../../users/user.model&#x27;
 import { ApiErrors } from &#x27;../swagger-gen/api-errors.decorator&#x27;
 import { ICrudService } from &#x27;./crud.service&#x27;
-import { IPagination, PaginationParams } from &#x27;./pagination&#x27;
+import { IPaginationResult, PaginationParams } from &#x27;./pagination&#x27;
 
+/**
+ * Abstract base controller of BaseModel that other controller can extend to
+ * provide base CRUD functionality such as to create, find, update and delete data.
+ */
 @ApiErrors()
 export abstract class CrudController&lt;T extends BaseModel&gt; {
+    /**
+     * The constructor must receive the injected service from the child controller
+     * in order to provide all the proper base functionality.
+     *
+     * @param {ICrudService} service - The injected service.
+     */
     protected constructor(protected readonly service: ICrudService&lt;T&gt;) {}
 
     @ApiOperation({ summary: &#x27;find all&#x27;, description: &#x27;Get all of the records&#x27; })
@@ -354,13 +647,27 @@ export abstract class CrudController&lt;T extends BaseModel&gt; {
     })
     @Get()
     async findAll(
-        @Query() filter: PaginationParams&lt;T&gt;,
-    ): Promise&lt;IPagination&lt;T&gt; | T[]&gt; {
-        if (filter) {
-            return this.service.paginatedFindAll(filter)
+        @Query() paginationParams: PaginationParams&lt;T&gt;,
+    ): Promise&lt;Result&lt;T&gt; | IPaginationResult&lt;T&gt;&gt; {
+        let data &#x3D; {}
+
+        const needPaging &#x3D; Object.keys(paginationParams).length
+
+        if (needPaging) {
+            data &#x3D; await this.service.paginatedFindAll(paginationParams)
+
+            return {
+                data,
+                statusCode: HttpStatus.OK,
+            } as IPaginationResult&lt;T&gt;
         }
 
-        return this.service.findAll()
+        data &#x3D; await this.service.findAll()
+
+        return {
+            data,
+            statusCode: HttpStatus.OK,
+        } as Result&lt;T&gt;
     }
 
     @ApiOperation({
@@ -373,8 +680,78 @@ export abstract class CrudController&lt;T extends BaseModel&gt; {
         type: BaseModel, // type: T,
     })
     @Get(&#x27;:id&#x27;)
-    async findOne(@Param(&#x27;id&#x27;, ParseIntPipe) id: number): Promise&lt;T&gt; {
-        return this.service.findOne(id)
+    async findOneById(@Param(&#x27;id&#x27;, ParseIntPipe) id: number): Promise&lt;Result&lt;T&gt;&gt; {
+        const data &#x3D; await this.service.findOneById(id)
+
+        if (!data) {
+            throw new NotFoundException()
+        }
+
+        return {
+            data,
+            statusCode: HttpStatus.OK,
+        }
+    }
+
+    @ApiOperation({
+        summary: &#x27;Soft-delete one record by id&#x27;,
+        description: &#x27;Soft-delete one record from database with provided by id&#x27;,
+    })
+    @ApiResponse({
+        status: HttpStatus.OK,
+        description: &#x27;Deleted one record&#x27;,
+        type: BaseModel, // type: T,
+    })
+    @ApiResponse({
+        status: HttpStatus.NO_CONTENT,
+        description: &#x27;Deleted one record&#x27;,
+    })
+    @Delete(&#x27;:id&#x27;)
+    async remove(@Param(&#x27;id&#x27;, ParseIntPipe) id: number) {
+        const data &#x3D; await this.service.remove(id)
+
+        return {
+            data,
+            statusCode: !data ? HttpStatus.NO_CONTENT : HttpStatus.OK,
+        }
+    }
+
+    @ApiOperation({
+        summary: &#x27;Create one record&#x27;,
+        description: &#x27;Creates one record&#x27;,
+    })
+    @ApiResponse({
+        status: HttpStatus.OK,
+        description: &#x27;Created one record&#x27;,
+        type: BaseModel, // type: T,
+    })
+    @Post(&#x27;:id&#x27;)
+    async create(@Body() input: T) {
+        const data &#x3D; await this.service.create(input)
+
+        return {
+            data,
+            statusCode: HttpStatus.CREATED,
+        }
+    }
+
+    @ApiOperation({
+        summary: &#x27;Update one record&#x27;,
+        description: &#x27;Updates one record&#x27;,
+    })
+    @ApiResponse({
+        status: HttpStatus.OK,
+        description: &#x27;Updated one record&#x27;,
+        type: BaseModel, // type: T,
+    })
+    @Put(&#x27;:id&#x27;)
+    async update(@Param(&#x27;id&#x27;, ParseIntPipe) id: number, @Body() input: Partial&lt;T&gt;) {
+        const data &#x3D; await this.service.update(id, input)
+
+        return {
+            data,
+            statusCode: !data ? HttpStatus.NO_CONTENT : HttpStatus.OK,
+        }
     }
 }
 </code></pre>

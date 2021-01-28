@@ -89,12 +89,14 @@
                                 <a href="#email">email</a>
                             </li>
                             <li>
+                                    <span class="modifier">Optional</span>
                                 <a href="#firstName">firstName</a>
                             </li>
                             <li>
                                 <a href="#isActive">isActive</a>
                             </li>
                             <li>
+                                    <span class="modifier">Optional</span>
                                 <a href="#lastName">lastName</a>
                             </li>
                             <li>
@@ -145,13 +147,13 @@
                             <b>Decorators : </b>
                             <br />
                             <code>
-                                @ApiProperty()<br />@IsEmail()<br />@IsNotEmpty()<br />@MinLength(2)<br />
+                                @IsEmail()<br />@IsNotEmpty()<br />@MinLength(2)<br />
                             </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/users/user.model.ts:100</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/users/user.model.ts:116</a></div>
                             </td>
                         </tr>
 
@@ -165,6 +167,7 @@
                         <a name="firstName"></a>
                         <span class="name">
                             <b>
+                                <span class="modifier">Optional</span>
                             firstName</b>
                             <a href="#firstName"><span class="icon ion-ios-link"></span></a>
                         </span>
@@ -181,13 +184,13 @@
                             <b>Decorators : </b>
                             <br />
                             <code>
-                                @ApiProperty()<br />@IsString()<br />@IsNotEmpty()<br />@MinLength(2)<br />
+                                @IsString()<br />@IsNotEmpty()<br />@MinLength(2)<br />
                             </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/users/user.model.ts:112</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="126" class="link-to-prism">src/users/user.model.ts:126</a></div>
                             </td>
                         </tr>
 
@@ -217,13 +220,13 @@
                             <b>Decorators : </b>
                             <br />
                             <code>
-                                @ApiProperty()<br />@IsBoolean()<br />
+                                @IsBoolean()<br />
                             </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/users/user.model.ts:122</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/users/user.model.ts:134</a></div>
                             </td>
                         </tr>
 
@@ -237,6 +240,7 @@
                         <a name="lastName"></a>
                         <span class="name">
                             <b>
+                                <span class="modifier">Optional</span>
                             lastName</b>
                             <a href="#lastName"><span class="icon ion-ios-link"></span></a>
                         </span>
@@ -253,13 +257,13 @@
                             <b>Decorators : </b>
                             <br />
                             <code>
-                                @ApiProperty()<br />@IsString()<br />@IsNotEmpty()<br />@MinLength(2)<br />
+                                @IsString()<br />@IsNotEmpty()<br />@MinLength(2)<br />
                             </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/users/user.model.ts:118</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/users/user.model.ts:131</a></div>
                             </td>
                         </tr>
 
@@ -289,13 +293,13 @@
                             <b>Decorators : </b>
                             <br />
                             <code>
-                                @ApiProperty()<br />@IsString()<br />@IsNotEmpty()<br />@MinLength(8)<br />
+                                @IsString()<br />@IsNotEmpty()<br />@MinLength(8)<br />
                             </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/users/user.model.ts:106</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/users/user.model.ts:121</a></div>
                             </td>
                         </tr>
 
@@ -325,13 +329,13 @@
                             <b>Decorators : </b>
                             <br />
                             <code>
-                                @ApiProperty()<br />@IsString()<br />@IsNotEmpty()<br />@MinLength(2)<br />@MaxLength(36)<br />
+                                @IsString()<br />@IsNotEmpty()<br />@MinLength(2)<br />@MaxLength(36)<br />
                             </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/users/user.model.ts:94</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/users/user.model.ts:111</a></div>
                             </td>
                         </tr>
 
@@ -350,27 +354,27 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { PartialType as MappedPartialType } from &#x27;@nestjs/mapped-types&#x27;
-import { ApiProperty, PartialType } from &#x27;@nestjs/swagger&#x27;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { PartialType } from &#x27;@nestjs/swagger&#x27;
 
+import * as bcrypt from &#x27;bcrypt&#x27;
 import {
     IsString,
     MinLength,
     IsNotEmpty,
-    IsOptional,
     MaxLength,
     IsEmail,
     IsBoolean,
 } from &#x27;class-validator&#x27;
-import type { JSONSchema, Modifiers } from &#x27;objection&#x27;
+import type { JSONSchema, Modifiers, PartialModelObject } from &#x27;objection&#x27;
+import { ModelObject, QueryContext } from &#x27;objection&#x27;
 
 import { BaseModel } from &#x27;../database/models/base.model&#x27;
 
 interface IUser {
     username: string
     email: string
-    firstName: string
-    lastName: string
+    firstName?: string
+    lastName?: string
     isActive: boolean
     password: string
 }
@@ -378,17 +382,17 @@ interface IUser {
 export class User extends BaseModel implements IUser {
     static tableName &#x3D; &#x27;users&#x27;
 
-    username: string
+    username!: string
 
-    email: string
+    email!: string
 
-    firstName: string
+    firstName?: string
 
-    lastName: string
+    lastName?: string
 
-    isActive: boolean
+    isActive!: boolean
 
-    password: string
+    password!: string
 
     // JSON schema is not the database schema! Nothing is generated based on this.
     // This is only used for validation. Whenever a model instance is created it is checked against this schema.
@@ -419,13 +423,9 @@ export class User extends BaseModel implements IUser {
         searchByName(query, name: string) {
             // This &#x60;where&#x60; simply creates parentheses so that other &#x60;where&#x60; statements don&#x27;t get mixed with the these.
 
-            // eslint-disable-next-line @typescript-eslint/no-floating-promises
             query.where((q) &#x3D;&gt; {
-                // eslint-disable-next-line no-restricted-syntax
                 for (const namePart of name.trim().split(/\s+/)) {
-                    // eslint-disable-next-line no-restricted-syntax
                     for (const column of [&#x27;firstName&#x27;, &#x27;lastName&#x27;]) {
-                        // eslint-disable-next-line @typescript-eslint/no-floating-promises
                         q.orWhereRaw(&#x27;lower(??) like ?&#x27;, [
                             column,
                             &#x60;${namePart.toLowerCase()}%&#x60;,
@@ -435,43 +435,58 @@ export class User extends BaseModel implements IUser {
             })
         },
     }
+
+    async hashPassword(password: string) {
+        const hash &#x3D; await bcrypt.hash(password, 12)
+        return hash
+    }
+
+    async $beforeInsert(queryContext: QueryContext) {
+        await super.$beforeInsert(queryContext)
+        this.password &#x3D; await this.hashPassword(this.password)
+    }
+
+    /*
+    async $beforeUpdate(opt: ModelOptions, queryContext: QueryContext) {
+        await super.$beforeUpdate(opt, queryContext)
+        this.password &#x3D; await this.hashPassword(this.password)
+    }
+    */
 }
 
+// The &#x60;ModelObject&#x60; generic gives you a clean interface that can be used on the frontend, without any of the objection Model class properties or methods.
+export type UserShape &#x3D; ModelObject&lt;User&gt;
+export type PartialUserShape &#x3D; PartialModelObject&lt;User&gt;
+
 export class CreateUserDto implements IUser {
-    @ApiProperty()
     @IsString()
     @IsNotEmpty()
     @MinLength(2)
     @MaxLength(36)
-    username: string
+    username!: string
 
-    @ApiProperty()
     @IsEmail()
     @IsNotEmpty()
     @MinLength(2)
-    email: string
+    email!: string
 
-    @ApiProperty()
     @IsString()
     @IsNotEmpty()
     @MinLength(8)
-    password: string
+    password!: string
 
-    @ApiProperty()
     @IsString()
     @IsNotEmpty()
     @MinLength(2)
-    firstName: string
+    firstName?: string
 
-    @ApiProperty()
     @IsString()
     @IsNotEmpty()
     @MinLength(2)
-    lastName: string
+    lastName?: string
 
-    @ApiProperty()
     @IsBoolean()
-    isActive: boolean
+    isActive!: boolean
 }
 
 export class UpdateUserDto extends PartialType(CreateUserDto) {}

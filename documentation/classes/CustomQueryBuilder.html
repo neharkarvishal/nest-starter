@@ -282,8 +282,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="71"
-                            class="link-to-prism">src/database/models/helpers.ts:71</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="75"
+                            class="link-to-prism">src/database/models/helpers.ts:75</a></div>
                 </td>
             </tr>
 
@@ -366,8 +366,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="66"
-                            class="link-to-prism">src/database/models/helpers.ts:66</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="70"
+                            class="link-to-prism">src/database/models/helpers.ts:70</a></div>
                 </td>
             </tr>
 
@@ -579,7 +579,11 @@ export class CustomQueryBuilder&lt;M extends Model, R &#x3D; M[]&gt; extends Que
     }
 
     async onlyCount() {
-        const result &#x3D; await this.count({ c: &#x27;*&#x27; })
+        const result: { c: unknown }[] &#x3D; ((await this.count({
+            c: &#x27;*&#x27;,
+        })) as unknown) as {
+            c: unknown
+        }[]
         return result[0].c // eslint-disable-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-return
     }
 

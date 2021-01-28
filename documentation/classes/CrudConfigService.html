@@ -147,7 +147,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="188" class="link-to-prism">src/base/swagger-gen/crud-routes.factory.ts:188</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="201" class="link-to-prism">src/base/swagger-gen/crud-routes.factory.ts:201</a></div>
                             </td>
                         </tr>
 
@@ -178,15 +178,15 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>load(config)</code>
+                    <code>load(config: <a href="../classes/R.html">Record<string | unknown></a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="194"
-                            class="link-to-prism">src/base/swagger-gen/crud-routes.factory.ts:194</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="207"
+                            class="link-to-prism">src/base/swagger-gen/crud-routes.factory.ts:207</a></div>
                 </td>
             </tr>
 
@@ -200,12 +200,16 @@
                             <thead>
                                 <tr>
                                     <td>Name</td>
+                                    <td>Type</td>
                                     <td>Optional</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>config</td>
+                                    <td>
+                                                <code><a href="../classes/R.html" target="_self" >Record&lt;string | unknown&gt;</a></code>
+                                    </td>
 
                                     <td>
                                         No
@@ -246,7 +250,7 @@ import * as deepmerge from &#x27;deepmerge&#x27;
 
 import {
     ApiProperty,
-    isArrayFull,
+    BaseRoute,
     isFalse,
     isFunction,
     isObjectFull,
@@ -258,10 +262,10 @@ import type { CrudOptions, GetManyDefaultResponse, BaseRouteName } from &#x27;./
 
 export class R {
     static set(
-        metadataKey,
-        metadataValue,
+        metadataKey: string,
+        metadataValue: any,
         target: Object,
-        propertyKey: string | symbol &#x3D; undefined,
+        propertyKey?: string | symbol,
     ) {
         if (!propertyKey) {
             Reflect.defineMetadata(metadataKey, metadataValue, target)
@@ -271,23 +275,29 @@ export class R {
     }
 
     static get&lt;T extends any&gt;(
-        metadataKey,
+        metadataKey: any,
         target: Object,
-        propertyKey: string | symbol &#x3D; undefined,
+        propertyKey?: string | symbol,
     ): T {
         if (!propertyKey) return Reflect.getMetadata(metadataKey, target)
 
         return Reflect.getMetadata(metadataKey, target, propertyKey)
     }
 
-    static setRoute(route, func: Function) {
+    static setRoute(route: BaseRoute, func: Function) {
         R.set(&#x27;path&#x27;, route.path, func)
         R.set(&#x27;method&#x27;, route.method, func)
     }
 }
 
 export class Swagger {
-    static setExtraModels(swaggerModels) {
+    /**
+     * Sets extra swagger metadata for GET Calls
+     */
+    static setExtraModels(swaggerModels: {
+        [x: string]: any
+        get: Record&lt;string, unknown&gt;
+    }) {
         if (swaggerConst) {
             const meta &#x3D; Swagger.getExtraModels(swaggerModels.get)
             const models &#x3D; [
@@ -305,13 +315,16 @@ export class Swagger {
         }
     }
 
-    static setResponseOk(metadata, func: Function) {
+    /**
+     * Sets swagger metadata for response of GET Calls
+     */
+    static setResponseOk(metadata: any[], func: Function) {
         if (swaggerConst) {
             R.set(swaggerConst.DECORATORS.API_RESPONSE, metadata, func)
         }
     }
 
-    static getExtraModels(target): any[] {
+    static getExtraModels(target: Record&lt;string, unknown&gt;): any[] {
         return swaggerConst
             ? R.get(swaggerConst.API_EXTRA_MODELS, target) || []
             : []
@@ -324,9 +337,13 @@ export class Swagger {
     }
 
     static createResponseMeta(
-        name: BaseRouteName | &#x27;getOne&#x27;,
+        name: BaseRouteName,
         options: CrudOptions,
-        swaggerModels,
+        swaggerModels: {
+            [x: string]: any
+            get: { name: any }
+            getMany: { name: any }
+        },
     ) {
         if (swagger) {
             const { query } &#x3D; options
@@ -341,7 +358,7 @@ export class Swagger {
                     }
                 case &#x27;getOne&#x27;:
                     return {
-                        [HttpStatus.OK]: query.alwaysPaginate
+                        [HttpStatus.OK]: query?.alwaysPaginate
                             ? {
                                   description: &#x27;Get paginated response&#x27;,
                                   type: swaggerModels.getMany,
@@ -385,23 +402,23 @@ export class Swagger {
 }
 
 export class SerializeHelper {
-    static createGetManyDto(dto, resourceName: string): any {
+    static createGetManyDto(dto: any, resourceName: string): any {
         class GetManyResponseDto implements GetManyDefaultResponse&lt;any&gt; {
             @ApiProperty({ type: dto, isArray: true })
             @Type(() &#x3D;&gt; dto)
-            data: any[]
+            data!: any[]
 
             @ApiProperty({ type: &#x27;number&#x27; })
-            count: number
+            count!: number
 
             @ApiProperty({ type: &#x27;number&#x27; })
-            total: number
+            total!: number
 
             @ApiProperty({ type: &#x27;number&#x27; })
-            page: number
+            page!: number
 
             @ApiProperty({ type: &#x27;number&#x27; })
-            pageCount: number
+            pageCount!: number
         }
 
         Object.defineProperty(GetManyResponseDto, &#x27;name&#x27;, {
@@ -431,7 +448,7 @@ export class CrudConfigService {
         },
     }
 
-    static load(config) {
+    static load(config: Record&lt;string, unknown&gt;) {
         const query &#x3D; isObjectFull(config.query) ? config.query : {}
         const params &#x3D; isObjectFull(config.params) ? config.params : {}
         const serialize &#x3D; isObjectFull(config.serialize) ? config.serialize : {}
@@ -449,7 +466,7 @@ export class CrudRoutesFactory {
 
     protected swaggerModels: any &#x3D; {}
 
-    constructor(private target, options) {
+    constructor(private target: Object, options: CrudOptions) {
         this.options &#x3D; options
         this.create()
 
@@ -463,16 +480,17 @@ export class CrudRoutesFactory {
         )
     }
 
-    static create(target, options): CrudRoutesFactory {
+    static create(target: Object, options: CrudOptions): CrudRoutesFactory {
         return new CrudRoutesFactory(target, options)
     }
 
     get targetProto() {
+        // @ts-ignore
         return this.target.prototype
     }
 
-    get modelName(): string {
-        return this.options.model.type.name
+    get modelName() {
+        return this.options.model.type?.name
     }
 
     get modelType() {
@@ -488,18 +506,18 @@ export class CrudRoutesFactory {
     }
 
     getOne(name: BaseRouteName) {
-        this.targetProto[name] &#x3D; function getOne(req) {
+        this.targetProto[name] &#x3D; function getOne(req: any) {
             return this.service.getOne(req)
         }
     }
 
     getOneBase(name: BaseRouteName) {
-        this.targetProto[name] &#x3D; function getOneBase(req) {
+        this.targetProto[name] &#x3D; function getOneBase(req: any) {
             return this.service.getOneBase(req)
         }
     }
 
-    static getRoutesSchema() {
+    static getRoutesSchema(): BaseRoute[] {
         return [
             {
                 name: &#x27;getOneBase&#x27;,
@@ -536,38 +554,38 @@ export class CrudRoutesFactory {
             ...this.options.serialize,
         }
 
-        this.options.serialize.get &#x3D; isFalse(this.options.serialize.get)
+        this.options.serialize.get &#x3D; isFalse(this.options.serialize?.get)
             ? false
-            : this.options.serialize.get || this.modelType
+            : this.options.serialize?.get || this.modelType
 
-        this.options.serialize.getMany &#x3D; isFalse(this.options.serialize.getMany)
+        this.options.serialize.getMany &#x3D; isFalse(this.options.serialize?.getMany)
             ? false
-            : this.options.serialize.getMany
-            ? this.options.serialize.getMany
-            : isFalse(this.options.serialize.get)
+            : this.options.serialize?.getMany
+            ? this.options.serialize?.getMany
+            : isFalse(this.options.serialize?.get)
             ? false
             : SerializeHelper.createGetManyDto(
-                  this.options.serialize.get,
+                  this.options.serialize?.get,
                   this.modelName,
               )
 
-        this.options.serialize.create &#x3D; isFalse(this.options.serialize.create)
+        this.options.serialize.create &#x3D; isFalse(this.options.serialize?.create)
             ? false
-            : this.options.serialize.create || this.modelType
+            : this.options.serialize?.create || this.modelType
 
-        this.options.serialize.update &#x3D; isFalse(this.options.serialize.update)
+        this.options.serialize.update &#x3D; isFalse(this.options.serialize?.update)
             ? false
-            : this.options.serialize.update || this.modelType
+            : this.options.serialize?.update || this.modelType
 
-        this.options.serialize.replace &#x3D; isFalse(this.options.serialize.replace)
+        this.options.serialize.replace &#x3D; isFalse(this.options.serialize?.replace)
             ? false
-            : this.options.serialize.replace || this.modelType
+            : this.options.serialize?.replace || this.modelType
 
         this.options.serialize.delete &#x3D;
-            isFalse(this.options.serialize.delete) ||
+            isFalse(this.options.serialize?.delete) ||
             !this.options.routes?.deleteOneBase?.returnDeleted
                 ? false
-                : this.options.serialize.delete || this.modelType
+                : this.options.serialize?.delete || this.modelType
 
         R.set(&#x27;CRUD_OPTIONS_METADATA&#x27;, this.options, this.target)
     }
@@ -577,34 +595,34 @@ export class CrudRoutesFactory {
             ? this.modelType
             : SerializeHelper.createGetOneResponseDto(this.modelName)
 
-        this.swaggerModels.get &#x3D; isFunction(this.options.serialize.get)
-            ? this.options.serialize.get
+        this.swaggerModels.get &#x3D; isFunction(this.options.serialize?.get)
+            ? this.options.serialize?.get
             : modelType
 
         this.swaggerModels.getMany &#x3D;
-            this.options.serialize.getMany ||
+            this.options.serialize?.getMany ||
             SerializeHelper.createGetManyDto(this.swaggerModels.get, this.modelName)
 
-        this.swaggerModels.create &#x3D; isFunction(this.options.serialize.create)
-            ? this.options.serialize.create
+        this.swaggerModels.create &#x3D; isFunction(this.options.serialize?.create)
+            ? this.options.serialize?.create
             : modelType
 
-        this.swaggerModels.update &#x3D; isFunction(this.options.serialize.update)
-            ? this.options.serialize.update
+        this.swaggerModels.update &#x3D; isFunction(this.options.serialize?.update)
+            ? this.options.serialize?.update
             : modelType
 
-        this.swaggerModels.replace &#x3D; isFunction(this.options.serialize.replace)
-            ? this.options.serialize.replace
+        this.swaggerModels.replace &#x3D; isFunction(this.options.serialize?.replace)
+            ? this.options.serialize?.replace
             : modelType
 
-        this.swaggerModels.delete &#x3D; isFunction(this.options.serialize.delete)
-            ? this.options.serialize.delete
+        this.swaggerModels.delete &#x3D; isFunction(this.options.serialize?.delete)
+            ? this.options.serialize?.delete
             : modelType
 
         Swagger.setExtraModels(this.swaggerModels)
     }
 
-    enableRoutes(routesSchema) {
+    enableRoutes(routesSchema: BaseRoute[]) {
         routesSchema.forEach((route) &#x3D;&gt; {
             if (!route.override &amp;&amp; route.enable) {
                 R.setRoute(route, this.targetProto[route.name])
@@ -612,7 +630,7 @@ export class CrudRoutesFactory {
         })
     }
 
-    createRoutes(routesSchema) {
+    createRoutes(routesSchema: BaseRoute[]) {
         routesSchema.forEach((route) &#x3D;&gt; {
             // create base method
             /* this[route.name](route.name) */
@@ -623,7 +641,7 @@ export class CrudRoutesFactory {
         })
     }
 
-    setSwaggerResponseOk(name) {
+    setSwaggerResponseOk(name: BaseRouteName) {
         const metadata &#x3D; Swagger.getResponseOk(this.targetProto[name]) || {}
         const metadataToAdd &#x3D;
             Swagger.createResponseMeta(name, this.options, this.swaggerModels) || {}

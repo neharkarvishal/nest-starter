@@ -80,7 +80,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/base/swagger-gen/utils/other.ts:30</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/base/swagger-gen/utils/other.ts:40</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -91,7 +91,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ValidationPipeOptions } from &#x27;@nestjs/common&#x27;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { RequestMethod, ValidationPipeOptions } from &#x27;@nestjs/common&#x27;
 import { SwaggerEnumType } from &#x27;@nestjs/swagger/dist/types/swagger-enum.type&#x27;
 
 export declare type BaseRouteName &#x3D;
@@ -102,6 +102,16 @@ export declare type BaseRouteName &#x3D;
     | &#x27;updateOneBase&#x27;
     | &#x27;replaceOneBase&#x27;
     | &#x27;deleteOneBase&#x27;
+    | &#x27;getOne&#x27;
+
+export interface BaseRoute {
+    name: BaseRouteName
+    path: string
+    method: RequestMethod
+    enable: boolean
+    override: boolean
+    withParams: boolean
+}
 
 export interface GetManyDefaultResponse&lt;T&gt; {
     data: T[]
@@ -124,9 +134,13 @@ export interface ParamsOptions {
 }
 
 export interface CrudOptions {
-    model: {}
+    model: {
+        type: { name: string }
+    }
     dto?: {}
-    routes?: {}
+    routes?: {
+        deleteOneBase?: { returnDeleted?: boolean }
+    }
     validation?: ValidationPipeOptions | false
     params?: ParamsOptions
     query?: {
@@ -136,13 +150,13 @@ export interface CrudOptions {
         alwaysPaginate?: boolean
     }
     serialize?: {
-        getMany?: false
-        get?: false
-        create?: false
-        createMany?: false
-        update?: false
-        replace?: false
-        delete?: false
+        getMany?: false | object
+        get?: false | object
+        create?: false | object
+        createMany?: false | object
+        update?: false | object
+        replace?: false | object
+        delete?: false | object
     }
 }
 

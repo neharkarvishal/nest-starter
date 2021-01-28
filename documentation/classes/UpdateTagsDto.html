@@ -80,11 +80,10 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { PartialType as MappedPartialType } from &#x27;@nestjs/mapped-types&#x27;
-import { ApiProperty, PartialType } from &#x27;@nestjs/swagger&#x27;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { PartialType } from &#x27;@nestjs/swagger&#x27;
 
 import { IsNotEmpty, IsString, MaxLength, MinLength } from &#x27;class-validator&#x27;
-import type { JSONSchema } from &#x27;objection&#x27;
+import type { JSONSchema, ModelObject, PartialModelObject } from &#x27;objection&#x27;
 
 import { BaseModel } from &#x27;../database/models/base.model&#x27;
 
@@ -95,7 +94,7 @@ interface ITag {
 export class Tag extends BaseModel implements ITag {
     static tableName &#x3D; &#x27;tags&#x27;
 
-    @ApiProperty() name: string
+    name!: string
 
     // JSON schema is not the database schema! Nothing is generated based on this.
     // This is only used for validation. Whenever a model instance is created it is checked against this schema.
@@ -109,13 +108,16 @@ export class Tag extends BaseModel implements ITag {
     }
 }
 
+// The &#x60;ModelObject&#x60; generic gives you a clean interface that can be used on the frontend, without any of the objection Model class properties or methods.
+export type TagShape &#x3D; ModelObject&lt;Tag&gt;
+export type PartialTagShape &#x3D; PartialModelObject&lt;Tag&gt;
+
 export class CreateTagsDto implements ITag {
-    @ApiProperty()
     @IsString()
     @IsNotEmpty()
     @MinLength(2)
     @MaxLength(36)
-    name: string
+    name!: string
 }
 
 export class UpdateTagsDto extends PartialType(CreateTagsDto) {}

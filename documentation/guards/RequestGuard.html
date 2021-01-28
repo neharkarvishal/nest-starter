@@ -124,8 +124,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="20"
-                            class="link-to-prism">src/infra/guards/req.ts:20</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="21"
+                            class="link-to-prism">src/infra/guards/req.ts:21</a></div>
                 </td>
             </tr>
 
@@ -196,8 +196,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="7"
-                            class="link-to-prism">src/infra/guards/req.ts:7</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="8"
+                            class="link-to-prism">src/infra/guards/req.ts:8</a></div>
                 </td>
             </tr>
 
@@ -270,23 +270,23 @@ export class RequestGuard implements CanActivate {
      */
     bindRequestHelpers(request: any): any {
         function all(): Record&lt;string, any&gt; {
-            const inputs &#x3D; { ...request.query, ...request.body, ...request.params } // eslint-disable-line @typescript-eslint/no-unsafe-member-access
+            const inputs &#x3D; { ...request.query, ...request.body, ...request.params }
 
             // eslint-disable-next-line guard-for-in,no-restricted-syntax
             for (const key in inputs) {
-                const value &#x3D; inputs[key] // eslint-disable-line @typescript-eslint/no-unsafe-member-access
+                const value &#x3D; inputs[key]
 
                 if (typeof value &#x3D;&#x3D;&#x3D; &#x27;string&#x27; || value instanceof String) {
-                    inputs[key] &#x3D; value.trim() // eslint-disable-line @typescript-eslint/no-unsafe-member-access
+                    inputs[key] &#x3D; value.trim()
                 }
             }
 
-            return inputs // eslint-disable-line @typescript-eslint/no-unsafe-return
+            return inputs
         }
 
-        request.all &#x3D; all // eslint-disable-line @typescript-eslint/no-unsafe-member-access
+        request.all &#x3D; all
 
-        return request // eslint-disable-line @typescript-eslint/no-unsafe-return
+        return request
     }
 }
 </code></pre>

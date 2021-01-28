@@ -136,8 +136,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="55"
-                            class="link-to-prism">src/health/health.controller.ts:55</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="56"
+                            class="link-to-prism">src/health/health.controller.ts:56</a></div>
                 </td>
             </tr>
 
@@ -168,15 +168,15 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>collectOsMetrics(metrics)</code>
+<code>collectOsMetrics(metrics: literal type)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="61"
-                            class="link-to-prism">src/health/health.controller.ts:61</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="62"
+                            class="link-to-prism">src/health/health.controller.ts:62</a></div>
                 </td>
             </tr>
 
@@ -190,12 +190,16 @@
                             <thead>
                                 <tr>
                                     <td>Name</td>
+                                    <td>Type</td>
                                     <td>Optional</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>metrics</td>
+                                    <td>
+                                            <code>literal type</code>
+                                    </td>
 
                                     <td>
                                         No
@@ -241,8 +245,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="81"
-                            class="link-to-prism">src/health/health.controller.ts:81</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="88"
+                            class="link-to-prism">src/health/health.controller.ts:88</a></div>
                 </td>
             </tr>
 
@@ -311,8 +315,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="75"
-                            class="link-to-prism">src/health/health.controller.ts:75</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="82"
+                            class="link-to-prism">src/health/health.controller.ts:82</a></div>
                 </td>
             </tr>
 
@@ -357,8 +361,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="36"
-                            class="link-to-prism">src/health/health.controller.ts:36</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="37"
+                            class="link-to-prism">src/health/health.controller.ts:37</a></div>
                 </td>
             </tr>
 
@@ -397,6 +401,7 @@ import {
 } from &#x27;@nestjs/terminus&#x27;
 
 import * as os from &#x27;os&#x27;
+// @ts-ignore
 import * as pidusage from &#x27;pidusage&#x27;
 import { interval, Observable } from &#x27;rxjs&#x27;
 import { map } from &#x27;rxjs/operators&#x27;
@@ -407,9 +412,9 @@ export class HealthController implements OnModuleInit, OnApplicationShutdown {
     static path &#x3D; &#x27;health&#x27;
 
     constructor(
-        private health: HealthCheckService,
-        private dns: DNSHealthIndicator,
-        private config: ConfigService&lt;EnvironmentVariables&gt;,
+        readonly health: HealthCheckService,
+        readonly dns: DNSHealthIndicator,
+        readonly config: ConfigService&lt;EnvironmentVariables&gt;,
     ) {}
 
     @Sse(&#x27;sse&#x27;)
@@ -438,18 +443,24 @@ export class HealthController implements OnModuleInit, OnApplicationShutdown {
         ])
     }
 
-    collectOsMetrics(metrics) {
+    collectOsMetrics(metrics: { os: any; interval?: number; retention?: number }) {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-        pidusage(process.pid, (err, stat) &#x3D;&gt; {
-            if (err) return
+        pidusage(
+            process.pid,
+            (
+                err: any,
+                stat: { memory: number; timestamp: number; load: number[] },
+            ) &#x3D;&gt; {
+                if (err) return
 
-            // Convert from B to MB
-            stat.memory &#x3D; stat.memory / 1024 / 1024 // eslint-disable-line @typescript-eslint/no-unsafe-member-access,no-param-reassign
-            stat.timestamp &#x3D; Date.now() // eslint-disable-line @typescript-eslint/no-unsafe-member-access,no-param-reassign
-            stat.load &#x3D; os.loadavg() // eslint-disable-line @typescript-eslint/no-unsafe-member-access,no-param-reassign
+                // Convert from B to MB
+                stat.memory &#x3D; stat.memory / 1024 / 1024 // eslint-disable-line @typescript-eslint/no-unsafe-member-access,no-param-reassign
+                stat.timestamp &#x3D; Date.now() // eslint-disable-line @typescript-eslint/no-unsafe-member-access,no-param-reassign
+                stat.load &#x3D; os.loadavg() // eslint-disable-line @typescript-eslint/no-unsafe-member-access,no-param-reassign
 
-            metrics.os &#x3D; stat // eslint-disable-line @typescript-eslint/no-unsafe-member-access,no-param-reassign
-        })
+                metrics.os &#x3D; stat // eslint-disable-line @typescript-eslint/no-unsafe-member-access,no-param-reassign
+            },
+        )
     }
 
     onModuleInit() {
@@ -460,6 +471,7 @@ export class HealthController implements OnModuleInit, OnApplicationShutdown {
 
     onApplicationShutdown(signal?: string) {
         console.log(
+            // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
             &#x60;ApplicationShutdown - HealthController has been shutdown with ${signal} signal&#x60;,
         )
     }

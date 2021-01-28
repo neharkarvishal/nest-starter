@@ -73,21 +73,21 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Global, Module } from &#x27;@nestjs/common&#x27;
 
 import * as Knex from &#x27;knex&#x27;
-import { knexSnakeCaseMappers, Model } from &#x27;objection&#x27;
+import { Model } from &#x27;objection&#x27;
 
 import { Tag } from &#x27;../tags/tag.model&#x27;
 import { User } from &#x27;../users/user.model&#x27;
 
 const models &#x3D; [Tag, User]
 
-const modelProviders &#x3D; models.map((model) &#x3D;&gt; {
+export const modelProviders &#x3D; models.map((model) &#x3D;&gt; {
     return {
         provide: model.name,
         useValue: model,
     }
 })
 
-const providers &#x3D; [
+export const databaseProviders &#x3D; [
     ...modelProviders,
     {
         provide: &#x27;KnexConnection&#x27;,
@@ -100,7 +100,6 @@ const providers &#x3D; [
                     filename: &#x27;./knex.sqlite&#x27;,
                 },
                 debug: true,
-                // ...knexSnakeCaseMappers(),
             })
 
             Model.knex(knex)
@@ -111,8 +110,8 @@ const providers &#x3D; [
 
 @Global()
 @Module({
-    providers: [...providers],
-    exports: [...providers],
+    providers: [...databaseProviders],
+    exports: [...databaseProviders],
 })
 export class DatabaseModule {}
 </code></pre>

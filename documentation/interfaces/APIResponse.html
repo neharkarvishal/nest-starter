@@ -86,9 +86,11 @@
                                         <a href="#data">data</a>
                                 </li>
                                 <li>
+                                            <span class="modifier">Optional</span>
                                         <a href="#error">error</a>
                                 </li>
                                 <li>
+                                            <span class="modifier">Optional</span>
                                         <a href="#message">message</a>
                                 </li>
                                 <li>
@@ -203,6 +205,11 @@
                                         </td>
                                     </tr>
 
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
 
 
 
@@ -232,6 +239,11 @@
                                         </td>
                                     </tr>
 
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
 
 
 
@@ -376,7 +388,7 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpStatus } from &#x27;@nestjs/common&#x27;
 
-export type Result &#x3D;
+export type Results &#x3D;
     | GetAppLaunchData
     | GetUserProfile
     | GetUserPosts
@@ -387,10 +399,17 @@ export type Result &#x3D;
 
 export type APIError &#x3D; Error | string | null
 
+export interface Result&lt;T&gt; {
+    data: T
+    error?: APIError
+    message?: string | string[]
+    statusCode: HttpStatus
+}
+
 export interface APIResponse&lt;T&gt; {
     data: T
-    error: APIError
-    message: string | string[]
+    error?: APIError
+    message?: string | string[]
     statusCode: HttpStatus
 
     count?: number

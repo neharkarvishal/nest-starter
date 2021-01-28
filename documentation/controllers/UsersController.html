@@ -81,7 +81,7 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#remove">remove</a>
+                                <a href="#findOneByEmail">findOneByEmail</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
@@ -121,7 +121,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>create(user: <a href="../interfaces/User.html">CreateUserDto</a>)</code>
+                    <code>create(input: <a href="../interfaces/User.html">CreateUserDto</a>)</code>
                 </td>
             </tr>
 
@@ -135,8 +135,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="32"
-                            class="link-to-prism">src/users/users.controller.ts:32</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="43"
+                            class="link-to-prism">src/users/users.controller.ts:43</a></div>
                 </td>
             </tr>
 
@@ -156,7 +156,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>user</td>
+                                    <td>input</td>
                                     <td>
                                                 <code><a href="../interfaces/User.html" target="_self" >CreateUserDto</a></code>
                                     </td>
@@ -187,20 +187,20 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="remove"></a>
+                    <a name="findOneByEmail"></a>
                     <span class="name">
                         <b>
                             <span class="modifier">Async</span>
-                            remove
+                            findOneByEmail
                         </b>
-                        <a href="#remove"><span class="icon ion-ios-link"></span></a>
+                        <a href="#findOneByEmail"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>remove(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>findOneByEmail(email: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -208,14 +208,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Delete one users by id&#x27;, description: &#x27;Delete one users by id&#x27;})<br />@Delete(&#x27;:id&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Get one record by email&#x27;, description: &#x27;Get one record from database with provided by email&#x27;})<br />@Get()<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="53"
-                            class="link-to-prism">src/users/users.controller.ts:53</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="34"
+                            class="link-to-prism">src/users/users.controller.ts:34</a></div>
                 </td>
             </tr>
 
@@ -235,9 +235,9 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>id</td>
+                                    <td>email</td>
                                     <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                     </td>
 
                                     <td>
@@ -279,7 +279,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>update(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, updatedUser: <a href="../interfaces/User.html">UpdateUserDto</a>)</code>
+                    <code>update(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, input: <a href="../interfaces/User.html">UpdateUserDto</a>)</code>
                 </td>
             </tr>
 
@@ -293,8 +293,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="41"
-                            class="link-to-prism">src/users/users.controller.ts:41</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="57"
+                            class="link-to-prism">src/users/users.controller.ts:57</a></div>
                 </td>
             </tr>
 
@@ -326,7 +326,7 @@
 
                                 </tr>
                                 <tr>
-                                    <td>updatedUser</td>
+                                    <td>input</td>
                                     <td>
                                                 <code><a href="../interfaces/User.html" target="_self" >UpdateUserDto</a></code>
                                     </td>
@@ -367,6 +367,8 @@ import {
     Param,
     Delete,
     ParseIntPipe,
+    Query,
+    HttpStatus,
 } from &#x27;@nestjs/common&#x27;
 import { ApiOperation, ApiTags } from &#x27;@nestjs/swagger&#x27;
 
@@ -384,12 +386,26 @@ export class UsersController extends CrudController&lt;User&gt; {
     }
 
     @ApiOperation({
+        summary: &#x27;Get one record by email&#x27;,
+        description: &#x27;Get one record from database with provided by email&#x27;,
+    })
+    @Get()
+    async findOneByEmail(@Query() email: string) {
+        return this.service.findOneByEmail(email)
+    }
+
+    @ApiOperation({
         summary: &#x27;Create a User&#x27;,
         description: &#x27;Create a new User and store it in database&#x27;,
     })
     @Post()
-    async create(@Body() user: CreateUserDto) {
-        return this.service.create(user)
+    async create(@Body() input: CreateUserDto) {
+        const data &#x3D; await this.service.create(input)
+
+        return {
+            data,
+            statusCode: HttpStatus.CREATED,
+        }
     }
 
     @ApiOperation({
@@ -399,18 +415,14 @@ export class UsersController extends CrudController&lt;User&gt; {
     @Put(&#x27;:id&#x27;)
     async update(
         @Param(&#x27;id&#x27;, ParseIntPipe) id: number,
-        @Body() updatedUser: UpdateUserDto,
+        @Body() input: UpdateUserDto,
     ) {
-        return this.service.update(id, updatedUser)
-    }
+        const data &#x3D; await this.service.update(id, input)
 
-    @ApiOperation({
-        summary: &#x27;Delete one users by id&#x27;,
-        description: &#x27;Delete one users by id&#x27;,
-    })
-    @Delete(&#x27;:id&#x27;)
-    async remove(@Param(&#x27;id&#x27;, ParseIntPipe) id: number) {
-        return this.service.remove(id)
+        return {
+            data,
+            statusCode: !data ? HttpStatus.NO_CONTENT : HttpStatus.OK,
+        }
     }
 }
 </code></pre>

@@ -228,10 +228,8 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiProperty, ApiPropertyOptional } from &#x27;@nestjs/swagger&#x27;
-
-import {
-    fn,
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import Objection, {
+    raw,
     mixin,
     Model,
     ModelOptions,
@@ -253,13 +251,20 @@ export interface IBaseModel {
 export class BaseModel
     extends mixin(Model, [visibilityPlugin, DBErrors])
     implements IBaseModel {
-    static hidden &#x3D; [&#x27;salt&#x27;, &#x27;password&#x27;, &#x27;created_at&#x27;, &#x27;updated_at&#x27;, &#x27;deleted_at&#x27;] // hidden fields to filter from query result
+    // hidden fields to filter from query result
+    static hidden &#x3D; [
+        &#x27;salt&#x27;,
+        &#x27;password&#x27;,
+        &#x27;created_at&#x27;,
+        &#x27;updated_at&#x27;,
+        // &#x27;deleted_at&#x27;
+    ]
 
-    QueryBuilderType!: CustomQueryBuilder&lt;this&gt; // custom query builder for pagination
+    // QueryBuilderType!: CustomQueryBuilder&lt;this&gt; // custom query builder for pagination
 
     static QueryBuilder &#x3D; CustomQueryBuilder
 
-    @ApiProperty() id: number
+    id!: number
 
     created_at: any
 
@@ -268,29 +273,25 @@ export class BaseModel
     deleted_at?: any | null
 
     // fetch data with relation mapping
-    async fetchRelation(expression: RelationExpression&lt;any&gt;, options &#x3D; {}) {
-        if (this[expression.toString()]) return this
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    async fetchRelation(
+        expression: string | Record&lt;string, unknown&gt;,
+        options: Objection.FetchGraphOptions,
+    ) {
+        if (typeof expression &#x3D;&#x3D;&#x3D; &#x27;string&#x27; &amp;&amp; expression.toString() in this) {
+            // @ts-ignore
+            if (this[expression.toString()]) return this
+        }
 
         await this.$fetchGraph(expression, options)
         return this
     }
 
-    /*
     async $beforeUpdate(opt: ModelOptions, queryContext: QueryContext) {
         await super.$beforeUpdate(opt, queryContext)
 
-        this.updated_at &#x3D; new Date().toISOString() // fn.now()
+        this.updated_at &#x3D; raw(&#x27;CURRENT_TIMESTAMP&#x27;) // new Date().toISOString() // fn.now()
     }
-
-    async $beforeInsert(queryContext: QueryContext) {
-        await super.$beforeInsert(queryContext)
-
-        const date &#x3D; fn.now() // new Date().toISOString()
-
-        this.created_at &#x3D; date
-        this.updated_at &#x3D; date
-    }
-    */
 }
 </code></pre>
     </div>
