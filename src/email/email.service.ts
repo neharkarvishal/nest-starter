@@ -9,7 +9,6 @@ export default class EmailService {
 
     // TODO: Implement this
     sendMail(options) {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-        return { options, config: this.configService.get('NODE_ENV') }
+        console.log({ options, config: this.configService.get('NODE_ENV') })
     }
 }

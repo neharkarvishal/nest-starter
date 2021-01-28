@@ -1,31 +1,12 @@
+import { NotFoundException } from '@nestjs/common'
+
 import { ModelClass, raw } from 'objection'
 
 import { BaseModel } from '../../database/models/base.model'
-import { CreateTagsDto, UpdateTagsDto } from '../../tags/tag.model'
-import { CreateUserDto, UpdateUserDto } from '../../users/user.model'
+import { CreateTagsDto } from '../../tags/tag.model'
+import { CreateUserDto } from '../../users/user.model'
+import { ICrudService } from './crud.service.interface'
 import { IPaginationResult, PaginationParams } from './pagination'
-import { NotFoundException } from '@nestjs/common'
-
-/**
- * Interface to enforce on the CRUD services
- */
-export interface ICrudService<T> {
-    findAll(): Promise<T[]>
-
-    findOneById(id: number): Promise<T>
-
-    findOneByEmail(email: string): Promise<T>
-
-    paginatedFindAll(
-        paginationParams?: PaginationParams<T>,
-    ): Promise<IPaginationResult<T>>
-
-    remove(id: number): Promise<T>
-
-    create(data: T): Promise<T>
-
-    update(id: number, data: Partial<T>): Promise<T>
-}
 
 /**
  * Abstract base service that other services can extend to provide base CRUD

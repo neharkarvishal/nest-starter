@@ -3,6 +3,9 @@ import { ConfigModule } from '@nestjs/config'
 
 import EmailService from './email.service'
 
+/**
+ * Email module
+ */
 @Module({
     imports: [ConfigModule],
     controllers: [],

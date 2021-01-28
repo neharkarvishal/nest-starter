@@ -9,6 +9,7 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/postmark.css">
     </head>
     <body>
 
@@ -90,6 +91,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#scheduleEmail">scheduleEmail</a>
                             </li>
                         </ul>
@@ -177,6 +179,7 @@
                     <a name="scheduleEmail"></a>
                     <span class="name">
                         <b>
+                            <span class="modifier">Async</span>
                             scheduleEmail
                         </b>
                         <a href="#scheduleEmail"><span class="icon ion-ios-link"></span></a>
@@ -185,15 +188,16 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>scheduleEmail(emailSchedule: <a href="../classes/EmailScheduleDto.html">EmailScheduleDto</a>)</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>scheduleEmail(emailSchedule: <a href="../classes/EmailScheduleDto.html">EmailScheduleDto</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="18"
-                            class="link-to-prism">src/emailScheduling/emailScheduling.service.ts:18</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="19"
+                            class="link-to-prism">src/emailScheduling/emailScheduling.service.ts:19</a></div>
                 </td>
             </tr>
 
@@ -230,7 +234,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                     </div>
                     <div class="io-description">
@@ -295,7 +299,8 @@ export default class EmailSchedulingService {
         readonly scheduler: SchedulerRegistry,
     ) {}
 
-    scheduleEmail(emailSchedule: EmailScheduleDto) {
+    // eslint-disable-next-line @typescript-eslint/require-await
+    async scheduleEmail(emailSchedule: EmailScheduleDto) {
         const date &#x3D; new Date(emailSchedule.date)
 
         // eslint-disable-next-line @typescript-eslint/no-unsafe-call

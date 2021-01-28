@@ -13,7 +13,7 @@
         "seed:make": "npm run knex seed:make -- -x ts",
         "prebuild": "rimraf dist",
         "build": "nest build",
-        "docs": "compodoc -p tsconfig.json -s",
+        "docs": "compodoc -p tsconfig.json -s -w -o --theme postmark",
         "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
         "start": "nest start",
         "start:dev": "nest start --watch -- --trace-sync-io",

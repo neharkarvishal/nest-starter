@@ -9,6 +9,7 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/postmark.css">
     </head>
     <body>
 
@@ -58,6 +59,13 @@
         </p>
 
 
+        <p class="comment">
+            <h3>Description</h3>
+        </p>
+        <p class="comment">
+            <p>Database module</p>
+
+        </p>
 
 
         <div class="container-fluid module">
@@ -108,6 +116,9 @@ export const databaseProviders &#x3D; [
     },
 ]
 
+/**
+ * Database module
+ */
 @Global()
 @Module({
     providers: [...databaseProviders],

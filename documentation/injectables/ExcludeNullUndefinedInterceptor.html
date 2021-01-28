@@ -9,6 +9,7 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/postmark.css">
     </head>
     <body>
 
@@ -125,14 +126,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="43"
-                            class="link-to-prism">src/infra/interceptors/null-undefined-override.ts:43</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="53"
+                            class="link-to-prism">src/infra/interceptors/null-undefined-override.ts:53</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Interceptor Method to implement a custom interceptor.</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -142,6 +145,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -156,6 +160,11 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>an <code>ExecutionContext</code> object providing methods to access the
+route handler and class about to be invoked.</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>next</td>
@@ -168,6 +177,11 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>a reference to the <code>CallHandler</code>, which provides access to an
+<code>Observable</code> representing the response stream from the route handler.</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -201,7 +215,9 @@
 import { Observable } from &#x27;rxjs&#x27;
 import { map } from &#x27;rxjs/operators&#x27;
 
-// eslint-disable-next-line consistent-return
+/**
+ * Recursively Strip Null Values
+ */
 function recursivelyStripNullValues(value: unknown): unknown {
     if (Array.isArray(value)) {
         return value.map(recursivelyStripNullValues)
@@ -233,6 +249,14 @@ function recursivelyStripNullValues(value: unknown): unknown {
  */
 @Injectable()
 export class ExcludeNullUndefinedInterceptor implements NestInterceptor {
+    /**
+     * Interceptor Method to implement a custom interceptor.
+     *
+     * @param context an &#x60;ExecutionContext&#x60; object providing methods to access the
+     * route handler and class about to be invoked.
+     * @param next a reference to the &#x60;CallHandler&#x60;, which provides access to an
+     * &#x60;Observable&#x60; representing the response stream from the route handler.
+     */
     intercept(context: ExecutionContext, next: CallHandler): Observable&lt;any&gt; {
         return next.handle().pipe(
             map(

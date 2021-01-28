@@ -9,6 +9,7 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/postmark.css">
     </head>
     <body>
 
@@ -63,6 +64,13 @@
             <code>src/infra/filters/validation-failed.filter.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Validation Failed Exception Filter</p>
+
+            </p>
 
 
             <p class="comment">
@@ -130,14 +138,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="7"
-                            class="link-to-prism">src/infra/filters/validation-failed.filter.ts:7</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="17"
+                            class="link-to-prism">src/infra/filters/validation-failed.filter.ts:17</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Method to implement a custom exception filter.</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -147,6 +157,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -161,6 +172,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the class of the exception being handled</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>host</td>
@@ -173,6 +188,11 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>used to access an array of arguments for
+the in-flight request</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -204,8 +224,18 @@
 
 import { ValidationError } from &#x27;objection&#x27;
 
+/**
+ * Validation Failed Exception Filter
+ */
 @Catch(ValidationError)
 export class ValidationFailedFilter implements ExceptionFilter {
+    /**
+     * Method to implement a custom exception filter.
+     *
+     * @param exception the class of the exception being handled
+     * @param host used to access an array of arguments for
+     * the in-flight request
+     */
     catch(exception: ValidationError, host: ArgumentsHost) {
         const ctx &#x3D; host.switchToHttp()
         const response &#x3D; ctx.getResponse&lt;Response&gt;()

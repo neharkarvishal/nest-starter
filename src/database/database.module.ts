@@ -36,6 +36,9 @@ export const databaseProviders = [
     },
 ]
 
+/**
+ * Database module
+ */
 @Global()
 @Module({
     providers: [...databaseProviders],

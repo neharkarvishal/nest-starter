@@ -9,6 +9,7 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/postmark.css">
     </head>
     <body>
 
@@ -127,8 +128,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="14"
-                            class="link-to-prism">src/emailScheduling/emailScheduling.controller.ts:14</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="17"
+                            class="link-to-prism">src/emailScheduling/emailScheduling.controller.ts:17</a></div>
                 </td>
             </tr>
 
@@ -181,19 +182,22 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">/* eslint-disable no-use-before-define */
 import { Body, Controller, Post } from &#x27;@nestjs/common&#x27;
+import { ApiTags } from &#x27;@nestjs/swagger&#x27;
 
 import { EmailScheduleDto } from &#x27;./emailSchedule.dto&#x27;
 import EmailSchedulingService from &#x27;./emailScheduling.service&#x27;
 
+@ApiTags(EmailSchedulingController.name)
 @Controller(EmailSchedulingController.path)
 export default class EmailSchedulingController {
     static path &#x3D; &#x27;email-scheduling&#x27;
 
     constructor(readonly emailSchedulingService: EmailSchedulingService) {}
 
+    // eslint-disable-next-line @typescript-eslint/require-await
     @Post(&#x27;schedule&#x27;)
     async scheduleEmail(@Body() emailSchedule: EmailScheduleDto) {
-        this.emailSchedulingService.scheduleEmail(emailSchedule)
+        await this.emailSchedulingService.scheduleEmail(emailSchedule)
     }
 }
 </code></pre>

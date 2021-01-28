@@ -9,6 +9,7 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/postmark.css">
     </head>
     <body>
 
@@ -217,14 +218,16 @@ in order to provide all the proper base functionality.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="124"
-                            class="link-to-prism">src/base/crud/crud.controller.ts:124</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="126"
+                            class="link-to-prism">src/base/crud/crud.controller.ts:126</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>create</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -296,14 +299,16 @@ in order to provide all the proper base functionality.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="44"
-                            class="link-to-prism">src/base/crud/crud.controller.ts:44</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="47"
+                            class="link-to-prism">src/base/crud/crud.controller.ts:47</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>findAll</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -334,7 +339,7 @@ in order to provide all the proper base functionality.</p>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/R.html" target="_self" >Promise&lt;Result | IPaginationResult&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../classes/R.html" target="_self" >Promise&lt;IPaginationResult&lt;T&gt;&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -375,14 +380,16 @@ in order to provide all the proper base functionality.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="78"
-                            class="link-to-prism">src/base/crud/crud.controller.ts:78</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="74"
+                            class="link-to-prism">src/base/crud/crud.controller.ts:74</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>findOneById</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -454,14 +461,16 @@ in order to provide all the proper base functionality.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="105"
-                            class="link-to-prism">src/base/crud/crud.controller.ts:105</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="104"
+                            class="link-to-prism">src/base/crud/crud.controller.ts:104</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>remove</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -533,14 +542,16 @@ in order to provide all the proper base functionality.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="143"
-                            class="link-to-prism">src/base/crud/crud.controller.ts:143</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="148"
+                            class="link-to-prism">src/base/crud/crud.controller.ts:148</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>update</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -622,7 +633,7 @@ import { APIResponse, Result } from &#x27;../../domain&#x27;
 import { CreateTagsDto, UpdateTagsDto } from &#x27;../../tags/tag.model&#x27;
 import { CreateUserDto, UpdateUserDto } from &#x27;../../users/user.model&#x27;
 import { ApiErrors } from &#x27;../swagger-gen/api-errors.decorator&#x27;
-import { ICrudService } from &#x27;./crud.service&#x27;
+import { ICrudService } from &#x27;./crud.service.interface&#x27;
 import { IPaginationResult, PaginationParams } from &#x27;./pagination&#x27;
 
 /**
@@ -639,6 +650,9 @@ export abstract class CrudController&lt;T extends BaseModel&gt; {
      */
     protected constructor(protected readonly service: ICrudService&lt;T&gt;) {}
 
+    /**
+     * findAll
+     */
     @ApiOperation({ summary: &#x27;find all&#x27;, description: &#x27;Get all of the records&#x27; })
     @ApiResponse({
         status: HttpStatus.OK,
@@ -648,28 +662,21 @@ export abstract class CrudController&lt;T extends BaseModel&gt; {
     @Get()
     async findAll(
         @Query() paginationParams: PaginationParams&lt;T&gt;,
-    ): Promise&lt;Result&lt;T&gt; | IPaginationResult&lt;T&gt;&gt; {
-        let data &#x3D; {}
+    ): Promise&lt;IPaginationResult&lt;T&gt;&gt; {
+        const { data, paging } &#x3D; await this.service.paginatedFindAll(
+            paginationParams,
+        )
 
-        const needPaging &#x3D; Object.keys(paginationParams).length
-
-        if (needPaging) {
-            data &#x3D; await this.service.paginatedFindAll(paginationParams)
-
-            return {
-                data,
-                statusCode: HttpStatus.OK,
-            } as IPaginationResult&lt;T&gt;
-        }
-
-        data &#x3D; await this.service.findAll()
-
-        return {
+        return ({
             data,
+            paging,
             statusCode: HttpStatus.OK,
-        } as Result&lt;T&gt;
+        } as unknown) as IPaginationResult&lt;T&gt;
     }
 
+    /**
+     * findOneById
+     */
     @ApiOperation({
         summary: &#x27;Get one record by id&#x27;,
         description: &#x27;Get one record from database with provided by id&#x27;,
@@ -693,6 +700,9 @@ export abstract class CrudController&lt;T extends BaseModel&gt; {
         }
     }
 
+    /**
+     * remove
+     */
     @ApiOperation({
         summary: &#x27;Soft-delete one record by id&#x27;,
         description: &#x27;Soft-delete one record from database with provided by id&#x27;,
@@ -716,6 +726,9 @@ export abstract class CrudController&lt;T extends BaseModel&gt; {
         }
     }
 
+    /**
+     * create
+     */
     @ApiOperation({
         summary: &#x27;Create one record&#x27;,
         description: &#x27;Creates one record&#x27;,
@@ -735,6 +748,9 @@ export abstract class CrudController&lt;T extends BaseModel&gt; {
         }
     }
 
+    /**
+     * update
+     */
     @ApiOperation({
         summary: &#x27;Update one record&#x27;,
         description: &#x27;Updates one record&#x27;,

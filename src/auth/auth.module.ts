@@ -9,6 +9,9 @@ import { AuthService } from './auth.service'
 import { JwtStrategy } from './jwt.strategy'
 import { LocalStrategy } from './local.strategy'
 
+/**
+ * Auth module
+ */
 @Module({
     imports: [
         ConfigModule,

@@ -9,6 +9,7 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/postmark.css">
     </head>
     <body>
 
@@ -140,8 +141,19 @@ export interface Response&lt;T&gt; {
     data: T
 }
 
+/**
+ * Transform interceptor is Observer which transform response
+ */
 @Injectable()
 export class TransformInterceptor&lt;T&gt; implements NestInterceptor&lt;T, Response&lt;T&gt;&gt; {
+    /**
+     * Interceptor Method to implement a custom interceptor.
+     *
+     * @param context an &#x60;ExecutionContext&#x60; object providing methods to access the
+     * route handler and class about to be invoked.
+     * @param next a reference to the &#x60;CallHandler&#x60;, which provides access to an
+     * &#x60;Observable&#x60; representing the response stream from the route handler.
+     */
     intercept(
         context: ExecutionContext,
         next: CallHandler,

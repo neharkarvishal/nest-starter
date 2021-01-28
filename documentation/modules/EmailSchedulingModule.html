@@ -9,6 +9,7 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/postmark.css">
     </head>
     <body>
 
@@ -137,6 +138,13 @@
         </p>
 
 
+        <p class="comment">
+            <h3>Description</h3>
+        </p>
+        <p class="comment">
+            <p>Email scheduling module</p>
+
+        </p>
 
 
         <div class="container-fluid module">
@@ -182,6 +190,9 @@ import { EmailModule } from &#x27;../email/email.module&#x27;
 import EmailSchedulingController from &#x27;./emailScheduling.controller&#x27;
 import EmailSchedulingService from &#x27;./emailScheduling.service&#x27;
 
+/**
+ * Email scheduling module
+ */
 @Module({
     imports: [EmailModule],
     controllers: [EmailSchedulingController],

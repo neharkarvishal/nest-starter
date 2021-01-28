@@ -9,6 +9,7 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/postmark.css">
     </head>
     <body>
 
@@ -61,6 +62,13 @@
                 <code>src/infra/guards/res.ts</code>
             </p>
 
+                <p class="comment">
+                <h3>Description</h3>
+                </p>
+                <p class="comment">
+                    <p>Response Guard</p>
+
+                </p>
 
 
 
@@ -124,8 +132,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="21"
-                            class="link-to-prism">src/infra/guards/res.ts:21</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="33"
+                            class="link-to-prism">src/infra/guards/res.ts:33</a></div>
                 </td>
             </tr>
 
@@ -196,14 +204,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="8"
-                            class="link-to-prism">src/infra/guards/res.ts:8</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="20"
+                            class="link-to-prism">src/infra/guards/res.ts:20</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Guard Method</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -213,6 +223,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -227,6 +238,11 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>Current execution context. Provides access to details about
+the current request pipeline.</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -238,7 +254,9 @@
 
                     </div>
                     <div class="io-description">
-                        
+                        <p>Value indicating whether or not the current request is allowed to
+proceed.</p>
+
                     </div>
                 </td>
             </tr>
@@ -253,8 +271,20 @@
 
 import { Observable } from &#x27;rxjs&#x27;
 
+/**
+ * Response Guard
+ */
 @Injectable()
 export class ResponseGuard implements CanActivate {
+    /**
+     * Guard Method
+     *
+     * @param context Current execution context. Provides access to details about
+     * the current request pipeline.
+     *
+     * @returns Value indicating whether or not the current request is allowed to
+     * proceed.
+     */
     canActivate(
         context: ExecutionContext,
     ): boolean | Promise&lt;boolean&gt; | Observable&lt;boolean&gt; {

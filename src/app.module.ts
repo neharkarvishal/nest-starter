@@ -39,6 +39,9 @@ const ConfigModuleOptions = {
     /* eslint-enable */
 }
 
+/**
+ * App module
+ */
 @Module({
     controllers: [AppController, HealthController],
     imports: [
