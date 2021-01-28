@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-call */
 import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common'
 
 import { Observable } from 'rxjs'
@@ -35,7 +34,6 @@ export class ResponseGuard implements CanActivate {
             data: Record<string, any> | Array<any> | string,
             status = 200,
         ) {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
             return response.status(status).json({
                 success: true,
                 code: status,
@@ -43,15 +41,15 @@ export class ResponseGuard implements CanActivate {
             })
         }
 
-        // eslint-disable-next-line @typescript-eslint/no-shadow
-        function error(error: Record<string, any> | string, status = 401) {
+        function error(err: Record<string, any> | string, status = 401) {
             let message = 'Something went wrong!'
             let errors = null
-            if (error instanceof Object) {
-                message = error.message
-                errors = error.errors
+
+            if (typeof err === 'string') {
+                message = err
             } else {
-                message = error
+                message = err.message
+                errors = err.errors
             }
 
             return response.status(status).json({

@@ -61,7 +61,6 @@ export class QueryFailedFilter implements ExceptionFilter {
         } = exception
 
         // @ts-ignore
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
         response.status(status).json({
             statusCode: status,
             message,

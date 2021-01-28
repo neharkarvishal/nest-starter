@@ -9,24 +9,9 @@ import { databaseProviders } from '../../database/database.module'
 import { User } from '../../users/user.model'
 import { UsersService } from '../../users/users.service'
 import { AuthService } from '../auth.service'
+import { mockedConfigService, mockedJwtService } from './mocks'
 
 jest.mock('bcrypt')
-
-const mockedJwtService = {
-    sign: () => '',
-    signAsync: async () => Promise.resolve(''),
-}
-
-const mockedConfigService = {
-    // eslint-disable-next-line consistent-return
-    get(key: string) {
-        // eslint-disable-next-line default-case
-        switch (key) {
-            case 'JWT_ACCESS_TOKEN_EXPIRATION_TIME':
-                return '3600'
-        }
-    },
-}
 
 describe('AuthService', () => {
     let service: AuthService

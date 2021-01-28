@@ -1,4 +1,3 @@
-/* eslint-disable no-use-before-define */
 import { Body, Controller, Post } from '@nestjs/common'
 import { ApiTags } from '@nestjs/swagger'
 
@@ -12,7 +11,6 @@ export default class EmailSchedulingController {
 
     constructor(readonly emailSchedulingService: EmailSchedulingService) {}
 
-    // eslint-disable-next-line @typescript-eslint/require-await
     @Post('schedule')
     async scheduleEmail(@Body() emailSchedule: EmailScheduleDto) {
         await this.emailSchedulingService.scheduleEmail(emailSchedule)

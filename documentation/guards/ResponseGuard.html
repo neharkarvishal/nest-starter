@@ -132,8 +132,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="33"
-                            class="link-to-prism">src/infra/guards/res.ts:33</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="32"
+                            class="link-to-prism">src/infra/guards/res.ts:32</a></div>
                 </td>
             </tr>
 
@@ -204,8 +204,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="20"
-                            class="link-to-prism">src/infra/guards/res.ts:20</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="19"
+                            class="link-to-prism">src/infra/guards/res.ts:19</a></div>
                 </td>
             </tr>
 
@@ -303,7 +303,6 @@ export class ResponseGuard implements CanActivate {
             data: Record&lt;string, any&gt; | Array&lt;any&gt; | string,
             status &#x3D; 200,
         ) {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
             return response.status(status).json({
                 success: true,
                 code: status,
@@ -311,15 +310,15 @@ export class ResponseGuard implements CanActivate {
             })
         }
 
-        // eslint-disable-next-line @typescript-eslint/no-shadow
-        function error(error: Record&lt;string, any&gt; | string, status &#x3D; 401) {
+        function error(err: Record&lt;string, any&gt; | string, status &#x3D; 401) {
             let message &#x3D; &#x27;Something went wrong!&#x27;
             let errors &#x3D; null
-            if (error instanceof Object) {
-                message &#x3D; error.message
-                errors &#x3D; error.errors
+
+            if (typeof err &#x3D;&#x3D;&#x3D; &#x27;string&#x27;) {
+                message &#x3D; err
             } else {
-                message &#x3D; error
+                message &#x3D; err.message
+                errors &#x3D; err.errors
             }
 
             return response.status(status).json({

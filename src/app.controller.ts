@@ -1,4 +1,3 @@
-/* eslint-disable no-use-before-define */
 import { Controller, Get } from '@nestjs/common'
 import { ApiTags } from '@nestjs/swagger'
 

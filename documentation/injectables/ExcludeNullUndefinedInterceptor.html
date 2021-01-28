@@ -260,7 +260,6 @@ export class ExcludeNullUndefinedInterceptor implements NestInterceptor {
     intercept(context: ExecutionContext, next: CallHandler): Observable&lt;any&gt; {
         return next.handle().pipe(
             map(
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-return
                 (value) &#x3D;&gt; value ?? &#x27;&#x27;, // recursivelyStripNullValues(value),
             ),
         )

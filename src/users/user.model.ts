@@ -1,4 +1,4 @@
-/* eslint-disable no-restricted-syntax,@typescript-eslint/no-floating-promises */
+/* eslint-disable @typescript-eslint/no-floating-promises,no-restricted-syntax */
 import { PartialType } from '@nestjs/swagger'
 
 import * as bcrypt from 'bcrypt'

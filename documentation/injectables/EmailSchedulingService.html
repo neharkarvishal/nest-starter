@@ -196,8 +196,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="19"
-                            class="link-to-prism">src/emailScheduling/emailScheduling.service.ts:19</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="18"
+                            class="link-to-prism">src/emailScheduling/emailScheduling.service.ts:18</a></div>
                 </td>
             </tr>
 
@@ -299,11 +299,9 @@ export default class EmailSchedulingService {
         readonly scheduler: SchedulerRegistry,
     ) {}
 
-    // eslint-disable-next-line @typescript-eslint/require-await
     async scheduleEmail(emailSchedule: EmailScheduleDto) {
         const date &#x3D; new Date(emailSchedule.date)
 
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
         const job &#x3D; new CronJob(date, () &#x3D;&gt; {
             this.emailService.sendMail({
                 subject: emailSchedule.subject,
@@ -314,7 +312,7 @@ export default class EmailSchedulingService {
 
         this.scheduler.addCronJob(&#x60;${Date.now()}-${emailSchedule.subject}&#x60;, job)
 
-        job.start() // eslint-disable-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
+        job.start()
         this.logger.log(&#x60;email job added at ${date.toLocaleDateString()}!&#x60;)
     }
 }

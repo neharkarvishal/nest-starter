@@ -29,7 +29,6 @@ export class TransformInterceptor<T> implements NestInterceptor<T, Response<T>> 
         context: ExecutionContext,
         next: CallHandler,
     ): Observable<Response<T>> {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         return next.handle().pipe(map((data) => ({ data })))
     }
 }

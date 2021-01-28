@@ -11,22 +11,7 @@ import { User } from '../../users/user.model'
 import { UsersService } from '../../users/users.service'
 import { AuthController } from '../auth.controller'
 import { AuthService } from '../auth.service'
-
-const mockedJwtService = {
-    sign: () => '',
-    signAsync: async () => Promise.resolve(''),
-}
-
-const mockedConfigService = {
-    // eslint-disable-next-line consistent-return
-    get(key: string) {
-        // eslint-disable-next-line default-case
-        switch (key) {
-            case 'JWT_ACCESS_TOKEN_EXPIRATION_TIME':
-                return '3600'
-        }
-    },
-}
+import { mockedConfigService, mockedJwtService } from './mocks'
 
 describe('AuthController', () => {
     let app: INestApplication

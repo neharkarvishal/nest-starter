@@ -13,9 +13,7 @@ import {
 import { ApiOperation, ApiResponse } from '@nestjs/swagger'
 
 import { BaseModel } from '../../database/models/base.model'
-import { APIResponse, Result } from '../../domain'
-import { CreateTagsDto, UpdateTagsDto } from '../../tags/tag.model'
-import { CreateUserDto, UpdateUserDto } from '../../users/user.model'
+import { Result } from '../../domain'
 import { ApiErrors } from '../swagger-gen/api-errors.decorator'
 import { ICrudService } from './crud.service.interface'
 import { IPaginationResult, PaginationParams } from './pagination'

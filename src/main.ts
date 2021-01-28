@@ -27,7 +27,8 @@ import { TimeoutInterceptor } from './infra/interceptors/timeout'
 import { TransformInterceptor } from './infra/interceptors/transform'
 
 function setupSwaggerDocs(app: INestApplication) {
-    const version = (require('../../package.json').version as string) || '' // eslint-disable-line @typescript-eslint/no-var-requires,global-require,@typescript-eslint/no-unsafe-member-access
+    // eslint-disable-next-line @typescript-eslint/no-var-requires,global-require
+    const version = (require('../../package.json').version as string) || ''
 
     const config = new DocumentBuilder()
         .setTitle('API')
@@ -44,8 +45,9 @@ function setupSwaggerDocs(app: INestApplication) {
 }
 
 function setupInfra(app: INestApplication) {
-    // pipes
     /**
+     * Pipes
+     *
      * ValidationPipe at the application level, thus ensuring all endpoints are protected from receiving incorrect data
      */
     app.useGlobalPipes(
@@ -58,18 +60,24 @@ function setupInfra(app: INestApplication) {
         }),
     )
 
-    // interceptors
+    /**
+     * Interceptors
+     */
     // app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)))
     // app.useGlobalInterceptors(new TransformInterceptor())
     app.useGlobalInterceptors(new TimeoutInterceptor())
     app.useGlobalInterceptors(new ExcludeNullUndefinedInterceptor())
 
-    // filters
+    /**
+     * Filters
+     */
     // const { httpAdapter } = app.get(HttpAdapterHost)
     app.useGlobalFilters(new QueryFailedFilter())
     app.useGlobalFilters(new ValidationFailedFilter())
 
-    // guards (express specific)
+    /**
+     * Guards (express specific)
+     */
     // app.useGlobalGuards(new ResponseGuard())
     app.useGlobalGuards(new RequestGuard())
 
