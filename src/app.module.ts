@@ -9,6 +9,7 @@ import { AppController } from './app.controller'
 import { AuthModule } from './auth/auth.module'
 import { CronModule } from './cron/cron.module'
 import { DatabaseModule } from './database/database.module'
+import { EmailSchedulingModule } from './emailScheduling/emailScheduling.module'
 import { HealthController } from './health/health.controller'
 import { TagsModule } from './tags/tags.module'
 import { UsersModule } from './users/users.module'
@@ -43,9 +44,10 @@ const ConfigModuleOptions = {
     imports: [
         ConfigModule.forRoot(ConfigModuleOptions),
         DatabaseModule,
-        ScheduleModule.forRoot(), // CronModules deps
-        // CronModule,
         TerminusModule, // Health module
+        ScheduleModule.forRoot(), // CronModules deps
+        CronModule,
+        EmailSchedulingModule,
         AuthModule,
         TagsModule,
         UsersModule,
