@@ -1,12 +1,16 @@
 import { Global, Module } from '@nestjs/common'
 
+import { graphql } from 'graphql'
 import * as Knex from 'knex'
 import { Model } from 'objection'
+import { builder as graphQlBuilder } from 'objection-graphql'
 
 import { Tag } from '../tags/tag.model'
 import { User } from '../users/user.model'
 
 const models = [Tag, User]
+
+export const graphQlSchema = graphQlBuilder().allModels(models).build()
 
 export const modelProviders = models.map((model) => {
     return {

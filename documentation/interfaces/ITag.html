@@ -139,7 +139,7 @@ interface ITag {
 }
 
 export class Tag extends BaseModel implements ITag {
-    static tableName &#x3D; &#x27;tags&#x27;
+    static tableName &#x3D; &#x27;tag&#x27;
 
     name!: string
 
@@ -151,6 +151,9 @@ export class Tag extends BaseModel implements ITag {
         properties: {
             id: { type: &#x27;integer&#x27; },
             name: { type: &#x27;string&#x27;, minLength: 2, maxLength: 255 },
+            deleted_at: {
+                anyOf: [{ type: &#x27;string&#x27;, format: &#x27;date&#x27; }, { type: &#x27;null&#x27; }],
+            },
         },
     }
 }

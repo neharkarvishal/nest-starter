@@ -80,13 +80,17 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Global, Module } from &#x27;@nestjs/common&#x27;
 
+import { graphql } from &#x27;graphql&#x27;
 import * as Knex from &#x27;knex&#x27;
 import { Model } from &#x27;objection&#x27;
+import { builder as graphQlBuilder } from &#x27;objection-graphql&#x27;
 
 import { Tag } from &#x27;../tags/tag.model&#x27;
 import { User } from &#x27;../users/user.model&#x27;
 
 const models &#x3D; [Tag, User]
+
+export const graphQlSchema &#x3D; graphQlBuilder().allModels(models).build()
 
 export const modelProviders &#x3D; models.map((model) &#x3D;&gt; {
     return {

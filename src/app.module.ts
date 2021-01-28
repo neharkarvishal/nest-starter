@@ -1,5 +1,6 @@
 import { Module, OnApplicationShutdown, OnModuleInit } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
+import { GraphQLModule } from '@nestjs/graphql'
 import { ScheduleModule } from '@nestjs/schedule'
 import { TerminusModule } from '@nestjs/terminus'
 
@@ -8,7 +9,7 @@ import * as Joi from '@hapi/joi'
 import { AppController } from './app.controller'
 import { AuthModule } from './auth/auth.module'
 import { CronModule } from './cron/cron.module'
-import { DatabaseModule } from './database/database.module'
+import { DatabaseModule, graphQlSchema } from './database/database.module'
 import { EmailSchedulingModule } from './emailScheduling/emailScheduling.module'
 import { HealthController } from './health/health.controller'
 import { TagsModule } from './tags/tags.module'
@@ -47,9 +48,14 @@ const ConfigModuleOptions = {
     imports: [
         ConfigModule.forRoot(ConfigModuleOptions),
         DatabaseModule,
+        GraphQLModule.forRoot({
+            debug: true,
+            playground: true,
+            transformSchema: () => graphQlSchema,
+        }),
         TerminusModule, // Health module
         ScheduleModule.forRoot(), // CronModules deps
-        CronModule,
+        // CronModule,
         EmailSchedulingModule,
         AuthModule,
         TagsModule,

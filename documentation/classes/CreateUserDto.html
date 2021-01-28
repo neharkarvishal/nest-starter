@@ -154,7 +154,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/users/user.model.ts:116</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">src/users/user.model.ts:128</a></div>
                             </td>
                         </tr>
 
@@ -191,7 +191,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="126" class="link-to-prism">src/users/user.model.ts:126</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="138" class="link-to-prism">src/users/user.model.ts:138</a></div>
                             </td>
                         </tr>
 
@@ -227,7 +227,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/users/user.model.ts:134</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="146" class="link-to-prism">src/users/user.model.ts:146</a></div>
                             </td>
                         </tr>
 
@@ -264,7 +264,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/users/user.model.ts:131</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="143" class="link-to-prism">src/users/user.model.ts:143</a></div>
                             </td>
                         </tr>
 
@@ -300,7 +300,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/users/user.model.ts:121</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="133" class="link-to-prism">src/users/user.model.ts:133</a></div>
                             </td>
                         </tr>
 
@@ -336,7 +336,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/users/user.model.ts:111</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/users/user.model.ts:123</a></div>
                             </td>
                         </tr>
 
@@ -381,7 +381,7 @@ interface IUser {
 }
 
 export class User extends BaseModel implements IUser {
-    static tableName &#x3D; &#x27;users&#x27;
+    static tableName &#x3D; &#x27;user&#x27;
 
     username!: string
 
@@ -394,6 +394,14 @@ export class User extends BaseModel implements IUser {
     isActive!: boolean
 
     password!: string
+
+    static get virtualAttributes() {
+        return [&#x27;fullName&#x27;]
+    }
+
+    fullName() {
+        return &#x60;${this.firstName ?? &#x27;&#x27;} ${this.lastName ?? &#x27;&#x27;}&#x60;
+    }
 
     // JSON schema is not the database schema! Nothing is generated based on this.
     // This is only used for validation. Whenever a model instance is created it is checked against this schema.
@@ -411,8 +419,12 @@ export class User extends BaseModel implements IUser {
             },
             password: { type: &#x27;string&#x27;, minLength: 8, maxLength: 255 },
             firstName: { type: &#x27;string&#x27;, minLength: 1, maxLength: 255 },
+            fullName: { type: &#x27;string&#x27; },
             lastName: { type: &#x27;string&#x27;, minLength: 1, maxLength: 255 },
             isActive: { type: &#x27;boolean&#x27; },
+            deleted_at: {
+                anyOf: [{ type: &#x27;string&#x27;, format: &#x27;date&#x27; }, { type: &#x27;null&#x27; }],
+            },
         },
     }
 

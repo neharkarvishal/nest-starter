@@ -55,13 +55,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/AppModule.html" data-type="entity-link">AppModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#controllers-links-module-AppModule-856e324fc3748a7c4d76420c5932f495"' : 'data-target="#xs-controllers-links-module-AppModule-856e324fc3748a7c4d76420c5932f495"' }>
+                                            'data-target="#controllers-links-module-AppModule-15008fedad1ce5344891c53923542190"' : 'data-target="#xs-controllers-links-module-AppModule-15008fedad1ce5344891c53923542190"' }>
                                             <span class="icon ion-md-swap"></span>
                                             <span>Controllers</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-AppModule-856e324fc3748a7c4d76420c5932f495"' :
-                                            'id="xs-controllers-links-module-AppModule-856e324fc3748a7c4d76420c5932f495"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-AppModule-15008fedad1ce5344891c53923542190"' :
+                                            'id="xs-controllers-links-module-AppModule-15008fedad1ce5344891c53923542190"' }>
                                             <li class="link">
                                                 <a href="controllers/AppController.html"
                                                     data-type="entity-link" data-context="sub-entity" data-context-id="modules">AppController</a>
@@ -549,6 +549,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                         </ul>
                     </li>
+                        <li class="chapter">
+                            <a data-type="chapter-link" href="routes.html"><span class="icon ion-ios-git-branch"></span>Routes</a>
+                        </li>
                     <li class="chapter">
                         <a data-type="chapter-link" href="coverage.html"><span class="icon ion-ios-stats"></span>Documentation coverage</a>
                     </li>
