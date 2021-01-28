@@ -59,7 +59,6 @@ export class HealthController implements OnModuleInit, OnApplicationShutdown {
     }
 
     collectOsMetrics(metrics: { os: any; interval?: number; retention?: number }) {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
         pidusage(
             process.pid,
             (

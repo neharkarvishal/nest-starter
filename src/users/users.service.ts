@@ -37,7 +37,7 @@ export class UsersService extends CrudService<User> {
     }
 
     async update(id: number, user: UpdateUserDto) {
-        if (user?.password) user.password = await this.hashPassword(user.password) // eslint-disable-line @typescript-eslint/no-unsafe-member-access,no-param-reassign
+        if (user?.password) user.password = await this.hashPassword(user.password) // eslint-disable-line no-param-reassign
 
         return this.model.query().patchAndFetchById(id, user)
     }

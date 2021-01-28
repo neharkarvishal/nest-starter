@@ -19,7 +19,6 @@ export const databaseProviders = [
     ...modelProviders,
     {
         provide: 'KnexConnection',
-        // eslint-disable-next-line @typescript-eslint/require-await
         useFactory: async () => {
             const knex = Knex({
                 client: 'sqlite3',

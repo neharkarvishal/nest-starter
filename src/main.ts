@@ -91,7 +91,6 @@ function setupMiddlewares(app: INestApplication) {
 
     // limit for all paths
     app.use(
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
         rateLimit({
             windowMs: 15 * 60 * 1000, // 15 minutes
             max: 500, // limit each IP to 500 requests per windowMs
@@ -102,7 +101,6 @@ function setupMiddlewares(app: INestApplication) {
     // signup limiter
     app.use(
         '/auth/signup',
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
         rateLimit({
             windowMs: 60 * 60 * 1000, // 1 hour window
             max: 10, // start blocking after 10 requests
@@ -112,10 +110,10 @@ function setupMiddlewares(app: INestApplication) {
     )
 
     // @ts-ignore
-    app.disable('ETag') // eslint-disable-line @typescript-eslint/no-unsafe-call
+    app.disable('ETag')
 
     // @ts-ignore
-    app.disable('X-Powered-By') // eslint-disable-line @typescript-eslint/no-unsafe-call
+    app.disable('X-Powered-By')
 
     app.enableShutdownHooks()
 }
@@ -129,7 +127,6 @@ async function bootstrap() {
 
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     isDev &&
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
         blockedAt(
             (
                 time: number,
@@ -178,7 +175,7 @@ export function run(
         boot()
             .then(({ getUrl }) => getUrl())
             .then((url) => {
-                console.log(`Application is running on ${url}`) // eslint-disable-line no-console
+                console.log(`Application is running on ${url}`)
             })
             .catch(console.error)
     }

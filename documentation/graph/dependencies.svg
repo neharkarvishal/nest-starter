@@ -28,17 +28,41 @@
 <title>cluster_AppModule_imports</title>
 <polygon fill="none" stroke="black" points="568,-222 568,-350 1187,-350 1187,-222 568,-222"/>
 </g>
+<g id="clust7" class="cluster">
+<title>cluster_AuthModule</title>
+<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="1369,-214 1369,-282 1799,-282 1799,-214 1369,-214"/>
+</g>
+<g id="clust12" class="cluster">
+<title>cluster_AuthModule_providers</title>
+<polygon fill="none" stroke="black" points="1377,-222 1377,-274 1791,-274 1791,-222 1377,-222"/>
+</g>
+<g id="clust13" class="cluster">
+<title>cluster_CronModule</title>
+<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="568,-138 568,-206 924,-206 924,-138 568,-138"/>
+</g>
+<g id="clust18" class="cluster">
+<title>cluster_CronModule_providers</title>
+<polygon fill="none" stroke="black" points="576,-146 576,-198 916,-198 916,-146 576,-146"/>
+</g>
 <g id="clust25" class="cluster">
 <title>cluster_EmailModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="1203,-70 1203,-282 1361,-282 1361,-70 1203,-70"/>
+</g>
+<g id="clust28" class="cluster">
+<title>cluster_EmailModule_exports</title>
+<polygon fill="none" stroke="black" points="1219,-222 1219,-274 1329,-274 1329,-222 1219,-222"/>
 </g>
 <g id="clust30" class="cluster">
 <title>cluster_EmailModule_providers</title>
 <polygon fill="none" stroke="black" points="1211,-78 1211,-130 1353,-130 1353,-78 1211,-78"/>
 </g>
-<g id="clust28" class="cluster">
-<title>cluster_EmailModule_exports</title>
-<polygon fill="none" stroke="black" points="1219,-222 1219,-274 1329,-274 1329,-222 1219,-222"/>
+<g id="clust31" class="cluster">
+<title>cluster_EmailSchedulingModule</title>
+<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="949,-138 949,-206 1195,-206 1195,-138 949,-138"/>
+</g>
+<g id="clust36" class="cluster">
+<title>cluster_EmailSchedulingModule_providers</title>
+<polygon fill="none" stroke="black" points="957,-146 957,-198 1187,-198 1187,-146 957,-146"/>
 </g>
 <g id="clust37" class="cluster">
 <title>cluster_TagsModule</title>
@@ -51,30 +75,6 @@
 <g id="clust42" class="cluster">
 <title>cluster_TagsModule_providers</title>
 <polygon fill="none" stroke="black" points="16,-298 16,-350 150,-350 150,-298 16,-298"/>
-</g>
-<g id="clust13" class="cluster">
-<title>cluster_CronModule</title>
-<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="568,-138 568,-206 924,-206 924,-138 568,-138"/>
-</g>
-<g id="clust18" class="cluster">
-<title>cluster_CronModule_providers</title>
-<polygon fill="none" stroke="black" points="576,-146 576,-198 916,-198 916,-146 576,-146"/>
-</g>
-<g id="clust7" class="cluster">
-<title>cluster_AuthModule</title>
-<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="1369,-214 1369,-282 1799,-282 1799,-214 1369,-214"/>
-</g>
-<g id="clust12" class="cluster">
-<title>cluster_AuthModule_providers</title>
-<polygon fill="none" stroke="black" points="1377,-222 1377,-274 1791,-274 1791,-222 1377,-222"/>
-</g>
-<g id="clust31" class="cluster">
-<title>cluster_EmailSchedulingModule</title>
-<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="949,-138 949,-206 1195,-206 1195,-138 949,-138"/>
-</g>
-<g id="clust36" class="cluster">
-<title>cluster_EmailSchedulingModule_providers</title>
-<polygon fill="none" stroke="black" points="957,-146 957,-198 1187,-198 1187,-146 957,-146"/>
 </g>
 <g id="clust43" class="cluster">
 <title>cluster_UsersModule</title>

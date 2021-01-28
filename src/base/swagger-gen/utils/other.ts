@@ -72,7 +72,6 @@ export function safeRequire<T = any>(path: string): T | null {
     try {
         // eslint-disable-next-line global-require,@typescript-eslint/no-var-requires,import/no-dynamic-require
         const pack = require(path)
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
         return pack
     } catch (_) {
         return null
@@ -87,9 +86,7 @@ export function ApiProperty(options?: any): PropertyDecorator {
     return (target: object, propertyKey: string | symbol) => {
         if (swagger) {
             const ApiPropertyDecorator =
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
                 swagger.ApiProperty || swagger.ApiModelProperty
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-call
             ApiPropertyDecorator(options)(target, propertyKey)
         }
     }

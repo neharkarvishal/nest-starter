@@ -126,8 +126,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="53"
-                            class="link-to-prism">src/infra/interceptors/null-undefined-override.ts:53</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="51"
+                            class="link-to-prism">src/infra/interceptors/null-undefined-override.ts:51</a></div>
                 </td>
             </tr>
 
@@ -225,13 +225,11 @@ function recursivelyStripNullValues(value: unknown): unknown {
 
     if (value !&#x3D;&#x3D; null &amp;&amp; typeof value &#x3D;&#x3D;&#x3D; &#x27;object&#x27;) {
         // @ts-ignore
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
         return Object.fromEntries(
             // @ts-ignore
             // eslint-disable-next-line @typescript-eslint/no-shadow
             Object.entries(value).map(([key, value]) &#x3D;&gt; [
                 key,
-                // eslint-disable-next-line @typescript-eslint/no-unused-vars
                 recursivelyStripNullValues(value),
             ]),
         )

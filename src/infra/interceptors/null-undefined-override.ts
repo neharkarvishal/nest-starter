@@ -18,13 +18,11 @@ function recursivelyStripNullValues(value: unknown): unknown {
 
     if (value !== null && typeof value === 'object') {
         // @ts-ignore
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
         return Object.fromEntries(
             // @ts-ignore
             // eslint-disable-next-line @typescript-eslint/no-shadow
             Object.entries(value).map(([key, value]) => [
                 key,
-                // eslint-disable-next-line @typescript-eslint/no-unused-vars
                 recursivelyStripNullValues(value),
             ]),
         )

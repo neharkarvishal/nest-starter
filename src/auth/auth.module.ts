@@ -22,7 +22,6 @@ import { LocalStrategy } from './local.strategy'
             inject: [ConfigService],
             useFactory: async (
                 configService: ConfigService<EnvironmentVariables>,
-                // eslint-disable-next-line @typescript-eslint/require-await
             ) => ({
                 secret: configService.get('JWTKEY'),
                 signOptions: {
