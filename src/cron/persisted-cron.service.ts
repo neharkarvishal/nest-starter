@@ -12,7 +12,9 @@ export class PersistedCronService implements OnApplicationBootstrap {
 
     constructor(readonly schedule: SchedulerRegistry) {}
 
-    // NestJs hook invoked when the app bootstrapped
+    /**
+     * NestJs hook invoked when the app bootstrapped
+     */
     async onApplicationBootstrap() {
         // TODO: Implement commented out flow
 

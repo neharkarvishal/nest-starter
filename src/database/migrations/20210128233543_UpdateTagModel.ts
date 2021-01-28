@@ -1,11 +1,10 @@
 import * as Knex from 'knex'
 
-const tableName = ''
+const tableName = 'tags'
 
 export async function up(knex: Knex) {
-    return knex.schema.createTable(tableName, table => {
-        // this creates an "id" column that gets autoincremented
-        table.increments()
+    await knex.schema.table(tableName, (table) => {
+        table.string('test').nullable()
     })
 }
 

@@ -21,9 +21,9 @@ function recursivelyStripNullValues(value: unknown): unknown {
         return Object.fromEntries(
             // @ts-ignore
             // eslint-disable-next-line @typescript-eslint/no-shadow
-            Object.entries(value).map(([key, value]) => [
-                key,
-                recursivelyStripNullValues(value),
+            Object.entries(value).map(([k, v]) => [
+                k,
+                recursivelyStripNullValues(v),
             ]),
         )
     }
