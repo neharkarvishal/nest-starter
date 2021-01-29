@@ -9,6 +9,7 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/postmark.css">
     </head>
     <body>
 
@@ -90,6 +91,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#scheduleEmail">scheduleEmail</a>
                             </li>
                         </ul>
@@ -177,6 +179,7 @@
                     <a name="scheduleEmail"></a>
                     <span class="name">
                         <b>
+                            <span class="modifier">Async</span>
                             scheduleEmail
                         </b>
                         <a href="#scheduleEmail"><span class="icon ion-ios-link"></span></a>
@@ -185,7 +188,8 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>scheduleEmail(emailSchedule: <a href="../classes/EmailScheduleDto.html">EmailScheduleDto</a>)</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>scheduleEmail(emailSchedule: <a href="../classes/EmailScheduleDto.html">EmailScheduleDto</a>)</code>
                 </td>
             </tr>
 
@@ -230,7 +234,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                     </div>
                     <div class="io-description">
@@ -295,10 +299,9 @@ export default class EmailSchedulingService {
         readonly scheduler: SchedulerRegistry,
     ) {}
 
-    scheduleEmail(emailSchedule: EmailScheduleDto) {
+    async scheduleEmail(emailSchedule: EmailScheduleDto) {
         const date &#x3D; new Date(emailSchedule.date)
 
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
         const job &#x3D; new CronJob(date, () &#x3D;&gt; {
             this.emailService.sendMail({
                 subject: emailSchedule.subject,
@@ -309,7 +312,7 @@ export default class EmailSchedulingService {
 
         this.scheduler.addCronJob(&#x60;${Date.now()}-${emailSchedule.subject}&#x60;, job)
 
-        job.start() // eslint-disable-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
+        job.start()
         this.logger.log(&#x60;email job added at ${date.toLocaleDateString()}!&#x60;)
     }
 }

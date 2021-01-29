@@ -9,6 +9,7 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/postmark.css">
     </head>
     <body>
 
@@ -260,7 +261,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     async validate(payload: TokenPayload) {
         if (!payload.email) return Promise.reject(new UnauthorizedException())
 
-        const user &#x3D; await this.userService.findOneByEmail(payload.email) // eslint-disable-line @typescript-eslint/no-unsafe-member-access
+        const user &#x3D; await this.userService.findOneByEmail(payload.email)
 
         if (!user)
             return Promise.reject(
@@ -269,7 +270,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
                 ),
             )
 
-        return payload // eslint-disable-line @typescript-eslint/no-unsafe-return
+        return payload
     }
 }
 </code></pre>

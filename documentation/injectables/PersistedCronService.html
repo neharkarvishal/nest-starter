@@ -9,6 +9,7 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/postmark.css">
     </head>
     <body>
 
@@ -191,14 +192,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="16"
-                            class="link-to-prism">src/cron/persisted-cron.service.ts:16</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="18"
+                            class="link-to-prism">src/cron/persisted-cron.service.ts:18</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>NestJs hook invoked when the app bootstrapped</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>    <code>{}</code>
@@ -260,7 +263,9 @@ export class PersistedCronService implements OnApplicationBootstrap {
 
     constructor(readonly schedule: SchedulerRegistry) {}
 
-    // NestJs hook invoked when the app bootstrapped
+    /**
+     * NestJs hook invoked when the app bootstrapped
+     */
     async onApplicationBootstrap() {
         // TODO: Implement commented out flow
 

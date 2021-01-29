@@ -9,6 +9,7 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/postmark.css">
     </head>
     <body>
 
@@ -136,8 +137,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="56"
-                            class="link-to-prism">src/health/health.controller.ts:56</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="55"
+                            class="link-to-prism">src/health/health.controller.ts:55</a></div>
                 </td>
             </tr>
 
@@ -175,8 +176,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="62"
-                            class="link-to-prism">src/health/health.controller.ts:62</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="61"
+                            class="link-to-prism">src/health/health.controller.ts:61</a></div>
                 </td>
             </tr>
 
@@ -245,8 +246,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="88"
-                            class="link-to-prism">src/health/health.controller.ts:88</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="86"
+                            class="link-to-prism">src/health/health.controller.ts:86</a></div>
                 </td>
             </tr>
 
@@ -315,8 +316,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="82"
-                            class="link-to-prism">src/health/health.controller.ts:82</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="80"
+                            class="link-to-prism">src/health/health.controller.ts:80</a></div>
                 </td>
             </tr>
 
@@ -361,8 +362,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="37"
-                            class="link-to-prism">src/health/health.controller.ts:37</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="36"
+                            class="link-to-prism">src/health/health.controller.ts:36</a></div>
                 </td>
             </tr>
 
@@ -382,8 +383,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">/* eslint-disable no-use-before-define */
-import {
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
     Controller,
     Get,
     HttpCode,
@@ -444,7 +444,6 @@ export class HealthController implements OnModuleInit, OnApplicationShutdown {
     }
 
     collectOsMetrics(metrics: { os: any; interval?: number; retention?: number }) {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
         pidusage(
             process.pid,
             (
@@ -454,11 +453,11 @@ export class HealthController implements OnModuleInit, OnApplicationShutdown {
                 if (err) return
 
                 // Convert from B to MB
-                stat.memory &#x3D; stat.memory / 1024 / 1024 // eslint-disable-line @typescript-eslint/no-unsafe-member-access,no-param-reassign
-                stat.timestamp &#x3D; Date.now() // eslint-disable-line @typescript-eslint/no-unsafe-member-access,no-param-reassign
-                stat.load &#x3D; os.loadavg() // eslint-disable-line @typescript-eslint/no-unsafe-member-access,no-param-reassign
+                stat.memory &#x3D; stat.memory / 1024 / 1024 // eslint-disable-line no-param-reassign
+                stat.timestamp &#x3D; Date.now() // eslint-disable-line no-param-reassign
+                stat.load &#x3D; os.loadavg() // eslint-disable-line no-param-reassign
 
-                metrics.os &#x3D; stat // eslint-disable-line @typescript-eslint/no-unsafe-member-access,no-param-reassign
+                metrics.os &#x3D; stat // eslint-disable-line no-param-reassign
             },
         )
     }

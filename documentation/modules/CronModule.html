@@ -9,6 +9,7 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/postmark.css">
     </head>
     <body>
 
@@ -133,6 +134,13 @@
         </p>
 
 
+        <p class="comment">
+            <h3>Description</h3>
+        </p>
+        <p class="comment">
+            <p>Cron module</p>
+
+        </p>
 
 
         <div class="container-fluid module">
@@ -162,6 +170,9 @@
 import { CronService } from &#x27;./cron.service&#x27;
 import { PersistedCronService } from &#x27;./persisted-cron.service&#x27;
 
+/**
+ * Cron module
+ */
 @Module({
     providers: [CronService, PersistedCronService],
 })

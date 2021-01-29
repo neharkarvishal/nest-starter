@@ -9,6 +9,7 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/postmark.css">
     </head>
     <body>
 
@@ -140,6 +141,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Items included in the current listing</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -174,6 +181,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Error if any</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -208,6 +221,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Message if anu</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -237,6 +256,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Paging metadata</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -266,6 +291,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Http status code</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
             </section>
@@ -290,18 +321,27 @@ export enum OrderType {
  * Describes generic pagination params
  */
 export abstract class PaginationParams&lt;T&gt; {
+    /**
+     * page
+     */
     @ApiPropertyOptional({ type: Number, minimum: 0 })
     @IsOptional()
     @Min(0)
     @Transform((val: string) &#x3D;&gt; parseInt(val, 10))
     readonly page?: number // &#x3D; 0
 
+    /**
+     * page size
+     */
     @ApiPropertyOptional({ type: Number, minimum: 0 })
     @IsOptional()
     @Min(0)
     @Transform((val: string) &#x3D;&gt; parseInt(val, 10))
     readonly pageSize?: number // &#x3D; 10
 
+    /**
+     * order
+     */
     @ApiPropertyOptional()
     @IsOptional()
     abstract readonly order?: { [P in keyof T]?: OrderType }
@@ -311,10 +351,14 @@ export abstract class PaginationParams&lt;T&gt; {
  * Generic pagination response interface
  */
 export interface IPaginationResult&lt;T&gt; {
-    // Items included in the current listing
+    /**
+     * Items included in the current listing
+     */
     readonly data: T[]
 
-    // Paging metadata
+    /**
+     * Paging metadata
+     */
     readonly paging: {
         pageSize: number
         page: number
@@ -322,8 +366,18 @@ export interface IPaginationResult&lt;T&gt; {
         totalPages: number
     }
 
-    error?: APIError
+    /**
+     * Error if any
+     */ error?: APIError
+
+    /**
+     * Message if anu
+     */
     message?: string | string[]
+
+    /**
+     * Http status code
+     */
     statusCode: HttpStatus
 }
 </code></pre>

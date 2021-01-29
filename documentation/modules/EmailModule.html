@@ -9,6 +9,7 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/postmark.css">
     </head>
     <body>
 
@@ -65,13 +66,13 @@
 <title>cluster_EmailModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="169,-70 169,-268 327,-268 327,-70 169,-70"/>
 </g>
-<g id="clust4" class="cluster">
-<title>cluster_EmailModule_exports</title>
-<polygon fill="none" stroke="black" points="193,-208 193,-260 303,-260 303,-208 193,-208"/>
-</g>
 <g id="clust6" class="cluster">
 <title>cluster_EmailModule_providers</title>
 <polygon fill="none" stroke="black" points="177,-78 177,-130 319,-130 319,-78 177,-78"/>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_EmailModule_exports</title>
+<polygon fill="none" stroke="black" points="193,-208 193,-260 303,-260 303,-208 193,-208"/>
 </g>
 <!-- EmailService  -->
 <g id="node1" class="node">
@@ -137,6 +138,13 @@
         </p>
 
 
+        <p class="comment">
+            <h3>Description</h3>
+        </p>
+        <p class="comment">
+            <p>Email module</p>
+
+        </p>
 
 
         <div class="container-fluid module">
@@ -172,6 +180,9 @@ import { ConfigModule } from &#x27;@nestjs/config&#x27;
 
 import EmailService from &#x27;./email.service&#x27;
 
+/**
+ * Email module
+ */
 @Module({
     imports: [ConfigModule],
     controllers: [],

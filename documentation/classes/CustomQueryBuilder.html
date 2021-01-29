@@ -9,6 +9,7 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/postmark.css">
     </head>
     <body>
 
@@ -584,7 +585,7 @@ export class CustomQueryBuilder&lt;M extends Model, R &#x3D; M[]&gt; extends Que
         })) as unknown) as {
             c: unknown
         }[]
-        return result[0].c // eslint-disable-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-return
+        return result[0].c
     }
 
     async exists() {
@@ -597,8 +598,8 @@ export class CustomQueryBuilder&lt;M extends Model, R &#x3D; M[]&gt; extends Que
         let hasMore &#x3D; true
 
         while (!offset || hasMore) {
-            const query &#x3D; cloneDeep(this) // eslint-disable-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-assignment
-            const records &#x3D; await query.offset(offset).limit(size) // eslint-disable-line @typescript-eslint/no-unsafe-call,no-await-in-loop,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-assignment
+            const query &#x3D; cloneDeep(this)
+            const records &#x3D; await query.offset(offset).limit(size) // eslint-disable-line no-await-in-loop
 
             hasMore &#x3D; isNotEmpty(records)
 

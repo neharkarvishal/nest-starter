@@ -9,6 +9,7 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/postmark.css">
     </head>
     <body>
 
@@ -73,6 +74,9 @@
                             <a href="#down" title="src/database/migrations/20190609143930_CreateUser.ts"><b>down</b>&nbsp;&nbsp;&nbsp;(src/.../20190609143930_CreateUser.ts)</a>
                         </li>
                         <li>
+                            <a href="#down" title="src/database/migrations/20210128233543_UpdateTagModel.ts"><b>down</b>&nbsp;&nbsp;&nbsp;(src/.../20210128233543_UpdateTagModel.ts)</a>
+                        </li>
+                        <li>
                             <a href="#isEmpty" title="src/database/models/helpers.ts"><b>isEmpty</b>&nbsp;&nbsp;&nbsp;(src/.../helpers.ts)</a>
                         </li>
                         <li>
@@ -110,6 +114,9 @@
                         </li>
                         <li>
                             <a href="#up" title="src/database/migrations/20190609143930_CreateUser.ts"><b>up</b>&nbsp;&nbsp;&nbsp;(src/.../20190609143930_CreateUser.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#up" title="src/database/migrations/20210128233543_UpdateTagModel.ts"><b>up</b>&nbsp;&nbsp;&nbsp;(src/.../20210128233543_UpdateTagModel.ts)</a>
                         </li>
                     </ul>
                 </td>
@@ -753,6 +760,114 @@
             </tr>
         </tbody>
     </table>
+</section>    <h3>src/database/migrations/20210128233543_UpdateTagModel.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="down"></a>
+                    <span class="name">
+                        <b>
+                            down
+                        </b>
+                        <a href="#down"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>down(knex)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>knex</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="up"></a>
+                    <span class="name">
+                        <b>
+                            up
+                        </b>
+                        <a href="#up"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>up(knex)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>knex</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>    <h3>src/database/models/helpers.ts</h3>
     <section>
     <h3></h3>    <table class="table table-sm table-bordered">
@@ -979,6 +1094,8 @@
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Recursively Strip Null Values</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>

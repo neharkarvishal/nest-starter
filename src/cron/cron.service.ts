@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 import { Injectable, Logger } from '@nestjs/common'
 import {
     Cron,
@@ -40,9 +41,9 @@ export class CronService {
             `Called when the second is 60, current count is ${CronService.count}`,
         )
 
-        const ok = true
+        let ok = true
         for (let i = 0; i < this.times; i++) {
-            // ok = ok && this.factorial(16) === this.fact16
+            ok = ok && this.factorial(16) === this.fact16
         }
         this.logger.debug(`node.js finish ${this.times} - ${ok ? 'ok' : 'fail'}`)
     }
@@ -51,9 +52,9 @@ export class CronService {
     handleInterval() {
         this.logger.debug('Called every 100 seconds')
 
-        const ok = true
+        let ok = true
         for (let i = 0; i < this.times; i++) {
-            // ok = ok && this.factorial(16) === this.fact16
+            ok = ok && this.factorial(16) === this.fact16
         }
         this.logger.debug(`node.js finish ${this.times} - ${ok ? 'ok' : 'fail'}`)
     }
@@ -62,9 +63,9 @@ export class CronService {
     handleTimeout() {
         this.logger.debug('Called once after 50 seconds')
 
-        const ok = true
+        let ok = true
         for (let i = 0; i < this.times; i++) {
-            // ok = ok && this.factorial(16) === this.fact16
+            ok = ok && this.factorial(16) === this.fact16
         }
         this.logger.debug(`node.js finish ${this.times} - ${ok ? 'ok' : 'fail'}`)
     }
@@ -79,7 +80,6 @@ export class CronService {
             let next
 
             try {
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
                 next = value.nextDates().toDate()
             } catch (e) {
                 next = 'error: next fire date is in the past!'

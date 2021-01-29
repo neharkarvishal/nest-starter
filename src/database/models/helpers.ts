@@ -64,7 +64,7 @@ export class CustomQueryBuilder<M extends Model, R = M[]> extends QueryBuilder<
         })) as unknown) as {
             c: unknown
         }[]
-        return result[0].c // eslint-disable-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-return
+        return result[0].c
     }
 
     async exists() {
@@ -77,8 +77,8 @@ export class CustomQueryBuilder<M extends Model, R = M[]> extends QueryBuilder<
         let hasMore = true
 
         while (!offset || hasMore) {
-            const query = cloneDeep(this) // eslint-disable-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-assignment
-            const records = await query.offset(offset).limit(size) // eslint-disable-line @typescript-eslint/no-unsafe-call,no-await-in-loop,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-assignment
+            const query = cloneDeep(this)
+            const records = await query.offset(offset).limit(size) // eslint-disable-line no-await-in-loop
 
             hasMore = isNotEmpty(records)
 

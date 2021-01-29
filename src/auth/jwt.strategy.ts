@@ -23,7 +23,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     async validate(payload: TokenPayload) {
         if (!payload.email) return Promise.reject(new UnauthorizedException())
 
-        const user = await this.userService.findOneByEmail(payload.email) // eslint-disable-line @typescript-eslint/no-unsafe-member-access
+        const user = await this.userService.findOneByEmail(payload.email)
 
         if (!user)
             return Promise.reject(
@@ -32,6 +32,6 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
                 ),
             )
 
-        return payload // eslint-disable-line @typescript-eslint/no-unsafe-return
+        return payload
     }
 }

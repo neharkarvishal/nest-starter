@@ -1,4 +1,3 @@
-/* eslint-disable no-use-before-define,@typescript-eslint/no-empty-interface */
 import { HttpStatus } from '@nestjs/common'
 
 export type Results =
@@ -191,4 +190,4 @@ export interface Follower {
     showRemoveOption: boolean
 }
 
-export interface Following extends Follower {}
+export type Following = Follower

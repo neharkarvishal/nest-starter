@@ -9,6 +9,7 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/postmark.css">
     </head>
     <body>
 
@@ -125,14 +126,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="17"
-                            class="link-to-prism">src/infra/interceptors/timeout.ts:17</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="25"
+                            class="link-to-prism">src/infra/interceptors/timeout.ts:25</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Interceptor Method to implement a custom interceptor.</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -142,6 +145,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -156,6 +160,11 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>an <code>ExecutionContext</code> object providing methods to access the
+route handler and class about to be invoked.</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>next</td>
@@ -168,6 +177,11 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>a reference to the <code>CallHandler</code>, which provides access to an
+<code>Observable</code> representing the response stream from the route handler.</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -207,6 +221,14 @@ import { catchError, timeout } from &#x27;rxjs/operators&#x27;
  */
 @Injectable()
 export class TimeoutInterceptor implements NestInterceptor {
+    /**
+     * Interceptor Method to implement a custom interceptor.
+     *
+     * @param context an &#x60;ExecutionContext&#x60; object providing methods to access the
+     * route handler and class about to be invoked.
+     * @param next a reference to the &#x60;CallHandler&#x60;, which provides access to an
+     * &#x60;Observable&#x60; representing the response stream from the route handler.
+     */
     intercept(context: ExecutionContext, next: CallHandler): Observable&lt;any&gt; {
         return next.handle().pipe(
             timeout(10000), // end request after 10_000 milliseconds

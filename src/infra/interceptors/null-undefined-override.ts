@@ -8,7 +8,9 @@ import {
 import { Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
 
-// eslint-disable-next-line consistent-return
+/**
+ * Recursively Strip Null Values
+ */
 function recursivelyStripNullValues(value: unknown): unknown {
     if (Array.isArray(value)) {
         return value.map(recursivelyStripNullValues)
@@ -16,14 +18,12 @@ function recursivelyStripNullValues(value: unknown): unknown {
 
     if (value !== null && typeof value === 'object') {
         // @ts-ignore
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
         return Object.fromEntries(
             // @ts-ignore
             // eslint-disable-next-line @typescript-eslint/no-shadow
-            Object.entries(value).map(([key, value]) => [
-                key,
-                // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                recursivelyStripNullValues(value),
+            Object.entries(value).map(([k, v]) => [
+                k,
+                recursivelyStripNullValues(v),
             ]),
         )
     }
@@ -40,10 +40,17 @@ function recursivelyStripNullValues(value: unknown): unknown {
  */
 @Injectable()
 export class ExcludeNullUndefinedInterceptor implements NestInterceptor {
+    /**
+     * Interceptor Method to implement a custom interceptor.
+     *
+     * @param context an `ExecutionContext` object providing methods to access the
+     * route handler and class about to be invoked.
+     * @param next a reference to the `CallHandler`, which provides access to an
+     * `Observable` representing the response stream from the route handler.
+     */
     intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
         return next.handle().pipe(
             map(
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-return
                 (value) => value ?? '', // recursivelyStripNullValues(value),
             ),
         )

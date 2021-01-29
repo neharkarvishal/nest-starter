@@ -9,6 +9,7 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/postmark.css">
     </head>
     <body>
 
@@ -61,7 +62,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/base/crud/crud.service.ts</code>
+            <code>src/base/crud/crud.service.interface.ts</code>
         </p>
 
             <p class="comment">
@@ -140,14 +141,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="25"
-                            class="link-to-prism">src/base/crud/crud.service.ts:25</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="37"
+                            class="link-to-prism">src/base/crud/crud.service.interface.ts:37</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>create</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -210,14 +213,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="13"
-                            class="link-to-prism">src/base/crud/crud.service.ts:13</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="10"
+                            class="link-to-prism">src/base/crud/crud.service.interface.ts:10</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>findAll</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>    <code>Promise&lt;T[]&gt;</code>
@@ -249,14 +254,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="17"
-                            class="link-to-prism">src/base/crud/crud.service.ts:17</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="20"
+                            class="link-to-prism">src/base/crud/crud.service.interface.ts:20</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>findOneByEmail</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -320,13 +327,15 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="15"
-                            class="link-to-prism">src/base/crud/crud.service.ts:15</a></div>
+                            class="link-to-prism">src/base/crud/crud.service.interface.ts:15</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>findOneById</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -389,14 +398,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="19"
-                            class="link-to-prism">src/base/crud/crud.service.ts:19</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="25"
+                            class="link-to-prism">src/base/crud/crud.service.interface.ts:25</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>paginatedFindAll</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -459,14 +470,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="23"
-                            class="link-to-prism">src/base/crud/crud.service.ts:23</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="32"
+                            class="link-to-prism">src/base/crud/crud.service.interface.ts:32</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>remove</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -529,14 +542,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="27"
-                            class="link-to-prism">src/base/crud/crud.service.ts:27</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="42"
+                            class="link-to-prism">src/base/crud/crud.service.interface.ts:42</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>update</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -595,145 +610,48 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ModelClass, raw } from &#x27;objection&#x27;
-
-import { BaseModel } from &#x27;../../database/models/base.model&#x27;
-import { CreateTagsDto, UpdateTagsDto } from &#x27;../../tags/tag.model&#x27;
-import { CreateUserDto, UpdateUserDto } from &#x27;../../users/user.model&#x27;
-import { IPaginationResult, PaginationParams } from &#x27;./pagination&#x27;
-import { NotFoundException } from &#x27;@nestjs/common&#x27;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { IPaginationResult, PaginationParams } from &#x27;./pagination&#x27;
 
 /**
  * Interface to enforce on the CRUD services
  */
 export interface ICrudService&lt;T&gt; {
+    /**
+     * findAll
+     */
     findAll(): Promise&lt;T[]&gt;
 
+    /**
+     * findOneById
+     */
     findOneById(id: number): Promise&lt;T&gt;
 
+    /**
+     * findOneByEmail
+     */
     findOneByEmail(email: string): Promise&lt;T&gt;
 
+    /**
+     * paginatedFindAll
+     */
     paginatedFindAll(
         paginationParams?: PaginationParams&lt;T&gt;,
     ): Promise&lt;IPaginationResult&lt;T&gt;&gt;
 
+    /**
+     * remove
+     */
     remove(id: number): Promise&lt;T&gt;
 
+    /**
+     * create
+     */
     create(data: T): Promise&lt;T&gt;
 
+    /**
+     * update
+     */
     update(id: number, data: Partial&lt;T&gt;): Promise&lt;T&gt;
-}
-
-/**
- * Abstract base service that other services can extend to provide base CRUD
- * functionality such as to create, find, update and delete data.
- */
-export abstract class CrudService&lt;T extends BaseModel&gt; implements ICrudService&lt;T&gt; {
-    /**
-     * The constructor must receive the injected model from the child service in
-     * order to provide all the proper base functionality.
-     *
-     * @param {Model} model - The injected model.
-     */
-    protected constructor(protected readonly model: ModelClass&lt;T&gt;) {}
-
-    /**
-     * Finds all entries and return the result
-     */
-    async findAll() {
-        const data &#x3D; await this.model.query()
-
-        if (data) return (data as unknown) as Promise&lt;T[]&gt;
-
-        return Promise.reject(new NotFoundException())
-    }
-
-    /**
-     * Finds paginated entries and return the result
-     */
-    async paginatedFindAll(paginationParams: PaginationParams&lt;T&gt;) {
-        const { page &#x3D; 0, pageSize &#x3D; 3, order } &#x3D; paginationParams
-        const { results, total } &#x3D; await this.model.query().page(page, pageSize)
-
-        return ({
-            data: results,
-            paging: {
-                pageSize,
-                page,
-                total,
-                totalPages: Math.ceil(total / pageSize),
-            },
-        } as unknown) as Promise&lt;IPaginationResult&lt;T&gt;&gt;
-    }
-
-    /**
-     * Finds one entry with where filter and return the result
-     */
-    async findOne(filter &#x3D; {}) {
-        const data &#x3D; await this.model.query().findOne(filter)
-
-        if (data) return (data as unknown) as Promise&lt;T&gt;
-
-        return Promise.reject(new NotFoundException())
-    }
-
-    /**
-     * Finds paginated entries and return the result
-     */
-    async findOneById(id: number) {
-        const data &#x3D; await this.model.query().findById(id).first()
-
-        if (data) return (data as unknown) as Promise&lt;T&gt;
-
-        return Promise.reject(new NotFoundException())
-    }
-
-    /**
-     * Finds onw entry by email and return the result
-     */
-    async findOneByEmail(email: string) {
-        const data &#x3D; await this.model.query().findOne({ email })
-
-        if (data) return (data as unknown) as Promise&lt;T&gt;
-
-        return Promise.reject(new NotFoundException())
-    }
-
-    /**
-     * Soft-deletes a entry and return it
-     */
-    async remove(id: number) {
-        // @ts-ignore
-        return this.update(id, {
-            deleted_at: raw(&#x27;CURRENT_TIMESTAMP&#x27;),
-        })
-    }
-
-    /**
-     * Created a entry and return it
-     */
-    async create(input: CreateUserDto | CreateTagsDto | T) {
-        try {
-            const data &#x3D; await this.model.query().insertAndFetch(input as T)
-
-            return (data as unknown) as Promise&lt;T&gt;
-        } catch (e) {
-            return Promise.reject(e)
-        }
-    }
-
-    /**
-     * Updates a entry and return it
-     */
-    async update(id: number, input: Partial&lt;T&gt;) {
-        try {
-            const data &#x3D; await this.model.query().patchAndFetchById(id, input)
-
-            return (data as unknown) as Promise&lt;T&gt;
-        } catch (e) {
-            return Promise.reject(e)
-        }
-    }
 }
 </code></pre>
     </div>

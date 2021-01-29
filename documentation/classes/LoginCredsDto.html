@@ -9,6 +9,7 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/postmark.css">
     </head>
     <body>
 
@@ -136,7 +137,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/auth/auth.controller.ts:15</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/auth/auth.controller.ts:14</a></div>
                             </td>
                         </tr>
 
@@ -173,7 +174,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/auth/auth.controller.ts:19</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/auth/auth.controller.ts:18</a></div>
                             </td>
                         </tr>
 
@@ -229,7 +230,7 @@ export class AuthController {
         @Body() loginCreds: LoginCredsDto,
     ): Promise&lt;{ data: string; statusCode: HttpStatus }&gt; {
         const { user } &#x3D; req
-        const { email, password } &#x3D; loginCreds // eslint-disable-line @typescript-eslint/no-unused-vars
+        const { email, password } &#x3D; loginCreds
 
         const data &#x3D; await this.authService.login(user)
 

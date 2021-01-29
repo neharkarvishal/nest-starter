@@ -10,6 +10,9 @@ import {
     DataError,
 } from 'objection-db-errors'
 
+/**
+ * Query Failed Exception Filter
+ */
 @Catch(
     CheckViolationError,
     ConstraintViolationError,
@@ -20,6 +23,13 @@ import {
     NotFoundError,
 )
 export class QueryFailedFilter implements ExceptionFilter {
+    /**
+     * Method to implement a custom exception filter.
+     *
+     * @param exception the class of the exception being handled
+     * @param host used to access an array of arguments for
+     * the in-flight request
+     */
     catch(
         exception:
             | CheckViolationError
@@ -51,7 +61,6 @@ export class QueryFailedFilter implements ExceptionFilter {
         } = exception
 
         // @ts-ignore
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
         response.status(status).json({
             statusCode: status,
             message,

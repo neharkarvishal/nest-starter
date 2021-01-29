@@ -9,6 +9,7 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/postmark.css">
     </head>
     <body>
 
@@ -58,6 +59,13 @@
         </p>
 
 
+        <p class="comment">
+            <h3>Description</h3>
+        </p>
+        <p class="comment">
+            <p>Database module</p>
+
+        </p>
 
 
         <div class="container-fluid module">
@@ -72,13 +80,17 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Global, Module } from &#x27;@nestjs/common&#x27;
 
+import { graphql } from &#x27;graphql&#x27;
 import * as Knex from &#x27;knex&#x27;
 import { Model } from &#x27;objection&#x27;
+import { builder as graphQlBuilder } from &#x27;objection-graphql&#x27;
 
 import { Tag } from &#x27;../tags/tag.model&#x27;
 import { User } from &#x27;../users/user.model&#x27;
 
 const models &#x3D; [Tag, User]
+
+export const graphQlSchema &#x3D; graphQlBuilder().allModels(models).build()
 
 export const modelProviders &#x3D; models.map((model) &#x3D;&gt; {
     return {
@@ -91,7 +103,6 @@ export const databaseProviders &#x3D; [
     ...modelProviders,
     {
         provide: &#x27;KnexConnection&#x27;,
-        // eslint-disable-next-line @typescript-eslint/require-await
         useFactory: async () &#x3D;&gt; {
             const knex &#x3D; Knex({
                 client: &#x27;sqlite3&#x27;,
@@ -108,6 +119,9 @@ export const databaseProviders &#x3D; [
     },
 ]
 
+/**
+ * Database module
+ */
 @Global()
 @Module({
     providers: [...databaseProviders],

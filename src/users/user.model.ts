@@ -1,4 +1,4 @@
-/* eslint-disable no-restricted-syntax,@typescript-eslint/no-floating-promises */
+/* eslint-disable @typescript-eslint/no-floating-promises,no-restricted-syntax */
 import { PartialType } from '@nestjs/swagger'
 
 import * as bcrypt from 'bcrypt'
@@ -25,7 +25,7 @@ interface IUser {
 }
 
 export class User extends BaseModel implements IUser {
-    static tableName = 'users'
+    static tableName = 'user'
 
     username!: string
 
@@ -38,6 +38,14 @@ export class User extends BaseModel implements IUser {
     isActive!: boolean
 
     password!: string
+
+    static get virtualAttributes() {
+        return ['fullName']
+    }
+
+    fullName() {
+        return `${this.firstName ?? ''} ${this.lastName ?? ''}`
+    }
 
     // JSON schema is not the database schema! Nothing is generated based on this.
     // This is only used for validation. Whenever a model instance is created it is checked against this schema.
@@ -55,8 +63,12 @@ export class User extends BaseModel implements IUser {
             },
             password: { type: 'string', minLength: 8, maxLength: 255 },
             firstName: { type: 'string', minLength: 1, maxLength: 255 },
+            fullName: { type: 'string' },
             lastName: { type: 'string', minLength: 1, maxLength: 255 },
             isActive: { type: 'boolean' },
+            deleted_at: {
+                anyOf: [{ type: 'string', format: 'date' }, { type: 'null' }],
+            },
         },
     }
 

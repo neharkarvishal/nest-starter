@@ -1,4 +1,3 @@
-/* eslint-disable no-use-before-define */
 import { Body, Controller, HttpStatus, Post, Req, UseGuards } from '@nestjs/common'
 import { AuthGuard } from '@nestjs/passport'
 import { ApiProperty, ApiTags } from '@nestjs/swagger'
@@ -36,7 +35,7 @@ export class AuthController {
         @Body() loginCreds: LoginCredsDto,
     ): Promise<{ data: string; statusCode: HttpStatus }> {
         const { user } = req
-        const { email, password } = loginCreds // eslint-disable-line @typescript-eslint/no-unused-vars
+        const { email, password } = loginCreds
 
         const data = await this.authService.login(user)
 

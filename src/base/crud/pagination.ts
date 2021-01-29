@@ -15,18 +15,27 @@ export enum OrderType {
  * Describes generic pagination params
  */
 export abstract class PaginationParams<T> {
+    /**
+     * page
+     */
     @ApiPropertyOptional({ type: Number, minimum: 0 })
     @IsOptional()
     @Min(0)
     @Transform((val: string) => parseInt(val, 10))
     readonly page?: number // = 0
 
+    /**
+     * page size
+     */
     @ApiPropertyOptional({ type: Number, minimum: 0 })
     @IsOptional()
     @Min(0)
     @Transform((val: string) => parseInt(val, 10))
     readonly pageSize?: number // = 10
 
+    /**
+     * order
+     */
     @ApiPropertyOptional()
     @IsOptional()
     abstract readonly order?: { [P in keyof T]?: OrderType }
@@ -36,10 +45,14 @@ export abstract class PaginationParams<T> {
  * Generic pagination response interface
  */
 export interface IPaginationResult<T> {
-    // Items included in the current listing
+    /**
+     * Items included in the current listing
+     */
     readonly data: T[]
 
-    // Paging metadata
+    /**
+     * Paging metadata
+     */
     readonly paging: {
         pageSize: number
         page: number
@@ -47,7 +60,17 @@ export interface IPaginationResult<T> {
         totalPages: number
     }
 
-    error?: APIError
+    /**
+     * Error if any
+     */ error?: APIError
+
+    /**
+     * Message if anu
+     */
     message?: string | string[]
+
+    /**
+     * Http status code
+     */
     statusCode: HttpStatus
 }

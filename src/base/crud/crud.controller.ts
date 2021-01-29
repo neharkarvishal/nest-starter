@@ -13,11 +13,9 @@ import {
 import { ApiOperation, ApiResponse } from '@nestjs/swagger'
 
 import { BaseModel } from '../../database/models/base.model'
-import { APIResponse, Result } from '../../domain'
-import { CreateTagsDto, UpdateTagsDto } from '../../tags/tag.model'
-import { CreateUserDto, UpdateUserDto } from '../../users/user.model'
+import { Result } from '../../domain'
 import { ApiErrors } from '../swagger-gen/api-errors.decorator'
-import { ICrudService } from './crud.service'
+import { ICrudService } from './crud.service.interface'
 import { IPaginationResult, PaginationParams } from './pagination'
 
 /**
@@ -34,6 +32,9 @@ export abstract class CrudController<T extends BaseModel> {
      */
     protected constructor(protected readonly service: ICrudService<T>) {}
 
+    /**
+     * findAll
+     */
     @ApiOperation({ summary: 'find all', description: 'Get all of the records' })
     @ApiResponse({
         status: HttpStatus.OK,
@@ -43,28 +44,21 @@ export abstract class CrudController<T extends BaseModel> {
     @Get()
     async findAll(
         @Query() paginationParams: PaginationParams<T>,
-    ): Promise<Result<T> | IPaginationResult<T>> {
-        let data = {}
+    ): Promise<IPaginationResult<T>> {
+        const { data, paging } = await this.service.paginatedFindAll(
+            paginationParams,
+        )
 
-        const needPaging = Object.keys(paginationParams).length
-
-        if (needPaging) {
-            data = await this.service.paginatedFindAll(paginationParams)
-
-            return {
-                data,
-                statusCode: HttpStatus.OK,
-            } as IPaginationResult<T>
-        }
-
-        data = await this.service.findAll()
-
-        return {
+        return ({
             data,
+            paging,
             statusCode: HttpStatus.OK,
-        } as Result<T>
+        } as unknown) as IPaginationResult<T>
     }
 
+    /**
+     * findOneById
+     */
     @ApiOperation({
         summary: 'Get one record by id',
         description: 'Get one record from database with provided by id',
@@ -88,6 +82,9 @@ export abstract class CrudController<T extends BaseModel> {
         }
     }
 
+    /**
+     * remove
+     */
     @ApiOperation({
         summary: 'Soft-delete one record by id',
         description: 'Soft-delete one record from database with provided by id',
@@ -111,6 +108,9 @@ export abstract class CrudController<T extends BaseModel> {
         }
     }
 
+    /**
+     * create
+     */
     @ApiOperation({
         summary: 'Create one record',
         description: 'Creates one record',
@@ -130,6 +130,9 @@ export abstract class CrudController<T extends BaseModel> {
         }
     }
 
+    /**
+     * update
+     */
     @ApiOperation({
         summary: 'Update one record',
         description: 'Updates one record',

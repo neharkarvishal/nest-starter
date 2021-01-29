@@ -9,6 +9,7 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/postmark.css">
     </head>
     <body>
 
@@ -200,7 +201,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>{ options: any; config: any; }</code>
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                     </div>
                     <div class="io-description">
@@ -227,8 +228,7 @@ export default class EmailService {
 
     // TODO: Implement this
     sendMail(options) {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-        return { options, config: this.configService.get(&#x27;NODE_ENV&#x27;) }
+        console.log({ options, config: this.configService.get(&#x27;NODE_ENV&#x27;) })
     }
 }
 </code></pre>
