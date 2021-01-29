@@ -10,7 +10,7 @@ interface ITag {
 }
 
 export class Tag extends BaseModel implements ITag {
-    static tableName = 'tag'
+    static tableName = 'tags'
 
     name!: string
 

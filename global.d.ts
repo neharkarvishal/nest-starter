@@ -5,10 +5,8 @@ interface EnvironmentVariables {
     JWTKEY: string
     TOKEN_EXPIRATION: string
 
-    database: string
-    type: string
-    logging: string
-    synchronize: string
+    DATABASE_URL: string
+    DATABASE_DEBUG: string
 }
 
 declare namespace Express {

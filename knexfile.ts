@@ -4,13 +4,15 @@ import * as Knex from 'knex'
 import { knexSnakeCaseMappers } from 'objection'
 
 module.exports = {
-    client: 'sqlite3',
-    useNullAsDefault: true,
-    connection: {
-        filename: './knex.sqlite',
-        timezone: 'Asia/Kolkata',
-    },
+    // @ts-ignore
     debug: true,
+    connection: process.env.DATABASE_URL,
+    useNullAsDefault: true,
+    client: 'pg',
+    // pool: {
+    //     min: 2,
+    //     max: 10,
+    // },
     migrations: {
         directory: './src/database/migrations',
         stub: './src/database/migration.stub',
@@ -19,5 +21,4 @@ module.exports = {
         directory: './src/database/seeds',
         stub: './src/database/seed.stub',
     },
-    // ...knexSnakeCaseMappers(),
 } as Knex.Config

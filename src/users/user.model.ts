@@ -25,7 +25,7 @@ interface IUser {
 }
 
 export class User extends BaseModel implements IUser {
-    static tableName = 'user'
+    static tableName = 'users'
 
     username!: string
 
@@ -39,12 +39,15 @@ export class User extends BaseModel implements IUser {
 
     password!: string
 
-    static get virtualAttributes() {
-        return ['fullName']
-    }
+    static isTenantSpecific = true
+
+    static virtualAttributes = ['fullName']
 
     fullName() {
-        return `${this.firstName ?? ''} ${this.lastName ?? ''}`
+        if (this.firstName && this.lastName)
+            return `${this.firstName} ${this.lastName}`
+
+        return ''
     }
 
     // JSON schema is not the database schema! Nothing is generated based on this.

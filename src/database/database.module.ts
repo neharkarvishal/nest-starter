@@ -2,7 +2,7 @@ import { Global, Module } from '@nestjs/common'
 
 import { graphql } from 'graphql'
 import * as Knex from 'knex'
-import { Model } from 'objection'
+import { knexSnakeCaseMappers, Model } from 'objection'
 import { builder as graphQlBuilder } from 'objection-graphql'
 
 import { Tag } from '../tags/tag.model'
@@ -25,12 +25,11 @@ export const databaseProviders = [
         provide: 'KnexConnection',
         useFactory: async () => {
             const knex = Knex({
-                client: 'sqlite3',
-                useNullAsDefault: true,
-                connection: {
-                    filename: './knex.sqlite',
-                },
+                // @ts-ignore
                 debug: true,
+                connection: process.env.DATABASE_URL,
+                useNullAsDefault: true,
+                client: 'pg',
             })
 
             Model.knex(knex)

@@ -1,4 +1,5 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common'
+import { ConfigService } from '@nestjs/config'
 import { JwtService } from '@nestjs/jwt'
 
 import * as bcrypt from 'bcrypt'
@@ -10,6 +11,7 @@ export class AuthService {
     constructor(
         readonly userService: UsersService,
         readonly jwtService: JwtService,
+        readonly config: ConfigService<EnvironmentVariables>,
     ) {}
 
     async comparePassword(enteredPassword: string, dbPassword: string) {
@@ -37,6 +39,12 @@ export class AuthService {
     }
 
     async login(user: Record<string, unknown>) {
-        return this.generateToken(user)
+        const token = await this.generateToken(user)
+        const expiresIn = Number(this.config.get('TOKEN_EXPIRATION'))
+
+        return {
+            token,
+            expiresIn,
+        }
     }
 }

@@ -21,7 +21,10 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     }
 
     async validate(payload: TokenPayload) {
-        if (!payload.email) return Promise.reject(new UnauthorizedException())
+        const timeDiff = Number(payload?.exp) - Number(payload?.iat)
+
+        if (!payload?.email || timeDiff <= 0)
+            return Promise.reject(new UnauthorizedException())
 
         const user = await this.userService.findOneByEmail(payload.email)
 

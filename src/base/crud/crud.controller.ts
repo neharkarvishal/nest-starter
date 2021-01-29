@@ -9,6 +9,7 @@ import {
     Put,
     Post,
     NotFoundException,
+    InternalServerErrorException,
 } from '@nestjs/common'
 import { ApiOperation, ApiResponse } from '@nestjs/swagger'
 
@@ -22,7 +23,7 @@ import { IPaginationResult, PaginationParams } from './pagination'
  * Abstract base controller of BaseModel that other controller can extend to
  * provide base CRUD functionality such as to create, find, update and delete data.
  */
-@ApiErrors()
+// @ApiErrors()
 export abstract class CrudController<T extends BaseModel> {
     /**
      * The constructor must receive the injected service from the child controller
@@ -72,9 +73,10 @@ export abstract class CrudController<T extends BaseModel> {
     async findOneById(@Param('id', ParseIntPipe) id: number): Promise<Result<T>> {
         const data = await this.service.findOneById(id)
 
-        if (!data) {
-            throw new NotFoundException()
-        }
+        if (!data)
+            return Promise.reject(
+                new NotFoundException(`Record with id ${id} not found`),
+            )
 
         return {
             data,
@@ -101,6 +103,11 @@ export abstract class CrudController<T extends BaseModel> {
     @Delete(':id')
     async remove(@Param('id', ParseIntPipe) id: number) {
         const data = await this.service.remove(id)
+
+        if (!data)
+            return Promise.reject(
+                new NotFoundException(`Record with id ${id} not found`),
+            )
 
         return {
             data,

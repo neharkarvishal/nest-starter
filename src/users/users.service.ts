@@ -13,23 +13,29 @@ export class UsersService extends CrudService<User> {
     }
 
     async hashPassword(password: string) {
-        return await bcrypt.hash(password, 12)
+        return bcrypt.hash(password, 12)
     }
 
     async findOne(id: string | number) {
         const data = await this.model.query().findById(id).first()
 
-        if (data) return data
+        if (!data)
+            return Promise.reject(
+                new NotFoundException(`User with id ${id} not found`),
+            )
 
-        return Promise.reject(new NotFoundException())
+        return data
     }
 
     async findOneByEmail(email: string) {
         const data = await this.model.query().findOne({ email })
 
-        if (data) return data
+        if (!data)
+            return Promise.reject(
+                new NotFoundException(`User with email ${email} not found`),
+            )
 
-        return Promise.reject(new NotFoundException())
+        return data
     }
 
     async create(user: CreateUserDto) {

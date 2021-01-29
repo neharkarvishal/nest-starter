@@ -8,7 +8,7 @@ import type { Request } from 'express'
 import { UsersService } from '../users/users.service'
 import { AuthService } from './auth.service'
 
-export class LoginCredsDto {
+export class UserLoginDto {
     @ApiProperty({ example: 'admin@demo.com' })
     @IsNotEmpty()
     readonly email!: string
@@ -28,14 +28,20 @@ export class AuthController {
         readonly userService: UsersService,
     ) {}
 
+    /**
+     * Login
+     */
     @UseGuards(AuthGuard('local'))
     @Post('login')
     async login(
         @Req() req: Request,
-        @Body() loginCreds: LoginCredsDto,
-    ): Promise<{ data: string; statusCode: HttpStatus }> {
+        @Body() userLoginDto: UserLoginDto,
+    ): Promise<{
+        data: { token: string; expiresIn: number }
+        statusCode: HttpStatus
+    }> {
         const { user } = req
-        const { email, password } = loginCreds
+        const { email, password } = userLoginDto
 
         const data = await this.authService.login(user)
 

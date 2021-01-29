@@ -28,6 +28,9 @@ export class TagsController extends CrudController<Tag> {
         super(service)
     }
 
+    /**
+     * Create a Tag
+     */
     @Post()
     async create(@Body() input: CreateTagsDto) {
         const data = await this.service.create(input)
@@ -38,6 +41,9 @@ export class TagsController extends CrudController<Tag> {
         }
     }
 
+    /**
+     * Update a Tag
+     */
     @Put(':id')
     async update(
         @Param('id', ParseIntPipe) id: number,

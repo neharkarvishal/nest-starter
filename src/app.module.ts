@@ -32,10 +32,8 @@ const ConfigModuleOptions = {
         JWTKEY: Joi.string().required(),
         TOKEN_EXPIRATION: Joi.string().required(),
 
-        database: Joi.string().required(),
-        type: Joi.string().required(),
-        logging: Joi.string().required(),
-        synchronize: Joi.string().required(),
+        DATABASE_URL: Joi.string().required(),
+        DATABASE_DEBUG: Joi.string().required(),
     }),
     /* eslint-enable */
 }

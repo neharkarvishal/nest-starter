@@ -1,5 +1,3 @@
-import { NotFoundException } from '@nestjs/common'
-
 import { ModelClass, raw } from 'objection'
 
 import { BaseModel } from '../../database/models/base.model'
@@ -27,9 +25,7 @@ export abstract class CrudService<T extends BaseModel> implements ICrudService<T
     async findAll() {
         const data = await this.model.query()
 
-        if (data) return (data as unknown) as Promise<T[]>
-
-        return Promise.reject(new NotFoundException())
+        return (data as unknown) as Promise<T[]>
     }
 
     /**
@@ -39,7 +35,7 @@ export abstract class CrudService<T extends BaseModel> implements ICrudService<T
         const { page = 0, pageSize = 3, order } = paginationParams
         const { results, total } = await this.model.query().page(page, pageSize)
 
-        return ({
+        const data = {
             data: results,
             paging: {
                 pageSize,
@@ -47,7 +43,9 @@ export abstract class CrudService<T extends BaseModel> implements ICrudService<T
                 total,
                 totalPages: Math.ceil(total / pageSize),
             },
-        } as unknown) as Promise<IPaginationResult<T>>
+        }
+
+        return (data as unknown) as Promise<IPaginationResult<T>>
     }
 
     /**
@@ -56,9 +54,7 @@ export abstract class CrudService<T extends BaseModel> implements ICrudService<T
     async findOne(filter = {}) {
         const data = await this.model.query().findOne(filter)
 
-        if (data) return (data as unknown) as Promise<T>
-
-        return Promise.reject(new NotFoundException())
+        return (data as unknown) as Promise<T>
     }
 
     /**
@@ -67,9 +63,7 @@ export abstract class CrudService<T extends BaseModel> implements ICrudService<T
     async findOneById(id: number) {
         const data = await this.model.query().findById(id).first()
 
-        if (data) return (data as unknown) as Promise<T>
-
-        return Promise.reject(new NotFoundException())
+        return (data as unknown) as Promise<T>
     }
 
     /**
@@ -78,9 +72,7 @@ export abstract class CrudService<T extends BaseModel> implements ICrudService<T
     async findOneByEmail(email: string) {
         const data = await this.model.query().findOne({ email })
 
-        if (data) return (data as unknown) as Promise<T>
-
-        return Promise.reject(new NotFoundException())
+        return (data as unknown) as Promise<T>
     }
 
     /**
@@ -98,7 +90,10 @@ export abstract class CrudService<T extends BaseModel> implements ICrudService<T
      */
     async create(input: CreateUserDto | CreateTagsDto | T) {
         try {
-            const data = await this.model.query().insertAndFetch(input as T)
+            const data = await this.model
+                .query()
+                .insert(input as T)
+                .returning('*')
 
             return (data as unknown) as Promise<T>
         } catch (e) {
@@ -111,7 +106,11 @@ export abstract class CrudService<T extends BaseModel> implements ICrudService<T
      */
     async update(id: number, input: Partial<T>) {
         try {
-            const data = await this.model.query().patchAndFetchById(id, input)
+            const data = await this.model
+                .query()
+                .patch(input)
+                .where('id', id)
+                .returning('*')
 
             return (data as unknown) as Promise<T>
         } catch (e) {
