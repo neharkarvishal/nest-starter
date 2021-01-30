@@ -1,29 +1,14 @@
 /* eslint-disable @typescript-eslint/no-floating-promises,no-restricted-syntax */
-import { PartialType } from '@nestjs/swagger'
-
 import * as bcrypt from 'bcrypt'
-import {
-    IsString,
-    MinLength,
-    IsNotEmpty,
-    MaxLength,
-    IsEmail,
-    IsBoolean,
-} from 'class-validator'
 import type { JSONSchema, Modifiers, PartialModelObject } from 'objection'
 import { ModelObject, QueryContext } from 'objection'
 
 import { BaseModel } from '../database/models/base.model'
+import { IUser } from './user.interface'
 
-interface IUser {
-    username: string
-    email: string
-    firstName?: string
-    lastName?: string
-    isActive: boolean
-    password: string
-}
-
+/**
+ * User Model
+ */
 export class User extends BaseModel implements IUser {
     static tableName = 'users'
 
@@ -50,8 +35,10 @@ export class User extends BaseModel implements IUser {
         return ''
     }
 
-    // JSON schema is not the database schema! Nothing is generated based on this.
-    // This is only used for validation. Whenever a model instance is created it is checked against this schema.
+    /**
+     * JSON schema is not the database schema! Nothing is generated based on this.
+     * This is only used for validation. Whenever a model instance is created it is checked against this schema.
+     */
     static jsonSchema: JSONSchema = {
         type: 'object',
         required: ['username', 'email', 'password'],
@@ -75,7 +62,9 @@ export class User extends BaseModel implements IUser {
         },
     }
 
-    // Modifiers are reusable query snippets that can be used in various places.
+    /**
+     * Modifiers are reusable query snippets that can be used in various places.
+     */
     static modifiers: Modifiers = {
         // Our example modifier is a a semi-dumb fuzzy name match. We split the name into pieces using whitespace
         // and then try to partially match each of those pieces to both the `firstName` and the `lastName` fields.
@@ -105,48 +94,16 @@ export class User extends BaseModel implements IUser {
         await super.$beforeInsert(queryContext)
         this.password = await this.hashPassword(this.password)
     }
-
-    /*
-    async $beforeUpdate(opt: ModelOptions, queryContext: QueryContext) {
-        await super.$beforeUpdate(opt, queryContext)
-        this.password = await this.hashPassword(this.password)
-    }
-    */
 }
 
-// The `ModelObject` generic gives you a clean interface that can be used on the frontend, without any of the objection Model class properties or methods.
+/**
+ * The `ModelObject` generic gives you a clean interface that can be used on
+ * the frontend, without any of the objection Model class properties or methods.
+ */
 export type UserShape = ModelObject<User>
+
+/**
+ * The `PartialModelObject` generic gives you a clean interface that can be used on
+ * the frontend, without any of the objection Model class properties or methods.
+ */
 export type PartialUserShape = PartialModelObject<User>
-
-export class CreateUserDto implements IUser {
-    @IsString()
-    @IsNotEmpty()
-    @MinLength(2)
-    @MaxLength(36)
-    username!: string
-
-    @IsEmail()
-    @IsNotEmpty()
-    @MinLength(2)
-    email!: string
-
-    @IsString()
-    @IsNotEmpty()
-    @MinLength(8)
-    password!: string
-
-    @IsString()
-    @IsNotEmpty()
-    @MinLength(2)
-    firstName?: string
-
-    @IsString()
-    @IsNotEmpty()
-    @MinLength(2)
-    lastName?: string
-
-    @IsBoolean()
-    isActive!: boolean
-}
-
-export class UpdateUserDto extends PartialType(CreateUserDto) {}

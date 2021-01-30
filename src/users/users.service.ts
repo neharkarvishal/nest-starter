@@ -4,7 +4,8 @@ import * as bcrypt from 'bcrypt'
 import { ModelClass } from 'objection'
 
 import { CrudService } from '../base/crud'
-import { CreateUserDto, UpdateUserDto, User } from './user.model'
+import { User } from './user.model'
+import { CreateUserDto, UpdateUserDto } from './user.dto'
 
 @Injectable()
 export class UsersService extends CrudService<User> {

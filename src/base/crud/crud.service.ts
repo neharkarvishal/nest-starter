@@ -1,10 +1,12 @@
+import { BadRequestException } from '@nestjs/common'
+
 import { ModelClass, raw } from 'objection'
 
 import { BaseModel } from '../../database/models/base.model'
 import { CreateTagsDto } from '../../tags/tag.model'
-import { CreateUserDto } from '../../users/user.model'
 import { ICrudService } from './crud.service.interface'
 import { IPaginationResult, PaginationParams } from './pagination'
+import { CreateUserDto } from '../../users/user.dto'
 
 /**
  * Abstract base service that other services can extend to provide base CRUD
@@ -96,8 +98,8 @@ export abstract class CrudService<T extends BaseModel> implements ICrudService<T
                 .returning('*')
 
             return (data as unknown) as Promise<T>
-        } catch (e) {
-            return Promise.reject(e)
+        } catch (e /*: WriteError */) {
+            return Promise.reject(new BadRequestException(e))
         }
     }
 
@@ -113,8 +115,8 @@ export abstract class CrudService<T extends BaseModel> implements ICrudService<T
                 .returning('*')
 
             return (data as unknown) as Promise<T>
-        } catch (e) {
-            return Promise.reject(e)
+        } catch (e /*: WriteError */) {
+            return Promise.reject(new BadRequestException(e))
         }
     }
 }

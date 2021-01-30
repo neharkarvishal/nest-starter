@@ -14,8 +14,9 @@ import {
 import { ApiOperation, ApiTags } from '@nestjs/swagger'
 
 import { CrudController } from '../base/crud'
-import { CreateUserDto, UpdateUserDto, User } from './user.model'
+import { User } from './user.model'
 import { UsersService } from './users.service'
+import { CreateUserDto, UpdateUserDto } from './user.dto'
 
 @Controller(UsersController.path)
 @ApiTags(UsersController.name)
