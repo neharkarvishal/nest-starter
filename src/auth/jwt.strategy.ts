@@ -5,7 +5,7 @@ import { PassportStrategy } from '@nestjs/passport'
 import { ExtractJwt, Strategy } from 'passport-jwt'
 
 import { UsersService } from '../users/users.service'
-import TokenPayload from './tokenPayload.interface'
+import VerifiedTokenPayload from './tokenPayload.interface'
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
@@ -17,10 +17,11 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
             ignoreExpiration: true,
             secretOrKey: configService.get('JWTKEY'),
             jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+            passReqToCallback: true,
         })
     }
 
-    async validate(payload: TokenPayload) {
+    async validate(req: Express.Request, payload: VerifiedTokenPayload) {
         const timeDiff = Number(payload?.exp) - Number(payload?.iat)
 
         if (!payload?.email || timeDiff <= 0)

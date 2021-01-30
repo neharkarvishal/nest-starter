@@ -16,10 +16,11 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
             usernameField: LocalStrategy.usernameField,
             passwordField: LocalStrategy.passwordField,
             session: false,
+            passReqToCallback: true,
         })
     }
 
-    async validate(email: string, password: string) {
+    async validate(req: Express.Request, email: string, password: string) {
         if (!email || !password)
             return Promise.reject(
                 new UnauthorizedException('Credentials cannot be empty'),

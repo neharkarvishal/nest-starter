@@ -1,4 +1,13 @@
-import { Body, Controller, HttpStatus, Post, Req, UseGuards } from '@nestjs/common'
+import {
+    Body,
+    Controller,
+    Get,
+    HttpStatus,
+    Post,
+    Req,
+    Res,
+    UseGuards,
+} from '@nestjs/common'
 import { AuthGuard } from '@nestjs/passport'
 import { ApiProperty, ApiTags } from '@nestjs/swagger'
 
@@ -49,5 +58,34 @@ export class AuthController {
             data,
             statusCode: HttpStatus.OK,
         }
+    }
+
+    /**
+     * Google Login
+     *
+     * No-op function as `@UseGuards(AuthGuard('google'))` takes care of login
+     */
+    @Get('google')
+    @UseGuards(AuthGuard('google'))
+    async googleAuth() {} // eslint-disable-line @typescript-eslint/no-empty-function
+
+    /**
+     * Google Login Callback
+     */
+    @Get('google/redirect')
+    @UseGuards(AuthGuard('google'))
+    googleAuthRedirect(@Req() req: Request, @Res() res) {
+        if (process.env.NODE_ENV !== 'production') return req.user
+
+        if (req.user.token)
+            return res.redirect(
+                // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+                `${process.env.HOST}:${process.env.PORT}/#/sign-in/success?jwt=${req.user.token}`,
+            )
+
+        return res.redirect(
+            // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+            `${process.env.host}:${process.env.port}/#/auth/register`,
+        )
     }
 }

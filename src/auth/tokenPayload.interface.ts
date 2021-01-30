@@ -1,7 +1,7 @@
-interface TokenPayload {
+interface VerifiedTokenPayload {
     email: string
     exp: string
     iat: string
 }
 
-export default TokenPayload
+export default VerifiedTokenPayload

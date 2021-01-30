@@ -29,11 +29,16 @@ const ConfigModuleOptions = {
             .valid('development', 'production', 'test', 'provision')
             .default('development'),
 
+        HOST: Joi.string().required().default('http://localhost:3000'),
+
         JWTKEY: Joi.string().required(),
         TOKEN_EXPIRATION: Joi.string().required(),
 
         DATABASE_URL: Joi.string().required(),
         DATABASE_DEBUG: Joi.string().required(),
+
+        GOOGLE_SECRET: Joi.string().required(),
+        GOOGLE_CLIENT_ID: Joi.string().required(),
     }),
     /* eslint-enable */
 }

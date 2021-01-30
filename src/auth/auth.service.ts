@@ -1,4 +1,8 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common'
+import {
+    Injectable,
+    InternalServerErrorException,
+    UnauthorizedException,
+} from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { JwtService } from '@nestjs/jwt'
 
@@ -19,7 +23,13 @@ export class AuthService {
     }
 
     async generateToken(user: Record<string, unknown>) {
-        return this.jwtService.signAsync(user)
+        const token = await this.jwtService.signAsync(user)
+        const expiresIn = Number(this.config.get('TOKEN_EXPIRATION'))
+
+        return {
+            token,
+            expiresIn,
+        }
     }
 
     async validateUser(email: string, password: string) {
@@ -39,12 +49,24 @@ export class AuthService {
     }
 
     async login(user: Record<string, unknown>) {
-        const token = await this.generateToken(user)
-        const expiresIn = Number(this.config.get('TOKEN_EXPIRATION'))
+        return this.generateToken(user)
+    }
 
-        return {
-            token,
-            expiresIn,
+    async validateOAuthLoginEmail(accessToken, refreshToken, profile) {
+        try {
+            const { name, emails, photos } = profile
+
+            const primaryEmail = emails[0].value
+
+            const user = (
+                await this.userService.findOneByEmail(primaryEmail)
+            ).toJSON()
+
+            return await this.generateToken(user)
+        } catch (e) {
+            return Promise.reject(
+                new InternalServerErrorException(e, 'validateOAuthLoginEmail'),
+            )
         }
     }
 }
