@@ -10,9 +10,11 @@ import {
 import { ConfigService } from '@nestjs/config'
 import { ApiTags } from '@nestjs/swagger'
 import {
+    DiskHealthIndicator,
     DNSHealthIndicator,
     HealthCheck,
     HealthCheckService,
+    MemoryHealthIndicator,
 } from '@nestjs/terminus'
 
 import * as os from 'os'
@@ -27,9 +29,11 @@ export class HealthController implements OnModuleInit, OnApplicationShutdown {
     static path = 'health'
 
     constructor(
-        readonly health: HealthCheckService,
-        readonly dns: DNSHealthIndicator,
         readonly config: ConfigService<EnvironmentVariables>,
+        readonly memory: MemoryHealthIndicator,
+        readonly health: HealthCheckService,
+        readonly disk: DiskHealthIndicator,
+        readonly dns: DNSHealthIndicator,
     ) {}
 
     @Sse('sse')
@@ -54,7 +58,15 @@ export class HealthController implements OnModuleInit, OnApplicationShutdown {
     @HealthCheck()
     check() {
         return this.health.check([
-            () => this.dns.pingCheck('nestjs-docs', 'https://docs.nestjs.com'),
+            async () => this.memory.checkHeap('memory_heap', 200 * 1024 * 1024),
+            async () => this.memory.checkRSS('memory_rss', 3000 * 1024 * 1024),
+            async () =>
+                this.dns.pingCheck('weather', 'https://samples.openweathermap.org'),
+            async () =>
+                this.disk.checkStorage('storage', {
+                    thresholdPercent: 0.8,
+                    path: '/',
+                }),
         ])
     }
 

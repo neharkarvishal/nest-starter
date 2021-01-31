@@ -8,11 +8,9 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 
 // import { SpelunkerModule } from 'nestjs-spelunker'
 
-// @ts-ignore
-// eslint-disable-next-line import/no-extraneous-dependencies
+// @ts-ignore // eslint-disable-next-line import/no-extraneous-dependencies
 import * as blockedAt from 'blocked-at'
-import * as cluster from 'cluster'
-// @ts-ignore
+import * as cluster from 'cluster' // @ts-ignore
 import * as rateLimit from 'express-rate-limit'
 import * as helmet from 'helmet'
 import * as os from 'os'
@@ -100,7 +98,7 @@ function setupMiddlewares(app: INestApplication) {
 
     // signup limiter
     app.use(
-        '/auth/signup',
+        '/api/auth/signup',
         rateLimit({
             windowMs: 60 * 60 * 1000, // 1 hour window
             max: 10, // start blocking after 10 requests
@@ -136,7 +134,7 @@ async function bootstrap() {
                 console.log(
                     // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
                     `[${type}] Blocked for ${time}ms, operation started here:\n`,
-                    stack[stack.length - 1],
+                    stack,
                     '\n',
                     resource,
                 )
