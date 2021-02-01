@@ -78,6 +78,13 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#googleAuth">googleAuth</a>
+                            </li>
+                            <li>
+                                <a href="#googleAuthRedirect">googleAuthRedirect</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#login">login</a>
                             </li>
                         </ul>
@@ -101,20 +108,20 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="login"></a>
+                    <a name="googleAuth"></a>
                     <span class="name">
                         <b>
                             <span class="modifier">Async</span>
-                            login
+                            googleAuth
                         </b>
-                        <a href="#login"><span class="icon ion-ios-link"></span></a>
+                        <a href="#googleAuth"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>login(req: <a href="../classes/R.html">Request</a>, loginCreds: <a href="../classes/LoginCredsDto.html">LoginCredsDto</a>)</code>
+                    <code>googleAuth()</code>
                 </td>
             </tr>
 
@@ -122,20 +129,71 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@UseGuards(undefined)<br />@Post(&#x27;login&#x27;)<br /></code>
+                    <code>@Get(&#x27;google&#x27;)<br />@UseGuards(undefined)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="33"
-                            class="link-to-prism">src/auth/auth.controller.ts:33</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="70"
+                            class="link-to-prism">src/auth/auth.controller.ts:70</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Google Login</p>
+<p>No-op function as <code>@UseGuards(AuthGuard(&#39;google&#39;))</code> takes care of login</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="googleAuthRedirect"></a>
+                    <span class="name">
+                        <b>
+                            googleAuthRedirect
+                        </b>
+                        <a href="#googleAuthRedirect"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>googleAuthRedirect(req: <a href="../classes/R.html">Request</a>, res)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;google/redirect&#x27;)<br />@UseGuards(undefined)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="77"
+                            class="link-to-prism">src/auth/auth.controller.ts:77</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Google Login Callback</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -161,9 +219,101 @@
 
                                 </tr>
                                 <tr>
-                                    <td>loginCreds</td>
+                                    <td>res</td>
                                     <td>
-                                                <code><a href="../classes/LoginCredsDto.html" target="_self" >LoginCredsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="login"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Async</span>
+                            login
+                        </b>
+                        <a href="#login"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>login(req: <a href="../classes/R.html">Request</a>, userLoginDto: <a href="../interfaces/User.html">UserLoginDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@UseGuards(undefined)<br />@Post(&#x27;login&#x27;)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="45"
+                            class="link-to-prism">src/auth/auth.controller.ts:45</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Login</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>req</td>
+                                    <td>
+                                                <code><a href="../classes/R.html" target="_self" >Request</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userLoginDto</td>
+                                    <td>
+                                                <code><a href="../interfaces/User.html" target="_self" >UserLoginDto</a></code>
                                     </td>
 
                                     <td>
@@ -192,7 +342,16 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, HttpStatus, Post, Req, UseGuards } from &#x27;@nestjs/common&#x27;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+    Body,
+    Controller,
+    Get,
+    HttpStatus,
+    Post,
+    Req,
+    Res,
+    UseGuards,
+} from &#x27;@nestjs/common&#x27;
 import { AuthGuard } from &#x27;@nestjs/passport&#x27;
 import { ApiProperty, ApiTags } from &#x27;@nestjs/swagger&#x27;
 
@@ -202,7 +361,7 @@ import type { Request } from &#x27;express&#x27;
 import { UsersService } from &#x27;../users/users.service&#x27;
 import { AuthService } from &#x27;./auth.service&#x27;
 
-export class LoginCredsDto {
+export class UserLoginDto {
     @ApiProperty({ example: &#x27;admin@demo.com&#x27; })
     @IsNotEmpty()
     readonly email!: string
@@ -222,14 +381,20 @@ export class AuthController {
         readonly userService: UsersService,
     ) {}
 
+    /**
+     * Login
+     */
     @UseGuards(AuthGuard(&#x27;local&#x27;))
     @Post(&#x27;login&#x27;)
     async login(
         @Req() req: Request,
-        @Body() loginCreds: LoginCredsDto,
-    ): Promise&lt;{ data: string; statusCode: HttpStatus }&gt; {
+        @Body() userLoginDto: UserLoginDto,
+    ): Promise&lt;{
+        data: { token: string; expiresIn: number }
+        statusCode: HttpStatus
+    }&gt; {
         const { user } &#x3D; req
-        const { email, password } &#x3D; loginCreds
+        const { email, password } &#x3D; userLoginDto
 
         const data &#x3D; await this.authService.login(user)
 
@@ -237,6 +402,35 @@ export class AuthController {
             data,
             statusCode: HttpStatus.OK,
         }
+    }
+
+    /**
+     * Google Login
+     *
+     * No-op function as &#x60;@UseGuards(AuthGuard(&#x27;google&#x27;))&#x60; takes care of login
+     */
+    @Get(&#x27;google&#x27;)
+    @UseGuards(AuthGuard(&#x27;google&#x27;))
+    async googleAuth() {} // eslint-disable-line @typescript-eslint/no-empty-function
+
+    /**
+     * Google Login Callback
+     */
+    @Get(&#x27;google/redirect&#x27;)
+    @UseGuards(AuthGuard(&#x27;google&#x27;))
+    googleAuthRedirect(@Req() req: Request, @Res() res) {
+        if (process.env.NODE_ENV !&#x3D;&#x3D; &#x27;production&#x27;) return req.user
+
+        if (req.user.token)
+            return res.redirect(
+                // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+                &#x60;${process.env.HOST}:${process.env.PORT}/#/sign-in/success?jwt&#x3D;${req.user.token}&#x60;,
+            )
+
+        return res.redirect(
+            // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+            &#x60;${process.env.host}:${process.env.port}/#/auth/register&#x60;,
+        )
     }
 }
 </code></pre>

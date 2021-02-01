@@ -82,7 +82,7 @@
 
 import { graphql } from &#x27;graphql&#x27;
 import * as Knex from &#x27;knex&#x27;
-import { Model } from &#x27;objection&#x27;
+import { knexSnakeCaseMappers, Model } from &#x27;objection&#x27;
 import { builder as graphQlBuilder } from &#x27;objection-graphql&#x27;
 
 import { Tag } from &#x27;../tags/tag.model&#x27;
@@ -105,12 +105,11 @@ export const databaseProviders &#x3D; [
         provide: &#x27;KnexConnection&#x27;,
         useFactory: async () &#x3D;&gt; {
             const knex &#x3D; Knex({
-                client: &#x27;sqlite3&#x27;,
-                useNullAsDefault: true,
-                connection: {
-                    filename: &#x27;./knex.sqlite&#x27;,
-                },
+                // @ts-ignore
                 debug: true,
+                connection: process.env.DATABASE_URL,
+                useNullAsDefault: true,
+                client: &#x27;pg&#x27;,
             })
 
             Model.knex(knex)

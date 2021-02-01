@@ -244,8 +244,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="79"
-                            class="link-to-prism">src/app.module.ts:79</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="82"
+                            class="link-to-prism">src/app.module.ts:82</a></div>
                 </td>
             </tr>
 
@@ -314,8 +314,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="75"
-                            class="link-to-prism">src/app.module.ts:75</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="78"
+                            class="link-to-prism">src/app.module.ts:78</a></div>
                 </td>
             </tr>
 
@@ -367,13 +367,16 @@ const ConfigModuleOptions &#x3D; {
             .valid(&#x27;development&#x27;, &#x27;production&#x27;, &#x27;test&#x27;, &#x27;provision&#x27;)
             .default(&#x27;development&#x27;),
 
+        HOST: Joi.string().required().default(&#x27;http://localhost:3000&#x27;),
+
         JWTKEY: Joi.string().required(),
         TOKEN_EXPIRATION: Joi.string().required(),
 
-        database: Joi.string().required(),
-        type: Joi.string().required(),
-        logging: Joi.string().required(),
-        synchronize: Joi.string().required(),
+        DATABASE_URL: Joi.string().required(),
+        DATABASE_DEBUG: Joi.string().required(),
+
+        GOOGLE_SECRET: Joi.string().required(),
+        GOOGLE_CLIENT_ID: Joi.string().required(),
     }),
     /* eslint-enable */
 }

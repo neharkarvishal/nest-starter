@@ -55,13 +55,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/AppModule.html" data-type="entity-link">AppModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#controllers-links-module-AppModule-15008fedad1ce5344891c53923542190"' : 'data-target="#xs-controllers-links-module-AppModule-15008fedad1ce5344891c53923542190"' }>
+                                            'data-target="#controllers-links-module-AppModule-e28b5c60dcdbaf8457f2da0c4f288d02"' : 'data-target="#xs-controllers-links-module-AppModule-e28b5c60dcdbaf8457f2da0c4f288d02"' }>
                                             <span class="icon ion-md-swap"></span>
                                             <span>Controllers</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-AppModule-15008fedad1ce5344891c53923542190"' :
-                                            'id="xs-controllers-links-module-AppModule-15008fedad1ce5344891c53923542190"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-AppModule-e28b5c60dcdbaf8457f2da0c4f288d02"' :
+                                            'id="xs-controllers-links-module-AppModule-e28b5c60dcdbaf8457f2da0c4f288d02"' }>
                                             <li class="link">
                                                 <a href="controllers/AppController.html"
                                                     data-type="entity-link" data-context="sub-entity" data-context-id="modules">AppController</a>
@@ -77,13 +77,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/AuthModule.html" data-type="entity-link">AuthModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#controllers-links-module-AuthModule-b5e667abbd5c9aff08edf946fbcb67a6"' : 'data-target="#xs-controllers-links-module-AuthModule-b5e667abbd5c9aff08edf946fbcb67a6"' }>
+                                            'data-target="#controllers-links-module-AuthModule-87b41908f08ea099815b5575e98ffd0e"' : 'data-target="#xs-controllers-links-module-AuthModule-87b41908f08ea099815b5575e98ffd0e"' }>
                                             <span class="icon ion-md-swap"></span>
                                             <span>Controllers</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-AuthModule-b5e667abbd5c9aff08edf946fbcb67a6"' :
-                                            'id="xs-controllers-links-module-AuthModule-b5e667abbd5c9aff08edf946fbcb67a6"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-AuthModule-87b41908f08ea099815b5575e98ffd0e"' :
+                                            'id="xs-controllers-links-module-AuthModule-87b41908f08ea099815b5575e98ffd0e"' }>
                                             <li class="link">
                                                 <a href="controllers/AuthController.html"
                                                     data-type="entity-link" data-context="sub-entity" data-context-id="modules">AuthController</a>
@@ -92,16 +92,20 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     </li>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                        'data-target="#injectables-links-module-AuthModule-b5e667abbd5c9aff08edf946fbcb67a6"' : 'data-target="#xs-injectables-links-module-AuthModule-b5e667abbd5c9aff08edf946fbcb67a6"' }>
+                                        'data-target="#injectables-links-module-AuthModule-87b41908f08ea099815b5575e98ffd0e"' : 'data-target="#xs-injectables-links-module-AuthModule-87b41908f08ea099815b5575e98ffd0e"' }>
                                         <span class="icon ion-md-arrow-round-down"></span>
                                         <span>Injectables</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-AuthModule-b5e667abbd5c9aff08edf946fbcb67a6"' :
-                                        'id="xs-injectables-links-module-AuthModule-b5e667abbd5c9aff08edf946fbcb67a6"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-AuthModule-87b41908f08ea099815b5575e98ffd0e"' :
+                                        'id="xs-injectables-links-module-AuthModule-87b41908f08ea099815b5575e98ffd0e"' }>
                                         <li class="link">
                                             <a href="injectables/AuthService.html"
                                                 data-type="entity-link" data-context="sub-entity" data-context-id="modules" }>AuthService</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="injectables/GoogleStrategy.html"
+                                                data-type="entity-link" data-context="sub-entity" data-context-id="modules" }>GoogleStrategy</a>
                                         </li>
                                         <li class="link">
                                             <a href="injectables/JwtStrategy.html"
@@ -325,7 +329,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/EmailScheduleDto.html" data-type="entity-link">EmailScheduleDto</a>
                             </li>
                             <li class="link">
-                                <a href="classes/LoginCredsDto.html" data-type="entity-link">LoginCredsDto</a>
+                                <a href="classes/IsEmailExistsConstraint.html" data-type="entity-link">IsEmailExistsConstraint</a>
                             </li>
                             <li class="link">
                                 <a href="classes/PaginationParams.html" data-type="entity-link">PaginationParams</a>
@@ -355,6 +359,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/User.html" data-type="entity-link">User</a>
                             </li>
                             <li class="link">
+                                <a href="classes/UserLoginDto.html" data-type="entity-link">UserLoginDto</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/ValidationFailedFilter.html" data-type="entity-link">ValidationFailedFilter</a>
                             </li>
                         </ul>
@@ -381,6 +388,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                                 <li class="link">
                                     <a href="injectables/ExcludeNullUndefinedInterceptor.html" data-type="entity-link">ExcludeNullUndefinedInterceptor</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/GoogleStrategy.html" data-type="entity-link">GoogleStrategy</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/JwtStrategy.html" data-type="entity-link">JwtStrategy</a>
@@ -514,9 +524,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/Result.html" data-type="entity-link">Result</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/TokenPayload.html" data-type="entity-link">TokenPayload</a>
-                            </li>
-                            <li class="link">
                                 <a href="interfaces/User.html" data-type="entity-link">User</a>
                             </li>
                             <li class="link">
@@ -524,6 +531,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/UserPosts.html" data-type="entity-link">UserPosts</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/VerifiedTokenPayload.html" data-type="entity-link">VerifiedTokenPayload</a>
                             </li>
                         </ul>
                     </li>
@@ -549,9 +559,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                         </ul>
                     </li>
-                        <li class="chapter">
-                            <a data-type="chapter-link" href="routes.html"><span class="icon ion-ios-git-branch"></span>Routes</a>
-                        </li>
                     <li class="chapter">
                         <a data-type="chapter-link" href="coverage.html"><span class="icon ion-ios-stats"></span>Documentation coverage</a>
                     </li>

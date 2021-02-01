@@ -175,15 +175,15 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>validate(payload: <a href="../interfaces/TokenPayload.html">TokenPayload</a>)</code>
+                    <code>validate(req: <a href="../classes/R.html">Express.Request</a>, payload: <a href="../interfaces/VerifiedTokenPayload.html">VerifiedTokenPayload</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="23"
-                            class="link-to-prism">src/auth/jwt.strategy.ts:23</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="24"
+                            class="link-to-prism">src/auth/jwt.strategy.ts:24</a></div>
                 </td>
             </tr>
 
@@ -203,9 +203,21 @@
                             </thead>
                             <tbody>
                                 <tr>
+                                    <td>req</td>
+                                    <td>
+                                                <code><a href="../classes/R.html" target="_self" >Express.Request</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
                                     <td>payload</td>
                                     <td>
-                                                <code><a href="../interfaces/TokenPayload.html" target="_self" >TokenPayload</a></code>
+                                                <code><a href="../interfaces/VerifiedTokenPayload.html" target="_self" >VerifiedTokenPayload</a></code>
                                     </td>
 
                                     <td>
@@ -243,7 +255,7 @@ import { PassportStrategy } from &#x27;@nestjs/passport&#x27;
 import { ExtractJwt, Strategy } from &#x27;passport-jwt&#x27;
 
 import { UsersService } from &#x27;../users/users.service&#x27;
-import TokenPayload from &#x27;./tokenPayload.interface&#x27;
+import VerifiedTokenPayload from &#x27;./tokenPayload.interface&#x27;
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
@@ -255,11 +267,15 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
             ignoreExpiration: true,
             secretOrKey: configService.get(&#x27;JWTKEY&#x27;),
             jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+            passReqToCallback: true,
         })
     }
 
-    async validate(payload: TokenPayload) {
-        if (!payload.email) return Promise.reject(new UnauthorizedException())
+    async validate(req: Express.Request, payload: VerifiedTokenPayload) {
+        const timeDiff &#x3D; Number(payload?.exp) - Number(payload?.iat)
+
+        if (!payload?.email || timeDiff &lt;&#x3D; 0)
+            return Promise.reject(new UnauthorizedException())
 
         const user &#x3D; await this.userService.findOneByEmail(payload.email)
 

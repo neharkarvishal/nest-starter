@@ -61,9 +61,16 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/users/user.model.ts</code>
+            <code>src/users/user.dto.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Data Transfer Object</p>
+
+            </p>
 
 
 
@@ -83,120 +90,21 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { PartialType } from &#x27;@nestjs/swagger&#x27;
 
-import * as bcrypt from &#x27;bcrypt&#x27;
 import {
-    IsString,
-    MinLength,
-    IsNotEmpty,
-    MaxLength,
-    IsEmail,
     IsBoolean,
+    IsEmail,
+    IsNotEmpty,
+    IsString,
+    MaxLength,
+    MinLength,
 } from &#x27;class-validator&#x27;
-import type { JSONSchema, Modifiers, PartialModelObject } from &#x27;objection&#x27;
-import { ModelObject, QueryContext } from &#x27;objection&#x27;
 
-import { BaseModel } from &#x27;../database/models/base.model&#x27;
+import { IsEmailExists } from &#x27;../infra/validator/isEmailExists&#x27;
+import { IUser } from &#x27;./user.interface&#x27;
 
-interface IUser {
-    username: string
-    email: string
-    firstName?: string
-    lastName?: string
-    isActive: boolean
-    password: string
-}
-
-export class User extends BaseModel implements IUser {
-    static tableName &#x3D; &#x27;user&#x27;
-
-    username!: string
-
-    email!: string
-
-    firstName?: string
-
-    lastName?: string
-
-    isActive!: boolean
-
-    password!: string
-
-    static get virtualAttributes() {
-        return [&#x27;fullName&#x27;]
-    }
-
-    fullName() {
-        return &#x60;${this.firstName ?? &#x27;&#x27;} ${this.lastName ?? &#x27;&#x27;}&#x60;
-    }
-
-    // JSON schema is not the database schema! Nothing is generated based on this.
-    // This is only used for validation. Whenever a model instance is created it is checked against this schema.
-    static jsonSchema: JSONSchema &#x3D; {
-        type: &#x27;object&#x27;,
-        required: [&#x27;username&#x27;, &#x27;email&#x27;, &#x27;password&#x27;],
-        properties: {
-            id: { type: &#x27;integer&#x27;, readOnly: true },
-            username: { type: &#x27;string&#x27;, minLength: 3, maxLength: 255 },
-            email: {
-                type: &#x27;string&#x27;,
-                minLength: 3,
-                maxLength: 255,
-                format: &#x27;email&#x27;,
-            },
-            password: { type: &#x27;string&#x27;, minLength: 8, maxLength: 255 },
-            firstName: { type: &#x27;string&#x27;, minLength: 1, maxLength: 255 },
-            fullName: { type: &#x27;string&#x27; },
-            lastName: { type: &#x27;string&#x27;, minLength: 1, maxLength: 255 },
-            isActive: { type: &#x27;boolean&#x27; },
-            deleted_at: {
-                anyOf: [{ type: &#x27;string&#x27;, format: &#x27;date&#x27; }, { type: &#x27;null&#x27; }],
-            },
-        },
-    }
-
-    // Modifiers are reusable query snippets that can be used in various places.
-    static modifiers: Modifiers &#x3D; {
-        // Our example modifier is a a semi-dumb fuzzy name match. We split the name into pieces using whitespace
-        // and then try to partially match each of those pieces to both the &#x60;firstName&#x60; and the &#x60;lastName&#x60; fields.
-
-        searchByName(query, name: string) {
-            // This &#x60;where&#x60; simply creates parentheses so that other &#x60;where&#x60; statements don&#x27;t get mixed with the these.
-
-            query.where((q) &#x3D;&gt; {
-                for (const namePart of name.trim().split(/\s+/)) {
-                    for (const column of [&#x27;firstName&#x27;, &#x27;lastName&#x27;]) {
-                        q.orWhereRaw(&#x27;lower(??) like ?&#x27;, [
-                            column,
-                            &#x60;${namePart.toLowerCase()}%&#x60;,
-                        ])
-                    }
-                }
-            })
-        },
-    }
-
-    async hashPassword(password: string) {
-        const hash &#x3D; await bcrypt.hash(password, 12)
-        return hash
-    }
-
-    async $beforeInsert(queryContext: QueryContext) {
-        await super.$beforeInsert(queryContext)
-        this.password &#x3D; await this.hashPassword(this.password)
-    }
-
-    /*
-    async $beforeUpdate(opt: ModelOptions, queryContext: QueryContext) {
-        await super.$beforeUpdate(opt, queryContext)
-        this.password &#x3D; await this.hashPassword(this.password)
-    }
-    */
-}
-
-// The &#x60;ModelObject&#x60; generic gives you a clean interface that can be used on the frontend, without any of the objection Model class properties or methods.
-export type UserShape &#x3D; ModelObject&lt;User&gt;
-export type PartialUserShape &#x3D; PartialModelObject&lt;User&gt;
-
+/**
+ * Data Transfer Object
+ */
 export class CreateUserDto implements IUser {
     @IsString()
     @IsNotEmpty()
@@ -207,6 +115,7 @@ export class CreateUserDto implements IUser {
     @IsEmail()
     @IsNotEmpty()
     @MinLength(2)
+    @IsEmailExists({ message: &#x27;Email exists&#x27; })
     email!: string
 
     @IsString()
@@ -228,6 +137,9 @@ export class CreateUserDto implements IUser {
     isActive!: boolean
 }
 
+/**
+ * Data Transfer Object
+ */
 export class UpdateUserDto extends PartialType(CreateUserDto) {}
 </code></pre>
     </div>

@@ -137,8 +137,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="55"
-                            class="link-to-prism">src/health/health.controller.ts:55</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="59"
+                            class="link-to-prism">src/health/health.controller.ts:59</a></div>
                 </td>
             </tr>
 
@@ -176,8 +176,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="61"
-                            class="link-to-prism">src/health/health.controller.ts:61</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="73"
+                            class="link-to-prism">src/health/health.controller.ts:73</a></div>
                 </td>
             </tr>
 
@@ -246,8 +246,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="86"
-                            class="link-to-prism">src/health/health.controller.ts:86</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="98"
+                            class="link-to-prism">src/health/health.controller.ts:98</a></div>
                 </td>
             </tr>
 
@@ -316,8 +316,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="80"
-                            class="link-to-prism">src/health/health.controller.ts:80</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="92"
+                            class="link-to-prism">src/health/health.controller.ts:92</a></div>
                 </td>
             </tr>
 
@@ -362,8 +362,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="36"
-                            class="link-to-prism">src/health/health.controller.ts:36</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="40"
+                            class="link-to-prism">src/health/health.controller.ts:40</a></div>
                 </td>
             </tr>
 
@@ -395,9 +395,11 @@
 import { ConfigService } from &#x27;@nestjs/config&#x27;
 import { ApiTags } from &#x27;@nestjs/swagger&#x27;
 import {
+    DiskHealthIndicator,
     DNSHealthIndicator,
     HealthCheck,
     HealthCheckService,
+    MemoryHealthIndicator,
 } from &#x27;@nestjs/terminus&#x27;
 
 import * as os from &#x27;os&#x27;
@@ -412,9 +414,11 @@ export class HealthController implements OnModuleInit, OnApplicationShutdown {
     static path &#x3D; &#x27;health&#x27;
 
     constructor(
-        readonly health: HealthCheckService,
-        readonly dns: DNSHealthIndicator,
         readonly config: ConfigService&lt;EnvironmentVariables&gt;,
+        readonly memory: MemoryHealthIndicator,
+        readonly health: HealthCheckService,
+        readonly disk: DiskHealthIndicator,
+        readonly dns: DNSHealthIndicator,
     ) {}
 
     @Sse(&#x27;sse&#x27;)
@@ -439,7 +443,15 @@ export class HealthController implements OnModuleInit, OnApplicationShutdown {
     @HealthCheck()
     check() {
         return this.health.check([
-            () &#x3D;&gt; this.dns.pingCheck(&#x27;nestjs-docs&#x27;, &#x27;https://docs.nestjs.com&#x27;),
+            async () &#x3D;&gt; this.memory.checkHeap(&#x27;memory_heap&#x27;, 200 * 1024 * 1024),
+            async () &#x3D;&gt; this.memory.checkRSS(&#x27;memory_rss&#x27;, 3000 * 1024 * 1024),
+            async () &#x3D;&gt;
+                this.dns.pingCheck(&#x27;weather&#x27;, &#x27;https://samples.openweathermap.org&#x27;),
+            async () &#x3D;&gt;
+                this.disk.checkStorage(&#x27;storage&#x27;, {
+                    thresholdPercent: 0.8,
+                    path: &#x27;/&#x27;,
+                }),
         ])
     }
 

@@ -9,7 +9,7 @@ import Objection, {
 import { DBErrors } from 'objection-db-errors'
 import visibilityPlugin from 'objection-visibility'
 
-import { CustomQueryBuilder } from './helpers'
+import { CustomQueryBuilder } from './customQueryBuilder'
 
 export interface IBaseModel {
     id: number

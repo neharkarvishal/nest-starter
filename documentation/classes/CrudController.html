@@ -133,7 +133,7 @@ provide base CRUD functionality such as to create, find, update and delete data.
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/base/crud/crud.controller.ts:26</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/base/crud/crud.controller.ts:27</a></div>
                             </td>
                         </tr>
 
@@ -218,8 +218,8 @@ in order to provide all the proper base functionality.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="124"
-                            class="link-to-prism">src/base/crud/crud.controller.ts:124</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="131"
+                            class="link-to-prism">src/base/crud/crud.controller.ts:131</a></div>
                 </td>
             </tr>
 
@@ -299,8 +299,8 @@ in order to provide all the proper base functionality.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="45"
-                            class="link-to-prism">src/base/crud/crud.controller.ts:45</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="46"
+                            class="link-to-prism">src/base/crud/crud.controller.ts:46</a></div>
                 </td>
             </tr>
 
@@ -380,8 +380,8 @@ in order to provide all the proper base functionality.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="72"
-                            class="link-to-prism">src/base/crud/crud.controller.ts:72</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="73"
+                            class="link-to-prism">src/base/crud/crud.controller.ts:73</a></div>
                 </td>
             </tr>
 
@@ -461,8 +461,8 @@ in order to provide all the proper base functionality.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="102"
-                            class="link-to-prism">src/base/crud/crud.controller.ts:102</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="104"
+                            class="link-to-prism">src/base/crud/crud.controller.ts:104</a></div>
                 </td>
             </tr>
 
@@ -542,8 +542,8 @@ in order to provide all the proper base functionality.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="146"
-                            class="link-to-prism">src/base/crud/crud.controller.ts:146</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="153"
+                            class="link-to-prism">src/base/crud/crud.controller.ts:153</a></div>
                 </td>
             </tr>
 
@@ -625,6 +625,7 @@ in order to provide all the proper base functionality.</p>
     Put,
     Post,
     NotFoundException,
+    InternalServerErrorException,
 } from &#x27;@nestjs/common&#x27;
 import { ApiOperation, ApiResponse } from &#x27;@nestjs/swagger&#x27;
 
@@ -638,7 +639,7 @@ import { IPaginationResult, PaginationParams } from &#x27;./pagination&#x27;
  * Abstract base controller of BaseModel that other controller can extend to
  * provide base CRUD functionality such as to create, find, update and delete data.
  */
-@ApiErrors()
+// @ApiErrors()
 export abstract class CrudController&lt;T extends BaseModel&gt; {
     /**
      * The constructor must receive the injected service from the child controller
@@ -688,9 +689,10 @@ export abstract class CrudController&lt;T extends BaseModel&gt; {
     async findOneById(@Param(&#x27;id&#x27;, ParseIntPipe) id: number): Promise&lt;Result&lt;T&gt;&gt; {
         const data &#x3D; await this.service.findOneById(id)
 
-        if (!data) {
-            throw new NotFoundException()
-        }
+        if (!data)
+            return Promise.reject(
+                new NotFoundException(&#x60;Record with id ${id} not found&#x60;),
+            )
 
         return {
             data,
@@ -717,6 +719,11 @@ export abstract class CrudController&lt;T extends BaseModel&gt; {
     @Delete(&#x27;:id&#x27;)
     async remove(@Param(&#x27;id&#x27;, ParseIntPipe) id: number) {
         const data &#x3D; await this.service.remove(id)
+
+        if (!data)
+            return Promise.reject(
+                new NotFoundException(&#x60;Record with id ${id} not found&#x60;),
+            )
 
         return {
             data,
