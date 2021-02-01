@@ -3,18 +3,9 @@ import * as Knex from 'knex'
 const tableName = 'tags'
 
 export async function up(knex: Knex) {
-    await knex.schema.table(tableName, (table) => {
-        // table.integer('user_id').unsigned()
-        //
-        // table
-        //     .foreign('user_id')
-        //     .references('id')
-        //     .inTable('users')
-        //     .onUpdate('CASCADE')
-        //     .onDelete('NO ACTION')
-        //
-        // table.unique(['id', 'user_id'])
-    })
+    // await knex.schema.table(tableName, (table) => {
+    //     table.string('test').nullable()
+    // })
 }
 
 export async function down(knex: Knex) {

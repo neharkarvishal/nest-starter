@@ -128,8 +128,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="16"
-                            class="link-to-prism">src/emailScheduling/emailScheduling.controller.ts:16</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="15"
+                            class="link-to-prism">src/emailScheduling/emailScheduling.controller.ts:15</a></div>
                 </td>
             </tr>
 
@@ -193,7 +193,6 @@ export default class EmailSchedulingController {
 
     constructor(readonly emailSchedulingService: EmailSchedulingService) {}
 
-    // eslint-disable-next-line @typescript-eslint/require-await
     @Post(&#x27;schedule&#x27;)
     async scheduleEmail(@Body() emailSchedule: EmailScheduleDto) {
         await this.emailSchedulingService.scheduleEmail(emailSchedule)

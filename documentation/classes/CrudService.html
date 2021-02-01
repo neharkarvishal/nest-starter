@@ -229,8 +229,8 @@ order to provide all the proper base functionality.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="93"
-                            class="link-to-prism">src/base/crud/crud.service.ts:93</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="99"
+                            class="link-to-prism">src/base/crud/crud.service.ts:99</a></div>
                 </td>
             </tr>
 
@@ -424,8 +424,8 @@ order to provide all the proper base functionality.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="74"
-                            class="link-to-prism">src/base/crud/crud.service.ts:74</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="78"
+                            class="link-to-prism">src/base/crud/crud.service.ts:78</a></div>
                 </td>
             </tr>
 
@@ -498,8 +498,8 @@ order to provide all the proper base functionality.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="65"
-                            class="link-to-prism">src/base/crud/crud.service.ts:65</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="67"
+                            class="link-to-prism">src/base/crud/crud.service.ts:67</a></div>
                 </td>
             </tr>
 
@@ -572,8 +572,8 @@ order to provide all the proper base functionality.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="36"
-                            class="link-to-prism">src/base/crud/crud.service.ts:36</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="38"
+                            class="link-to-prism">src/base/crud/crud.service.ts:38</a></div>
                 </td>
             </tr>
 
@@ -646,8 +646,8 @@ order to provide all the proper base functionality.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="83"
-                            class="link-to-prism">src/base/crud/crud.service.ts:83</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="89"
+                            class="link-to-prism">src/base/crud/crud.service.ts:89</a></div>
                 </td>
             </tr>
 
@@ -720,8 +720,8 @@ order to provide all the proper base functionality.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="109"
-                            class="link-to-prism">src/base/crud/crud.service.ts:109</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="112"
+                            class="link-to-prism">src/base/crud/crud.service.ts:112</a></div>
                 </td>
             </tr>
 
@@ -792,15 +792,15 @@ order to provide all the proper base functionality.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BadRequestException } from &#x27;@nestjs/common&#x27;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NotFoundException } from &#x27;@nestjs/common&#x27;
 
 import { ModelClass, raw } from &#x27;objection&#x27;
 
 import { BaseModel } from &#x27;../../database/models/base.model&#x27;
 import { CreateTagsDto } from &#x27;../../tags/tag.model&#x27;
+import { CreateUserDto } from &#x27;../../users/user.model&#x27;
 import { ICrudService } from &#x27;./crud.service.interface&#x27;
 import { IPaginationResult, PaginationParams } from &#x27;./pagination&#x27;
-import { CreateUserDto } from &#x27;../../users/user.dto&#x27;
 
 /**
  * Abstract base service that other services can extend to provide base CRUD
@@ -821,7 +821,9 @@ export abstract class CrudService&lt;T extends BaseModel&gt; implements ICrudSer
     async findAll() {
         const data &#x3D; await this.model.query()
 
-        return (data as unknown) as Promise&lt;T[]&gt;
+        if (data) return (data as unknown) as Promise&lt;T[]&gt;
+
+        return Promise.reject(new NotFoundException())
     }
 
     /**
@@ -831,7 +833,7 @@ export abstract class CrudService&lt;T extends BaseModel&gt; implements ICrudSer
         const { page &#x3D; 0, pageSize &#x3D; 3, order } &#x3D; paginationParams
         const { results, total } &#x3D; await this.model.query().page(page, pageSize)
 
-        const data &#x3D; {
+        return ({
             data: results,
             paging: {
                 pageSize,
@@ -839,9 +841,7 @@ export abstract class CrudService&lt;T extends BaseModel&gt; implements ICrudSer
                 total,
                 totalPages: Math.ceil(total / pageSize),
             },
-        }
-
-        return (data as unknown) as Promise&lt;IPaginationResult&lt;T&gt;&gt;
+        } as unknown) as Promise&lt;IPaginationResult&lt;T&gt;&gt;
     }
 
     /**
@@ -850,7 +850,9 @@ export abstract class CrudService&lt;T extends BaseModel&gt; implements ICrudSer
     async findOne(filter &#x3D; {}) {
         const data &#x3D; await this.model.query().findOne(filter)
 
-        return (data as unknown) as Promise&lt;T&gt;
+        if (data) return (data as unknown) as Promise&lt;T&gt;
+
+        return Promise.reject(new NotFoundException())
     }
 
     /**
@@ -859,7 +861,9 @@ export abstract class CrudService&lt;T extends BaseModel&gt; implements ICrudSer
     async findOneById(id: number) {
         const data &#x3D; await this.model.query().findById(id).first()
 
-        return (data as unknown) as Promise&lt;T&gt;
+        if (data) return (data as unknown) as Promise&lt;T&gt;
+
+        return Promise.reject(new NotFoundException())
     }
 
     /**
@@ -868,7 +872,9 @@ export abstract class CrudService&lt;T extends BaseModel&gt; implements ICrudSer
     async findOneByEmail(email: string) {
         const data &#x3D; await this.model.query().findOne({ email })
 
-        return (data as unknown) as Promise&lt;T&gt;
+        if (data) return (data as unknown) as Promise&lt;T&gt;
+
+        return Promise.reject(new NotFoundException())
     }
 
     /**
@@ -886,14 +892,11 @@ export abstract class CrudService&lt;T extends BaseModel&gt; implements ICrudSer
      */
     async create(input: CreateUserDto | CreateTagsDto | T) {
         try {
-            const data &#x3D; await this.model
-                .query()
-                .insert(input as T)
-                .returning(&#x27;*&#x27;)
+            const data &#x3D; await this.model.query().insertAndFetch(input as T)
 
             return (data as unknown) as Promise&lt;T&gt;
-        } catch (e /*: WriteError */) {
-            return Promise.reject(new BadRequestException(e))
+        } catch (e) {
+            return Promise.reject(e)
         }
     }
 
@@ -902,15 +905,11 @@ export abstract class CrudService&lt;T extends BaseModel&gt; implements ICrudSer
      */
     async update(id: number, input: Partial&lt;T&gt;) {
         try {
-            const data &#x3D; await this.model
-                .query()
-                .patch(input)
-                .where(&#x27;id&#x27;, id)
-                .returning(&#x27;*&#x27;)
+            const data &#x3D; await this.model.query().patchAndFetchById(id, input)
 
             return (data as unknown) as Promise&lt;T&gt;
-        } catch (e /*: WriteError */) {
-            return Promise.reject(new BadRequestException(e))
+        } catch (e) {
+            return Promise.reject(e)
         }
     }
 }

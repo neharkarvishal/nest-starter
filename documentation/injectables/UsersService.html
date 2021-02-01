@@ -157,7 +157,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/users/users.service.ts:11</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/users/users.service.ts:10</a></div>
                             </td>
                         </tr>
 
@@ -224,8 +224,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="42"
-                            class="link-to-prism">src/users/users.service.ts:42</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="35"
+                            class="link-to-prism">src/users/users.service.ts:35</a></div>
                 </td>
             </tr>
 
@@ -296,8 +296,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="20"
-                            class="link-to-prism">src/users/users.service.ts:20</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="19"
+                            class="link-to-prism">src/users/users.service.ts:19</a></div>
                 </td>
             </tr>
 
@@ -368,8 +368,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="31"
-                            class="link-to-prism">src/users/users.service.ts:31</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="27"
+                            class="link-to-prism">src/users/users.service.ts:27</a></div>
                 </td>
             </tr>
 
@@ -440,8 +440,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="16"
-                            class="link-to-prism">src/users/users.service.ts:16</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="15"
+                            class="link-to-prism">src/users/users.service.ts:15</a></div>
                 </td>
             </tr>
 
@@ -512,8 +512,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="46"
-                            class="link-to-prism">src/users/users.service.ts:46</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="39"
+                            class="link-to-prism">src/users/users.service.ts:39</a></div>
                 </td>
             </tr>
 
@@ -602,7 +602,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../classes/CrudService.html#source" target="_self" >CrudService:93</a></code>
+                        <div class="io-line">Defined in         <code><a href="../classes/CrudService.html#source" target="_self" >CrudService:99</a></code>
 </div>
                 </td>
             </tr>
@@ -815,7 +815,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../classes/CrudService.html#source" target="_self" >CrudService:74</a></code>
+                        <div class="io-line">Defined in         <code><a href="../classes/CrudService.html#source" target="_self" >CrudService:78</a></code>
 </div>
                 </td>
             </tr>
@@ -895,7 +895,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../classes/CrudService.html#source" target="_self" >CrudService:65</a></code>
+                        <div class="io-line">Defined in         <code><a href="../classes/CrudService.html#source" target="_self" >CrudService:67</a></code>
 </div>
                 </td>
             </tr>
@@ -975,7 +975,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../classes/CrudService.html#source" target="_self" >CrudService:36</a></code>
+                        <div class="io-line">Defined in         <code><a href="../classes/CrudService.html#source" target="_self" >CrudService:38</a></code>
 </div>
                 </td>
             </tr>
@@ -1055,7 +1055,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../classes/CrudService.html#source" target="_self" >CrudService:83</a></code>
+                        <div class="io-line">Defined in         <code><a href="../classes/CrudService.html#source" target="_self" >CrudService:89</a></code>
 </div>
                 </td>
             </tr>
@@ -1135,7 +1135,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../classes/CrudService.html#source" target="_self" >CrudService:109</a></code>
+                        <div class="io-line">Defined in         <code><a href="../classes/CrudService.html#source" target="_self" >CrudService:112</a></code>
 </div>
                 </td>
             </tr>
@@ -1209,8 +1209,7 @@ import * as bcrypt from &#x27;bcrypt&#x27;
 import { ModelClass } from &#x27;objection&#x27;
 
 import { CrudService } from &#x27;../base/crud&#x27;
-import { User } from &#x27;./user.model&#x27;
-import { CreateUserDto, UpdateUserDto } from &#x27;./user.dto&#x27;
+import { CreateUserDto, UpdateUserDto, User } from &#x27;./user.model&#x27;
 
 @Injectable()
 export class UsersService extends CrudService&lt;User&gt; {
@@ -1219,29 +1218,23 @@ export class UsersService extends CrudService&lt;User&gt; {
     }
 
     async hashPassword(password: string) {
-        return bcrypt.hash(password, 12)
+        return await bcrypt.hash(password, 12)
     }
 
     async findOne(id: string | number) {
         const data &#x3D; await this.model.query().findById(id).first()
 
-        if (!data)
-            return Promise.reject(
-                new NotFoundException(&#x60;User with id ${id} not found&#x60;),
-            )
+        if (data) return data
 
-        return data
+        return Promise.reject(new NotFoundException())
     }
 
     async findOneByEmail(email: string) {
         const data &#x3D; await this.model.query().findOne({ email })
 
-        if (!data)
-            return Promise.reject(
-                new NotFoundException(&#x60;User with email ${email} not found&#x60;),
-            )
+        if (data) return data
 
-        return data
+        return Promise.reject(new NotFoundException())
     }
 
     async create(user: CreateUserDto) {

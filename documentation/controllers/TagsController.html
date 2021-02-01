@@ -132,16 +132,14 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="35"
-                            class="link-to-prism">src/tags/tags.controller.ts:35</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="32"
+                            class="link-to-prism">src/tags/tags.controller.ts:32</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Create a Tag</p>
-</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -213,16 +211,14 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="48"
-                            class="link-to-prism">src/tags/tags.controller.ts:48</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="42"
+                            class="link-to-prism">src/tags/tags.controller.ts:42</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Update a Tag</p>
-</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -309,9 +305,6 @@ export class TagsController extends CrudController&lt;Tag&gt; {
         super(service)
     }
 
-    /**
-     * Create a Tag
-     */
     @Post()
     async create(@Body() input: CreateTagsDto) {
         const data &#x3D; await this.service.create(input)
@@ -322,9 +315,6 @@ export class TagsController extends CrudController&lt;Tag&gt; {
         }
     }
 
-    /**
-     * Update a Tag
-     */
     @Put(&#x27;:id&#x27;)
     async update(
         @Param(&#x27;id&#x27;, ParseIntPipe) id: number,

@@ -82,6 +82,10 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#findOneByEmail">findOneByEmail</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#update">update</a>
                             </li>
                         </ul>
@@ -132,8 +136,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="33"
-                            class="link-to-prism">src/users/users.controller.ts:33</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="42"
+                            class="link-to-prism">src/users/users.controller.ts:42</a></div>
                 </td>
             </tr>
 
@@ -156,6 +160,85 @@
                                     <td>input</td>
                                     <td>
                                                 <code><a href="../interfaces/User.html" target="_self" >CreateUserDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>{}</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findOneByEmail"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Async</span>
+                            findOneByEmail
+                        </b>
+                        <a href="#findOneByEmail"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findOneByEmail(email: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@ApiOperation({summary: &#x27;Get one record by email&#x27;, description: &#x27;Get one record from database with provided by email&#x27;})<br />@Get()<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="33"
+                            class="link-to-prism">src/users/users.controller.ts:33</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>email</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                     </td>
 
                                     <td>
@@ -211,8 +294,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="47"
-                            class="link-to-prism">src/users/users.controller.ts:47</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="56"
+                            class="link-to-prism">src/users/users.controller.ts:56</a></div>
                 </td>
             </tr>
 
@@ -286,21 +369,30 @@
     ParseIntPipe,
     Query,
     HttpStatus,
-    UnauthorizedException,
 } from &#x27;@nestjs/common&#x27;
 import { ApiOperation, ApiTags } from &#x27;@nestjs/swagger&#x27;
 
 import { CrudController } from &#x27;../base/crud&#x27;
-import { User } from &#x27;./user.model&#x27;
+import { CreateUserDto, UpdateUserDto, User } from &#x27;./user.model&#x27;
 import { UsersService } from &#x27;./users.service&#x27;
-import { CreateUserDto, UpdateUserDto } from &#x27;./user.dto&#x27;
 
 @Controller(UsersController.path)
 @ApiTags(UsersController.name)
-export class UsersController {
+export class UsersController extends CrudController&lt;User&gt; {
     static path &#x3D; &#x27;users&#x27;
 
-    constructor(readonly service: UsersService) {}
+    constructor(readonly service: UsersService) {
+        super(service)
+    }
+
+    @ApiOperation({
+        summary: &#x27;Get one record by email&#x27;,
+        description: &#x27;Get one record from database with provided by email&#x27;,
+    })
+    @Get()
+    async findOneByEmail(@Query() email: string) {
+        return this.service.findOneByEmail(email)
+    }
 
     @ApiOperation({
         summary: &#x27;Create a User&#x27;,

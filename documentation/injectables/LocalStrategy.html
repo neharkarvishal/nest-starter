@@ -182,15 +182,15 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>validate(req: <a href="../classes/R.html">Express.Request</a>, email: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, password: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>validate(email: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, password: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="23"
-                            class="link-to-prism">src/auth/local.strategy.ts:23</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="22"
+                            class="link-to-prism">src/auth/local.strategy.ts:22</a></div>
                 </td>
             </tr>
 
@@ -209,18 +209,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>req</td>
-                                    <td>
-                                                <code><a href="../classes/R.html" target="_self" >Express.Request</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
                                 <tr>
                                     <td>email</td>
                                     <td>
@@ -357,11 +345,10 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
             usernameField: LocalStrategy.usernameField,
             passwordField: LocalStrategy.passwordField,
             session: false,
-            passReqToCallback: true,
         })
     }
 
-    async validate(req: Express.Request, email: string, password: string) {
+    async validate(email: string, password: string) {
         if (!email || !password)
             return Promise.reject(
                 new UnauthorizedException(&#x27;Credentials cannot be empty&#x27;),
